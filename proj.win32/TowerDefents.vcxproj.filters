@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameData">
+      <UniqueIdentifier>{db9f3be0-dbe1-437d-9c78-ee9e32e3fe36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject">
+      <UniqueIdentifier>{0f2c9296-672a-44bf-bbc4-40d1343275fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Tower">
+      <UniqueIdentifier>{aaa5754b-eeef-4956-9086-82e49fc6ecad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Monster">
+      <UniqueIdentifier>{47473636-c275-400d-806e-93658db8d547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Bullet">
+      <UniqueIdentifier>{3496fc48-00b6-400b-87f6-da31d0d3b8e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scene">
+      <UniqueIdentifier>{ef81c13d-80e0-473b-918d-09fcd102d185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scene\BettelScene">
+      <UniqueIdentifier>{ae4e680e-51fe-402b-8578-0b3b4e9ed075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scene\BettelScene\Layer">
+      <UniqueIdentifier>{5faf1216-1a7e-476b-ba3e-3958c2fc42d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Bullet\Bullets">
+      <UniqueIdentifier>{62d0e0bf-6743-4327-b843-e45dbf357065}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMap.cpp">
+      <Filter>src\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerBase.cpp">
+      <Filter>src\GameObject\Tower</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BattleScene.cpp">
+      <Filter>src\Scene\BettelScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Ability.cpp">
+      <Filter>src\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MonsterBase.cpp">
+      <Filter>src\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObject.cpp">
+      <Filter>src\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjectLayer.cpp">
+      <Filter>src\Scene\BettelScene\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjectTouchLayer.cpp">
+      <Filter>src\Scene\BettelScene\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BulletFactory.cpp">
+      <Filter>src\GameObject\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Bullet.cpp">
+      <Filter>src\GameObject\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BulletBall.cpp">
+      <Filter>src\GameObject\Bullet\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BulletMissile.cpp">
+      <Filter>src\GameObject\Bullet\Bullets</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\stdfax.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMap.h">
+      <Filter>src\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerBase.h">
+      <Filter>src\GameObject\Tower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BattleScene.h">
+      <Filter>src\Scene\BettelScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Ability.h">
+      <Filter>src\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MonsterBase.h">
+      <Filter>src\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObject.h">
+      <Filter>src\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjectLayer.h">
+      <Filter>src\Scene\BettelScene\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjectTouchLayer.h">
+      <Filter>src\Scene\BettelScene\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BulletFactory.h">
+      <Filter>src\GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bullet.h">
+      <Filter>src\GameObject\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BulletBall.h">
+      <Filter>src\GameObject\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BulletMissile.h">
+      <Filter>src\GameObject\Bullet\Bullets</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
