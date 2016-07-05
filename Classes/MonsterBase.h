@@ -18,9 +18,12 @@ public:
 	//int m_speed;
 
 private:
+	Scale9Sprite* m_hpBar;
+
 	virtual void onMove(float dt);
 	virtual void onBeAttack(int damage);
 	virtual void onDead(); 
+	virtual void onBindSprite();
 	void OnEndPoint();
 };
 

@@ -3,7 +3,9 @@
 Ability::Ability()
 {
 	HP = 0;
+	MaxHP = 0;
 	MP = 0;
+	MaxMP = 0;
 	WAtk = 0;
 	MAtk = 0;
 	WDef = 0;

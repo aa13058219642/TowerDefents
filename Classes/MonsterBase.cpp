@@ -37,6 +37,7 @@ bool MonsterBase::init(int MonsterID, MapPath path, bool isDebug)
 		//MonsterID
 		//get m_alility from MonsterID
 		m_ability.HP = 300;
+		m_ability.MaxHP = 300;
 		m_ability.Radius = 32;
 		m_ability.Speed = 200;
 		cur_ability = m_ability;
@@ -114,18 +115,33 @@ void MonsterBase::onMove(float dt)
 void MonsterBase::OnEndPoint(){
 	log("Move To Endding");
 	onDead();
-	//GameObjectLayer* parent = (GameObjectLayer*)getParent();
-	//parent->monsterList.eraseObject(this);
-	//parent->removeChild(this);
 }
 
 void MonsterBase::onBeAttack(int damage)
 {
-	m_ability.HP -= damage;
-	if (m_ability.HP <= 0){
+	cur_ability.HP -= damage;
+	float per = cur_ability.HP / (float)cur_ability.MaxHP;
+
+	Size size = this->getContentSize();
+	m_hpBar->setContentSize(Size(size.width*per, 6));
+
+
+	if (cur_ability.HP <= 0){
 		onDead();
 	}
 }
+
+void MonsterBase::onBindSprite()
+{
+	//init HpBar
+	m_hpBar = Scale9Sprite::create("UI/hpBar.png");
+	Size size = this->getContentSize();
+	m_hpBar->setContentSize(Size(size.width, 6));
+	m_hpBar->setPosition(-size.width / 2, size.height / 2);
+	m_hpBar->setAnchorPoint(Point(0, 0.5));
+	this->addChild(m_hpBar);
+}
+
 
 void MonsterBase::onDead()
 {
