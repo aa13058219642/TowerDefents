@@ -42,9 +42,10 @@ bool MonsterBase::init(int MonsterID, MapPath path, bool isDebug)
 		m_ability.Speed = 200;
 		cur_ability = m_ability;
 
-		std::string file = StringUtils::format("monster/m_1_%d.png", 1);
-		auto sprite = Sprite::create(file);
-		////sprite->runAction(ActionManager::)
+		createAnimate(MonsterID);
+
+		auto sprite = Sprite::create();
+		//////sprite->runAction(ActionManager::)
 		this->bindSprite(sprite);
 
 
@@ -61,6 +62,12 @@ bool MonsterBase::init(int MonsterID, MapPath path, bool isDebug)
 	} while (0);
 
 	return flag;
+}
+
+
+void MonsterBase::createAnimate(int MonsterID)
+{
+
 }
 
 
@@ -133,8 +140,40 @@ void MonsterBase::onBeAttack(int damage)
 
 void MonsterBase::onBindSprite()
 {
+
+
+
+	//std::string file = StringUtils::format("monster/m_%d.png", MonsterID);
+	std::string img = StringUtils::format("monster/m_%d.png", 1);
+	std::string plist = StringUtils::format("monster/m_%d.plist", 1);
+
+
+	SpriteFrameCache* frameCache = SpriteFrameCache::getInstance();
+	frameCache->addSpriteFramesWithFile(plist, img);
+
+	int count = 8;
+	SpriteFrame* frame = NULL;
+	Vector<SpriteFrame*> frameVec;
+
+	for (int i = 1; i <= count; i++){
+		string str = StringUtils::format("m_1_%d.png", i);
+		frame = frameCache->getSpriteFrameByName(str);
+		frameVec.pushBack(frame);
+	}
+
+	Animation* animation = Animation::createWithSpriteFrames(frameVec);
+	animation->setLoops(-1);
+	animation->setDelayPerUnit(0.1f);
+
+	Animate* action = Animate::create(animation);
+
+	getSprite()->runAction(action);
+
+
 	//init HpBar
 	m_hpBar = Scale9Sprite::create("UI/hpBar.png");
+	//Rect rect = frame->getRect();
+	this->setContentSize(frame->getRect().size);
 	Size size = this->getContentSize();
 	m_hpBar->setContentSize(Size(size.width, 6));
 	m_hpBar->setPosition(-size.width / 2, size.height / 2);

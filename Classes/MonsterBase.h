@@ -20,6 +20,8 @@ public:
 private:
 	Scale9Sprite* m_hpBar;
 
+	void createAnimate(int MonsterID);
+
 	virtual void onMove(float dt);
 	virtual void onBeAttack(int damage);
 	virtual void onDead(); 
