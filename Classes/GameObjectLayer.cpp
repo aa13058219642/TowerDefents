@@ -1,5 +1,7 @@
 #include "GameObjectLayer.h"
-
+#include "TowerBase.h"
+#include "MonsterBase.h"
+#include "Bullet.h"
 
 GameObjectLayer::GameObjectLayer()
 {
@@ -32,8 +34,8 @@ bool GameObjectLayer::init(bool isDebug)
 		for (auto var : GameMap::getInstance()->TowerPos)
 		{
 			tower = TowerBase::create(var, isDebug);
-			towerList.pushBack(tower);
-			this->addChild(tower,1);
+			gameObjectList.pushBack(tower);
+			addGameObject(tower);
 		}
 
 		WaveList = GameMap::getInstance()->WaveList;
@@ -63,15 +65,16 @@ bool GameObjectLayer::init(bool isDebug)
 
 void GameObjectLayer::update(float dt){
 	DebugDraw();
-
 }
 
-TowerBase* GameObjectLayer::findTower(Point pos){
 
-	for (auto var : towerList)
+GameObject* GameObjectLayer::findGameObject(Point pos, GameObjectType type)
+{
+
+	for (auto var : gameObjectList)
 	{
-		if (var->isClickMe(pos))
-			return var;
+		if (var->getObjectType()==type && var->isClickMe(pos))
+			return (TowerBase*)var;
 	}
 	return NULL;
 }
@@ -105,8 +108,7 @@ void GameObjectLayer::CreateMonster(){
 		log("Monster---%d", curWaveMonster);
 
 		MonsterBase* monster = MonsterBase::create(WaveList[curWave].wavedata[curWaveMonster].MonsterID, GameMap::getInstance()->MonsterPath[ WaveList[curWave].wavedata[curWaveMonster].PathID]);
-		monsterList.pushBack(monster);
-		this->addChild(monster);
+		addGameObject(monster);
 
 		RunDelayAction(callfunc_selector(GameObjectLayer::CreateMonster), WaveList[curWave].wavedata[curWaveMonster].NextMonsterDalay);
 		curWaveMonster++;
@@ -118,22 +120,30 @@ void GameObjectLayer::CreateMonster(){
 }
 
 
+void GameObjectLayer::addGameObject(GameObject* child)
+{
+	gameObjectList.pushBack(child);
+	addChild(child);
+}
+
+void GameObjectLayer::removeGameObject(GameObject* child)
+{
+	gameObjectList.eraseObject(child);
+	removeChild(child, true);
+}
+
+
 void GameObjectLayer::DebugDraw()
 {
 	if (isDebug){
-		string str = StringUtils::format("DebugData:\ntower count:%d\nmonster count:%d\nbullet count:%d\nchild count:%d\n\n", 
-			towerList.size(), monsterList.size(), bulletList.size(), this->getChildrenCount());
+		//string str = StringUtils::format("DebugData:\ntower count:%d\nmonster count:%d\nbullet count:%d\nchild count:%d\n\n", 
+		//	towerList.size(), monsterList.size(), bulletList.size(), this->getChildrenCount());
+		string str = StringUtils::format("gameObj count = %d", gameObjectList.size());
 		debugLabel->setString(str);
 
 
 		debugDrawNode->clear();
-		for (auto var : towerList){
-			var->drawMyOutLine(debugDrawNode);
-		}
-		for (auto var : monsterList){
-			var->drawMyOutLine(debugDrawNode);
-		}
-		for (auto var : bulletList){
+		for (auto var : gameObjectList){
 			var->drawMyOutLine(debugDrawNode);
 		}
 

@@ -3,7 +3,6 @@
 
 Bullet::Bullet()
 {
-
 }
 
 
@@ -43,6 +42,11 @@ void Bullet::update(float dt)
 	onMove(dt);
 }
 
+GameObjectType Bullet::getObjectType()
+{
+	return GameObjectType::GameObject_Bullet;
+}
+
 
 void Bullet::drawMyOutLine(DrawNode* drawNode)
 {
@@ -79,8 +83,9 @@ void Bullet::onHitTarget()
 
 	this->onDead();
 	GameObjectLayer* parent = (GameObjectLayer*)getParent();
-	parent->bulletList.eraseObject(this);
-	parent->removeChild(this);
+	parent->removeGameObject(this);
+	//parent->gameObjectList.eraseObject(this);
+	//this->removeFromParent();
 }
 
 void Bullet::onMissTarget(GameObject* target)

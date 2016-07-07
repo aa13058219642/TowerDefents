@@ -1,6 +1,5 @@
 #include "GameObjectTouchLayer.h"
 
-
 GameObjectTouchLayer::GameObjectTouchLayer(){}
 GameObjectTouchLayer::~GameObjectTouchLayer(){}
 
@@ -57,7 +56,7 @@ bool GameObjectTouchLayer::init(GameObjectLayer* layer)
 
 void GameObjectTouchLayer::findClickTowerPos(Point pos)
 {
-	TowerBase* tower = m_gameObjectLayer->findTower(pos);
+	TowerBase* tower = (TowerBase*)m_gameObjectLayer->findGameObject(pos, GameObjectType::GameObject_Tower);
 
 	if (tower != NULL)
 	{

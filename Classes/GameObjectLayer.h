@@ -1,9 +1,9 @@
 #pragma once
 #include "stdfax.h"
 #include "GameMap.h"
+#include "GameObject.h"
 #include "TowerBase.h"
-#include "MonsterBase.h"
-#include "Bullet.h"
+
 
 class GameObjectLayer : public Layer
 {
@@ -13,17 +13,16 @@ public:
 	static GameObjectLayer* create(bool isDebug = false);
 	bool init(bool isDebug = false);
 	
-
+	void addGameObject(GameObject* child);
+	void removeGameObject(GameObject* child);
 
 	virtual void update(float dt);
-	TowerBase* findTower(Point pos);
+	GameObject* findGameObject(Point pos, GameObjectType type);
 
 	int curWave;
 	int curWaveMonster;
-	Vector<MonsterBase*> monsterList;
-	Vector<TowerBase*> towerList;
-	Vector<Bullet*> bulletList;
 	vector<Wave> WaveList;
+	Vector<GameObject*> gameObjectList;
 
 	DrawNode* debugDrawNode;
 	Label* debugLabel;

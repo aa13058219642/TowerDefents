@@ -37,6 +37,15 @@
     <Filter Include="src\GameObject\Bullet\Bullets">
       <UniqueIdentifier>{62d0e0bf-6743-4327-b843-e45dbf357065}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameData\Effect">
+      <UniqueIdentifier>{6f045dd2-9088-48ba-a9f3-05685950bdcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameData\Effect\Effects">
+      <UniqueIdentifier>{08f1d46a-1cdb-484b-b1d4-ff11ad1cec21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameData\Effect\Effects\CEffectResponse">
+      <UniqueIdentifier>{49315291-877a-4cdf-8642-28924f2a6591}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +92,24 @@
     </ClCompile>
     <ClCompile Include="..\Classes\BulletMissile.cpp">
       <Filter>src\GameObject\Bullet\Bullets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effect\CEffect.cpp">
+      <Filter>src\GameData\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effect\CEffectResponse.cpp">
+      <Filter>src\GameData\Effect\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effect\CEffectSet.cpp">
+      <Filter>src\GameData\Effect\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effect\CEffectDamage.cpp">
+      <Filter>src\GameData\Effect\Effects\CEffectResponse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effect\EffectManager.cpp">
+      <Filter>src\GameData\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effect\CEffectLaunchMissile.cpp">
+      <Filter>src\GameData\Effect\Effects\CEffectResponse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +160,24 @@
     </ClInclude>
     <ClInclude Include="..\Classes\BulletMissile.h">
       <Filter>src\GameObject\Bullet\Bullets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effect\CEffect.h">
+      <Filter>src\GameData\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effect\CEffectResponse.h">
+      <Filter>src\GameData\Effect\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effect\CEffectSet.h">
+      <Filter>src\GameData\Effect\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effect\CEffectDamage.h">
+      <Filter>src\GameData\Effect\Effects\CEffectResponse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effect\EffectManager.h">
+      <Filter>src\GameData\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effect\CEffectLaunchMissile.h">
+      <Filter>src\GameData\Effect\Effects\CEffectResponse</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

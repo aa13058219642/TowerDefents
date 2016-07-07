@@ -71,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes\Effect;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -150,6 +150,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\Bullet.cpp" />
     <ClCompile Include="..\Classes\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\BulletMissile.cpp" />
+    <ClCompile Include="..\Classes\Effect\CEffect.cpp" />
+    <ClCompile Include="..\Classes\Effect\CEffectDamage.cpp" />
+    <ClCompile Include="..\Classes\Effect\CEffectLaunchMissile.cpp" />
+    <ClCompile Include="..\Classes\Effect\CEffectResponse.cpp" />
+    <ClCompile Include="..\Classes\Effect\CEffectSet.cpp" />
+    <ClCompile Include="..\Classes\Effect\EffectManager.cpp" />
     <ClCompile Include="..\Classes\GameMap.cpp" />
     <ClCompile Include="..\Classes\GameObject.cpp" />
     <ClCompile Include="..\Classes\GameObjectLayer.cpp" />
@@ -167,6 +173,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Bullet.h" />
     <ClInclude Include="..\Classes\BulletFactory.h" />
     <ClInclude Include="..\Classes\BulletMissile.h" />
+    <ClInclude Include="..\Classes\Effect\CEffect.h" />
+    <ClInclude Include="..\Classes\Effect\CEffectDamage.h" />
+    <ClInclude Include="..\Classes\Effect\CEffectLaunchMissile.h" />
+    <ClInclude Include="..\Classes\Effect\CEffectResponse.h" />
+    <ClInclude Include="..\Classes\Effect\CEffectSet.h" />
+    <ClInclude Include="..\Classes\Effect\EffectManager.h" />
     <ClInclude Include="..\Classes\GameMap.h" />
     <ClInclude Include="..\Classes\GameObject.h" />
     <ClInclude Include="..\Classes\GameObjectLayer.h" />

@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "GameObjectLayer.h"
 
 GameObject::GameObject()
 {
@@ -14,38 +15,6 @@ GameObject::~GameObject()
 }
 
 
-GameObject* GameObject::create(Point pos)
-{
-	GameObject* gameObject = new GameObject();
-	if (gameObject && gameObject->init(pos))
-	{
-		gameObject->autorelease();
-	}
-	else
-	{
-		CC_SAFE_DELETE(gameObject);
-	}
-	return gameObject;
-}
-
-
-bool GameObject::init(Point pos)
-{
-	bool flag = false;
-
-	do{
-		m_ability.Radius = 32;
-		cur_ability = m_ability;
-
-		setPos(pos);
-		this->setPosition(pos);
-
-		flag = true;
-	} while (0);
-
-	return flag;
-}
-
 bool GameObject::isClickMe(Point pos)
 {
 	Point srcPos, descPos;
@@ -58,9 +27,6 @@ bool GameObject::isClickMe(Point pos)
 		pos.y >= descPos.y){
 		return true;
 	}
-
-
-
 	return false;
 }
 
@@ -75,6 +41,12 @@ void GameObject::bindSprite(Sprite* sprite)
 
 	onBindSprite();
 }
+
+
+GameObjectLayer* GameObject::getPatentLayer(){
+	return (GameObjectLayer*)getParent();
+}
+
 
 Sprite* GameObject::getSprite()
 {
@@ -102,4 +74,5 @@ void GameObject::onAttack(){}
 void GameObject::onBeAttack(int damage){}
 void GameObject::onMove(){}
 void GameObject::onHitTarget(){}
+void GameObject::onMissTarget(GameObject* target){}
 void GameObject::onDead(){ m_isDeath = true; }

@@ -49,8 +49,8 @@ BulletType BulletFactory::getBulletType(int BulletID)
 	switch (BulletID)
 	{
 	default:
-	case 0:return BulletType::Ball;
-	case 1:return BulletType::Missile;
+	case 0:return BulletType::Ball; break;
+	case 1:return BulletType::Missile; break;
 	}
 
 	
@@ -63,8 +63,8 @@ Sprite* BulletFactory::getSprite(int BulletID)
 	switch (BulletID)
 	{
 	default:
-	case 0:sprite = Sprite::create("bullet/bullet_0.png");
-	case 1:sprite = Sprite::create("bullet/bullet_1.png");
+	case 0:sprite = Sprite::create("bullet/bullet_0.png"); break;
+	case 1:sprite = Sprite::create("bullet/bullet_1.png"); break;
 	}
 	//std::string file = StringUtils::format("bullet/bullet_1.png", 2);
 	sprite->setPosition(0, 0);

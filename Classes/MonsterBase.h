@@ -13,9 +13,10 @@ public:
 	virtual void drawMyOutLine(DrawNode* drawNode);
 	virtual void update(float dt);
 
-	int type;
 	CC_SYNTHESIZE(MapPath, m_path, MovePath);
-	//int m_speed;
+
+	virtual GameObjectType getObjectType();
+
 
 private:
 	Scale9Sprite* m_hpBar;

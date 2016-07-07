@@ -3,7 +3,7 @@
 
 MonsterBase::MonsterBase()
 {
-	type = 0;
+
 }
 
 
@@ -11,7 +11,6 @@ MonsterBase::~MonsterBase()
 {
 
 }
-
 
 MonsterBase* MonsterBase::create(int MonsterID, MapPath path, bool isDebug)
 {
@@ -64,6 +63,10 @@ bool MonsterBase::init(int MonsterID, MapPath path, bool isDebug)
 	return flag;
 }
 
+GameObjectType MonsterBase::getObjectType()
+{
+	return GameObjectType::GameObject_Monster;
+}
 
 void MonsterBase::createAnimate(int MonsterID)
 {
@@ -140,9 +143,6 @@ void MonsterBase::onBeAttack(int damage)
 
 void MonsterBase::onBindSprite()
 {
-
-
-
 	//std::string file = StringUtils::format("monster/m_%d.png", MonsterID);
 	std::string img = StringUtils::format("monster/m_%d.png", 1);
 	std::string plist = StringUtils::format("monster/m_%d.plist", 1);
@@ -184,14 +184,13 @@ void MonsterBase::onBindSprite()
 
 void MonsterBase::onDead()
 {
-	log("Monster Deadth!");
+	//log("Monster Deadth!");
 	GameObject::onDead();
 	GameObjectLayer* parent = (GameObjectLayer*)getParent();
 
-	for (auto var : parent->bulletList){
+	for (auto var : parent->gameObjectList){
 		var->onMissTarget(this);
 	}
 
-	parent->monsterList.eraseObject(this);
-	this->removeFromParent();
+	parent->removeGameObject(this);
 }

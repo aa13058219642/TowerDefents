@@ -19,6 +19,8 @@ public:
 	virtual void onMissTarget(GameObject* target);
 	virtual void setAbility(Ability ability);
 	virtual void setTarget(GameObject* target);
+
+	virtual GameObjectType getObjectType();
 protected:
 	Point targetPos;
 	GameObject* target;

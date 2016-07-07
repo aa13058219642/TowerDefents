@@ -15,7 +15,9 @@ public:
 	virtual void drawMyOutLine(DrawNode* drawNode);
 	void upgrade();
 
-	int type=0;
+	int level;
+
+	virtual GameObjectType getObjectType();
 private:
 	virtual void onAttack(float dt);
 
