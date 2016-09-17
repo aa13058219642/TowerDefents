@@ -1,0 +1,102 @@
+{
+   "weapondata" : {
+      "count" : 9,
+    "w001": {
+        "name": "wTower001",
+        "CoolDown": 3,
+        "beforing_Animate": "attack_beforing",
+        "beforing_Delay": 0.7,
+        "MinDamage": 10,
+        "MaxDamage": 20,
+        "TargetCount": 1,
+        "Range": 300,
+        "BulletSpeed": 800,
+        "ActorName": "b001"
+    },
+    "w002" : {
+         "name" : "wTower_000",
+        "CoolDown": 3,
+        "BoomRange": 300,
+         "MinDamage" : 20,
+         "MaxDamage" : 40,
+         "TargetCount" : 1,
+         "Range" : 192,
+        "BulletSpeed": 800,
+        "criticalChance": 0.3,
+         "ActorName" : "b003"
+      },
+    "w003" : {
+         "name" : "wTower_001",
+        "CoolDown": 0.5,
+         "MinDamage" : 7,
+         "MaxDamage" : 15,
+         "TargetCount" : 1,
+        "Range": 128,
+        "criticalChance": 0.5,
+        "criticalMultiplier": 1.2,
+         "BulletSpeed" : 800,
+         "ActorName" : "b002"
+      },
+    "w004" : {
+         "name" : "wTower_002",
+        "CoolDown": 1.5,
+         "MinDamage" : 5,
+         "MaxDamage" : 10,
+         "TargetCount" : 1,
+         "Range" : 128,
+         "BulletSpeed" : 800,
+         "ActorName" : "b001"
+      },
+    "w005" : {
+         "name" : "wTower_003",
+        "CoolDown": 2,
+         "MinDamage" : 5,
+         "MaxDamage" : 10,
+         "TargetCount" : 1,
+         "Range" : 192,
+         "BulletSpeed" : 800,
+         "ActorName" : "b003"
+      },
+    "w006" : {
+         "name" : "wTower_004",
+        "CoolDown": 1,
+         "MinDamage" : 2,
+         "MaxDamage" : 8,
+         "TargetCount" : 1,
+         "Range" : 128,
+         "BulletSpeed" : 800,
+         "ActorName" : "b001"
+      },
+    "w007" : {
+         "name" : "wTower_005",
+        "CoolDown": 1.8,
+         "MinDamage" : 1,
+         "MaxDamage" : 20,
+         "TargetCount" : 1,
+         "Range" : 128,
+         "BulletSpeed" : 800,
+         "ActorName" : "b003"
+      },
+    "w008" : {
+         "name" : "wTower_006",
+        "CoolDown": 3,
+         "MinDamage" : 3,
+         "MaxDamage" : 6,
+         "TargetCount" : 3,
+        "Range": 192,
+        "BoomRange": 128,
+         "BulletSpeed" : 800,
+         "ActorName" : "b003"
+      },
+    "w009" : {
+         "name" : "wTower_007",
+        "CoolDown": 0.8,
+         "MinDamage" : 2,
+         "MaxDamage" : 5,
+         "TargetCount" : 2,
+        "Range": 128,
+         "BulletSpeed" : 800,
+         "ActorName" : "b002"
+      }
+   }
+}

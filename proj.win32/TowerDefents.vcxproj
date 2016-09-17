@@ -71,13 +71,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes\Effect;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -144,50 +143,100 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Classes\Ability.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\BulletBall.cpp" />
-    <ClCompile Include="..\Classes\Bullet.cpp" />
-    <ClCompile Include="..\Classes\BulletFactory.cpp" />
-    <ClCompile Include="..\Classes\BulletMissile.cpp" />
-    <ClCompile Include="..\Classes\Effect\CEffect.cpp" />
-    <ClCompile Include="..\Classes\Effect\CEffectDamage.cpp" />
-    <ClCompile Include="..\Classes\Effect\CEffectLaunchMissile.cpp" />
-    <ClCompile Include="..\Classes\Effect\CEffectResponse.cpp" />
-    <ClCompile Include="..\Classes\Effect\CEffectSet.cpp" />
-    <ClCompile Include="..\Classes\Effect\EffectManager.cpp" />
-    <ClCompile Include="..\Classes\GameMap.cpp" />
-    <ClCompile Include="..\Classes\GameObject.cpp" />
-    <ClCompile Include="..\Classes\GameObjectLayer.cpp" />
-    <ClCompile Include="..\Classes\GameObjectTouchLayer.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
-    <ClCompile Include="..\Classes\MonsterBase.cpp" />
-    <ClCompile Include="..\Classes\TowerBase.cpp" />
-    <ClCompile Include="..\Classes\BattleScene.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\DataStructure\Ability.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\DataStructure\Modification.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\Actor.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\ActorManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCost.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffect.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectEnumArea.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectLaunchMissile.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectResponse.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectSet.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\EffectManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkill.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillAttactk.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffect.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffectInstant.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillGeneric.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\Unit.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\Helper\Helper.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\Manager\AnimateManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\Manager\DebugDraw.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\Manager\ResourceLoader.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\Manager\TextureManager.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\GameMap\GameMap.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\GameMap\SpellTower.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapLayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Layer\UnitLayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Scene\BattleScene.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Scene\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Unit\Bullet.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Unit\BulletFactory.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Unit\Monster.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Unit\Tower.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Classes\Ability.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\BulletBall.h" />
-    <ClInclude Include="..\Classes\Bullet.h" />
-    <ClInclude Include="..\Classes\BulletFactory.h" />
-    <ClInclude Include="..\Classes\BulletMissile.h" />
-    <ClInclude Include="..\Classes\Effect\CEffect.h" />
-    <ClInclude Include="..\Classes\Effect\CEffectDamage.h" />
-    <ClInclude Include="..\Classes\Effect\CEffectLaunchMissile.h" />
-    <ClInclude Include="..\Classes\Effect\CEffectResponse.h" />
-    <ClInclude Include="..\Classes\Effect\CEffectSet.h" />
-    <ClInclude Include="..\Classes\Effect\EffectManager.h" />
-    <ClInclude Include="..\Classes\GameMap.h" />
-    <ClInclude Include="..\Classes\GameObject.h" />
-    <ClInclude Include="..\Classes\GameObjectLayer.h" />
-    <ClInclude Include="..\Classes\GameObjectTouchLayer.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
-    <ClInclude Include="..\Classes\MonsterBase.h" />
-    <ClInclude Include="..\Classes\stdfax.h" />
-    <ClInclude Include="..\Classes\TowerBase.h" />
-    <ClInclude Include="..\Classes\BattleScene.h" />
+    <ClInclude Include="..\Classes\FrameWork\DataStructure\Ability.h" />
+    <ClInclude Include="..\Classes\FrameWork\DataStructure\Modification.h" />
+    <ClInclude Include="..\Classes\FrameWork\EnumConst.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\Actor.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\ActorManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffect.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectEnumArea.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectLaunchMissile.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectResponse.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectSet.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\EffectManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkill.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillAttactk.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffect.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffectInstant.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillGeneric.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\Unit.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\Helper\Helper.h" />
+    <ClInclude Include="..\Classes\FrameWork\Manager\AnimateManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\Manager\DebugDraw.h" />
+    <ClInclude Include="..\Classes\FrameWork\Manager\ResourceLoader.h" />
+    <ClInclude Include="..\Classes\FrameWork\Manager\TextureManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\stdfax.h" />
+    <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h" />
+    <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h" />
+    <ClInclude Include="..\Classes\TowerDefent\GameMap\SpellTower.h" />
+    <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapLayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Layer\UnitLayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Scene\BattleScene.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Scene\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\TowerDefent\TowerDefentShare.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Unit\Bullet.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Unit\BulletFactory.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Unit\Monster.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Unit\Tower.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +253,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
