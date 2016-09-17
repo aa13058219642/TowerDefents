@@ -5,6 +5,7 @@
 USING_NS_CC;
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(1280, 832);
+//static cocos2d::Size designResolutionSize = cocos2d::Size(1024, 665.6);
 static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
 static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
 static cocos2d::Size largeResolutionSize = cocos2d::Size(1920, 1080);
@@ -36,6 +37,7 @@ static int register_all_packages()
 }
 
 bool AppDelegate::applicationDidFinishLaunching() {
+	
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
@@ -55,7 +57,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(float(1.0 / 60));
 
     // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
+    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::SHOW_ALL);
     Size frameSize = glview->getFrameSize();
     // if the frame's height is larger than the height of medium size.
     if (frameSize.height > mediumResolutionSize.height)
@@ -77,9 +79,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	//###############################################################################
     // create a scene. it's an autorelease object
-	//auto scene = BattleScene::createScene(4, true);
-	auto scene = BattleScene::createScene(4, false);
-	//auto scene = TowerPosEditorScene::createScene();
+	//director->setContentScaleFactor(1);
+	std::srand(time(0));
+	auto scene = BattleScene::createScene(1);
 	//###############################################################################
 
 

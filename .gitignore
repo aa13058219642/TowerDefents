@@ -190,7 +190,7 @@ ModelManifest.xml
 
 
 
-proj.android
+proj.android/obj
 proj.android-studio
 proj.ios_mac
 proj.linux
