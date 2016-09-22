@@ -2,18 +2,22 @@
 #include "stdfax.h"
 #include "EnumConst.h"
 #include "Ability.h"
+#include "CCostUnit.h"
 
 class CEffect;
 
 class CWeapon
 {
 public:
+
+	/*攻击花费*/
+	CCostUnit Cost;
 	/*命中率*/
 	Ability<float> chance;
 	/*射程*/
 	Ability<float> Range;
 	/*CD*/
-	Ability<float> CoolDown;
+	Ability<float> ColdDown;
 	/*最大同时攻击目标*/
 	Ability<int> TargetCount;
 	/*目标过滤*/

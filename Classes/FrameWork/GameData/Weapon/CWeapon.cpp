@@ -3,9 +3,15 @@
 
 CWeapon::CWeapon()
 {
+	Cost.HP = 0;
+	Cost.MP = 0;
+	Cost.AP = 0;
+	Cost.Speed = 0;
+
+
 	chance = 1;
 	Range = 64;
-	CoolDown = 1;
+	ColdDown = 1;
 	TargetCount = 1;
 	Filter = EUnitType::Unit_Monster;
 	DamageType = EDamageType::EDamageType_Weapon;
@@ -53,7 +59,7 @@ void CWeapon::clearAbility()
 {
 	chance.clear();
 	Range.clear();
-	CoolDown.clear();
+	ColdDown.clear();
 	TargetCount.clear();
 	//MinDamage.clear();
 	//MaxDamage.clear();

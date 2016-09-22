@@ -12,8 +12,8 @@ enum EModificationValueType{
 	EModValueType_Weapon_MinDamage_Multiplier,
 	EModValueType_Weapon_MaxDamage_Addend,
 	EModValueType_Weapon_MaxDamage_Multiplier,
-	EModValueType_Weapon_CoolDown_Addend,
-	EModValueType_Weapon_CoolDown_Multiplier,
+	EModValueType_Weapon_ColdDown_Addend,
+	EModValueType_Weapon_ColdDown_Multiplier,
 };
 
 

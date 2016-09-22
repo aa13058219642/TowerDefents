@@ -52,11 +52,11 @@ void Modification::install(Unit* unit, bool isUninstall)
 		case EModValueType_Weapon_MaxDamage_Multiplier:
 			unit->getWeapon()->Damage.Max.mul(this->value.asFloat(), isUninstall);
 			break;
-		case EModValueType_Weapon_CoolDown_Addend:
-			unit->getWeapon()->CoolDown.add(this->value.asFloat(), isUninstall);
+		case EModValueType_Weapon_ColdDown_Addend:
+			unit->getWeapon()->ColdDown.add(this->value.asFloat(), isUninstall);
 			break;
-		case EModValueType_Weapon_CoolDown_Multiplier:
-			unit->getWeapon()->CoolDown.mul(this->value.asFloat(), isUninstall);
+		case EModValueType_Weapon_ColdDown_Multiplier:
+			unit->getWeapon()->ColdDown.mul(this->value.asFloat(), isUninstall);
 			break;
 		default:
 			break;

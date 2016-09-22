@@ -35,7 +35,7 @@ void WeaponManager::LoadResource(const vector<Name> & resNameList)
 	//3.¶ÁÈ¡jsonÊý¾Ý
 	CCASSERT(root["weapondata"].HasMember("count"), "illegal [Weapon.json]: weapondata.count NOT found");
 	int count = root["weapondata"]["count"].GetInt();
-	float scale = Director::getInstance()->getContentScaleFactor();
+	float scale =1 / Director::getInstance()->getContentScaleFactor();
 
 	for (int i = 1; i <= count; i++) {
 		string index = StringUtils::format("w%03d",i);
@@ -48,14 +48,14 @@ void WeaponManager::LoadResource(const vector<Name> & resNameList)
 			CWeapon* weapon = new CWeapon();
 
 			if (jNote.HasMember("chance"))				weapon->chance				= jNote["chance"].GetDouble();
-			if (jNote.HasMember("Range"))				weapon->Range				= jNote["Range"].GetDouble() / scale;
-			if (jNote.HasMember("CoolDown"))			weapon->CoolDown			= jNote["CoolDown"].GetDouble();
+			if (jNote.HasMember("Range"))				weapon->Range				= jNote["Range"].GetDouble() * scale;
+			if (jNote.HasMember("ColdDown"))			weapon->ColdDown			= jNote["ColdDown"].GetDouble();
 			if (jNote.HasMember("TargetCount"))			weapon->TargetCount			= jNote["TargetCount"].GetInt();
 			if (jNote.HasMember("Filter"))				weapon->Filter				= jNote["Filter"].GetUint();
 			if (jNote.HasMember("DamageType"))			weapon->DamageType			= (EDamageType)jNote["DamageType"].GetInt();
 			if (jNote.HasMember("MinDamage"))			weapon->Damage.Min			= jNote["MinDamage"].GetDouble();
 			if (jNote.HasMember("MaxDamage"))			weapon->Damage.Max			= jNote["MaxDamage"].GetDouble();
-			if (jNote.HasMember("BoomRange"))			weapon->BoomRange			= jNote["BoomRange"].GetDouble() / scale;
+			if (jNote.HasMember("BoomRange"))			weapon->BoomRange			= jNote["BoomRange"].GetDouble() * scale;
 			if (jNote.HasMember("attack_Effect"))		weapon->attack_Effect		= jNote["attack_Effect"].GetString();
 			if (jNote.HasMember("attack_Animate"))		weapon->attack_Animate		= jNote["attack_Animate"].GetString();
 			if (jNote.HasMember("criticalChance"))		weapon->criticalChance		= jNote["criticalChance"].GetDouble();

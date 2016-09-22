@@ -3,6 +3,7 @@
 
 //MessageCenter///////////////////////////////////////////////////////////////////////////
 #define Message_TowerSelectLayer "Message_TowerSelectLayer"
+#define Message_TowerInfoLayer "Message_TowerInfoLayer"
 typedef ValueMap NotificationMsg;
 
 enum MsgCMD : int{

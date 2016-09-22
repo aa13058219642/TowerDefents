@@ -109,6 +109,9 @@
     <Filter Include="src\FrameWork\DataStructure\Ability">
       <UniqueIdentifier>{684690bb-e3e5-4bd4-a6f3-fe8fb6861b1f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FrameWork\GameData\CCost\CCostUnit">
+      <UniqueIdentifier>{ae5f3786-81ab-491e-90c1-97046f3d60fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -245,6 +248,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.cpp">
       <Filter>src\FrameWork\GameData\CBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.cpp">
+      <Filter>src\FrameWork\GameData\CCost\CCostUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp">
+      <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -392,6 +401,12 @@
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.h">
       <Filter>src\FrameWork\GameData\CBehavior</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.h">
+      <Filter>src\FrameWork\GameData\CCost\CCostUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h">
+      <Filter>src\TowerDefent\Layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -400,5 +415,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

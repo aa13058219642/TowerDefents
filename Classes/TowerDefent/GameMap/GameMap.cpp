@@ -217,8 +217,9 @@ bool GameMap::initMap(int level)
 		UnitManager::getInstance()->init();
 
 		vector<string> textureList;
-		textureList.push_back("scene_battle_000.plist");
-		textureList.push_back("TowerSelectLayer.plist");
+		textureList.push_back("texture/scene_battle_000.plist");
+		textureList.push_back("texture/TowerSelectLayer.plist");
+		textureList.push_back("texture/TowerInfoLayer.plist");
 		TextureManager::getInstance()->LoadResource(textureList);
 
 		vector<string> effectList;

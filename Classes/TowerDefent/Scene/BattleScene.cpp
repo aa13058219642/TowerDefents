@@ -8,6 +8,7 @@
 #include "UnitLayer.h"
 #include "TowerSelectLayer.h"
 #include "GameMapLayer.h"
+#include "TowerInfoLayer.h"
 
 BattleScene::BattleScene(){}
 
@@ -54,25 +55,29 @@ bool BattleScene::init(int level)
 	this->setAnchorPoint(Point::ZERO);
 
 	Node* layer;
+
+
 	layer = UnitLayer::create();
 	this->addChild(layer, 1);
 	ActorManager::getInstance()->init(static_cast<Layer*>(layer));
 
 	//init Map and Layer
 	GameMap::getInstance()->init(level);
-	
-	if (DebugDraw::isDebug)
-	{
-		layer = DebugDraw::getInstance();
-		this->addChild(layer, 9999);
-	}
-
 
 	layer = lay = TowerSelectLayer::create();
 	this->addChild(layer, 2);
 
 	layer = GameMapLayer::create();
 	this->addChild(layer, 0);
+
+	layer = TowerInfoLayer::create();
+	this->addChild(layer, 6000);
+
+	if (DebugDraw::isDebug)
+	{
+		layer = DebugDraw::getInstance();
+		this->addChild(layer, 9999);
+	}
 
 	this->scheduleUpdate();
 	return true;

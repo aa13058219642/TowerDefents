@@ -1,5 +1,7 @@
 #pragma once
 #include "CSkill.h"
+#include "CCostUnit.h"
+
 
 class CSkillGeneric :public CSkill
 {
@@ -11,7 +13,7 @@ public:
 	/*冷却时间剩余*/
 	float ColdDowning;
 	/*技能花费*/
-	SkillCost Cost;
+	CCostUnit Cost;
 	/*射程*/
 	float Range;
 	/*目标筛选器*/

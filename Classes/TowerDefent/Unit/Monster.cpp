@@ -106,7 +106,7 @@ void Monster::onBeAttack(int damage, EDamageType damageType)
 
 void Monster::onBindSprite()
 {
-	m_actor->setShowHpBar(true);
+	m_actor->setShowHpBar(true, Point(-32, 100), Size(64, 6));
 }
 
 

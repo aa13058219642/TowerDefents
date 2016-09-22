@@ -10,12 +10,10 @@ typedef int CostRes_Gold;
 class CCost
 {
 public:
-	CostRes_Gold gold;
-
+	//virtual bool isCanPay() = 0;
+	//virtual void payCost() = 0;
 
 	CCost();
 	~CCost();
-
-
 };
 

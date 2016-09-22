@@ -19,7 +19,13 @@ public:
 		addend = _T(0);
 	}
 
-	operator _T(){ return getValue(); }
+	operator _T(){return getValue();}
+
+	template<typename _T2> _Ability_Value<_T>& operator+=(const _T2 &t2){ baseValue += t2; return *this; }
+
+	template<typename _T2> _Ability_Value<_T>& operator-=(const _T2 &t2){ baseValue -= t2; return *this; }
+
+
 	virtual _T getValue(){ return baseValue*multiplier + addend; }
 	_T getBaseValue(){ return baseValue; }
 	void setBaseValue(const _T& value){ baseValue = value; }
@@ -35,7 +41,7 @@ public:
 		return value < min_inclusive ? min_inclusive : value < max_inclusive ? value : max_inclusive;
 	}
 
-//protected:
+	//protected:
 	_T baseValue;
 	_T multiplier;
 	_T addend;
@@ -49,10 +55,10 @@ public:
 template<typename _T> class Ability;
 
 //非法定义
-template<> class Ability<char>;
+template<> class Ability < char > ;
 
 template<>
-class Ability<short> : public _Ability_Value<short>
+class Ability<short> : public _Ability_Value < short >
 {
 public:
 	Ability() :_Ability_Value(){}
@@ -60,7 +66,7 @@ public:
 };
 
 template<>
-class Ability<int> : public _Ability_Value<int>
+class Ability<int> : public _Ability_Value < int >
 {
 public:
 	Ability() :_Ability_Value(){}
@@ -68,7 +74,7 @@ public:
 };
 
 template<>
-class Ability<long> : public _Ability_Value<long>
+class Ability<long> : public _Ability_Value < long >
 {
 public:
 	Ability() :_Ability_Value(){}
@@ -76,14 +82,14 @@ public:
 };
 
 template<>
-class Ability<float> : public _Ability_Value<float>
+class Ability<float> : public _Ability_Value < float >
 {
 public:
 	Ability() :_Ability_Value(){}
 	Ability(float value) :_Ability_Value(value){}
 };
 
-template<> class Ability<double> : public _Ability_Value<double>
+template<> class Ability<double> : public _Ability_Value < double >
 {
 public:
 	Ability() :_Ability_Value(){}
@@ -91,7 +97,7 @@ public:
 };
 
 template<>
-class Ability<unsigned short> : public _Ability_Value<unsigned short>
+class Ability<unsigned short> : public _Ability_Value < unsigned short >
 {
 public:
 	Ability() :_Ability_Value(){}
@@ -99,7 +105,7 @@ public:
 };
 
 template<>
-class Ability<unsigned int> : public _Ability_Value<unsigned int>
+class Ability<unsigned int> : public _Ability_Value < unsigned int >
 {
 public:
 	Ability() :_Ability_Value(){}
@@ -107,7 +113,7 @@ public:
 };
 
 template<>
-class Ability<unsigned long> : public _Ability_Value<unsigned long>
+class Ability<unsigned long> : public _Ability_Value < unsigned long >
 {
 public:
 	Ability() :_Ability_Value(){}
@@ -118,7 +124,7 @@ public:
 
 
 template<typename _T>
-class AbilityValueEx : public _Ability_Value<_T>
+class AbilityValueEx : public _Ability_Value < _T >
 {
 public:
 	Ability<_T> Min;
@@ -126,6 +132,7 @@ public:
 
 	AbilityValueEx(){ this->baseValue = 0; this->Min = 0; this->Max = 0x7fff; }
 	AbilityValueEx(_T value, _T min = 0, _T max = 0x7fff){ this->baseValue = value; Min.setBaseValue(min); Max.setBaseValue(max); }
+
 
 
 	virtual _T getValue(){ return this->clamp(this->baseValue*this->multiplier + this->addend, Min, Max); }
@@ -138,7 +145,7 @@ private:
 };
 
 //非法定义
-template<> class AbilityValueEx<std::string>;
+template<> class AbilityValueEx < std::string > ;
 
 //######################################################################################
 

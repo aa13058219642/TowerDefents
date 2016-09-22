@@ -70,7 +70,7 @@ enum ESkillEffectState
 enum EWeapon_Upgradable
 {
 	WeaponUpgradable_Range,
-	WeaponUpgradable_CoolDown,
+	WeaponUpgradable_ColdDown,
 	WeaponUpgradable_TargetCount,
 	WeaponUpgradable_Filter,
 	WeaponUpgradable_Damage,

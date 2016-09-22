@@ -94,6 +94,7 @@ void TowerSelectLayer::initSprite()
 
 
 		a_bt[i] = Sprite::create();
+		a_bt[i]->setGlobalZOrder(5000);
 		a_layer[i]->addChild(a_bt[i]);
 
 		a_bg[i] = Sprite::createWithSpriteFrameName("TowerSelect_CostBox.png");
@@ -170,8 +171,11 @@ void TowerSelectLayer::receiveMsg(Ref* pData)
 	default:
 		CCASSERT(false, "Unkow notification message command");
 		break;
+	
 	}
 }
+
+
 
 
 
@@ -179,8 +183,6 @@ void TowerSelectLayer::receiveMsg(Ref* pData)
 void TowerSelectLayer::update(float dt){
 
 }
-
-
 
 
 void TowerSelectLayer::show()
@@ -454,6 +456,12 @@ bool TowerSelectLayer::onClick(Point pos)
 void TowerSelectLayer::clickEvent_showLayerFor_TowerInfo()
 {
 	log("clickEvent_showLayerFor_TowerInfo");
+
+	NotificationMsg msg;
+	msg["TowerID"] = m_gridPos->getTower()->ID;
+	NotificationCenter::getInstance()->postNotification(Message_TowerInfoLayer, (Ref*)&msg);
+
+
 	this->cancel();
 }
 

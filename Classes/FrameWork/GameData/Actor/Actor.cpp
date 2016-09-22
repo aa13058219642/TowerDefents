@@ -163,7 +163,7 @@ bool Actor::IsExistAnimate(const Name& animateName)
 }
 
 
-void Actor::setShowHpBar(bool isShow)
+void Actor::setShowHpBar(bool isShow, Point pos, Size size)
 {
 	if (m_hpBar == nullptr)
 	{
@@ -172,8 +172,8 @@ void Actor::setShowHpBar(bool isShow)
 
 		//Size size = m_sprite->getSpriteFrame()->getOriginalSize();
 		//m_hpBar->setPosition(size.width / 2, size.height);
-		m_hpBar->setPosition(-32, 100);
-		m_hpBar->setContentSize(Size(64, 6));
+		m_hpBar->setPosition(pos);
+		m_hpBar->setContentSize(size);
 		m_hpBar->setAnchorPoint(Point(0, 0.5));
 		m_layer->addChild(m_hpBar,2);
 	}
@@ -194,13 +194,7 @@ void Actor::setShowUnitPos(bool isShow)
 		m_unitPos = Sprite::createWithSpriteFrameName("GridPos.png");
 		CCASSERT(m_unitPos != nullptr, "Actor::setShowUnitPos(): GridPos.png NOT found");
 
-		//m_unitPos->setContentSize(Size(64, 64));
-		//m_unitPos->setAnchorPoint(Point::ZERO);
-		//m_unitPos->setPosition(Point(-8,-8));
 		m_unitPos->setLocalZOrder(0);
-		//m_unitPos->setScale(Director::getInstance()->getContentScaleFactor());
-		//Size size = m_sprite->getSpriteFrame()->getOriginalSize();
-		//m_unitPos->setPosition(-32, 100);
 		m_layer->addChild(m_unitPos);
 	}
 	m_unitPos->setVisible(isShow);

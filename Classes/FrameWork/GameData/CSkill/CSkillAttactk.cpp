@@ -35,7 +35,7 @@ CSkill* CSkillAttactk::clone()
 void CSkillAttactk::UpdateCWeapon()
 {
 	m_weapon = getParent()->getWeapon();
-	ColdDown = m_weapon->CoolDown;
+	ColdDown = m_weapon->ColdDown;
 }
 
 void CSkillAttactk::update(float dt)

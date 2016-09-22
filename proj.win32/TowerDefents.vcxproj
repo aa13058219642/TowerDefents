@@ -78,7 +78,7 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -107,6 +107,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
       <Outputs>$(TargetName).cab</Outputs>
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
+    <ClCompile>
+      <BrowseInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</BrowseInformation>
+    </ClCompile>
+    <Bscmake>
+      <PreserveSbr Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -152,6 +158,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCost.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffect.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectEnumArea.cpp" />
@@ -179,6 +186,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TowerDefent\GameMap\SpellTower.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapLayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\UnitLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\BattleScene.cpp" />
@@ -200,6 +208,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffect.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectEnumArea.h" />
@@ -228,6 +237,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\GameMap\SpellTower.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapLayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\UnitLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\BattleScene.h" />
@@ -256,6 +266,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

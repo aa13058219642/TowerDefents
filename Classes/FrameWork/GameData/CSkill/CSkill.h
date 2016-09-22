@@ -3,13 +3,6 @@
 #include "Unit.h"
 
 
-struct SkillCost
-{
-	float HP = 0;
-	float MP = 0;
-	int money = 0;
-
-};
 
 class CSkill
 {

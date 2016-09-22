@@ -26,7 +26,7 @@ public:
 	void setAnimateList(map<Name, Name> animateList);
 
 	/*设置是否显示血条，默认不显示*/
-	void setShowHpBar(bool isShow);
+	void setShowHpBar(bool isShow, Point pos = Point::ZERO, Size size = Size::ZERO);
 	/*设置血条百分比 [0,1]*/
 	void setHpBarProgress(float progress);
 	/*设置是否显示占位格子*/

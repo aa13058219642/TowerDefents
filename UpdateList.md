@@ -107,7 +107,10 @@
 - 1.修改Android.mk， 使之能编译到安卓平台上
 - 2.修改Ability提示代码健壮性
 
-
+##v0.032
+- 1.增加TowerInfoLayer类，基本完成功能
+- 2.增加CCostUnit类，初步完成消耗系统
+- 3.修复了CWeapon中的变量名错误
 
 
 

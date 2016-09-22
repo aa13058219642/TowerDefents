@@ -39,9 +39,8 @@ void Tower::buildTower(int tid)
 {
 	Radius = 32;
 	m_color = Color3B::RED;
-	//m_weapon = WeaponManager::getInstance()->getWeapon("wTower001");
-	//this->addSkill(SkillManager::getInstance()->createCSkill("attack", this));
-	//this->setActorName("t001");
+	MP = AbilityValueEx<float>(1000,0,1000);
+	//MP = MP.Max.getValue();
 
 	string act,wea;
 	switch (tid)
@@ -61,6 +60,7 @@ void Tower::buildTower(int tid)
 	this->setActorName(act);
 
 	this->bindActor();
+	this->m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
 }
 
 void Tower::buildUpgradPos(Direction direction)
@@ -108,9 +108,12 @@ void Tower::onClick()
 
 
 
+
 void Tower::onAttack(Unit* target)
 {
-
+	//MP.add(10, true);
+	//MP += 10;
+	this->m_actor->setHpBarProgress(MP / MP.Max);
 }
 
 void Tower::onBindSprite()
