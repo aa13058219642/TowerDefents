@@ -1,0 +1,118 @@
+{
+    "behaviordata": {
+        "count": 2,
+        "data": [
+            {
+                "name": "BBuff_Damage_Add_10",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65545,
+                        "valueType": 1,
+                        "value": 10,
+                        "priority": 10
+                    },
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65547,
+                        "valueType": 1,
+                        "value": 10,
+                        "priority": 10
+                    }
+                ]
+            },
+            {
+                "name": "BBuff_ColdDown_Div_0.5",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65540,
+                        "valueType": 1,
+                        "value": 0.5,
+                        "priority": 10
+                    }
+                ]
+            },
+            {
+                "name": "BBuff_Range_Add_75",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65541,
+                        "valueType": 1,
+                        "value": 75,
+                        "priority": 10
+                    }
+                ]
+            },
+            {
+                "name": "BBuff_TargetCount_Add_1",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65543,
+                        "valueType": 0,
+                        "value": 1,
+                        "priority": 10
+                    }
+                ]
+            },
+            {
+                "name": "BBuff_CriticalChance_Add_0.3",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65551,
+                        "valueType": 1,
+                        "value": 0.3,
+                        "priority": 10
+                    }
+                ]
+            },
+            {
+                "name": "BBuff_MaxDamage_Add_30",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65547,
+                        "valueType": 1,
+                        "value": 30,
+                        "priority": 10
+                    }
+                ]
+            },
+            {
+                "name": "BBuff_CriticalMultiplier_Mul_2.0",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65554,
+                        "valueType": 1,
+                        "value": 2,
+                        "priority": 10
+                    }
+                ]
+            },
+            {
+                "name": "BBuff_BoomRange_Add_75",
+                "behaviorType": 1,
+                "mod": [
+                    {
+                        "modMainType": 1,
+                        "modValueType": 65549,
+                        "valueType": 1,
+                        "value": 75,
+                        "priority": 10
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,93 @@
+{
+    "SpellCard": [
+        {
+            "ID": 0,
+            "Icon": 0,
+            "name": "Damage_Add_I",
+            "behaviorName": "BBuff_Damage_Add_10",
+            "uiName": "sepllTower_000_Name",
+            "uiDescription": "sepllTower_000_Info"
+        },        
+        {
+            "ID": 1,
+            "Icon":1,
+            "name": "Range_Add_I",
+            "behaviorName": "BBuff_Range_Add_75",
+            "uiName": "sepllTower_001_Name",
+            "uiDescription": "sepllTower_001_Info"
+        },        
+        {
+            "ID": 2,
+            "Icon":2,
+            "name": "ColdDown_Div_I",
+            "behaviorName": "BBuff_ColdDown_Div_0.5",
+            "uiName": "sepllTower_002_Name",
+            "uiDescription": "sepllTower_002_Info"
+        },        
+        {
+            "ID": 3,
+            "Icon":3,
+            "name": "TargetCount_Add_I",
+            "behaviorName": "BBuff_TargetCount_Add_1",
+            "uiName": "sepllTower_003_Name",
+            "uiDescription": "sepllTower_003_Info"
+        },        
+        {
+            "ID": 4,
+            "Icon":4,
+            "name": "CriticalChance_Add_I",
+            "behaviorName": "BBuff_CriticalChance_Add_0.3",
+            "uiName": "sepllTower_004_Name",
+            "uiDescription": "sepllTower_004_Info"
+        },        
+        {
+            "ID": 5,
+            "Icon":5,
+            "name": "MaxDamage_Add_I",
+            "behaviorName": "BBuff_MaxDamage_Add_30",
+            "uiName": "sepllTower_005_Name",
+            "uiDescription": "sepllTower_005_Info"
+        },        
+        {
+            "ID": 6,
+            "Icon":6,
+            "name": "CriticalMultiplier_Add_I",
+            "behaviorName": "BBuff_CriticalMultiplier_Mul_2.0",
+            "uiName": "sepllTower_006_Name",
+            "uiDescription": "sepllTower_006_Info"
+        },        
+        {
+            "ID": 7,
+            "Icon":7,
+            "name": "BoomRange_Add_I",
+            "behaviorName": "BBuff_BoomRange_Add_75",
+            "uiName": "sepllTower_007_Name",
+            "uiDescription": "sepllTower_007_Info"
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

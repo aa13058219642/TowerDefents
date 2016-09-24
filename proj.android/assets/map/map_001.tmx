@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="26" tilewidth="32" tileheight="32" nextobjectid="118">
  <properties>
-  <property name="WaveCount" type="int" value="2"/>
+  <property name="WaveCount" type="int" value="4"/>
  </properties>
  <tileset firstgid="1" name="001-Grassland01" tilewidth="32" tileheight="32" tilecount="144" columns="8">
   <image source="texture_001.png" trans="ffffff" width="256" height="576"/>
@@ -163,6 +163,48 @@
    <property name="m010" value="1 1 1.0"/>
    <property name="momsterCount" type="int" value="10"/>
    <property name="waveTime" type="int" value="30"/>
+  </properties>
+ </objectgroup>
+ <objectgroup name="Wave003">
+  <properties>
+   <property name="m001" value="1 0 0.75"/>
+   <property name="m002" value="1 0 0.75"/>
+   <property name="m003" value="1 0 0.75"/>
+   <property name="m004" value="1 0 0.75"/>
+   <property name="m005" value="1 0 0.75"/>
+   <property name="m006" value="1 0 0.75"/>
+   <property name="m007" value="1 0 0.75"/>
+   <property name="m008" value="1 0 0.75"/>
+   <property name="m009" value="1 0 0.75"/>
+   <property name="m010" value="1 0 0.75"/>
+   <property name="m011" value="1 0 0.75"/>
+   <property name="m012" value="1 0 0.75"/>
+   <property name="m013" value="1 0 0.75"/>
+   <property name="m014" value="1 0 0.75"/>
+   <property name="m015" value="1 0 0.75"/>
+   <property name="momsterCount" type="int" value="15"/>
+   <property name="waveTime" type="int" value="45"/>
+  </properties>
+ </objectgroup>
+ <objectgroup name="Wave004">
+  <properties>
+   <property name="m001" value="1 1 0.75"/>
+   <property name="m002" value="1 1 0.75"/>
+   <property name="m003" value="1 1 0.75"/>
+   <property name="m004" value="1 1 0.75"/>
+   <property name="m005" value="1 1 0.75"/>
+   <property name="m006" value="1 1 0.75"/>
+   <property name="m007" value="1 1 0.75"/>
+   <property name="m008" value="1 1 0.75"/>
+   <property name="m009" value="1 1 0.75"/>
+   <property name="m010" value="1 1 0.75"/>
+   <property name="m011" value="1 1 0.75"/>
+   <property name="m012" value="1 1 0.75"/>
+   <property name="m013" value="1 1 0.75"/>
+   <property name="m014" value="1 1 0.75"/>
+   <property name="m015" value="1 1 0.75"/>
+   <property name="momsterCount" type="int" value="15"/>
+   <property name="waveTime" type="int" value="45"/>
   </properties>
  </objectgroup>
 </map>

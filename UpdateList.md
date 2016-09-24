@@ -119,8 +119,9 @@
 - 4.CBehavior改从json文件读取
 - 5.增加国际化文件internationalization
 
-
-
+##v0.034
+- 1.修改build_native.bat，使之运行后自动完成编译apk操作并打印编译结果
+- 2.修改ability的错误头文件包含
 
 
 
