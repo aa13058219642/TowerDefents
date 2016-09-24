@@ -61,9 +61,14 @@ Animation* AnimateManager::createAnimation(const Name& animateName)
 	return Animation::createWithSpriteFrames(frameVec, data.delay, data.repeat);
 }
 
+
+void AnimateManager::LoadResource()
+{
+	this->LoadResource(vector<Name>());
+}
+
 void AnimateManager::LoadResource(const vector<Name>& resNameList)
 {
-	std::map<string,AnimateData> animatedata;
 
 	//1.打开文件
 	FileUtils* fin = FileUtils::getInstance();
@@ -77,6 +82,7 @@ void AnimateManager::LoadResource(const vector<Name>& resNameList)
 	CCASSERT(root.IsObject() && root.HasMember("animatedata"), "illegal [Animate.json]");
 
 	//3.读取json数据
+	std::map<string,AnimateData> animatedata;
 	for (int i = 0; i < (int)root["animatedata"].Size(); i++) {
 		string name = root["animatedata"][i]["name"].GetString();
 		//animatedata[i].name = root["animatedata"][i]["name"].GetString();
@@ -98,13 +104,26 @@ void AnimateManager::LoadResource(const vector<Name>& resNameList)
 	
 	//4.载入需要的animateData
 	AnimationCache* animationCache = AnimationCache::getInstance();
-	for (string name : resNameList)
+	bool fullLoad = true;
+	if (resNameList.size() != 0)fullLoad = false;
+	if (fullLoad)
 	{
-		CCASSERT(animatedata.find(name) != animatedata.end(), string(name + "animateData NOT exists").c_str());
-		this->animateData[name] = animatedata[name];
-		if (animatedata[name].delay > 0 && animatedata[name].framecount > 1)
-			animationCache->addAnimation(createAnimation(name), name);
+		for (auto& var : animatedata)
+		{
+			string name = var.first;
+			this->animateData[name] = animatedata[name];
+			if (animatedata[name].delay > 0 && animatedata[name].framecount > 1)
+				animationCache->addAnimation(createAnimation(name), name);
+		}
 	}
+	else
+		for (string name : resNameList)
+		{
+			CCASSERT(animatedata.find(name) != animatedata.end(), string(name + "animateData NOT exists").c_str());
+			this->animateData[name] = animatedata[name];
+			if (animatedata[name].delay > 0 && animatedata[name].framecount > 1)
+				animationCache->addAnimation(createAnimation(name), name);
+		}
 }
 
 void AnimateManager::FreeAllResource()

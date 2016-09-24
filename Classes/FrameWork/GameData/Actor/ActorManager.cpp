@@ -25,8 +25,14 @@ void ActorManager::init(Layer* layer)
 	m_layer = layer;
 }
 
+void ActorManager::LoadResource()
+{
+	this->LoadResource(vector<Name>());
+}
+
 void ActorManager::LoadResource(const vector<Name>& resNameList)
 {
+
 	//1.打开文件
 	FileUtils* fin = FileUtils::getInstance();
 	Data data = fin->getDataFromFile("data/Actor.json");
@@ -39,10 +45,12 @@ void ActorManager::LoadResource(const vector<Name>& resNameList)
 	CCASSERT(root.IsObject() && root.HasMember("actordata"), "illegal [Actor.json]");
 
 	//3.读取json数据
+	bool fullLoad = true;
+	if (resNameList.size() != 0)fullLoad = false;
 	int Size = root["actordata"].Size();
 	for (int i = 0; i < Size; i++) {
 		string name = root["actordata"][i]["name"].GetString();
-		if (std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
+		if (fullLoad || std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
 		{
 			ActorData d;
 			d.defaultanimate=root["actordata"][i]["defaultanimate"].GetString();
@@ -88,7 +96,7 @@ Actor* ActorManager::createActor(int id, Name name)
 		m_actorlist[id] = actor;
 		return actor;
 	}
-	CCASSERT(true, "can NOT create actor");
+	CCASSERT(false, "can NOT create actor");
 	return nullptr;
 }
 

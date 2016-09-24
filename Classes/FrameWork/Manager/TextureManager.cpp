@@ -17,10 +17,17 @@ TextureManager* TextureManager::getInstance()
 	return p_myinstance;
 }
 
+void TextureManager::LoadResource()
+{
+	this->LoadResource(vector<Name>());
+}
 
 
 void TextureManager::LoadResource(const vector<Name>& resNameList)
 {
+	//bool fullLoad = true;
+	//if (resNameList.size() == 0)fullLoad = false;
+
 	FileUtils* fileUtils = FileUtils::getInstance();
 	SpriteFrameCache* frameCache = SpriteFrameCache::getInstance();
 
@@ -31,6 +38,7 @@ void TextureManager::LoadResource(const vector<Name>& resNameList)
 		CCASSERT(!fileUtils->isFileExist(var.substr(var.find_last_of('/')+1)), string("Texture [" + var + "] NOT found").c_str());
 		frameCache->addSpriteFramesWithFile(var);
 	}
+
 	//plist = StringUtils::format("texture/scene_battle_%03d.plist", 0);
 	//if (fileUtils->isFileExist(plist))
 

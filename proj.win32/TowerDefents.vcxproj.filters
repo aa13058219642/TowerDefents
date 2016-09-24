@@ -112,6 +112,12 @@
     <Filter Include="src\FrameWork\GameData\CCost\CCostUnit">
       <UniqueIdentifier>{ae5f3786-81ab-491e-90c1-97046f3d60fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TowerDefent\Card">
+      <UniqueIdentifier>{e4026dff-8061-425c-9284-8e64a0f95ed7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TowerDefent\Card\SpellCard">
+      <UniqueIdentifier>{fa4666d9-37ca-48d3-aa45-1c68e37357c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,9 +164,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Scene\HelloWorldScene.cpp">
       <Filter>src\TowerDefent\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp">
-      <Filter>src\TowerDefent\GameMap</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GameMap.cpp">
       <Filter>src\TowerDefent\GameMap</Filter>
@@ -228,9 +231,6 @@
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp">
       <Filter>src\TowerDefent\GameMap</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\GameMap\SpellTower.cpp">
-      <Filter>src\TowerDefent\GameMap</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.cpp">
       <Filter>src\FrameWork\GameData\CBehavior</Filter>
     </ClCompile>
@@ -254,6 +254,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp">
+      <Filter>src\TowerDefent\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Card\SpellCard.cpp">
+      <Filter>src\TowerDefent\Card\SpellCard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Card\SpellCardManager.cpp">
+      <Filter>src\TowerDefent\Card\SpellCard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -304,9 +313,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Scene\HelloWorldScene.h">
       <Filter>src\TowerDefent\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h">
-      <Filter>src\TowerDefent\GameMap</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h">
       <Filter>src\TowerDefent\GameMap</Filter>
@@ -380,9 +386,6 @@
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h">
       <Filter>src\TowerDefent\GameMap</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\GameMap\SpellTower.h">
-      <Filter>src\TowerDefent\GameMap</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h">
       <Filter>src\FrameWork\GameData\CBehavior</Filter>
     </ClInclude>
@@ -406,6 +409,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h">
+      <Filter>src\TowerDefent\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Card\SpellCard.h">
+      <Filter>src\TowerDefent\Card\SpellCard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Card\SpellCardManager.h">
+      <Filter>src\TowerDefent\Card\SpellCard</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

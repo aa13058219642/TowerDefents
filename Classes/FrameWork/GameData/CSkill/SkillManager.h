@@ -10,6 +10,7 @@ public:
 	static SkillManager* getInstance();
 	~SkillManager();
 
+	virtual void LoadResource();
 	virtual void LoadResource(const vector<Name>& resNameList);
 	virtual void FreeAllResource();
 	virtual void FreeResource(const vector<Name>& resName);

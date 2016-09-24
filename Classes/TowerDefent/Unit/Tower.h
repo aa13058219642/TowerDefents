@@ -2,7 +2,7 @@
 #include "stdfax.h"
 #include "Unit.h"
 #include "GridPos.h" 
-#include "SpellTower.h"
+#include "SpellCard.h"
 
 class Tower : public Unit
 {
@@ -18,8 +18,8 @@ public:
 	virtual void onClick();
 
 	void buildTower(int tid);
-	void buildUpgradPos(Direction direction);
-	void buildSpellTower(Direction direction, int SpellTowerID);
+	void buildSpellTowerPos(Direction direction);
+	void buildSpellTower(Direction direction, const SpellCard* spellTower);
 	void sellSpellTower(Direction direction);
 	void sellTower();
 
@@ -28,7 +28,8 @@ public:
 private:
 	GridPos* m_gridPos;
 	Color3B m_color;
-	vector<SpellTower*> m_SpellTower;
+	//vector<SpellTower*> m_SpellTower;
+	SpellCard* m_SpellTower[8];
 
 	virtual void onAttack(Unit* target);
 	virtual void onBindSprite();

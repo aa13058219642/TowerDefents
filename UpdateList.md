@@ -64,7 +64,7 @@
 
 ##v0.024
 - 1.重新调整文件位置
-- 2.GameObject，GameObjectManager 更名为 Unit, UnitManager 
+- 2.GameObject，GameObjectManager 更名为 Unit, UnitManager
 - 3.完成 CSkillAttactk 类
 - 4.完成 CWeapon 类
 - 5.重写了 Ability 类
@@ -112,8 +112,12 @@
 - 2.增加CCostUnit类，初步完成消耗系统
 - 3.修复了CWeapon中的变量名错误
 
-
-
+##v0.033
+- 1.SpellTower改名SpellCard
+- 2.完成SpellCard和SpellCardManeger，SpellCard数据从json文件读取
+- 3.修改ResourceLoader，增加并实现无参LoadResource()函数接口，用于实现默认加载全部素材
+- 4.CBehavior改从json文件读取
+- 5.增加国际化文件internationalization
 
 
 

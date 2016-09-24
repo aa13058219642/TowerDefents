@@ -9,7 +9,7 @@ public:
 	//µ¥ÀýÄ£Ê½
 	static TextureManager* getInstance();
 
-	//void LoadTexture(ETextureType type);
+	virtual void LoadResource();
 	virtual void LoadResource(const vector<Name>& resNameList);
 	virtual void FreeAllResource();
 	virtual void FreeResource(const vector<Name>& resName);

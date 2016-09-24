@@ -3,6 +3,7 @@
 #include "ResourceLoader.h"
 #include "CBehavior.h"
 
+
 class BehaviorManager :public ResourceLoader
 {
 public:
@@ -10,6 +11,7 @@ public:
 	static BehaviorManager* getInstance();
 	~BehaviorManager();
 
+	virtual void LoadResource();
 	virtual void LoadResource(const vector<Name>& resNameList);
 	virtual void FreeAllResource();
 	virtual void FreeResource(const vector<Name>& resName);
@@ -21,6 +23,8 @@ private:
 
 	map<Name, CBehavior*> m_behaviorList;
 
+
+	CBehavior* loadBeahaviorBuff(JsonNode jNode);
 };
 
 

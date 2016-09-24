@@ -1,5 +1,6 @@
 #pragma once
 #include "stdfax.h"
+#include "SpellCard.h"
 
 enum EGridPosType{
 	GridPosType_Empty,
@@ -12,6 +13,7 @@ enum Direction{ North, NorthWest, West, SouthWest, South, SouthEast, East, North
 
 
 class Tower;
+
 class GridPos
 {
 public:
@@ -37,7 +39,7 @@ public:
 	
 	void buildTower(int tid);
 	void buildSpellPos(Tower* parent, Direction dirRelativeToTower);
-	void buildSpellTower(int SpellTowerID);
+	void buildSpellTower(const SpellCard* spellTower);
 
 	void drawMyOutLine(DrawNode* drawNode);
 private: 

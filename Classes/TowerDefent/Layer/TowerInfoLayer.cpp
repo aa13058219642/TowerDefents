@@ -43,34 +43,28 @@ bool TowerInfoLayer::init()
 	centerPos = Point(visibleSize.width*scale / 2, visibleSize.height*scale / 2);
 
 	this->setVisible(false);
-	this->setPosition(Point::ZERO);
+	this->setPosition(centerPos);
 	this->setAnchorPoint(Point::ZERO);
 
 	//³õÊ¼»¯layer
 	m_bg = Sprite::createWithSpriteFrameName("TowerInfo_BG.png");
-	m_bg->setPosition(centerPos);
 	this->addChild(m_bg);
 	this->setContentSize(m_bg->getContentSize());
 
 	//switchButton
 	m_switchButton = Sprite::createWithSpriteFrameName("TowerInfo_switch.png");
-	m_switchButton->setPosition(Point(337 * scale, 108.5 * scale));
+	m_switchButton->setPosition(Point(337 * scale, 108.5 * scale) - centerPos);
 	this->addChild(m_switchButton);
 
 	//closeButton
 	closeButton = Rect(Point(1152, 704), Size(96, 96));
 
-	////card
-	//Sprite* m_card = Sprite::create("card/card_000.png");
-	//m_card->setPosition(Point(336 * scale, 447.5 * scale));
-	//m_card->setScale(0.8*scale);
-	//this->addChild(m_card);
 
 	//label
 	for (int i = 0; i < 8; i++)
 	{
 		m_label[i] = Label::createWithCharMap("fonts/TowerInfo_Number.png",24,42,' ');
-		m_label[i]->setPosition(Point(900, 608 - i * 55)* scale);
+		m_label[i]->setPosition(Point(900, 608 - i * 55)* scale - centerPos);
 		//m_label[i]->setMaxLineWidth(360);
 		m_label[i]->setWidth(320);
 		m_label[i]->setHorizontalAlignment(TextHAlignment::RIGHT);
@@ -132,16 +126,17 @@ void TowerInfoLayer::receiveMsg(Ref* pData)
 		m_card->removeFromParentAndCleanup(true);
 	string str = StringUtils::format("card/card_%03d.png", (int)rand() % 8);
 	Sprite* m_card = Sprite::create(str);
-	m_card->setPosition(Point(336 * scale, 447.5 * scale));
+	m_card->setPosition(Point(336 * scale, 447.5 * scale) - centerPos);
 	m_card->setScale(0.8*scale);
 	this->addChild(m_card);
 
 	m_label[ETowerAttack]->setString(StringUtils::format("%.0f-%.0f", (float)weapon->Damage.Min, (float)weapon->Damage.Max));
 	m_label[ETowerAP]->setString(StringUtils::format("%.0f/%.0f", (float)m_parent->AP, (float)m_parent->AP.Max));
 	m_label[ETowerMP]->setString(StringUtils::format("%.0f/%.0f", (float)m_parent->MP, (float)m_parent->MP.Max));
-	m_label[ETowerCD]->setString(StringUtils::format("%.1fs", (float)weapon->ColdDown));
+	m_label[ETowerCD]->setString(StringUtils::format("%.3fs", (float)weapon->ColdDown));
 	m_label[ETowerRange]->setString(StringUtils::format("%.0f/%.0f", (float)weapon->Range / scale, (float)weapon->BoomRange / scale));
 	m_label[ETowerCri]->setString(StringUtils::format("%.0f%%/%.0f%%", (float)weapon->criticalChance*100, (float)weapon->criticalMultiplier*100));
+
 
 	this->show();
 }
@@ -157,8 +152,9 @@ void TowerInfoLayer::show()
 
 	this->stopAllActions();
 	this->setVisible(true);
-	this->setPositionY(1000);
-	this->runAction(MoveTo::create(0.2f, Point::ZERO));
+	this->setPosition(m_parent->getPos());
+	this->setScale(0);
+	this->runAction(Spawn::createWithTwoActions(ScaleTo::create(0.2f, 1), MoveTo::create(0.2f, centerPos)));
 }
 
 void TowerInfoLayer::close()
@@ -167,7 +163,8 @@ void TowerInfoLayer::close()
 		m_parent = nullptr;
 		this->setVisible(false);
 	});
-	this->runAction(Sequence::createWithTwoActions(MoveBy::create(0.2f, Point(0,-1000)), func));
+	this->runAction(Spawn::createWithTwoActions(Sequence::createWithTwoActions(ScaleTo::create(0.1f, 0), func), MoveTo::create(0.1f, m_parent->getPos())));
+
 }
 
 

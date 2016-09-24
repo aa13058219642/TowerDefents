@@ -7,8 +7,10 @@
 #include "WaveManager.h"
 #include "ActorManager.h"
 #include "WeaponManager.h"
+#include "EffectManager.h"
 #include "SkillManager.h"
 #include "BehaviorManager.h"
+#include "SpellCardManager.h"
 
 GameMap* GameMap::p_myinstance = nullptr;
 GameMap* GameMap::getInstance()
@@ -25,6 +27,9 @@ GameMap::GameMap()
 	m_level = -1;
 	m_mapSize = Size::ZERO;
 	m_map = nullptr;
+
+	for (int i = 0; i < 8; i++)
+		m_SpellCard[i] = "";
 }
 
 void GameMap::clear()
@@ -208,6 +213,11 @@ GridPos* GameMap::getGridPos(Point pos)
 	return nullptr;
 }
 
+const Name* GameMap::getSpellCard()
+{
+	return m_SpellCard;
+}
+
 bool GameMap::initMap(int level)
 {
 	bool flag = true;
@@ -216,94 +226,115 @@ bool GameMap::initMap(int level)
 		WaveManager::getInstance()->init();
 		UnitManager::getInstance()->init();
 
+
+		//TextureManager::getInstance()->LoadResource();
 		vector<string> textureList;
 		textureList.push_back("texture/scene_battle_000.plist");
 		textureList.push_back("texture/TowerSelectLayer.plist");
 		textureList.push_back("texture/TowerInfoLayer.plist");
 		TextureManager::getInstance()->LoadResource(textureList);
 
-		vector<string> effectList;
-		SkillManager::getInstance()->LoadResource(effectList);
+		SkillManager::getInstance()->LoadResource();
+		BehaviorManager::getInstance()->LoadResource();
+		AnimateManager::getInstance()->LoadResource();
+		ActorManager::getInstance()->LoadResource();
+		WeaponManager::getInstance()->LoadResource();
+		SpellCardManager::getInstance()->LoadResource();
+		//EffectManager::getInstance()->LoadResource();
 
-		
-		vector<string> behaviorList;
-		BehaviorManager::getInstance()->LoadResource(behaviorList);
-		
-		vector<string> animateList;
-		animateList.push_back("blank");
-		animateList.push_back("error");
-		animateList.push_back("t001_stand");
-		animateList.push_back("t001_attack_beforing");
-		animateList.push_back("t001_skill_preparing");
-		animateList.push_back("t001_skill_beforing");
-		animateList.push_back("t001_skill_using");
-		animateList.push_back("t001_skill_aftering");
-		animateList.push_back("e001");
-		animateList.push_back("e002");
-		animateList.push_back("m001_move");
-		animateList.push_back("m001_death");
-		animateList.push_back("b001_move");
-		animateList.push_back("b002_move");
-		animateList.push_back("b003_move");
-		animateList.push_back("spellPos000");
-		animateList.push_back("spellPos001");
-		animateList.push_back("spellPos002");
-		animateList.push_back("spellPos003");
-		animateList.push_back("spellPos004");
-		animateList.push_back("spellPos005");
-		animateList.push_back("spellPos006");
-		animateList.push_back("spellPos007");
-		animateList.push_back("SpellTower_000");
-		animateList.push_back("SpellTower_001");
-		animateList.push_back("SpellTower_002");
-		animateList.push_back("SpellTower_003");
-		animateList.push_back("SpellTower_004");
-		animateList.push_back("SpellTower_005");
-		animateList.push_back("SpellTower_006");
-		animateList.push_back("SpellTower_007");
-		animateList.push_back("Tower_000");
-		animateList.push_back("Tower_001");
-		animateList.push_back("Tower_002");
-		animateList.push_back("Tower_003");
-		animateList.push_back("Tower_004");
-		animateList.push_back("Tower_005");
-		animateList.push_back("Tower_006");
-		animateList.push_back("Tower_007");
-		AnimateManager::getInstance()->LoadResource(animateList);
+		m_SpellCard[0] = "Damage_Add_I";
+		m_SpellCard[1] = "Range_Add_I";
+		m_SpellCard[2] = "ColdDown_Div_I";
+		m_SpellCard[3] = "TargetCount_Add_I";
+		m_SpellCard[4] = "CriticalChance_Add_I";
+		m_SpellCard[5] = "MaxDamage_Add_I";
+		m_SpellCard[6] = "CriticalMultiplier_Add_I";
+		m_SpellCard[7] = "BoomRange_Add_I";
 
+		//vector<string> effectList;
+		//SkillManager::getInstance()->LoadResource(effectList);
 
-		vector<string> actorList;
-		actorList.push_back("blank");
-		actorList.push_back("t001");
-		actorList.push_back("m001");
-		actorList.push_back("b001");
-		actorList.push_back("b002");
-		actorList.push_back("b003");
-		actorList.push_back("Tower_000");
-		actorList.push_back("Tower_001");
-		actorList.push_back("Tower_002");
-		actorList.push_back("Tower_003");
-		actorList.push_back("Tower_004");
-		actorList.push_back("Tower_005");
-		actorList.push_back("Tower_006");
-		actorList.push_back("Tower_007");
-		ActorManager::getInstance()->LoadResource(actorList);
-
-		vector<Name> weaponList;
-		weaponList.push_back("wTower001");
-		weaponList.push_back("wTower_000");
-		weaponList.push_back("wTower_001");
-		weaponList.push_back("wTower_002");
-		weaponList.push_back("wTower_003");
-		weaponList.push_back("wTower_004");
-		weaponList.push_back("wTower_005");
-		weaponList.push_back("wTower_006");
-		weaponList.push_back("wTower_007");
-		WeaponManager::getInstance()->LoadResource(weaponList);
+		//
+		//vector<string> behaviorList;
+		//behaviorList.push_back("BBuff_AddDamage_10");
+		//behaviorList.push_back("BBuff_SubColdDown_0.5P");
+		//BehaviorManager::getInstance()->LoadResource(behaviorList);
+		//
+		//vector<string> animateList;
+		//animateList.push_back("blank");
+		//animateList.push_back("error");
+		//animateList.push_back("t001_stand");
+		//animateList.push_back("t001_attack_beforing");
+		//animateList.push_back("t001_skill_preparing");
+		//animateList.push_back("t001_skill_beforing");
+		//animateList.push_back("t001_skill_using");
+		//animateList.push_back("t001_skill_aftering");
+		//animateList.push_back("e001");
+		//animateList.push_back("e002");
+		//animateList.push_back("m001_move");
+		//animateList.push_back("m001_death");
+		//animateList.push_back("b001_move");
+		//animateList.push_back("b002_move");
+		//animateList.push_back("b003_move");
+		//animateList.push_back("spellPos000");
+		//animateList.push_back("spellPos001");
+		//animateList.push_back("spellPos002");
+		//animateList.push_back("spellPos003");
+		//animateList.push_back("spellPos004");
+		//animateList.push_back("spellPos005");
+		//animateList.push_back("spellPos006");
+		//animateList.push_back("spellPos007");
+		//animateList.push_back("SpellTower_000");
+		//animateList.push_back("SpellTower_001");
+		//animateList.push_back("SpellTower_002");
+		//animateList.push_back("SpellTower_003");
+		//animateList.push_back("SpellTower_004");
+		//animateList.push_back("SpellTower_005");
+		//animateList.push_back("SpellTower_006");
+		//animateList.push_back("SpellTower_007");
+		//animateList.push_back("Tower_000");
+		//animateList.push_back("Tower_001");
+		//animateList.push_back("Tower_002");
+		//animateList.push_back("Tower_003");
+		//animateList.push_back("Tower_004");
+		//animateList.push_back("Tower_005");
+		//animateList.push_back("Tower_006");
+		//animateList.push_back("Tower_007");
+		//AnimateManager::getInstance()->LoadResource(animateList);
 
 
+		//vector<string> actorList;
+		//actorList.push_back("blank");
+		//actorList.push_back("t001");
+		//actorList.push_back("m001");
+		//actorList.push_back("b001");
+		//actorList.push_back("b002");
+		//actorList.push_back("b003");
+		//actorList.push_back("Tower_000");
+		//actorList.push_back("Tower_001");
+		//actorList.push_back("Tower_002");
+		//actorList.push_back("Tower_003");
+		//actorList.push_back("Tower_004");
+		//actorList.push_back("Tower_005");
+		//actorList.push_back("Tower_006");
+		//actorList.push_back("Tower_007");
+		//ActorManager::getInstance()->LoadResource(actorList);
+
+		//vector<Name> weaponList;
+		//weaponList.push_back("wTower001");
+		//weaponList.push_back("wTower_000");
+		//weaponList.push_back("wTower_001");
+		//weaponList.push_back("wTower_002");
+		//weaponList.push_back("wTower_003");
+		//weaponList.push_back("wTower_004");
+		//weaponList.push_back("wTower_005");
+		//weaponList.push_back("wTower_006");
+		//weaponList.push_back("wTower_007");
+		//WeaponManager::getInstance()->LoadResource(weaponList);
 
 
+		//vector<Name> spellTowerList;
+		//SpellTowerManager::getInstance()->LoadResource(spellTowerList);
 
 
 		//´´½¨¿Õ°×Ëþ

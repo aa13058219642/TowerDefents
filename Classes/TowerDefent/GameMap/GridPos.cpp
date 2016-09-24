@@ -81,7 +81,7 @@ void GridPos::initTower()
 
 void GridPos::onClick()
 {
-	log("GridPos:(%f,%f)", m_pos.x, m_pos.y);
+	//log("GridPos:(%f,%f)", m_pos.x, m_pos.y);
 	NotificationMsg msg;
 	msg.clear();
 
@@ -145,10 +145,10 @@ void GridPos::buildSpellPos(Tower* parent, Direction dirRelativeToTower)
 	m_dir = dirRelativeToTower;
 }
 
-void GridPos::buildSpellTower(int SpellTowerID)
+void GridPos::buildSpellTower(const SpellCard* spellTower)
 {
 	m_type = EGridPosType::GridPosType_SpellTower;
-	m_tower->buildSpellTower(m_dir, SpellTowerID);
+	m_tower->buildSpellTower(m_dir, spellTower);
 }
 
 void GridPos::drawMyOutLine(DrawNode* drawNode){

@@ -161,7 +161,8 @@ struct __Ability_Key_Data
 		value = _T();
 	}
 	__Ability_Key_Data(int priority, _T value){ this->priority = priority; this->value = value; }
-	bool operator < (_T& other) { return priority < other.priority; }
+	bool operator<(const __Ability_Key_Data<_T>& other)const { return this->priority < other.priority; }
+	bool operator== (const __Ability_Key_Data<_T>& other) const { return this->priority == other.priority && this->value == other.value; }
 	operator _T(){ return value; }
 };
 
@@ -184,7 +185,7 @@ public:
 		}
 		else
 		{
-			list.erase(__Ability_Key_Data<_T>(priority, value));
+			list.erase(std::find(list.begin(), list.end(), __Ability_Key_Data<_T>(priority, value)));
 		}
 
 	}

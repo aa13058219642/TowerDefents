@@ -33,7 +33,7 @@ WaveManager::~WaveManager()
 
 void WaveManager::init()
 {
-	startDelay = 3.0f;
+	startDelay = 10.0f;
 	curWave = -1;
 	curMonster = 0;
 
@@ -78,12 +78,6 @@ void WaveManager::update(float dt)
 					waveList[curWave].wavedata[curMonster].MonsterID, 
 					monsterPath[waveList[curWave].wavedata[curMonster].PathID]);
 
-				//monster->setParent(objMgr->getLayer());
-				//auto sprite = Sprite::createWithSpriteFrameName("blank.png");
-				//sprite->setAnchorPoint(Vec2(0, 1));
-				//Size sizes(32, 32);
-				//sprite->setContentSize(sizes);
-				//monster->bindSprite(sprite);
 				monster->setActorName("m001");
 				objMgr->addUnit(monster);
 

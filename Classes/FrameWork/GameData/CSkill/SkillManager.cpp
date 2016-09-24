@@ -22,6 +22,11 @@ SkillManager* SkillManager::getInstance()
 	return p_myinstance;
 }
 
+void SkillManager::LoadResource()
+{
+	this->LoadResource(vector<Name>());
+}
+
 void SkillManager::LoadResource(const vector<Name>& resNameList)
 {
 	//Skill Nuke
@@ -73,7 +78,8 @@ CSkill* SkillManager::createCSkill(string key, Unit* parent)
 		skill->setParent(parent->ID);
 		return skill;
 	}
-	log("SkillManager->createCSkill() : CSkill [%s] Not Found !", key.c_str());
+	CCASSERT(false, StringUtils::format("SkillManager->createCSkill() : CSkill [%s] Not Found !", key.c_str()).c_str());
+
 	return nullptr;
 }
 

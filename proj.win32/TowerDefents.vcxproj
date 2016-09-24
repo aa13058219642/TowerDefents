@@ -71,14 +71,14 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Card;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -113,6 +113,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <Bscmake>
       <PreserveSbr Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreserveSbr>
     </Bscmake>
+    <Link>
+      <ImageHasSafeExceptionHandlers Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ImageHasSafeExceptionHandlers>
+      <ShowProgress Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotSet</ShowProgress>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -181,9 +185,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\FrameWork\Manager\DebugDraw.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\ResourceLoader.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\TextureManager.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Card\SpellCard.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Card\SpellCardManager.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GameMap.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp" />
-    <ClCompile Include="..\Classes\TowerDefent\GameMap\SpellTower.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp" />
@@ -232,9 +237,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FrameWork\Manager\ResourceLoader.h" />
     <ClInclude Include="..\Classes\FrameWork\Manager\TextureManager.h" />
     <ClInclude Include="..\Classes\FrameWork\stdfax.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Card\SpellCard.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Card\SpellCardManager.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h" />
-    <ClInclude Include="..\Classes\TowerDefent\GameMap\SpellTower.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h" />

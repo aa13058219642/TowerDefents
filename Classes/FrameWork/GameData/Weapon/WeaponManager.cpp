@@ -19,6 +19,11 @@ WeaponManager* WeaponManager::getInstance()
 	return p_myinstance;
 }
 
+void WeaponManager::LoadResource()
+{
+	this->LoadResource(vector<Name>());
+}
+
 void WeaponManager::LoadResource(const vector<Name> & resNameList)
 {
 	//1.打开文件
@@ -37,42 +42,44 @@ void WeaponManager::LoadResource(const vector<Name> & resNameList)
 	int count = root["weapondata"]["count"].GetInt();
 	float scale =1 / Director::getInstance()->getContentScaleFactor();
 
+	bool fullLoad = true;
+	if (resNameList.size() != 0)fullLoad = false;
 	for (int i = 1; i <= count; i++) {
 		string index = StringUtils::format("w%03d",i);
 		CCASSERT(root["weapondata"].HasMember(index.c_str()) && root["weapondata"][index.c_str()].IsObject(), string("illegal [Weapon.json]: weapondata" + index + " NOT found").c_str());
 
-		auto& jNote = root["weapondata"][index.c_str()];
-		string name = jNote["name"].GetString();
-		if (std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
+		auto& jNode = root["weapondata"][index.c_str()];
+		string name = jNode["name"].GetString();
+		if (fullLoad || std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
 		{
 			CWeapon* weapon = new CWeapon();
 
-			if (jNote.HasMember("chance"))				weapon->chance				= jNote["chance"].GetDouble();
-			if (jNote.HasMember("Range"))				weapon->Range				= jNote["Range"].GetDouble() * scale;
-			if (jNote.HasMember("ColdDown"))			weapon->ColdDown			= jNote["ColdDown"].GetDouble();
-			if (jNote.HasMember("TargetCount"))			weapon->TargetCount			= jNote["TargetCount"].GetInt();
-			if (jNote.HasMember("Filter"))				weapon->Filter				= jNote["Filter"].GetUint();
-			if (jNote.HasMember("DamageType"))			weapon->DamageType			= (EDamageType)jNote["DamageType"].GetInt();
-			if (jNote.HasMember("MinDamage"))			weapon->Damage.Min			= jNote["MinDamage"].GetDouble();
-			if (jNote.HasMember("MaxDamage"))			weapon->Damage.Max			= jNote["MaxDamage"].GetDouble();
-			if (jNote.HasMember("BoomRange"))			weapon->BoomRange			= jNote["BoomRange"].GetDouble() * scale;
-			if (jNote.HasMember("attack_Effect"))		weapon->attack_Effect		= jNote["attack_Effect"].GetString();
-			if (jNote.HasMember("attack_Animate"))		weapon->attack_Animate		= jNote["attack_Animate"].GetString();
-			if (jNote.HasMember("criticalChance"))		weapon->criticalChance		= jNote["criticalChance"].GetDouble();
-			if (jNote.HasMember("criticalMultiplier"))	weapon->criticalMultiplier	= jNote["criticalMultiplier"].GetDouble();
-			if (jNote.HasMember("critical_Effect"))		weapon->critical_Effect		= jNote["critical_Effect"].GetString();
-			if (jNote.HasMember("critical_Animate"))	weapon->critical_Animate	= jNote["critical_Animate"].GetString();
-			if (jNote.HasMember("ActorName"))			weapon->ActorName			= jNote["ActorName"].GetString();
-			if (jNote.HasMember("beforing_Delay"))		weapon->beforing_Delay		= jNote["beforing_Delay"].GetDouble();
-			if (jNote.HasMember("using_Delay"))			weapon->using_Delay			= jNote["using_Delay"].GetDouble();
-			if (jNote.HasMember("aftering_Delay"))		weapon->aftering_Delay		= jNote["aftering_Delay"].GetDouble();
-			if (jNote.HasMember("beforing_Animate"))	weapon->beforing_Animate	= jNote["beforing_Animate"].GetString();
-			if (jNote.HasMember("using_Animate"))		weapon->using_Animate		= jNote["using_Animate"].GetString();
-			if (jNote.HasMember("aftering_Animate"))	weapon->aftering_Animate	= jNote["aftering_Animate"].GetString();
-			if (jNote.HasMember("bulletType"))			weapon->bulletType			= (BulletType)jNote["bulletType"].GetInt();
-			if (jNote.HasMember("IsTrackTarget"))		weapon->IsTrackTarget		= jNote["IsTrackTarget"].GetBool();
-			if (jNote.HasMember("IsFaceToTarget"))		weapon->IsFaceToTarget		= jNote["IsFaceToTarget"].GetBool();
-			if (jNote.HasMember("BulletSpeed"))			weapon->BulletSpeed			= jNote["BulletSpeed"].GetDouble();
+			if (jNode.HasMember("chance"))				weapon->chance				= jNode["chance"].GetDouble();
+			if (jNode.HasMember("Range"))				weapon->Range				= jNode["Range"].GetDouble() * scale;
+			if (jNode.HasMember("ColdDown"))			weapon->ColdDown			= jNode["ColdDown"].GetDouble();
+			if (jNode.HasMember("TargetCount"))			weapon->TargetCount			= jNode["TargetCount"].GetInt();
+			if (jNode.HasMember("Filter"))				weapon->Filter				= jNode["Filter"].GetUint();
+			if (jNode.HasMember("DamageType"))			weapon->DamageType			= (EDamageType)jNode["DamageType"].GetInt();
+			if (jNode.HasMember("MinDamage"))			weapon->Damage.Min			= jNode["MinDamage"].GetDouble();
+			if (jNode.HasMember("MaxDamage"))			weapon->Damage.Max			= jNode["MaxDamage"].GetDouble();
+			if (jNode.HasMember("BoomRange"))			weapon->BoomRange			= jNode["BoomRange"].GetDouble() * scale;
+			if (jNode.HasMember("attack_Effect"))		weapon->attack_Effect		= jNode["attack_Effect"].GetString();
+			if (jNode.HasMember("attack_Animate"))		weapon->attack_Animate		= jNode["attack_Animate"].GetString();
+			if (jNode.HasMember("criticalChance"))		weapon->criticalChance		= jNode["criticalChance"].GetDouble();
+			if (jNode.HasMember("criticalMultiplier"))	weapon->criticalMultiplier	= jNode["criticalMultiplier"].GetDouble();
+			if (jNode.HasMember("critical_Effect"))		weapon->critical_Effect		= jNode["critical_Effect"].GetString();
+			if (jNode.HasMember("critical_Animate"))	weapon->critical_Animate	= jNode["critical_Animate"].GetString();
+			if (jNode.HasMember("ActorName"))			weapon->ActorName			= jNode["ActorName"].GetString();
+			if (jNode.HasMember("beforing_Delay"))		weapon->beforing_Delay		= jNode["beforing_Delay"].GetDouble();
+			if (jNode.HasMember("using_Delay"))			weapon->using_Delay			= jNode["using_Delay"].GetDouble();
+			if (jNode.HasMember("aftering_Delay"))		weapon->aftering_Delay		= jNode["aftering_Delay"].GetDouble();
+			if (jNode.HasMember("beforing_Animate"))	weapon->beforing_Animate	= jNode["beforing_Animate"].GetString();
+			if (jNode.HasMember("using_Animate"))		weapon->using_Animate		= jNode["using_Animate"].GetString();
+			if (jNode.HasMember("aftering_Animate"))	weapon->aftering_Animate	= jNode["aftering_Animate"].GetString();
+			if (jNode.HasMember("bulletType"))			weapon->bulletType			= (BulletType)jNode["bulletType"].GetInt();
+			if (jNode.HasMember("IsTrackTarget"))		weapon->IsTrackTarget		= jNode["IsTrackTarget"].GetBool();
+			if (jNode.HasMember("IsFaceToTarget"))		weapon->IsFaceToTarget		= jNode["IsFaceToTarget"].GetBool();
+			if (jNode.HasMember("BulletSpeed"))			weapon->BulletSpeed			= jNode["BulletSpeed"].GetDouble();
 
 			m_weapon[name] = weapon;
 		}
@@ -103,7 +110,9 @@ void WeaponManager::FreeResource(const vector<Name>& resName)
 CWeapon* WeaponManager::getWeapon(const string& weaponName)
 {
 	CCASSERT(m_weapon.find(weaponName) != m_weapon.end(), string("Weapon [" + weaponName + "] NOT found").c_str());
-	return new CWeapon(*m_weapon[weaponName]);
+
+	if (m_weapon.find(weaponName) != m_weapon.end())return new CWeapon(*m_weapon[weaponName]);
+	else return nullptr;
 }
 
 

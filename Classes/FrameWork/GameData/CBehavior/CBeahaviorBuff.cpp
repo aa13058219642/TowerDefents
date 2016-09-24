@@ -4,6 +4,10 @@ CBeahaviorBuff::CBeahaviorBuff()
 {
 	m_type = EBehaviorType::ECBeahaviorBuff;
 	isTimeLimitBuff = false;
+	m_lifetime = 0;
+	m_cycle = 0;
+	m_cycleCount = -1;
+	m_cycleEffect = "";
 }
 
 

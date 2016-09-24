@@ -2,6 +2,8 @@
 #include "TowerDefentShare.h"
 #include "GameMap.h"
 #include "Tower.h"
+#include "SpellCardManager.h"
+
 //using namespace cocos2d::ui;
 
 TowerSelectLayer::TowerSelectLayer(){
@@ -301,8 +303,6 @@ void TowerSelectLayer::showFor_BuildTower()
 		m_state = ETowerSelectLayerState::ShowFor_BuildTower;
 
 		this->hideAllButton();
-		const int* around = m_gridPos->getAroundGridPosID();
-		auto gamemap = GameMap::getInstance();
 		for (int i = 0; i < 8; i++)
 		{
 			a_bt[i]->setSpriteFrame(StringUtils::format("Tower_%03d.png", i));
@@ -319,12 +319,9 @@ void TowerSelectLayer::showFor_BuildTower()
 
 void TowerSelectLayer::showFor_BuildSpellPos()
 {
-	//Point pos = Point(msg.at("x").asFloat(), msg.at("y").asFloat());
 	if (m_state != ETowerSelectLayerState::ShowFor_BuildSpellPos)
 	{
 		m_state = ETowerSelectLayerState::ShowFor_BuildSpellPos;
-		//m_gridPos = (GridPos*)msg.at("GridPos").asInt();
-		//selectLayer->setPosition(pos);
 		this->hideAllButton();
 
 		const int* around = m_gridPos->getAroundGridPosID();
@@ -337,9 +334,6 @@ void TowerSelectLayer::showFor_BuildSpellPos()
 				a_bg[i]->setVisible(true);
 				a_layer[i]->setVisible(true);
 			}
-
-		//Color3B color = Color3B(msg.at("color_r").asInt(), msg.at("color_g").asInt(), msg.at("color_b").asInt());
-		//bg_circle->setColor(color);
 		this->show();
 	}
 }
@@ -360,14 +354,21 @@ void TowerSelectLayer::showFor_BuildSpellTower(const NotificationMsg& msg)
 
 		const int* around = m_gridPos->getAroundGridPosID();
 		auto gamemap = GameMap::getInstance();
+
+		const Name* spellcard = gamemap->getSpellCard();
+
 		for (int i = 0; i < 8; i++)
 		{
-			a_bt[i]->setSpriteFrame(StringUtils::format("TowerSelect_SpellTower_%03d.png", i));
-			//a_bt[i]->setSpriteFrame("SpellTower_000.png");
-			a_number[i]->setString("9999");
-			a_number[i]->setVisible(true);
-			a_bg[i]->setVisible(true);
-			a_layer[i]->setVisible(true);
+			if (!spellcard[i].empty())
+			{
+				const SpellCard* s = SpellCardManager::getInstance()->getSpellCard(spellcard[i]);
+				a_bt[i]->setSpriteFrame(StringUtils::format("TowerSelect_SpellTower_%03d.png", s->Icon));
+				//a_bt[i]->setSpriteFrame("SpellTower_000.png");
+				a_number[i]->setString("9999");
+				a_number[i]->setVisible(true);
+				a_bg[i]->setVisible(true);
+				a_layer[i]->setVisible(true);
+			}
 		}
 
 		this->show();
@@ -455,7 +456,7 @@ bool TowerSelectLayer::onClick(Point pos)
 
 void TowerSelectLayer::clickEvent_showLayerFor_TowerInfo()
 {
-	log("clickEvent_showLayerFor_TowerInfo");
+	//log("clickEvent_showLayerFor_TowerInfo");
 
 	NotificationMsg msg;
 	msg["TowerID"] = m_gridPos->getTower()->ID;
@@ -467,27 +468,27 @@ void TowerSelectLayer::clickEvent_showLayerFor_TowerInfo()
 
 void TowerSelectLayer::clickEvent_showLayerFor_BuildTower()
 {
-	log("clickEvent_showLayerFor_BuildTower");
+	//log("clickEvent_showLayerFor_BuildTower");
 	this->showFor_BuildTower();
 }
 
 void TowerSelectLayer::clickEvent_showLayerFor_BuildSpellPos()
 {
-	log("clickEvent_showLayerFor_BuildSpellPos");
+	//log("clickEvent_showLayerFor_BuildSpellPos");
 	this->showFor_BuildSpellPos();
 }
 
 void TowerSelectLayer::clickEvent_buildTower(Direction dir)
 {
-	log("clickEvent_buildTower");
+	//log("clickEvent_buildTower");
 	m_gridPos->buildTower((int)dir);
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_buildSpellPos(Direction dir)
 {
-	log("clickEvent_buildSpellPos");
-	m_gridPos->getTower()->buildUpgradPos(dir);
+	//log("clickEvent_buildSpellPos");
+	m_gridPos->getTower()->buildSpellTowerPos(dir);
 	GridPos* GridPos = GameMap::getInstance()->getGridPos(m_gridPos->getAroundGridPosID(dir));
 	GridPos->buildSpellPos(m_gridPos->getTower(), dir);
 	this->cancel();
@@ -495,40 +496,43 @@ void TowerSelectLayer::clickEvent_buildSpellPos(Direction dir)
 
 void TowerSelectLayer::clickEvent_buildSpellTower(Direction dir)
 {
-	log("clickEvent_buildSpellTower");
+	//log("clickEvent_buildSpellTower");
 
-	string spellTowerName;
-	switch (dir)
-	{
-	case North:		spellTowerName = "upgrade_colddown_reduce"; break;
-	case NorthWest:	spellTowerName = "upgrade_colddown_reduce"; break;
-	case West:		spellTowerName = "upgrade_colddown_reduce"; break;
-	case SouthWest:	spellTowerName = "upgrade_colddown_reduce"; break;
-	case South:		spellTowerName = "upgrade_colddown_reduce"; break;
-	case SouthEast:	spellTowerName = "upgrade_colddown_reduce"; break;
-	case East:		spellTowerName = "upgrade_colddown_reduce"; break;
-	case NorthEast:	spellTowerName = "upgrade_colddown_reduce"; break;
-	}
+	//string spellTowerName;
+	////switch (dir)
+	////{
+	////case North:		spellTowerName = "upgrade_colddown_reduce"; break;
+	////case NorthWest:	spellTowerName = "upgrade_colddown_reduce"; break;
+	////case West:		spellTowerName = "upgrade_colddown_reduce"; break;
+	////case SouthWest:	spellTowerName = "upgrade_colddown_reduce"; break;
+	////case South:		spellTowerName = "upgrade_colddown_reduce"; break;
+	////case SouthEast:	spellTowerName = "upgrade_colddown_reduce"; break;
+	////case East:		spellTowerName = "upgrade_colddown_reduce"; break;
+	////case NorthEast:	spellTowerName = "upgrade_colddown_reduce"; break;
+	////}
 
-	m_gridPos->buildSpellTower(dir);
+
+	string spellTowerName = GameMap::getInstance()->getSpellCard()[dir];
+	auto spell = SpellCardManager::getInstance()->getSpellCard(spellTowerName);
+	m_gridPos->buildSpellTower(spell);
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_sellTower()
 {
-	log("clickEvent_sellTower");
+	//log("clickEvent_sellTower");
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_sellSpellPos()
 {
-	log("clickEvent_sellSpellPos");
+	//log("clickEvent_sellSpellPos");
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_sellSpellTower()
 {
-	log("clickEvent_sellSpellTower");
+	//log("clickEvent_sellSpellTower");
 	this->cancel();
 }
 

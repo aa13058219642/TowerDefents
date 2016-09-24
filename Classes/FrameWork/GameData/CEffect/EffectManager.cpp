@@ -23,6 +23,11 @@ EffectManager* EffectManager::getInstance()
 	return p_myinstance;
 }
 
+void EffectManager::LoadResource()
+{
+	this->LoadResource(vector<Name>());
+}
+
 void EffectManager::LoadResource(const vector<Name>& resNameList)
 {
 	m_effectlist["missileDamage"] = new CEffectDamage(2,4);
@@ -64,7 +69,7 @@ CEffect* EffectManager::createCEffect(string key, int parentID, int targetID)
 			effect->setTarget(targetID);
 		return effect;
 	}
-	log("EffectManager->createCEffect() : CEffect [%s] Not Found !", key.c_str());
+	CCASSERT(false, StringUtils::format("EffectManager->createCEffect() : CEffect [%s] Not Found !", key.c_str()).c_str());
 	return nullptr;
 }
 

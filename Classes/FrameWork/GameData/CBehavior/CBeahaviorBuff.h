@@ -23,8 +23,8 @@ public:
 	bool isTimeLimitBuff;			//限时BUFF
 	float m_lifetime;				//作用时长
 	float m_cycle;					//周期
-	Name m_cycleEffect;				//周期效果
 	int m_cycleCount;				//周期数
+	Name m_cycleEffect;				//周期效果
 	//DamageResponse m_damageResponse;//伤害响应
 private:
 

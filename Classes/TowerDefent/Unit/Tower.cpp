@@ -18,7 +18,7 @@ Tower::Tower(GridPos* GridPos)
 
 	do{
 		m_gridPos = GridPos;
-		m_SpellTower.resize(8);
+
 		for (int i = 0; i < 8; i++)
 			m_SpellTower[i] = nullptr;
 
@@ -39,7 +39,8 @@ void Tower::buildTower(int tid)
 {
 	Radius = 32;
 	m_color = Color3B::RED;
-	MP = AbilityValueEx<float>(1000,0,1000);
+	MP = AbilityValueEx<float>(1000, 0, 1000);
+	AP = AbilityValueEx<float>(1000, 0, 1000);
 	//MP = MP.Max.getValue();
 
 	string act,wea;
@@ -63,26 +64,27 @@ void Tower::buildTower(int tid)
 	this->m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
 }
 
-void Tower::buildUpgradPos(Direction direction)
+void Tower::buildSpellTowerPos(Direction direction)
 {
-	m_SpellTower[direction] = new SpellTower(this, direction);
+	//m_SpellTower[direction] = new SpellTower(this, direction);
 	string str = StringUtils::format("spellPos%03d", (int)direction);
 	m_actor->playEffect(str, 99999, m_color, Point::ZERO, -999);
 }
 
-void Tower::buildSpellTower(Direction direction, int SpellTowerID)
+void Tower::buildSpellTower(Direction direction, const SpellCard* spellTower)
 {
-	this->addBehavior(BehaviorManager::getInstance()->createBehavior("buuf1"));
+
+	this->addBehavior(BehaviorManager::getInstance()->createBehavior(spellTower->behaviorName));
 
 	GridPos* GridPos = GameMap::getInstance()->getGridPos(m_gridPos->getAroundGridPosID(direction));
-	string str = StringUtils::format("SpellTower_%03d", SpellTowerID);
+	string str = StringUtils::format("SpellTower_%03d", spellTower->Icon);
 	m_actor->playEffect(str, 99999, m_color, Point(GridPos->getPos() - m_pos), 0);
 }
 
 void Tower::sellSpellTower(Direction direction)
 {
-	delete m_SpellTower[direction];
-	m_SpellTower[direction] = nullptr;
+	//delete m_SpellTower[direction];
+	//m_SpellTower[direction] = nullptr;
 }
 
 void Tower::sellTower()
