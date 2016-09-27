@@ -20,9 +20,8 @@ public:
 	}
 
 	operator _T(){return getValue();}
-
+	const _Ability_Value& operator=(const _T& value){ baseValue = value; return *this; }
 	template<typename _T2> _Ability_Value<_T>& operator+=(const _T2 &t2){ baseValue += t2; return *this; }
-
 	template<typename _T2> _Ability_Value<_T>& operator-=(const _T2 &t2){ baseValue -= t2; return *this; }
 
 
@@ -36,7 +35,8 @@ public:
 	_T clamp(_T value, _T min_inclusive, _T max_inclusive)
 	{
 		if (min_inclusive > max_inclusive) {
-			std::swap(min_inclusive, max_inclusive);
+			//std::swap(min_inclusive, max_inclusive);
+			min_inclusive = max_inclusive;
 		}
 		return value < min_inclusive ? min_inclusive : value < max_inclusive ? value : max_inclusive;
 	}
@@ -121,19 +121,38 @@ public:
 };
 
 
-
-
 template<typename _T>
-class AbilityValueEx : public _Ability_Value < _T >
+class _Ability_ValueEx : public _Ability_Value < _T >
 {
 public:
-	Ability<_T> Min;
-	Ability<_T> Max;
+	Ability<_T> ValueMin;
+	Ability<_T> ValueMax;
 
-	AbilityValueEx(){ this->baseValue = 0; this->Min = 0; this->Max = 0x7fff; }
-	AbilityValueEx(_T value, _T min = 0, _T max = 0x7fff){ this->baseValue = value; Min.setBaseValue(min); Max.setBaseValue(max); }
+	_Ability_ValueEx(){ this->baseValue = 0; this->ValueMin = 0; this->ValueMax = 0x7fff; }
+	_Ability_ValueEx(_T value, _T min, _T max){ this->baseValue = value; ValueMin.setBaseValue(min); ValueMax.setBaseValue(max); }
 
+	operator _T(){ return getValue(); }
+	const _Ability_ValueEx& operator=(const _T& value){ this->baseValue = value; return *this; }
 
+	virtual _T getValue(){ return this->clamp(this->baseValue*this->multiplier + this->addend, ValueMin, ValueMax); }
+	_T getRandmValue(){ return (rand() / (float)0x7fff) * (ValueMax - ValueMin + 1) + ValueMin; }
+
+	virtual void clear(){ this->multiplier = _T(1); this->addend = _T(0); ValueMin.clear(); ValueMax.clear(); }
+};
+
+template<typename _T>
+class AbilityEx : public _Ability_Value < _T >
+{
+public:
+	_Ability_ValueEx<_T> Min;
+	_Ability_ValueEx<_T> Max;
+
+	AbilityEx(){ this->baseValue = 0; this->Min = 0; this->Max = 0x7fff; }
+	AbilityEx(_T value, _T min, _T max){ this->baseValue = value; Min.setBaseValue(min); Max.setBaseValue(max); }
+
+	const AbilityEx& operator=(const _T& value){ this->baseValue = value; return *this; }
+	template<typename _T2> AbilityEx<_T>& operator+=(const _T2 &t2){ this->baseValue += t2; if (this->baseValue > Max.getValue())this->baseValue = Max.getValue(); return *this; }
+	template<typename _T2> AbilityEx<_T>& operator-=(const _T2 &t2){ this->baseValue -= t2; if (this->baseValue < Min.getValue())this->baseValue = Min.getValue(); return *this; }
 
 	virtual _T getValue(){ return this->clamp(this->baseValue*this->multiplier + this->addend, Min, Max); }
 	_T getRandmValue(){ return (rand() / (float)0x7fff) * (Max - Min + 1) + Min; }
@@ -145,7 +164,7 @@ private:
 };
 
 //非法定义
-template<> class AbilityValueEx < std::string > ;
+template<> class AbilityEx < std::string >;
 
 //######################################################################################
 

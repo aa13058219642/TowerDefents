@@ -39,9 +39,10 @@ void Tower::buildTower(int tid)
 {
 	Radius = 32;
 	m_color = Color3B::RED;
-	MP = AbilityValueEx<float>(1000, 0, 1000);
-	AP = AbilityValueEx<float>(1000, 0, 1000);
-	//MP = MP.Max.getValue();
+	MP = AbilityEx<float>(1000, 0, 1000);
+	AP = AbilityEx<float>(1000, 0, 1000);
+	AP_RegenRate = 50;
+
 
 	string act,wea;
 	switch (tid)
@@ -99,6 +100,15 @@ void Tower::sellTower()
 void Tower::update(float dt)
 {
 	Unit::update(dt);
+
+	//update Ability
+	if (m_actorName != "blank")
+	{
+		HP += HP_RegenRate.getValue()*dt;
+		MP += MP_RegenRate.getValue()*dt;
+		AP += AP_RegenRate.getValue()*dt;
+		this->m_actor->setHpBarProgress((float)AP / AP.Max);
+	}
 }
 
 void Tower::onClick()
@@ -113,9 +123,7 @@ void Tower::onClick()
 
 void Tower::onAttack(Unit* target)
 {
-	//MP.add(10, true);
-	//MP += 10;
-	this->m_actor->setHpBarProgress(MP / MP.Max);
+
 }
 
 void Tower::onBindSprite()

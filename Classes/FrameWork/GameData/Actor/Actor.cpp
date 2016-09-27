@@ -182,7 +182,17 @@ void Actor::setShowHpBar(bool isShow, Point pos, Size size)
 
 void Actor::setHpBarProgress(float progress)
 {
-	m_hpBar->setContentSize(Size(64 * progress, 6));
+
+	clampf(progress, 0, 100);
+	if (progress > 0)
+	{
+		m_hpBar->setVisible(true);
+		m_hpBar->setContentSize(Size(64 * progress, 6));
+	}
+	else
+	{
+		m_hpBar->setVisible(false);
+	}
 	//Size size = m_sprite->getSpriteFrame()->getOriginalSize();
 	//m_hpBar->setPosition(-32, size.height);
 }

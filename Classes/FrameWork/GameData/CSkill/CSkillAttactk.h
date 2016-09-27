@@ -17,7 +17,6 @@ protected:
 	int m_targetID;
 	Point m_targetPos;
 
-	void UpdateCWeapon();
 	void onAttack(Unit* parent);
 };
 

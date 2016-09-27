@@ -8,6 +8,12 @@
 class CSkillEffect : public CSkillGeneric
 {
 public:
+
+	/*冷却时间*/
+	float ColdDown;
+	/*冷却时间剩余*/
+	float ColdDowning;
+
 	/*
 		↓
 	接近╋━━━━

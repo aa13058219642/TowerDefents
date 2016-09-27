@@ -8,10 +8,7 @@ class CSkillGeneric :public CSkill
 public:
 	/* ----属性---- */
 
-	/*冷却时间*/
-	float ColdDown;
-	/*冷却时间剩余*/
-	float ColdDowning;
+
 	/*技能花费*/
 	CCostUnit Cost;
 	/*射程*/

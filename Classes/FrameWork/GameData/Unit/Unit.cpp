@@ -16,6 +16,7 @@ Unit::Unit()
 	m_weapon = new CWeapon();
 	m_actor = nullptr;
 	Radius = 32;
+
 }
 
 
@@ -157,6 +158,7 @@ void Unit::update(float dt)
 		else
 			iter++;
 	}
+
 
 
 }

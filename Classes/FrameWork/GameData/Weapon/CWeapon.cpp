@@ -3,20 +3,29 @@
 
 CWeapon::CWeapon()
 {
-	Cost.HP = 0;
-	Cost.MP = 0;
-	Cost.AP = 0;
-	Cost.Speed = 0;
+	CostBase.HP = 0;
+	CostBase.MP = 0;
+	CostBase.AP = 0;
+	CostBase.Speed = 0;
+
+	CostDamageRate.HP = 0;
+	CostDamageRate.MP = 0;
+	CostDamageRate.AP = 1.0f;
+	CostDamageRate.Speed = 0;
+
+	CostDamageRangeRate = 0.5f;
 
 
 	chance = 1;
 	Range = 64;
-	ColdDown = 1;
+
+	ColdDown = 0x7fff;
+	ColdDown.Max = 1;
+	ColdDown.Max.ValueMin = 0.1f;
 	TargetCount = 1;
+
 	Filter = EUnitType::Unit_Monster;
 	DamageType = EDamageType::EDamageType_Weapon;
-	//MinDamage = 1;
-	//MaxDamage = 1;
 
 	Damage.Min = 1;
 	Damage.Max = 1;
@@ -61,8 +70,6 @@ void CWeapon::clearAbility()
 	Range.clear();
 	ColdDown.clear();
 	TargetCount.clear();
-	//MinDamage.clear();
-	//MaxDamage.clear();
 	BoomRange.clear();
 	criticalChance.clear();
 	criticalMultiplier.clear();

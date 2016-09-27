@@ -123,8 +123,12 @@
 - 1.修改build_native.bat，使之运行后自动完成编译apk操作并打印编译结果
 - 2.修改ability的错误头文件包含
 
-
-
+##v0.035
+- 1.进一步完善Ability类的功能
+- 2.Unit 添加能力值恢复属性
+- 3.完成CCostUnit系统在CSkillAttactk中的应用
+- 4.TowerInfoLayer 实时更新 能力值
+- 5.BattleScene保留各Layer的指针
 
 
 

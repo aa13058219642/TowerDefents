@@ -191,6 +191,7 @@ ModelManifest.xml
 
 
 proj.android/obj
+proj.android/lib
 proj.android-studio
 proj.ios_mac
 proj.linux

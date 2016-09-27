@@ -19,6 +19,7 @@ public:
 
 private:
 	Tower* m_parent;
+	CWeapon* m_weapon;
 
 	Point centerPos;
 	Rect closeButton;

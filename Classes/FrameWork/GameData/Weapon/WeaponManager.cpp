@@ -56,7 +56,7 @@ void WeaponManager::LoadResource(const vector<Name> & resNameList)
 
 			if (jNode.HasMember("chance"))				weapon->chance				= jNode["chance"].GetDouble();
 			if (jNode.HasMember("Range"))				weapon->Range				= jNode["Range"].GetDouble() * scale;
-			if (jNode.HasMember("ColdDown"))			weapon->ColdDown			= jNode["ColdDown"].GetDouble();
+			if (jNode.HasMember("ColdDown"))			weapon->ColdDown.Max		= jNode["ColdDown"].GetDouble();
 			if (jNode.HasMember("TargetCount"))			weapon->TargetCount			= jNode["TargetCount"].GetInt();
 			if (jNode.HasMember("Filter"))				weapon->Filter				= jNode["Filter"].GetUint();
 			if (jNode.HasMember("DamageType"))			weapon->DamageType			= (EDamageType)jNode["DamageType"].GetInt();

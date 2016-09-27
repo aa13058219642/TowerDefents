@@ -15,9 +15,12 @@ public:
 	/* ---- Ù–‘---- */
 	
 	int ID;
-	AbilityValueEx<float> HP;
-	AbilityValueEx<float> MP;
-	AbilityValueEx<float> AP;
+	AbilityEx<float> HP;
+	AbilityEx<float> MP;
+	AbilityEx<float> AP;
+	Ability<float> HP_RegenRate;
+	Ability<float> MP_RegenRate;
+	Ability<float> AP_RegenRate;
 	Ability<float> Speed;
 	int Radius;
 	//Ability<Cost> KillResource;

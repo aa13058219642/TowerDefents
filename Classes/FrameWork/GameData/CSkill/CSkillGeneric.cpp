@@ -6,7 +6,7 @@ CSkillGeneric::CSkillGeneric()
 	m_type = ESkillType::ECSkillEffect;
 	Fliter = EUnitType::Unit_Unit;
 	m_state = ESkillEffectState::SkillEffectState_ColdDowning;
-	ColdDown = ColdDowning = Range = AutoUseRange = 0;
+	Range = AutoUseRange = 0;
 	chance = 1;
 }
 

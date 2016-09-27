@@ -55,10 +55,10 @@ void Modification::install(Unit* unit, bool isUninstall)
 			unit->getWeapon()->chance.mul(this->value.asFloat(), isUninstall);
 			break;
 		case EModType_Weapon_ColdDown_Addend:
-			unit->getWeapon()->ColdDown.add(this->value.asFloat(), isUninstall);
+			unit->getWeapon()->ColdDown.Max.add(this->value.asFloat(), isUninstall);
 			break;
 		case EModType_Weapon_ColdDown_Multiplier:
-			unit->getWeapon()->ColdDown.mul(this->value.asFloat(), isUninstall);
+			unit->getWeapon()->ColdDown.Max.mul(this->value.asFloat(), isUninstall);
 			break;
 		case EModType_Weapon_Range_Addend:
 			unit->getWeapon()->Range.add(this->value.asFloat(), isUninstall);

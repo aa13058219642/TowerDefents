@@ -5,10 +5,7 @@
 #include "UnitManager.h"
 #include "ActorManager.h"
 
-#include "UnitLayer.h"
-#include "TowerSelectLayer.h"
-#include "GameMapLayer.h"
-#include "TowerInfoLayer.h"
+
 
 BattleScene::BattleScene(){}
 
@@ -54,27 +51,27 @@ bool BattleScene::init(int level)
 	this->setScale(Director::getInstance()->getContentScaleFactor());
 	this->setAnchorPoint(Point::ZERO);
 
-	Node* layer;
 
 
-	layer = UnitLayer::create();
-	this->addChild(layer, 1);
-	ActorManager::getInstance()->init(static_cast<Layer*>(layer));
+	unitLayer = UnitLayer::create();
+	this->addChild(unitLayer, 1);
+	ActorManager::getInstance()->init(unitLayer);
 
 	//init Map and Layer
 	GameMap::getInstance()->init(level);
 
-	layer = lay = TowerSelectLayer::create();
-	this->addChild(layer, 2);
+	towerSelectLayer = TowerSelectLayer::create();
+	this->addChild(towerSelectLayer, 2);
 
-	layer = GameMapLayer::create();
-	this->addChild(layer, 0);
+	gameMapLayer = GameMapLayer::create();
+	this->addChild(gameMapLayer, 0);
 
-	layer = TowerInfoLayer::create();
-	this->addChild(layer, 6000);
+	towerInfoLayer = TowerInfoLayer::create();
+	this->addChild(towerInfoLayer, 6000);
 
 	if (DebugDraw::isDebug)
 	{
+		Node* layer;
 		layer = DebugDraw::getInstance();
 		this->addChild(layer, 9999);
 	}
@@ -87,5 +84,6 @@ void BattleScene::update(float dt)
 {
 	GameMap::getInstance()->update(dt);
 
+	towerInfoLayer->update(dt);
 }
 

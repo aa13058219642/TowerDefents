@@ -1,6 +1,11 @@
 #pragma once
 #include "stdfax.h"
 
+#include "UnitLayer.h"
+#include "TowerSelectLayer.h"
+#include "GameMapLayer.h"
+#include "TowerInfoLayer.h"
+
 class BattleScene : public Layer
 {
 public:
@@ -19,6 +24,8 @@ public:
 
 	Layer* lay;
 private:
-
-
+	UnitLayer* unitLayer;
+	TowerSelectLayer* towerSelectLayer;
+	GameMapLayer* gameMapLayer;
+	TowerInfoLayer* towerInfoLayer;
 };

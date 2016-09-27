@@ -20,8 +20,6 @@ CSkill* CSkillAttactk::clone()
 {
 	CSkillAttactk* skill = new CSkillAttactk();
 	skill->m_state = this->m_state;
-	skill->ColdDown = this->ColdDown;
-	skill->ColdDowning = this->ColdDowning;
 	skill->Range = this->Range;
 	skill->AutoUseRange = this->AutoUseRange;
 	skill->Cost = this->Cost;
@@ -32,16 +30,18 @@ CSkill* CSkillAttactk::clone()
 }
 
 
-void CSkillAttactk::UpdateCWeapon()
-{
-	m_weapon = getParent()->getWeapon();
-	ColdDown = m_weapon->ColdDown;
-}
 
 void CSkillAttactk::update(float dt)
 {
 	Unit* m_parent = getParent();
-	if (m_parent == nullptr)return;
+	if (m_parent == nullptr )return;
+
+	m_weapon = getParent()->getWeapon();
+	if (m_weapon == nullptr)return;
+
+	float ColdDown = m_weapon->ColdDown.Max;
+	float ColdDowning = m_weapon->ColdDown;
+	if (ColdDowning > ColdDown)ColdDowning = ColdDown;
 
 	if (ColdDowning > dt)
 		ColdDowning -= dt;
@@ -55,7 +55,6 @@ void CSkillAttactk::update(float dt)
 			break;
 
 		case SkillEffectState_Ready:
-			UpdateCWeapon();
 			//使用技能的条件
 			if (m_parent->getState() == EUnitState::UnitState_Normal && IsCanExecute())
 			{
@@ -95,7 +94,7 @@ void CSkillAttactk::update(float dt)
 			if (ColdDowning != 0)break;
 
 		case SkillEffectState_End:
-			ColdDowning = ColdDown;
+			ColdDowning = m_weapon->ColdDown.Max;
 			m_parent->setState(EUnitState::UnitState_Normal);
 			m_state = SkillEffectState_ColdDowning;
 			m_targetID = -1;
@@ -105,11 +104,14 @@ void CSkillAttactk::update(float dt)
 			break;
 		}
 	}
+
+	m_weapon->ColdDown = ColdDowning;
 }
 
 
 bool CSkillAttactk::IsCanExecute()
 {
+	//最大攻击目标小于0
 	int targetCount = m_weapon->TargetCount;
 	if (targetCount <= 0)return false;
 
@@ -136,14 +138,24 @@ void CSkillAttactk::onAttack(Unit* parent)
 	int targetCount = m_weapon->TargetCount;
 	auto vec = UnitManager::getInstance()->findUnit(m_weapon->Filter);
 
+	CCostUnit costPerAtk;
+	float costPer = (m_weapon->Damage.Max.getValue() - m_weapon->Damage.Min.getValue())*m_weapon->CostDamageRangeRate.getValue() + m_weapon->Damage.Min.getValue();
+	costPerAtk.HP = m_weapon->CostBase.HP + costPer * m_weapon->CostDamageRate.HP.getValue();
+	costPerAtk.MP = m_weapon->CostBase.MP + costPer * m_weapon->CostDamageRate.MP.getValue();
+	costPerAtk.AP = m_weapon->CostBase.AP + costPer * m_weapon->CostDamageRate.AP.getValue();
+	costPerAtk.Speed = m_weapon->CostBase.Speed + costPer * m_weapon->CostDamageRate.Speed.getValue();
+
 	bool missTaget = true;
 	for (auto target : vec){
 		if (targetCount <= 0)break;
+		if (!costPerAtk.isCanPay(parent))break;
 
 		if ((target->getPos() - parent->getPos()).lengthSquared() < m_weapon->Range*m_weapon->Range)
 		{
+			costPerAtk.payCost(parent);
 			missTaget = false;
 			m_parent->onAttack(target);
+			
 			Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
 			UnitManager::getInstance()->addUnit(bullet);
 			targetCount--;
@@ -151,12 +163,30 @@ void CSkillAttactk::onAttack(Unit* parent)
 	}
 
 	//如果失去目标，原来锁定的目标在前摇时跑出了攻击范围，则强制攻击一开始锁定的目标
-	auto target = UnitManager::getInstance()->getUnit(m_targetID);
-	if (missTaget && m_weapon->TargetCount > 0 && target != nullptr)
+	if (missTaget && m_weapon->TargetCount > 0)
 	{
-		m_parent->onAttack(target);
-		Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
-		UnitManager::getInstance()->addUnit(bullet);
+		auto target = UnitManager::getInstance()->getUnit(m_targetID);
+		if (costPerAtk.isCanPay(parent) && target != nullptr)
+		{
+			costPerAtk.payCost(parent);
+			m_parent->onAttack(target);
+			Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
+			UnitManager::getInstance()->addUnit(bullet);
+			missTaget = false;
+		}
+	}
+
+	if (!missTaget)
+	{
+		//targetCount = m_weapon->TargetCount - targetCount;
+		//
+		//CCostUnit costAtk;
+		//costAtk.HP = m_weapon->CostBase.HP + costPerAtk * m_weapon->CostDamageRate.HP.getValue() * targetCount;
+		//costAtk.MP = m_weapon->CostBase.MP + costPerAtk * m_weapon->CostDamageRate.MP.getValue() * targetCount;
+		//costAtk.AP = m_weapon->CostBase.AP + costPerAtk * m_weapon->CostDamageRate.AP.getValue() * targetCount;
+		//costAtk.Speed = m_weapon->CostBase.Speed + costPerAtk * m_weapon->CostDamageRate.Speed.getValue() * targetCount;
+
+		m_weapon->CostBase.payCost(parent);
 	}
 }
 

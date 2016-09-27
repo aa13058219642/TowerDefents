@@ -69,8 +69,8 @@ bool TowerInfoLayer::init()
 		m_label[i]->setWidth(320);
 		m_label[i]->setHorizontalAlignment(TextHAlignment::RIGHT);
 		//m_label[i]->setVisible(false);
-		m_label[i]->setGlobalZOrder(6001);
-		this->addChild(m_label[i]);
+		m_label[i]->setGlobalZOrder(6002);
+		this->addChild(m_label[i],6002);
 	}
 
 
@@ -119,23 +119,22 @@ void TowerInfoLayer::receiveMsg(Ref* pData)
 	m_parent = static_cast<Tower*>( UnitManager::getInstance()->getUnit(id));
 	CCASSERT(m_parent != NULL, "TowerInfoLayer::receiveMsg  Tower == NULL");
 
-	CWeapon * weapon = m_parent->getWeapon();
+	m_weapon = m_parent->getWeapon();
 	float scale = 1 / Director::getInstance()->getContentScaleFactor();
 
 	if (m_card != nullptr)
-		m_card->removeFromParentAndCleanup(true);
-	string str = StringUtils::format("card/card_%03d.png", (int)rand() % 8);
+	{
+		//m_card->removeFromParent();
+		this->removeChild(m_card);
+	}
+	//string str = StringUtils::format("card/card_%03d.png", (int)rand() % 8);
+	string str = StringUtils::format("card/card_%03d.png", 1);
 	Sprite* m_card = Sprite::create(str);
 	m_card->setPosition(Point(336 * scale, 447.5 * scale) - centerPos);
 	m_card->setScale(0.8*scale);
 	this->addChild(m_card);
 
-	m_label[ETowerAttack]->setString(StringUtils::format("%.0f-%.0f", (float)weapon->Damage.Min, (float)weapon->Damage.Max));
-	m_label[ETowerAP]->setString(StringUtils::format("%.0f/%.0f", (float)m_parent->AP, (float)m_parent->AP.Max));
-	m_label[ETowerMP]->setString(StringUtils::format("%.0f/%.0f", (float)m_parent->MP, (float)m_parent->MP.Max));
-	m_label[ETowerCD]->setString(StringUtils::format("%.3fs", (float)weapon->ColdDown));
-	m_label[ETowerRange]->setString(StringUtils::format("%.0f/%.0f", (float)weapon->Range / scale, (float)weapon->BoomRange / scale));
-	m_label[ETowerCri]->setString(StringUtils::format("%.0f%%/%.0f%%", (float)weapon->criticalChance*100, (float)weapon->criticalMultiplier*100));
+
 
 
 	this->show();
@@ -143,7 +142,16 @@ void TowerInfoLayer::receiveMsg(Ref* pData)
 
 
 void TowerInfoLayer::update(float dt){
-
+	if (m_parent != nullptr)
+	{
+		float scale = 1 / Director::getInstance()->getContentScaleFactor();
+		m_label[ETowerAttack]->setString(StringUtils::format("%.0f-%.0f", m_weapon->Damage.Min.getValue(), m_weapon->Damage.Max.getValue()));
+		m_label[ETowerAP]->setString(StringUtils::format("(%.0f/%.0f)/%.0f", m_parent->AP.getValue(), m_parent->AP.Max.getValue(), m_parent->AP_RegenRate.getValue()));
+		m_label[ETowerMP]->setString(StringUtils::format("(%.0f/%.0f)/%.0f", m_parent->MP.getValue(), m_parent->MP.Max.getValue(), m_parent->MP_RegenRate.getValue()));
+		m_label[ETowerCD]->setString(StringUtils::format("%.3fs", m_weapon->ColdDown.Max.getValue()));
+		m_label[ETowerRange]->setString(StringUtils::format("%.0f/%.0f", m_weapon->Range.getValue() / scale, m_weapon->BoomRange.getValue() / scale));
+		m_label[ETowerCri]->setString(StringUtils::format("%.0f%%/%.0f%%", m_weapon->criticalChance.getValue() * 100, m_weapon->criticalMultiplier.getValue() * 100));
+	}
 }
 
 

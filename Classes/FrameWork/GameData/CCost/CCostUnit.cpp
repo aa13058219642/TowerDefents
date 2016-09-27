@@ -32,10 +32,10 @@ bool CCostUnit::isCanPay(Unit* parent)
 
 void CCostUnit::payCost(Unit* parent)
 {
-	parent->HP.add(HP, true);
-	parent->MP.add(MP, true);
-	parent->AP.add(AP, true);
-	parent->Speed.add(Speed, true);
+	parent->HP < HP.getValue() ? parent->HP = 0 : parent->HP -= HP.getValue();
+	parent->MP < MP.getValue() ? parent->MP = 0 : parent->MP -= MP.getValue();
+	parent->AP < AP.getValue() ? parent->AP = 0 : parent->AP -= AP.getValue();
+	parent->Speed < Speed.getValue() ? parent->Speed = 0 : parent->Speed -= Speed.getValue();
 }
 
 
