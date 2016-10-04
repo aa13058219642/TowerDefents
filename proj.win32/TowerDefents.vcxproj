@@ -187,6 +187,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\FrameWork\Manager\TextureManager.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Card\SpellCard.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Card\SpellCardManager.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Card\TowerCard.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Card\TowerCardManager.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GameMap.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp" />
@@ -239,6 +241,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FrameWork\stdfax.h" />
     <ClInclude Include="..\Classes\TowerDefent\Card\SpellCard.h" />
     <ClInclude Include="..\Classes\TowerDefent\Card\SpellCardManager.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Card\TowerCard.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Card\TowerCardManager.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h" />

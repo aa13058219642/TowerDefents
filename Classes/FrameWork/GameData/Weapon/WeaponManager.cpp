@@ -1,5 +1,12 @@
 #include "WeaponManager.h"
 
+#ifdef _DEBUG
+typedef string Name;
+#else
+typedef int Name;
+#endif
+
+
 
 WeaponManager* WeaponManager::p_myinstance = nullptr;
 
@@ -35,20 +42,21 @@ void WeaponManager::LoadResource(const vector<Name> & resNameList)
 	string str = string((char*)data.getBytes(), data.getSize());
 	rapidjson::Document root;
 	root.Parse<0>(str.c_str());
-	CCASSERT(root.IsObject() && root.HasMember("weapondata"), "illegal [Weapon.json]: weapondata error");
+	CCASSERT(root.IsObject() && root.HasMember("Weapon") && root["Weapon"].IsArray(), "illegal [Weapon.json]: weapondata error");
 
 	//3.¶ÁÈ¡jsonÊý¾Ý
-	CCASSERT(root["weapondata"].HasMember("count"), "illegal [Weapon.json]: weapondata.count NOT found");
-	int count = root["weapondata"]["count"].GetInt();
+	//CCASSERT(root["weapondata"].HasMember("count"), "illegal [Weapon.json]: weapondata.count NOT found");
+	//int count = root["weapondata"]["count"].GetInt();
 	float scale =1 / Director::getInstance()->getContentScaleFactor();
 
 	bool fullLoad = true;
 	if (resNameList.size() != 0)fullLoad = false;
-	for (int i = 1; i <= count; i++) {
-		string index = StringUtils::format("w%03d",i);
-		CCASSERT(root["weapondata"].HasMember(index.c_str()) && root["weapondata"][index.c_str()].IsObject(), string("illegal [Weapon.json]: weapondata" + index + " NOT found").c_str());
+	int Size = root["Weapon"].Size();
+	for (int i = 0; i < Size; i++) {
+		//string index = StringUtils::format("w%03d",i);
+		//CCASSERT(root["weapondata"].HasMember(index.c_str()) && root["weapondata"][index.c_str()].IsObject(), string("illegal [Weapon.json]: weapondata" + index + " NOT found").c_str());
 
-		auto& jNode = root["weapondata"][index.c_str()];
+		JsonNode jNode = root["Weapon"][i];
 		string name = jNode["name"].GetString();
 		if (fullLoad || std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
 		{

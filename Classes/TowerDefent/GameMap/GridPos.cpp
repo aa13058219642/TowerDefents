@@ -132,10 +132,10 @@ void GridPos::onClick()
 	}
 }
 
-void GridPos::buildTower(int tid)
+void GridPos::buildTower(const TowerCard* towerCard)
 {
 	m_type = EGridPosType::GridPosType_Tower;
-	m_tower->buildTower(tid);
+	m_tower->buildTower(towerCard);
 }
 
 void GridPos::buildSpellPos(Tower* parent, Direction dirRelativeToTower)

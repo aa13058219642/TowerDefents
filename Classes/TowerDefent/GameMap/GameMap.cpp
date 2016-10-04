@@ -11,6 +11,7 @@
 #include "SkillManager.h"
 #include "BehaviorManager.h"
 #include "SpellCardManager.h"
+#include "TowerCardManager.h"
 
 GameMap* GameMap::p_myinstance = nullptr;
 GameMap* GameMap::getInstance()
@@ -218,11 +219,38 @@ const Name* GameMap::getSpellCard()
 	return m_SpellCard;
 }
 
+const Name* GameMap::getTowerCard()
+{
+	return m_TowerCard;
+}
+
 bool GameMap::initMap(int level)
 {
 	bool flag = true;
 
 	do{
+		//玩家选择的卡牌
+		m_SpellCard[0] = "Damage_Add_I";
+		m_SpellCard[1] = "Range_Add_I";
+		m_SpellCard[2] = "ColdDown_Div_I";
+		m_SpellCard[3] = "TargetCount_Add_I";
+		m_SpellCard[4] = "CriticalChance_Add_I";
+		m_SpellCard[5] = "MaxDamage_Add_I";
+		m_SpellCard[6] = "CriticalMultiplier_Add_I";
+		m_SpellCard[7] = "BoomRange_Add_I";
+
+		m_TowerCard[0] = "card000";
+		m_TowerCard[1] = "card001";
+		m_TowerCard[2] = "card002";
+		m_TowerCard[3] = "card003";
+		m_TowerCard[4] = "card004";
+		m_TowerCard[5] = "card005";
+		m_TowerCard[6] = "card006";
+		m_TowerCard[7] = "card007";
+
+
+		//初始化所有Manager
+
 		WaveManager::getInstance()->init();
 		UnitManager::getInstance()->init();
 
@@ -232,6 +260,11 @@ bool GameMap::initMap(int level)
 		textureList.push_back("texture/scene_battle_000.plist");
 		textureList.push_back("texture/TowerSelectLayer.plist");
 		textureList.push_back("texture/TowerInfoLayer.plist");
+		textureList.push_back("texture/effect/effect_000.plist");
+		textureList.push_back("texture/Tower/Tower_000.plist");
+		textureList.push_back("texture/Tower/Tower_001.plist");
+		textureList.push_back("texture/Tower/Tower_006.plist");
+
 		TextureManager::getInstance()->LoadResource(textureList);
 
 		SkillManager::getInstance()->LoadResource();
@@ -240,16 +273,12 @@ bool GameMap::initMap(int level)
 		ActorManager::getInstance()->LoadResource();
 		WeaponManager::getInstance()->LoadResource();
 		SpellCardManager::getInstance()->LoadResource();
+		TowerCardManager::getInstance()->LoadResource();
 		//EffectManager::getInstance()->LoadResource();
 
-		m_SpellCard[0] = "Damage_Add_I";
-		m_SpellCard[1] = "Range_Add_I";
-		m_SpellCard[2] = "ColdDown_Div_I";
-		m_SpellCard[3] = "TargetCount_Add_I";
-		m_SpellCard[4] = "CriticalChance_Add_I";
-		m_SpellCard[5] = "MaxDamage_Add_I";
-		m_SpellCard[6] = "CriticalMultiplier_Add_I";
-		m_SpellCard[7] = "BoomRange_Add_I";
+
+
+
 
 		//vector<string> effectList;
 		//SkillManager::getInstance()->LoadResource(effectList);

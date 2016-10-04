@@ -1,7 +1,12 @@
 {
-    "sepllTower_000_Name": "攻符",
-    "sepllTower_000_Info": "atk +10",
-    "sepllTower_001_Name": "速符",
-    "sepllTower_002_Info": "CD -50%"
+    "SepllCard_000_Name": "攻符",
+    "SepllCard_000_Info": "atk +10",
+    "SepllCard_001_Name": "速符",
+    "SepllCard_001_Info": "CD -50%",
 
+    "TowerCard_000_Name": "雪月华舞",
+    "TowerCard_000_Info": "描述xxxxxx",
+    "TowerCard_001_Name": "小紫",
+    "TowerCard_001_Info": "描述xxxxxx"
+        
 }

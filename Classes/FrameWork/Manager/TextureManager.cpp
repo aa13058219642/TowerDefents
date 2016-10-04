@@ -39,6 +39,8 @@ void TextureManager::LoadResource(const vector<Name>& resNameList)
 		frameCache->addSpriteFramesWithFile(var);
 	}
 
+
+
 	//plist = StringUtils::format("texture/scene_battle_%03d.plist", 0);
 	//if (fileUtils->isFileExist(plist))
 

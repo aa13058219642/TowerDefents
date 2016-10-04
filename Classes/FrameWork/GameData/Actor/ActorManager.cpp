@@ -49,15 +49,16 @@ void ActorManager::LoadResource(const vector<Name>& resNameList)
 	if (resNameList.size() != 0)fullLoad = false;
 	int Size = root["actordata"].Size();
 	for (int i = 0; i < Size; i++) {
-		string name = root["actordata"][i]["name"].GetString();
+		JsonNode jNode = root["actordata"][i];
+		string name = jNode["name"].GetString();
 		if (fullLoad || std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
 		{
 			ActorData d;
-			d.defaultanimate=root["actordata"][i]["defaultanimate"].GetString();
-			int size = root["actordata"][i]["actioncount"].GetInt();
+			d.defaultanimate = jNode["defaultanimate"].GetString();
+			int size = jNode["actionName"].Size();
 			CCASSERT(size != 0, "framecount must NOT equal 0");
 			for (int j = 0; j < size; j++) {
-				d.maps[root["actordata"][i]["actionName"][j].GetString()] = root["actordata"][i]["animateName"][j].GetString();
+				d.maps[jNode["actionName"][j].GetString()] = jNode["animateName"][j].GetString();
 			}
 			m_actordata[name] = d;
 		}

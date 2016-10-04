@@ -22,6 +22,7 @@ public:
 	GridPos* getGridPos(Point pos);
 
 	const Name* getSpellCard();
+	const Name* getTowerCard();
 
 private:
 	GameMap();
@@ -35,6 +36,7 @@ private:
 	vector<GridPos*> m_gridPos;
 
 	Name m_SpellCard[8];
+	Name m_TowerCard[8];
 
 	bool loadMap(const int& level);
 	bool initMap(int level);

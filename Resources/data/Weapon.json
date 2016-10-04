@@ -1,102 +1,112 @@
 {
-   "weapondata" : {
-      "count" : 9,
-    "w001": {
-        "name": "wTower001",
-        "ColdDown": 3,
-        "beforing_Animate": "attack_beforing",
-        "beforing_Delay": 0.7,
-        "MinDamage": 10,
-        "MaxDamage": 20,
-        "TargetCount": 1,
-        "Range": 300,
-        "BulletSpeed": 800,
-        "ActorName": "b001"
-    },
-    "w002" : {
-         "name" : "wTower_000",
-        "ColdDown": 3,
-        "BoomRange": 300,
-         "MinDamage" : 20,
-         "MaxDamage" : 40,
-         "TargetCount" : 1,
-         "Range" : 192,
-        "BulletSpeed": 800,
-        "criticalChance": 0.3,
-         "ActorName" : "b003"
-      },
-    "w003" : {
-         "name" : "wTower_001",
-        "ColdDown": 0.5,
-         "MinDamage" : 7,
-         "MaxDamage" : 15,
-         "TargetCount" : 1,
-        "Range": 128,
-        "criticalChance": 0.5,
-        "criticalMultiplier": 1.2,
-         "BulletSpeed" : 800,
-         "ActorName" : "b002"
-      },
-    "w004" : {
-         "name" : "wTower_002",
-        "ColdDown": 1.5,
-         "MinDamage" : 5,
-         "MaxDamage" : 10,
-         "TargetCount" : 1,
-         "Range" : 128,
-         "BulletSpeed" : 800,
-         "ActorName" : "b001"
-      },
-    "w005" : {
-         "name" : "wTower_003",
-        "ColdDown": 2,
-         "MinDamage" : 5,
-         "MaxDamage" : 10,
-         "TargetCount" : 1,
-         "Range" : 192,
-         "BulletSpeed" : 800,
-         "ActorName" : "b003"
-      },
-    "w006" : {
-         "name" : "wTower_004",
-        "ColdDown": 1,
-         "MinDamage" : 2,
-         "MaxDamage" : 8,
-         "TargetCount" : 1,
-         "Range" : 128,
-         "BulletSpeed" : 800,
-         "ActorName" : "b001"
-      },
-    "w007" : {
-         "name" : "wTower_005",
-        "ColdDown": 1.8,
-         "MinDamage" : 1,
-         "MaxDamage" : 20,
-         "TargetCount" : 1,
-         "Range" : 128,
-         "BulletSpeed" : 800,
-         "ActorName" : "b003"
-      },
-    "w008" : {
-         "name" : "wTower_006",
-        "ColdDown": 3,
-         "MinDamage" : 3,
-         "MaxDamage" : 6,
-         "TargetCount" : 3,
-        "Range": 192,
-        "BoomRange": 128,
-         "BulletSpeed" : 800,
-         "ActorName" : "b003"
-      },
-    "w009" : {
-         "name" : "wTower_007",
-        "ColdDown": 0.8,
-         "MinDamage" : 2,
-         "MaxDamage" : 5,
-         "TargetCount" : 2,
-        "Range": 128,
-         "BulletSpeed" : 800,
-         "ActorName" : "b002"
-      }
-   }
+    "Weapon": [
+        {
+            "name": "wTower001",
+            "ColdDown": 3,
+            "beforing_Animate": "attack_beforing",
+            "beforing_Delay": 0.7,
+            "MinDamage": 10,
+            "MaxDamage": 20,
+            "TargetCount": 1,
+            "Range": 300,
+            "BulletSpeed": 800,
+            "ActorName": "b001"
+        },
+        {
+            "name": "wTower_000",
+            "beforing_Animate": "attack_beforing",
+            "beforing_Delay": 0.3,
+            "aftering_Animate": "attack_aftering",
+            "aftering_Delay": 0.2,
+            "ColdDown": 3,
+            "BoomRange": 150,
+            "MinDamage": 10,
+            "MaxDamage": 20,
+            "TargetCount": 1,
+            "Range": 192,
+            "BulletSpeed": 800,
+            "criticalChance": 0.3,
+            "ActorName": "b001"
+        },
+        {
+            "name": "wTower_001",
+            "beforing_Animate": "attack_beforing",
+            "beforing_Delay": 0.4,
+            "ColdDown": 0.5,
+            "MinDamage": 7,
+            "MaxDamage": 15,
+            "TargetCount": 1,
+            "Range": 128,
+            "criticalChance": 0.5,
+            "criticalMultiplier": 1.2,
+            "BulletSpeed": 800,
+            "IsFaceToTarget": true,
+            "ActorName": "b004"
+        },
+        {
+            "name": "wTower_002",
+            "ColdDown": 1.5,
+            "MinDamage": 5,
+            "MaxDamage": 10,
+            "TargetCount": 1,
+            "Range": 128,
+            "BulletSpeed": 800,
+            "ActorName": "b001"
+        },
+        {
+            "name": "wTower_003",
+            "ColdDown": 2,
+            "MinDamage": 5,
+            "MaxDamage": 10,
+            "TargetCount": 1,
+            "Range": 192,
+            "BulletSpeed": 800,
+            "ActorName": "b003"
+        },
+        {
+            "name": "wTower_004",
+            "ColdDown": 1,
+            "MinDamage": 2,
+            "MaxDamage": 8,
+            "TargetCount": 1,
+            "Range": 128,
+            "BulletSpeed": 800,
+            "ActorName": "b001"
+        },
+        {
+            "name": "wTower_005",
+            "ColdDown": 1.8,
+            "MinDamage": 1,
+            "MaxDamage": 20,
+            "TargetCount": 1,
+            "Range": 128,
+            "BulletSpeed": 800,
+            "ActorName": "b003"
+        },
+        {
+            "name": "wTower_006",
+            "beforing_Animate": "attack_beforing",
+            "beforing_Delay": 0.3,
+            "aftering_Animate": "attack_aftering",
+            "aftering_Delay": 0.2,
+            "ColdDown": 3,
+            "MinDamage": 3,
+            "MaxDamage": 6,
+            "TargetCount": 3,
+            "Range": 192,
+            "BoomRange": 128,
+            "BulletSpeed": 800,
+            "ActorName": "b003"
+        },
+        {
+            "name": "wTower_007",
+            "ColdDown": 0.8,
+            "MinDamage": 2,
+            "MaxDamage": 5,
+            "TargetCount": 2,
+            "Range": 128,
+            "BulletSpeed": 800,
+            "ActorName": "b002"
+        }
+    ]
 }

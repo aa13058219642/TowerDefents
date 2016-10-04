@@ -35,32 +35,31 @@ Color3B Tower::getColor()
 	return m_color;
 }
 
-void Tower::buildTower(int tid)
+const TowerCard* Tower::getTowerCard()
+{
+	return m_TowerCard;
+}
+
+
+
+void Tower::buildTower(const TowerCard* towerCard)
 {
 	Radius = 32;
-	m_color = Color3B::RED;
-	MP = AbilityEx<float>(1000, 0, 1000);
-	AP = AbilityEx<float>(1000, 0, 1000);
-	AP_RegenRate = 50;
+	m_TowerCard = towerCard;
 
+	m_color = towerCard->color;
+	HP = AbilityEx<float>(towerCard->HP, 0, towerCard->HP);
+	MP = AbilityEx<float>(towerCard->MP, 0, towerCard->MP);
+	AP = AbilityEx<float>(towerCard->AP, 0, towerCard->AP);
+	HP_RegenRate = towerCard->HP_RegenRate;
+	MP_RegenRate = towerCard->MP_RegenRate;
+	AP_RegenRate = towerCard->AP_RegenRate;
 
-	string act,wea;
-	switch (tid)
-	{
-	case 0: act = "Tower_000"; wea = "wTower_000"; m_color = Color3B(255, 51, 255); break;
-	case 1: act = "Tower_001"; wea = "wTower_001"; m_color = Color3B(153, 51, 153); break;
-	case 2: act = "Tower_002"; wea = "wTower_002"; m_color = Color3B(51, 51, 153); break;
-	case 3: act = "Tower_003"; wea = "wTower_003"; m_color = Color3B(102, 102, 204); break;
-	case 4: act = "Tower_004"; wea = "wTower_004"; m_color = Color3B(204, 102, 204); break;
-	case 5: act = "Tower_005"; wea = "wTower_005"; m_color = Color3B(255, 204, 255); break;
-	case 6: act = "Tower_006"; wea = "wTower_006"; m_color = Color3B(51, 102, 255); break;
-	case 7: act = "Tower_007"; wea = "wTower_007"; m_color = Color3B(153, 204, 255); break;
-	default:break;
-	}
-	m_weapon = WeaponManager::getInstance()->getWeapon(wea);
+	m_weapon = WeaponManager::getInstance()->getWeapon(towerCard->weaponName[0]);
 	this->addSkill(SkillManager::getInstance()->createCSkill("attack", this));
-	this->setActorName(act);
+	//this->setActorName(StringUtils::format("Tower_%03d", towerCard->ID));
 
+	this->setActorName(towerCard->ActorName);
 	this->bindActor();
 	this->m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
 }

@@ -124,12 +124,17 @@ void TowerInfoLayer::receiveMsg(Ref* pData)
 
 	if (m_card != nullptr)
 	{
-		//m_card->removeFromParent();
-		this->removeChild(m_card);
+		m_card->removeFromParent();
 	}
 	//string str = StringUtils::format("card/card_%03d.png", (int)rand() % 8);
-	string str = StringUtils::format("card/card_%03d.png", 1);
-	Sprite* m_card = Sprite::create(str);
+	string str = StringUtils::format("card/card_%03d.png", m_parent->getTowerCard()->Icon);
+	//Sprite* m_card = Sprite::create(str);
+
+	Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(str);
+	//SpriteFrameCache::getInstance()->addSpriteFrame(SpriteFrame::createWithTexture(texture, Rect(Point::ZERO, texture->getContentSize())), "1111");
+	//Sprite* m_card = Sprite::createWithSpriteFrameName("1111");
+	Sprite* m_card = Sprite::createWithTexture(texture);
+
 	m_card->setPosition(Point(336 * scale, 447.5 * scale) - centerPos);
 	m_card->setScale(0.8*scale);
 	this->addChild(m_card);

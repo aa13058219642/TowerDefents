@@ -3,6 +3,7 @@
 #include "GameMap.h"
 #include "Tower.h"
 #include "SpellCardManager.h"
+#include "TowerCardManager.h"
 
 //using namespace cocos2d::ui;
 
@@ -481,7 +482,12 @@ void TowerSelectLayer::clickEvent_showLayerFor_BuildSpellPos()
 void TowerSelectLayer::clickEvent_buildTower(Direction dir)
 {
 	//log("clickEvent_buildTower");
-	m_gridPos->buildTower((int)dir);
+	string TowerName = GameMap::getInstance()->getTowerCard()[dir];
+	const TowerCard* tower = TowerCardManager::getInstance()->getTowerCard(TowerName);
+	//m_gridPos->buildSpellTower(tower);
+	
+	
+	m_gridPos->buildTower(tower);
 	this->cancel();
 }
 
@@ -497,23 +503,8 @@ void TowerSelectLayer::clickEvent_buildSpellPos(Direction dir)
 void TowerSelectLayer::clickEvent_buildSpellTower(Direction dir)
 {
 	//log("clickEvent_buildSpellTower");
-
-	//string spellTowerName;
-	////switch (dir)
-	////{
-	////case North:		spellTowerName = "upgrade_colddown_reduce"; break;
-	////case NorthWest:	spellTowerName = "upgrade_colddown_reduce"; break;
-	////case West:		spellTowerName = "upgrade_colddown_reduce"; break;
-	////case SouthWest:	spellTowerName = "upgrade_colddown_reduce"; break;
-	////case South:		spellTowerName = "upgrade_colddown_reduce"; break;
-	////case SouthEast:	spellTowerName = "upgrade_colddown_reduce"; break;
-	////case East:		spellTowerName = "upgrade_colddown_reduce"; break;
-	////case NorthEast:	spellTowerName = "upgrade_colddown_reduce"; break;
-	////}
-
-
 	string spellTowerName = GameMap::getInstance()->getSpellCard()[dir];
-	auto spell = SpellCardManager::getInstance()->getSpellCard(spellTowerName);
+	const SpellCard* spell = SpellCardManager::getInstance()->getSpellCard(spellTowerName);
 	m_gridPos->buildSpellTower(spell);
 	this->cancel();
 }

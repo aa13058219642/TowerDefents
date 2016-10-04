@@ -129,23 +129,22 @@ void Bullet::onMove(float dt)
 
 	float dis, move, a;
 	dis = m_pos.distance(m_targetPos);
-	if (dis > 0){
-		move = Speed.getValue() *dt;
-		a = move / dis;
-		if (a < 1){
-			m_pos = a*(m_targetPos - m_pos) + m_pos;
-			m_actor->setPos(Point(m_pos.x,m_pos.y+1));
+	move = Speed.getValue() *dt;
+	a = clampf(move / dis, 0, 1);
 
-			if (isFaceToTargetPos)
-			{
-				//方向朝向目标
-				float angel = -(m_targetPos - m_pos).getAngle();
-				m_actor->setRotation(CC_RADIANS_TO_DEGREES(angel));
-			}
-			return;
-		}
+	m_pos = a*(m_targetPos - m_pos) + m_pos;
+	m_actor->setPos(Point(m_pos.x,m_pos.y-1));
+
+	if (isFaceToTargetPos)
+	{
+		//方向朝向目标
+		float angel = -(m_targetPos - m_pos).getAngle();
+		m_actor->setRotation(CC_RADIANS_TO_DEGREES(angel));
 	}
-	onHitTarget();
+
+	//命中目标
+	if (a == 1)
+		onHitTarget();
 }
 
 void Bullet::onHitTarget()

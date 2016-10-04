@@ -1,6 +1,7 @@
 #pragma once
 #include "stdfax.h"
 #include "SpellCard.h"
+#include "TowerCard.h"
 
 enum EGridPosType{
 	GridPosType_Empty,
@@ -37,7 +38,7 @@ public:
 
 	void initTower();
 	
-	void buildTower(int tid);
+	void buildTower(const TowerCard* towerCard);
 	void buildSpellPos(Tower* parent, Direction dirRelativeToTower);
 	void buildSpellTower(const SpellCard* spellTower);
 

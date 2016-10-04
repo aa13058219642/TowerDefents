@@ -3,7 +3,6 @@
         {
             "name": "blank",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 {
@@ -16,7 +15,6 @@
         {
             "name": "error",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 {
@@ -29,7 +27,6 @@
         {
             "name": "t001_stand",
             "delay": 0.1,
-            "framecount": 10,
             "repeat": -1,
             "framedata": [
                 {
@@ -87,7 +84,6 @@
         {
             "name": "t001_attack_beforing",
             "delay": 0.1,
-            "framecount": 7,
             "repeat": 1,
             "framedata": [
                 {
@@ -130,7 +126,6 @@
         {
             "name": "t001_attack_using",
             "delay": 0.1,
-            "framecount": 3,
             "repeat": 1,
             "framedata": [
                 {
@@ -153,7 +148,6 @@
         {
             "name": "t001_attack_aftering",
             "delay": 0.1,
-            "framecount": 4,
             "repeat": 1,
             "framedata": [
                 {
@@ -181,7 +175,6 @@
         {
             "name": "t001_skill_preparing",
             "delay": 0.1,
-            "framecount": 4,
             "repeat": 1,
             "framedata": [
                 {
@@ -209,7 +202,6 @@
         {
             "name": "t001_skill_beforing",
             "delay": 0.1,
-            "framecount": 2,
             "repeat": -1,
             "framedata": [
                 {
@@ -227,7 +219,6 @@
         {
             "name": "t001_skill_using",
             "delay": 0.1,
-            "framecount": 5,
             "repeat": 1,
             "framedata": [
                 {
@@ -260,7 +251,6 @@
         {
             "name": "t001_skill_aftering",
             "delay": 0.1,
-            "framecount": 3,
             "repeat": 1,
             "framedata": [
                 {
@@ -288,7 +278,6 @@
         {
             "name": "m001_move",
             "delay": 0.1,
-            "framecount": 8,
             "repeat": -1,
             "framedata": [
                 {
@@ -336,7 +325,6 @@
         {
             "name": "m001_death",
             "delay": 0.1,
-            "framecount": 5,
             "repeat": 1,
             "framedata": [
                 {
@@ -369,65 +357,82 @@
         {
             "name": "e001",
             "delay": 0.03,
-            "framecount": 36,
             "repeat": 1,
             "framedata": [
-                {"name": "e001_000.png","x": -64,"y": -32},
-                {"name": "e001_001.png","x": -64,"y": -32},
-                {"name": "e001_002.png","x": -64,"y": -32},
-                {"name": "e001_003.png","x": -64,"y": -32},
-                {"name": "e001_004.png","x": -64,"y": -32},
-                {"name": "e001_005.png","x": -64,"y": -32},
-                {"name": "e001_006.png","x": -64,"y": -32},
-                {"name": "e001_007.png","x": -64,"y": -32},
-                {"name": "e001_008.png","x": -64,"y": -32},
+                { "name": "e001_000.png", "x": -64, "y": -32 },
+                { "name": "e001_001.png", "x": -64, "y": -32 },
+                { "name": "e001_002.png", "x": -64, "y": -32 },
+                { "name": "e001_003.png", "x": -64, "y": -32 },
+                { "name": "e001_004.png", "x": -64, "y": -32 },
+                { "name": "e001_005.png", "x": -64, "y": -32 },
+                { "name": "e001_006.png", "x": -64, "y": -32 },
+                { "name": "e001_007.png", "x": -64, "y": -32 },
+                { "name": "e001_008.png", "x": -64, "y": -32 },
                 { "name": "e001_009.png", "x": -64, "y": -32 },
-                {"name": "e001_010.png","x": -64,"y": -32},
-                {"name": "e001_011.png","x": -64,"y": -32},
-                {"name": "e001_012.png","x": -64,"y": -32},
-                {"name": "e001_013.png","x": -64,"y": -32},
-                {"name": "e001_014.png","x": -64,"y": -32},
-                {"name": "e001_015.png","x": -64,"y": -32},
-                {"name": "e001_016.png","x": -64,"y": -32},
-                {"name": "e001_017.png","x": -64,"y": -32},
-                {"name": "e001_018.png","x": -64,"y": -32},
+                { "name": "e001_010.png", "x": -64, "y": -32 },
+                { "name": "e001_011.png", "x": -64, "y": -32 },
+                { "name": "e001_012.png", "x": -64, "y": -32 },
+                { "name": "e001_013.png", "x": -64, "y": -32 },
+                { "name": "e001_014.png", "x": -64, "y": -32 },
+                { "name": "e001_015.png", "x": -64, "y": -32 },
+                { "name": "e001_016.png", "x": -64, "y": -32 },
+                { "name": "e001_017.png", "x": -64, "y": -32 },
+                { "name": "e001_018.png", "x": -64, "y": -32 },
                 { "name": "e001_019.png", "x": -64, "y": -32 },
-                {"name": "e001_020.png","x": -64,"y": -32},
-                {"name": "e001_021.png","x": -64,"y": -32},
-                {"name": "e001_022.png","x": -64,"y": -32},
-                {"name": "e001_023.png","x": -64,"y": -32},
-                {"name": "e001_024.png","x": -64,"y": -32},
-                {"name": "e001_025.png","x": -64,"y": -32},
-                {"name": "e001_026.png","x": -64,"y": -32},
-                {"name": "e001_027.png","x": -64,"y": -32},
-                {"name": "e001_028.png","x": -64,"y": -32},
+                { "name": "e001_020.png", "x": -64, "y": -32 },
+                { "name": "e001_021.png", "x": -64, "y": -32 },
+                { "name": "e001_022.png", "x": -64, "y": -32 },
+                { "name": "e001_023.png", "x": -64, "y": -32 },
+                { "name": "e001_024.png", "x": -64, "y": -32 },
+                { "name": "e001_025.png", "x": -64, "y": -32 },
+                { "name": "e001_026.png", "x": -64, "y": -32 },
+                { "name": "e001_027.png", "x": -64, "y": -32 },
+                { "name": "e001_028.png", "x": -64, "y": -32 },
                 { "name": "e001_029.png", "x": -64, "y": -32 },
-                {"name": "e001_030.png","x": -64,"y": -32},
-                {"name": "e001_031.png","x": -64,"y": -32},
-                {"name": "e001_032.png","x": -64,"y": -32},
-                {"name": "e001_033.png","x": -64,"y": -32},
-                {"name": "e001_034.png","x": -64,"y": -32},
-                {"name": "e001_035.png","x": -64,"y": -32}
+                { "name": "e001_030.png", "x": -64, "y": -32 },
+                { "name": "e001_031.png", "x": -64, "y": -32 },
+                { "name": "e001_032.png", "x": -64, "y": -32 },
+                { "name": "e001_033.png", "x": -64, "y": -32 },
+                { "name": "e001_034.png", "x": -64, "y": -32 },
+                { "name": "e001_035.png", "x": -64, "y": -32 }
+            ]
+        },
+        {
+            "name": "e003",
+            "delay": 0.05,
+            "repeat": 1,
+            "framedata": [
+                { "name": "e003_000.png", "x": -64, "y": -64 },
+                { "name": "e003_001.png", "x": -64, "y": -64 },
+                { "name": "e003_002.png", "x": -64, "y": -64 }
+            ]
+        },
+        {
+            "name": "e004",
+            "delay": 0.05,
+            "repeat": 1,
+            "framedata": [
+                { "name": "e004_000.png", "x": -75, "y": -74 },
+                { "name": "e004_001.png", "x": -75, "y": -74 },
+                { "name": "e004_002.png", "x": -75, "y": -74 },
+                { "name": "e004_003.png", "x": -75, "y": -74 },
+                { "name": "e004_004.png", "x": -75, "y": -74 },
+                { "name": "e004_005.png", "x": -75, "y": -74 },
+                { "name": "e004_006.png", "x": -75, "y": -74 }
             ]
         },
         {
             "name": "b001_move",
-            "delay": 0.001,
-            "framecount": 1,
-            "repeat": 1,
+            "delay": 0,
+            "repeat": -1,
             "framedata": [
-                {
-                    "name": "b001_000.png",
-                    "x": -8,
-                    "y": -8
-                }
+                { "name": "b001_000.png", "x": -25, "y": -25 }
             ]
         },
         {
             "name": "b002_move",
-            "delay": 0.001,
-            "framecount": 1,
-            "repeat": 1,
+            "delay": 0,
+            "repeat": -1,
             "framedata": [
                 {
                     "name": "b002_000.png",
@@ -438,9 +443,8 @@
         },
         {
             "name": "b003_move",
-            "delay": 0.001,
-            "framecount": 1,
-            "repeat": 1,
+            "delay": 0,
+            "repeat": -1,
             "framedata": [
                 {
                     "name": "b003_000.png",
@@ -450,9 +454,20 @@
             ]
         },
         {
+            "name": "b004_move",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [
+                {
+                    "name": "b004_000.png",
+                    "x": -32,
+                    "y": -16
+                }
+            ]
+        },
+        {
             "name": "e002",
             "delay": 0.07,
-            "framecount": 5,
             "repeat": 1,
             "framedata": [
                 { "name": "e002_000.png", "x": -32, "y": -32 },
@@ -465,7 +480,6 @@
         {
             "name": "spellPos000",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_000.png", "x": -32, "y": -96 }
@@ -474,7 +488,6 @@
         {
             "name": "spellPos001",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_001.png", "x": -96, "y": -96 }
@@ -483,7 +496,6 @@
         {
             "name": "spellPos002",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_002.png", "x": -96, "y": -32 }
@@ -492,7 +504,6 @@
         {
             "name": "spellPos003",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_003.png", "x": -96, "y": 0 }
@@ -501,7 +512,6 @@
         {
             "name": "spellPos004",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_004.png", "x": -32, "y": 0 }
@@ -510,7 +520,6 @@
         {
             "name": "spellPos005",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_005.png", "x": 0, "y": 0 }
@@ -519,7 +528,6 @@
         {
             "name": "spellPos006",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_006.png", "x": 0, "y": -32 }
@@ -528,75 +536,167 @@
         {
             "name": "spellPos007",
             "delay": 0,
-            "framecount": 1,
             "repeat": -1,
             "framedata": [
                 { "name": "SpellPos_007.png", "x": 0, "y": -96 }
             ]
         },
         {
-            "name": "SpellTower_000","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_000.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_000",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_000.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "SpellTower_001","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_001.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_001",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_001.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "SpellTower_002","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_002.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_002",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_002.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "SpellTower_003","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_003.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_003",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_003.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "SpellTower_004","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_004.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_004",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_004.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "SpellTower_005","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_005.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_005",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_005.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "SpellTower_006","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_006.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_006",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_006.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "SpellTower_007","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "SpellTower_007.png", "x": -32, "y": -32 }]
+            "name": "SpellTower_007",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "SpellTower_007.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "Tower_000","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_000.png", "x": -32, "y": -32 }]
+            "name": "Tower_000_stand",
+            "delay": 0.3,
+            "repeat": -1,
+            "framedata": [
+                { "name": "Tower_000_stand_000.png", "x": -38, "y": -42 },
+                { "name": "Tower_000_stand_001.png", "x": -38, "y": -42 },
+                { "name": "Tower_000_stand_002.png", "x": -38, "y": -42 },
+                { "name": "Tower_000_stand_003.png", "x": -38, "y": -42 }
+
+            ]
         },
         {
-            "name": "Tower_001","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_001.png", "x": -32, "y": -32 }]
+            "name": "Tower_000_attack_beforing",
+            "delay": 0.15,
+            "repeat": -1,
+            "framedata": [
+                { "name": "Tower_000_attack_000.png", "x": -83, "y": -55 },
+                { "name": "Tower_000_attack_001.png", "x": -83, "y": -55 }
+            ]
         },
         {
-            "name": "Tower_002","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_002.png", "x": -32, "y": -32 }]
+            "name": "Tower_000_attack_aftering",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [
+                { "name": "Tower_000_attack_002.png", "x": -83, "y": -55 }
+            ]
         },
         {
-            "name": "Tower_003","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_003.png", "x": -32, "y": -32 }]
+            "name": "Tower_001_stand",
+            "delay": 0.3,
+            "repeat": -1,
+            "framedata": [
+                { "name": "Tower_001_stand_000.png", "x": -59, "y": -46 },
+                { "name": "Tower_001_stand_001.png", "x": -59, "y": -46 },
+                { "name": "Tower_001_stand_002.png", "x": -59, "y": -46 },
+                { "name": "Tower_001_stand_003.png", "x": -59, "y": -46 }
+            ]
         },
         {
-            "name": "Tower_004","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_004.png", "x": -32, "y": -32 }]
+            "name": "Tower_001_attack_beforing",
+            "delay": 0.1,
+            "repeat": 1,
+            "framedata": [
+                { "name": "Tower_001_attack_000.png", "x": -90, "y": -69 },
+                { "name": "Tower_001_attack_001.png", "x": -90, "y": -69 },
+                { "name": "Tower_001_attack_002.png", "x": -90, "y": -69 }
+            ]
         },
         {
-            "name": "Tower_005","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_005.png", "x": -32, "y": -32 }]
+            "name": "Tower_002",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "Tower_002.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "Tower_006","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_006.png", "x": -32, "y": -32 }]
+            "name": "Tower_003",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "Tower_003.png", "x": -32, "y": -32 } ]
         },
         {
-            "name": "Tower_007","delay": 0,"framecount": 1,"repeat": -1,
-            "framedata": [{ "name": "Tower_007.png", "x": -32, "y": -32 }]
+            "name": "Tower_004",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "Tower_004.png", "x": -32, "y": -32 } ]
+        },
+        {
+            "name": "Tower_005",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "Tower_005.png", "x": -32, "y": -32 } ]
+        },
+        {
+            "name": "Tower_006_stand",
+            "delay": 0.3,
+            "repeat": -1,
+            "framedata": [
+                { "name": "Tower_006_stand_000.png", "x": -31, "y": -45 },
+                { "name": "Tower_006_stand_001.png", "x": -31, "y": -45 },
+                { "name": "Tower_006_stand_002.png", "x": -31, "y": -45 },
+                { "name": "Tower_006_stand_003.png", "x": -31, "y": -45 }
+
+            ]
+        },
+        {
+            "name": "Tower_006_attack_beforing",
+            "delay": 0.15,
+            "repeat": -1,
+            "framedata": [
+                { "name": "Tower_006_attack_000.png", "x": -45, "y": -45 },
+                { "name": "Tower_006_attack_001.png", "x": -45, "y": -45 }
+            ]
+        },        
+        {
+            "name": "Tower_006_attack_aftering",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [
+                { "name": "Tower_006_attack_002.png", "x": -45, "y": -41 }
+            ]
+        },
+        {
+            "name": "Tower_007",
+            "delay": 0,
+            "repeat": -1,
+            "framedata": [ { "name": "Tower_007.png", "x": -32, "y": -32 } ]
         }
     ]
 }

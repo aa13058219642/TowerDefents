@@ -130,6 +130,9 @@
 - 4.TowerInfoLayer 实时更新 能力值
 - 5.BattleScene保留各Layer的指针
 
-
+##v0.036
+- 1.统一化json文件格式
+- 2.新建 TowerCard 类，建塔数据由 Card 决定
+- 3.采用冒险岛纸娃娃作为图片素材
 
 

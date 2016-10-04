@@ -40,7 +40,7 @@ AnimateManager::~AnimateManager()
 
 Animation* AnimateManager::createAnimation(const Name& animateName)
 {
-	CCASSERT(animateData.find(animateName) != animateData.end(), "Animate NOT found");
+	CCASSERT(animateData.find(animateName) != animateData.end(), string("Animate :[" + animateName + "] NOT found").c_str());
 
 	SpriteFrame* frame = nullptr;
 	Vector<SpriteFrame*> frameVec;
@@ -50,7 +50,7 @@ Animation* AnimateManager::createAnimation(const Name& animateName)
 	for (int i = 0; i < data.framecount; ++i)
 	{
 		frame = frameCache->getSpriteFrameByName(data.framedata[i].name);
-		CCASSERT(frame != nullptr, "SpriteFrame NOT found");
+		CCASSERT(frame != nullptr, string("SpriteFrame :[" + data.framedata[i].name + "] NOT found").c_str());
 
 		//根据缩放比例调整偏移
 		float scale = Director::getInstance()->getContentScaleFactor();
@@ -84,21 +84,25 @@ void AnimateManager::LoadResource(const vector<Name>& resNameList)
 	//3.读取json数据
 	std::map<string,AnimateData> animatedata;
 	for (int i = 0; i < (int)root["animatedata"].Size(); i++) {
-		string name = root["animatedata"][i]["name"].GetString();
+		JsonNode jNode = root["animatedata"][i];
+		string name = jNode["name"].GetString();
 		//animatedata[i].name = root["animatedata"][i]["name"].GetString();
-		animatedata[name].delay = root["animatedata"][i]["delay"].GetDouble();
-		animatedata[name].framecount = root["animatedata"][i]["framecount"].GetInt();
-		animatedata[name].repeat = root["animatedata"][i]["repeat"].GetInt();
+		animatedata[name].delay = jNode["delay"].GetDouble();
+		animatedata[name].repeat = jNode["repeat"].GetInt();
 
-		int size = root["animatedata"][i]["framedata"].Size();
-		CCASSERT(animatedata[name].framecount != 0 && size != 0, "framecount must NOT equal 0");
+		int size = jNode["framedata"].Size();
+		CCASSERT(size != 0, "framecount must NOT equal 0");
 		animatedata[name].framedata.resize(size);
+		animatedata[name].framecount = size;
+		//animatedata[name].framecount = root["animatedata"][i]["framecount"].GetInt();
+		//CCASSERT(animatedata[name].framecount != 0 && size != 0, "framecount must NOT equal 0");
 		for (int j = 0; j<size; j++) {
-			animatedata[name].framedata[j].name = root["animatedata"][i]["framedata"][j]["name"].GetString();
-			animatedata[name].framedata[j].offset.x = root["animatedata"][i]["framedata"][j]["x"].GetDouble();
+			JsonNode node = jNode["framedata"][j];
+			animatedata[name].framedata[j].name = node["name"].GetString();
+			animatedata[name].framedata[j].offset.x = node["x"].GetDouble();
 
 			//此处翻转Y轴（cocos的原点在左下角，偏移是相对图片左上角的）
-			animatedata[name].framedata[j].offset.y = - root["animatedata"][i]["framedata"][j]["y"].GetDouble();
+			animatedata[name].framedata[j].offset.y = -node["y"].GetDouble();
 		}
 	}
 	
@@ -146,7 +150,7 @@ void AnimateManager::FreeResource(const vector<Name>& resName)
 void AnimateManager::playAnimate(const Name& animateName, Sprite* sprite, float playtime, CallFunc* callFunc)
 {
 	CCASSERT(sprite != nullptr, "[AnimateManager::createAnimate]: Sprite is null");
-	CCASSERT(animateData.find(animateName) != animateData.end(), "[AnimateManager::createAnimate] Animate NOT found");
+	CCASSERT(animateData.find(animateName) != animateData.end(), string("[AnimateManager::createAnimate] Animate [" + animateName + "] NOT found").c_str());
 	
 	if (animateData[animateName].framecount > 1)
 	{
