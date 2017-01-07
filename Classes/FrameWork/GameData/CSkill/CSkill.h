@@ -1,36 +1,37 @@
 #pragma once
-#include "stdfax.h"
-#include "Unit.h"
+#include "GalaxyBase.h"
+#include "CGameData.h"
+#include "CUnit.h"
 
-
-
-class CSkill
+namespace cocosgalaxy
 {
-public:
-	/* ----属性---- */
+	class CSkill : public CGameData
+	{
+	public:
+		/* ----属性---- */
 
-	int ID;
-	string name;
+		int ID;
+		string name;
 
-	
-	/* ----方法---- */
 
-	CSkill();
-	~CSkill();
-	virtual CSkill* clone() = 0;
+		/* ----方法---- */
 
-	void setType(ESkillType type);
-	ESkillType getType();
+		CSkill();
+		~CSkill();
+		virtual CSkill* clone() = 0;
 
-	void setParent(int parentID);
-	Unit* getParent();
+		void setType(ESkillType type);
+		ESkillType getType();
 
-	virtual void update(float dt) = 0;
-	virtual bool IsCanExecute() = 0;
+		void setParent(int parentID);
+		CUnit* getParent();
 
-protected:
-	string groupID;
-	ESkillType m_type;
-	int m_parentID;
-};
+		virtual void update(float dt) = 0;
+		virtual bool IsCanExecute() = 0;
 
+	protected:
+		string groupID;
+		ESkillType m_type;
+		int m_parentID;
+	};
+}

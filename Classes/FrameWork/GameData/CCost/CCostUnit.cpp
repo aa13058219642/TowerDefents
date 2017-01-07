@@ -1,5 +1,6 @@
 #include "CCostUnit.h"
-#include "Unit.h"
+#include "CUnit.h"
+using namespace cocosgalaxy;
 
 CCostUnit::CCostUnit()
 {
@@ -18,8 +19,10 @@ CCostUnit::~CCostUnit()
 }
 
 
-bool CCostUnit::isCanPay(Unit* parent)
+bool CCostUnit::isCanPay(CGameData* gamedata)
 {
+	CUnit* parent = static_cast<CUnit*>(gamedata);
+
 	if (parent->HP >= HP &&
 		parent->MP >= MP &&
 		parent->AP >= AP &&
@@ -30,8 +33,10 @@ bool CCostUnit::isCanPay(Unit* parent)
 	return false;
 }
 
-void CCostUnit::payCost(Unit* parent)
+void CCostUnit::payCost(CGameData* gamedata)
 {
+	CUnit* parent = static_cast<CUnit*>(gamedata);
+
 	parent->HP < HP.getValue() ? parent->HP = 0 : parent->HP -= HP.getValue();
 	parent->MP < MP.getValue() ? parent->MP = 0 : parent->MP -= MP.getValue();
 	parent->AP < AP.getValue() ? parent->AP = 0 : parent->AP -= AP.getValue();

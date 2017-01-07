@@ -1,5 +1,6 @@
 #include "CSkill.h"
 #include "UnitManager.h"
+using namespace cocosgalaxy;
 
 CSkill::CSkill()
 {
@@ -30,7 +31,8 @@ void CSkill::setParent(int parentID)
 {
 	m_parentID = parentID;
 }
-Unit* CSkill::getParent()
+
+CUnit* CSkill::getParent()
 {
 	return UnitManager::getInstance()->getUnit(m_parentID);
 }

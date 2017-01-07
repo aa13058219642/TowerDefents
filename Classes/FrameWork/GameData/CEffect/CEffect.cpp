@@ -1,5 +1,6 @@
 #include "CEffect.h"
 #include "UnitManager.h"
+using namespace cocosgalaxy;
 
 CEffect::CEffect()
 {
@@ -19,7 +20,7 @@ void CEffect::setParent(int parentID)
 	this->m_parentID = parentID;
 }
 
-Unit* CEffect::getParent()
+CUnit* CEffect::getParent()
 {
 	return UnitManager::getInstance()->getUnit(m_parentID);
 }
@@ -29,7 +30,7 @@ void CEffect::setTarget(int targetID)
 	this->m_targetID = targetID;
 }
 
-Unit* CEffect::getTarget()
+CUnit* CEffect::getTarget()
 {
 	return UnitManager::getInstance()->getUnit(m_targetID);
 }
@@ -45,7 +46,7 @@ void CEffect::update(float dt)
 	}
 }
 
-bool CEffect::Filtered(Unit* obj)
+bool CEffect::Filtered(CUnit* obj)
 {
 	//ÈôA U B = A ÔòBº¬ÓÚA
 	if ((obj->getType() | filter) == filter){

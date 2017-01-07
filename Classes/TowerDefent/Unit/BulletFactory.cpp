@@ -80,7 +80,7 @@ int BulletFactory::LoadBulletList()
 
 
 
-Bullet* BulletFactory::CreateBullet(int BulletID, Point pos, Unit* target)
+Bullet* BulletFactory::CreateBullet(int BulletID, Point pos, CUnit* target)
 {
 	Bullet* bullet = bulletlist[BulletID]->clone();
 	UnitManager::getInstance()->addUnit(bullet);

@@ -22,15 +22,6 @@
     <Filter Include="src\FrameWork\GameData\CEffect">
       <UniqueIdentifier>{6f045dd2-9088-48ba-a9f3-05685950bdcd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\FrameWork\GameData\CEffect\CEffects">
-      <UniqueIdentifier>{08f1d46a-1cdb-484b-b1d4-ff11ad1cec21}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FrameWork\GameData\CEffect\CEffects\CEffectResponse">
-      <UniqueIdentifier>{49315291-877a-4cdf-8642-28924f2a6591}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FrameWork\GameData\Actor">
-      <UniqueIdentifier>{dfa118e2-bc83-4a97-9db3-45b89b6bf5e3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\FrameWork\Manager">
       <UniqueIdentifier>{c642cf9a-e5ee-494f-bec5-b9a53730ec3e}</UniqueIdentifier>
     </Filter>
@@ -57,9 +48,6 @@
     </Filter>
     <Filter Include="src\FrameWork\GameData\CSkill\CSkillGeneric\CSkillEffect">
       <UniqueIdentifier>{4663bbdf-b013-46ab-8a88-52ecbe7179ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FrameWork\GameData\Unit">
-      <UniqueIdentifier>{0f2c9296-672a-44bf-bbc4-40d1343275fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\TowerDefent\Unit">
       <UniqueIdentifier>{28273623-6593-4c0e-b63d-dd634f8f1b0a}</UniqueIdentifier>
@@ -103,9 +91,6 @@
     <Filter Include="src\FrameWork\DataStructure">
       <UniqueIdentifier>{a45e9d84-bf86-472b-a8de-9f527b72e173}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\FrameWork\DataStructure\Modification">
-      <UniqueIdentifier>{d61a4093-b086-4c61-88d3-b33ff3de6b7d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\FrameWork\DataStructure\Ability">
       <UniqueIdentifier>{684690bb-e3e5-4bd4-a6f3-fe8fb6861b1f}</UniqueIdentifier>
     </Filter>
@@ -124,6 +109,27 @@
     <Filter Include="src\FrameWork\GameData\CPlayer">
       <UniqueIdentifier>{bf6b27e9-e655-47f2-870d-b298b52ecfc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TowerDefent\Scene\PrepareScene">
+      <UniqueIdentifier>{1e7811ca-98b6-4ebc-a6c5-c911e1dfe810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CCost\CCostPlayer">
+      <UniqueIdentifier>{6dbd7df6-55b9-424a-acda-28b249400e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CEffect\CEffects">
+      <UniqueIdentifier>{08f1d46a-1cdb-484b-b1d4-ff11ad1cec21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CEffect\CEffects\CEffectResponse">
+      <UniqueIdentifier>{49315291-877a-4cdf-8642-28924f2a6591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CUnit">
+      <UniqueIdentifier>{0f2c9296-672a-44bf-bbc4-40d1343275fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CActor">
+      <UniqueIdentifier>{dfa118e2-bc83-4a97-9db3-45b89b6bf5e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CModification">
+      <UniqueIdentifier>{d61a4093-b086-4c61-88d3-b33ff3de6b7d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -132,11 +138,8 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\Actor.cpp">
-      <Filter>src\FrameWork\GameData\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\Actor\ActorManager.cpp">
-      <Filter>src\FrameWork\GameData\Actor</Filter>
+      <Filter>src\FrameWork\GameData\CActor</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffect.cpp">
       <Filter>src\FrameWork\GameData\CEffect</Filter>
@@ -150,14 +153,8 @@
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkill.cpp">
       <Filter>src\FrameWork\GameData\CSkill</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\Unit.cpp">
-      <Filter>src\FrameWork\GameData\Unit</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitManager.cpp">
-      <Filter>src\FrameWork\GameData\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\Helper\Helper.cpp">
-      <Filter>src\FrameWork\Helper</Filter>
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\Manager\AnimateManager.cpp">
       <Filter>src\FrameWork\Manager\AnimateManager</Filter>
@@ -246,9 +243,6 @@
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.cpp">
       <Filter>src\FrameWork\GameData\CBehavior\CBeahaviorBuff</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\DataStructure\Modification.cpp">
-      <Filter>src\FrameWork\DataStructure\Modification</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\DataStructure\Ability.cpp">
       <Filter>src\FrameWork\DataStructure\Ability</Filter>
     </ClCompile>
@@ -276,6 +270,33 @@
     <ClCompile Include="..\Classes\TowerDefent\Card\TowerCardManager.cpp">
       <Filter>src\TowerDefent\Card\TowerCard</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CPlayer\CPLayer.cpp">
+      <Filter>src\FrameWork\GameData\CPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.cpp">
+      <Filter>src\TowerDefent\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Scene\PrepareScene.cpp">
+      <Filter>src\TowerDefent\Scene\PrepareScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.cpp">
+      <Filter>src\FrameWork\GameData\CCost\CCostPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CGameData.cpp">
+      <Filter>src\FrameWork\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\CUnit.cpp">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\CActor.cpp">
+      <Filter>src\FrameWork\GameData\CActor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CModification\CModification.cpp">
+      <Filter>src\FrameWork\GameData\CModification</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\Helper\GalaxyHelper.cpp">
+      <Filter>src\FrameWork\Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -284,11 +305,8 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\Actor.h">
-      <Filter>src\FrameWork\GameData\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\Actor\ActorManager.h">
-      <Filter>src\FrameWork\GameData\Actor</Filter>
+      <Filter>src\FrameWork\GameData\CActor</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffect.h">
       <Filter>src\FrameWork\GameData\CEffect</Filter>
@@ -299,14 +317,8 @@
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkill.h">
       <Filter>src\FrameWork\GameData\CSkill</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.h">
-      <Filter>src\FrameWork\GameData\CSkill</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitManager.h">
-      <Filter>src\FrameWork\GameData\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\Helper\Helper.h">
-      <Filter>src\FrameWork\Helper</Filter>
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\Manager\AnimateManager.h">
       <Filter>src\FrameWork\Manager\AnimateManager</Filter>
@@ -316,9 +328,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\Manager\TextureManager.h">
       <Filter>src\FrameWork\Manager\TextureManager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\EnumConst.h">
-      <Filter>src\FrameWork</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\stdfax.h">
       <Filter>src\FrameWork</Filter>
@@ -392,23 +401,14 @@
     <ClInclude Include="..\Classes\FrameWork\Manager\ResourceLoader.h">
       <Filter>src\FrameWork\Manager\ResourceLoader</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\Unit.h">
-      <Filter>src\FrameWork\GameData\Unit</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h">
       <Filter>src\TowerDefent\GameMap</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h">
       <Filter>src\FrameWork\GameData\CBehavior</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h">
-      <Filter>src\FrameWork\GameData\CCost</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.h">
       <Filter>src\FrameWork\GameData\CBehavior\CBeahaviorBuff</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\DataStructure\Modification.h">
-      <Filter>src\FrameWork\DataStructure\Modification</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\DataStructure\Ability.h">
       <Filter>src\FrameWork\DataStructure\Ability</Filter>
@@ -436,6 +436,42 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Card\TowerCardManager.h">
       <Filter>src\TowerDefent\Card\TowerCard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CPlayer\CPLayer.h">
+      <Filter>src\FrameWork\GameData\CPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.h">
+      <Filter>src\TowerDefent\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Scene\PrepareScene.h">
+      <Filter>src\TowerDefent\Scene\PrepareScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CGameData.h">
+      <Filter>src\FrameWork\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\CUnit.h">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.h">
+      <Filter>src\FrameWork\GameData\CCost\CCostPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\CActor.h">
+      <Filter>src\FrameWork\GameData\CActor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h">
+      <Filter>src\FrameWork\GameData\CCost</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GalaxyBase.h">
+      <Filter>src\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.h">
+      <Filter>src\FrameWork\GameData\CSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CModification\CModification.h">
+      <Filter>src\FrameWork\GameData\CModification</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\Helper\GalaxyHelper.h">
+      <Filter>src\FrameWork\Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

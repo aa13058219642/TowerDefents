@@ -1,5 +1,6 @@
 #include "CWeapon.h"
 #include "CEffect.h"
+using namespace cocosgalaxy;
 
 CWeapon::CWeapon()
 {

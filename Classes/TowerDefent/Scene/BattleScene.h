@@ -5,6 +5,7 @@
 #include "TowerSelectLayer.h"
 #include "GameMapLayer.h"
 #include "TowerInfoLayer.h"
+#include "GameMapInfoLayer.h"
 
 class BattleScene : public Layer
 {
@@ -28,4 +29,5 @@ private:
 	TowerSelectLayer* towerSelectLayer;
 	GameMapLayer* gameMapLayer;
 	TowerInfoLayer* towerInfoLayer;
+	GameMapInfoLayer* gameMapInfoLayer;
 };

@@ -1,4 +1,5 @@
 #include "ResourceLoader.h"
+using namespace cocosgalaxy;
 
 ResourceLoader::ResourceLoader()
 {

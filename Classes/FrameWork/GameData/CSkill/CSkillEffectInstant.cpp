@@ -1,4 +1,5 @@
 #include "CSkillEffectInstant.h"
+using namespace cocosgalaxy;
 
 CSkillEffectInstant::CSkillEffectInstant()
 {

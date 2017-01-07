@@ -1,8 +1,8 @@
 #include "DebugDraw.h"
-
+using namespace cocosgalaxy;
 
 DebugDraw* DebugDraw::p_myinstance = nullptr;
-bool DebugDraw::isDebug = true;
+bool DebugDraw::isDebug = false;
 
 DebugDraw::DebugDraw()
 {

@@ -1,5 +1,5 @@
 #include "Monster.h"
-#include "Actor.h"
+#include "CActor.h"
 #include "AnimateManager.h"
 #include "UnitManager.h"
 //Monster::Monster()
@@ -40,7 +40,7 @@ Monster::Monster(int MonsterID, MapPath path)
 
 
 void Monster::update(float dt){
-	Unit::update(dt);
+	CUnit::update(dt);
 
 	onMove(dt);
 }
@@ -112,7 +112,7 @@ void Monster::onBindSprite()
 
 void Monster::onDead()
 {
-	Unit::onDead();
+	CUnit::onDead();
 	//for (auto var : UnitManager::getInstance()->findUnit(EUnitType::Unit_UnKnow)){
 	//	var->onMissTarget(this);
 	//}

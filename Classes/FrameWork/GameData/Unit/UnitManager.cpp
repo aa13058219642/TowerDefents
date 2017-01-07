@@ -1,9 +1,5 @@
 #include "UnitManager.h"
-#include "Tower.h"
-#include "Monster.h"
-#include "Bullet.h"
-#include "DebugDraw.h"
-#include "WaveManager.h"
+using namespace cocosgalaxy;
 
 UnitManager* UnitManager::p_myinstance = nullptr;
 bool UnitManager::isDebug = false;
@@ -40,17 +36,17 @@ void UnitManager::init()
 
 void UnitManager::update(float dt)
 {
-	//更新Unit
+	//更新CUnit
 	for (auto obj : m_UnitList)
 		if (!(obj->getType() & Unit_Death))
 			obj->update(dt);
 
 
 
-	//删除要销毁的Unit
+	//删除要销毁的CUnit
 	for (auto iter = m_UnitList.begin(); iter != m_UnitList.end();)
 	{
-		Unit* obj = *iter;
+		CUnit* obj = *iter;
 		if (obj->getType() & Unit_Destory)
 		{
 			delete obj;
@@ -63,7 +59,7 @@ void UnitManager::update(float dt)
 	debugDraw();
 }
 
-Unit* UnitManager::getUnit(int id)
+CUnit* UnitManager::getUnit(int id)
 {
 	for (auto var : m_UnitList)
 	{
@@ -74,9 +70,9 @@ Unit* UnitManager::getUnit(int id)
 }
 
 
-vector<Unit*> UnitManager::findUnit(UnitType TypeFilter)
+vector<CUnit*> UnitManager::findUnit(UnitType TypeFilter)
 {
-	vector<Unit*> vec;
+	vector<CUnit*> vec;
 
 	for (auto obj : m_UnitList)
 	{
@@ -90,7 +86,7 @@ vector<Unit*> UnitManager::findUnit(UnitType TypeFilter)
 	return vec;
 }
 
-void UnitManager::addUnit(Unit* child)
+void UnitManager::addUnit(CUnit* child)
 {
 	CCASSERT(child != nullptr, "UnitManager::addUnit :child==null");
 	child->ID = next_UnitID++;
@@ -98,7 +94,7 @@ void UnitManager::addUnit(Unit* child)
 	m_UnitList.push_back(child);
 }
 
-void UnitManager::removeUnit(Unit* child)
+void UnitManager::removeUnit(CUnit* child)
 {
 	if (child != nullptr)
 	{
@@ -110,39 +106,39 @@ void UnitManager::removeUnit(Unit* child)
 
 void UnitManager::debugDraw()
 {
-	if (isDebug){
-		//string str = StringUtils::format("DebugData:\ntower count:%d\nmonster count:%d\nbullet count:%d\nchild count:%d\n\n", 
-		//towerList.size(), monsterList.size(), bulletList.size(), this->getChildrenCount());
-		DebugDraw* debugdraw = DebugDraw::getInstance();
+	//if (isDebug){
+	//	//string str = StringUtils::format("DebugData:\ntower count:%d\nmonster count:%d\nbullet count:%d\nchild count:%d\n\n", 
+	//	//towerList.size(), monsterList.size(), bulletList.size(), this->getChildrenCount());
+	//	DebugDraw* debugdraw = DebugDraw::getInstance();
 
-		string str = StringUtils::format("gameObj count = %d", m_UnitList.size());
-		debugdraw->getLabel()->setString(str);
+	//	string str = StringUtils::format("gameObj count = %d", m_UnitList.size());
+	//	debugdraw->getLabel()->setString(str);
 
-		DrawNode* debugDrawNode = debugdraw->getDrawNode();
+	//	DrawNode* debugDrawNode = debugdraw->getDrawNode();
 
-		debugDrawNode->clear();
-		for (auto var : m_UnitList){
-			var->drawMyOutLine(debugDrawNode);
-		}
+	//	debugDrawNode->clear();
+	//	for (auto var : m_UnitList){
+	//		var->drawMyOutLine(debugDrawNode);
+	//	}
 
-		auto MonsterPath = GameMap::getInstance()->MonsterPath;
-		int size = MonsterPath.size();
-		for (int i = 0; i < size; i++)
-		{
-			MapPath path = MonsterPath[i];
-			Vec2 last = path.getCurPos();
+	//	auto MonsterPath = GameMap::getInstance()->MonsterPath;
+	//	int size = MonsterPath.size();
+	//	for (int i = 0; i < size; i++)
+	//	{
+	//		MapPath path = MonsterPath[i];
+	//		Vec2 last = path.getCurPos();
 
-			for (int j = 1; j < path.getPosCount(); j++){
-				path.NextPos();
-				debugDrawNode->drawLine(last, path.getCurPos(), Color4F(1, 1, 1, 1));
-				last = path.getCurPos();
-			}
-			
-			if (MonsterPath[i].IsLoop())
-				debugDrawNode->drawLine(last, path.getPos(path.getLoopTo()), Color4F(1, 1, 1, 1));
-		}
+	//		for (int j = 1; j < path.getPosCount(); j++){
+	//			path.NextPos();
+	//			debugDrawNode->drawLine(last, path.getCurPos(), Color4F(1, 1, 1, 1));
+	//			last = path.getCurPos();
+	//		}
+	//		
+	//		if (MonsterPath[i].IsLoop())
+	//			debugDrawNode->drawLine(last, path.getPos(path.getLoopTo()), Color4F(1, 1, 1, 1));
+	//	}
 
-	}
+	//}
 }
 
 

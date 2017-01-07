@@ -1,7 +1,7 @@
 #include "CSkillAttactk.h"
-#include "EffectManager.h"
 #include "UnitManager.h"
-#include "Bullet.h"
+//#include "Bullet.h"
+using namespace cocosgalaxy;
 
 CSkillAttactk::CSkillAttactk()
 {
@@ -33,7 +33,7 @@ CSkill* CSkillAttactk::clone()
 
 void CSkillAttactk::update(float dt)
 {
-	Unit* m_parent = getParent();
+	CUnit* m_parent = getParent();
 	if (m_parent == nullptr )return;
 
 	m_weapon = getParent()->getWeapon();
@@ -116,7 +116,7 @@ bool CSkillAttactk::IsCanExecute()
 	if (targetCount <= 0)return false;
 
 	//至少有一个敌人在攻击范围内时，发动技能，并锁定目标
-	Unit* m_parent = getParent();
+	CUnit* m_parent = getParent();
 	auto vec = UnitManager::getInstance()->findUnit(m_weapon->Filter);
 	for (auto target : vec){
 		if ((target->getPos() - m_parent->getPos()).lengthSquared() < m_weapon->Range*m_weapon->Range)
@@ -132,9 +132,9 @@ bool CSkillAttactk::IsCanExecute()
 }
 
 
-void CSkillAttactk::onAttack(Unit* parent)
+void CSkillAttactk::onAttack(CUnit* parent)
 {
-	Unit* m_parent = getParent();
+	CUnit* m_parent = getParent();
 	int targetCount = m_weapon->TargetCount;
 	auto vec = UnitManager::getInstance()->findUnit(m_weapon->Filter);
 
@@ -155,9 +155,8 @@ void CSkillAttactk::onAttack(Unit* parent)
 			costPerAtk.payCost(parent);
 			missTaget = false;
 			m_parent->onAttack(target);
-			
-			Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
-			UnitManager::getInstance()->addUnit(bullet);
+			//Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
+			//UnitManager::getInstance()->addUnit(bullet);
 			targetCount--;
 		}
 	}
@@ -170,8 +169,8 @@ void CSkillAttactk::onAttack(Unit* parent)
 		{
 			costPerAtk.payCost(parent);
 			m_parent->onAttack(target);
-			Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
-			UnitManager::getInstance()->addUnit(bullet);
+			//Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
+			//UnitManager::getInstance()->addUnit(bullet);
 			missTaget = false;
 		}
 	}

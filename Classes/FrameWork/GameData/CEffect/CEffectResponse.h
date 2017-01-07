@@ -1,19 +1,21 @@
 #pragma once
 #include "CEffect.h"
 
-class CEffectResponse : public CEffect
+namespace cocosgalaxy
 {
-public:
-	CEffectResponse();
-	~CEffectResponse();
+	class CEffectResponse : public CEffect
+	{
+	public:
+		CEffectResponse();
+		~CEffectResponse();
 
-	virtual CEffect* clone()=0;
-	virtual void execute()=0;
-
-
-	float chance;	//发动几率
-private:
+		virtual CEffect* clone() = 0;
+		virtual void execute() = 0;
 
 
-};
+		float chance;	//发动几率
+	private:
 
+
+	};
+}

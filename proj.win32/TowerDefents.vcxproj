@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -71,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Card;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CPLayer;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\CModification;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Card;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -122,7 +122,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CPLayer;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Card;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -155,13 +155,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\FrameWork\DataStructure\Ability.cpp" />
-    <ClCompile Include="..\Classes\FrameWork\DataStructure\Modification.cpp" />
-    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\Actor.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\CActor.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Actor\ActorManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCost.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffect.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.cpp" />
@@ -170,17 +170,20 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectResponse.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectSet.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\EffectManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CGameData.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CModification\CModification.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CPlayer\CPLayer.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkill.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillAttactk.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffect.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffectInstant.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillGeneric.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.cpp" />
-    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\Unit.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\CUnit.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.cpp" />
-    <ClCompile Include="..\Classes\FrameWork\Helper\Helper.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\Helper\GalaxyHelper.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\AnimateManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\DebugDraw.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\ResourceLoader.cpp" />
@@ -192,12 +195,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GameMap.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\UnitLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\BattleScene.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Scene\PrepareScene.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\Bullet.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\Monster.cpp" />
@@ -207,14 +212,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\FrameWork\DataStructure\Ability.h" />
-    <ClInclude Include="..\Classes\FrameWork\DataStructure\Modification.h" />
-    <ClInclude Include="..\Classes\FrameWork\EnumConst.h" />
-    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\Actor.h" />
+    <ClInclude Include="..\Classes\FrameWork\GalaxyBase.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\CActor.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Actor\ActorManager.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffect.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.h" />
@@ -223,17 +228,20 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectResponse.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectSet.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\EffectManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CGameData.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CModification\CModification.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CPlayer\CPLayer.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkill.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillAttactk.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffect.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillEffectInstant.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillGeneric.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.h" />
-    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\Unit.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\CUnit.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitManager.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.h" />
-    <ClInclude Include="..\Classes\FrameWork\Helper\Helper.h" />
+    <ClInclude Include="..\Classes\FrameWork\Helper\GalaxyHelper.h" />
     <ClInclude Include="..\Classes\FrameWork\Manager\AnimateManager.h" />
     <ClInclude Include="..\Classes\FrameWork\Manager\DebugDraw.h" />
     <ClInclude Include="..\Classes\FrameWork\Manager\ResourceLoader.h" />
@@ -246,12 +254,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\UnitLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\BattleScene.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Scene\PrepareScene.h" />
     <ClInclude Include="..\Classes\TowerDefent\TowerDefentShare.h" />
     <ClInclude Include="..\Classes\TowerDefent\Unit\Bullet.h" />
     <ClInclude Include="..\Classes\TowerDefent\Unit\BulletFactory.h" />
@@ -260,6 +270,18 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
+      <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\cocos2d\cocos\editor-support\spine\proj.win32\libSpine.vcxproj">
+      <Project>{b7c2a162-dec9-4418-972e-240ab3cbfcae}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\cocos2d\external\Box2D\proj.win32\libbox2d.vcxproj">
+      <Project>{929480e7-23c0-4df6-8456-096d71547116}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
       <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

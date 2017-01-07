@@ -1,50 +1,54 @@
 #pragma once
-#include "stdfax.h"
-#include "Unit.h"
+#include "GalaxyBase.h"
+#include "CGameData.h"
+#include "CUnit.h"
 
-
-enum ECEffectState{ 
-	ECEffectState_Unused, 
-	ECEffectState_Effting, 
-	ECEffectState_Death 
-};
-
-class CEffect
+namespace cocosgalaxy
 {
-public:
 
-	/* ----属性---- */
+	enum ECEffectState{
+		ECEffectState_Unused,
+		ECEffectState_Effting,
+		ECEffectState_Death
+	};
 
-	string id;
-	float lifetime;
-	UnitType filter;
+	class CEffect :public CGameData
+	{
+	public:
 
-	/* ----方法---- */
+		/* ----属性---- */
 
-	CEffect();
-	~CEffect();
+		string id;
+		float lifetime;
+		UnitType filter;
 
-	virtual CEffect* clone()=0;
-	virtual void execute()=0;
-	
-	virtual bool Filtered(Unit* obj);	//Unit过滤，通过验证是返回true
+		/* ----方法---- */
 
-	void update(float dt);
-	
+		CEffect();
+		~CEffect();
 
-	virtual void setParent(int parentID);
-	virtual Unit* getParent();
+		virtual CEffect* clone() = 0;
+		virtual void execute() = 0;
 
-	virtual void setTarget(int targetID);
-	virtual Unit* getTarget();
-	
-	void setState(ECEffectState state);
-	ECEffectState getState();
-	bool isDeath();
-protected:
-	ECEffectState m_state;
-	int m_parentID;
-	int m_targetID;
+		virtual bool Filtered(CUnit* obj);	//CUnit过滤，通过验证是返回true
 
-};
+		void update(float dt);
 
+
+		virtual void setParent(int parentID);
+		virtual CUnit* getParent();
+
+		virtual void setTarget(int targetID);
+		virtual CUnit* getTarget();
+
+		void setState(ECEffectState state);
+		ECEffectState getState();
+		bool isDeath();
+	protected:
+		ECEffectState m_state;
+		int m_parentID;
+		int m_targetID;
+
+	};
+
+}

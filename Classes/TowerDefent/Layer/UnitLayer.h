@@ -1,7 +1,7 @@
 #pragma once
 #include "stdfax.h"
 #include "GameMap.h"
-#include "Unit.h"
+#include "CUnit.h"
 
 
 class UnitLayer : public Layer

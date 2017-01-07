@@ -1,24 +1,25 @@
 #pragma once
-#include "Ability.h"
 #include "CCost.h"
-class Unit;
-
-class CCostUnit : public CCost
+#include "Ability.h"
+namespace cocosgalaxy
 {
-public:
-	CCostUnit();
-	~CCostUnit();
+	class CCostUnit : public CCost
+	{
+	public:
+		CCostUnit();
+		~CCostUnit();
 
-	virtual bool isCanPay(Unit* parent);
-	virtual void payCost(Unit* parent);
+		virtual bool isCanPay(CGameData* gamedata);
+		virtual void payCost(CGameData* gamedata);
 
-	Ability<float> HP;
-	Ability<float> MP;
-	Ability<float> AP;
-	Ability<float> Speed;
+		Ability<float> HP;
+		Ability<float> MP;
+		Ability<float> AP;
+		Ability<float> Speed;
 
 
 
-//private:
-};
+		//private:
+	};
 
+}

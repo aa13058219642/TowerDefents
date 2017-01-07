@@ -1,4 +1,5 @@
 #include "CBeahaviorBuff.h"
+using namespace cocosgalaxy;
 
 CBeahaviorBuff::CBeahaviorBuff()
 {
@@ -48,7 +49,7 @@ void CBeahaviorBuff::update(float dt)
 }
 
 
-void CBeahaviorBuff::Install(Unit* parent)
+void CBeahaviorBuff::Install(CUnit* parent)
 {
 	m_parent = parent;
 
@@ -59,7 +60,7 @@ void CBeahaviorBuff::Install(Unit* parent)
 	m_state = EBehaviorState::EBehaviorState_Using;
 }
 
-void CBeahaviorBuff::Uninstall(Unit* parent)
+void CBeahaviorBuff::Uninstall(CUnit* parent)
 {
 	m_parent = parent;
 	for (auto& var : m_modList)

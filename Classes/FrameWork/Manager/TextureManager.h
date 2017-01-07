@@ -1,24 +1,25 @@
 #pragma once
-#include "stdfax.h"
-#include "EnumConst.h"
+#include "GalaxyBase.h"
 #include "ResourceLoader.h"
 
-class TextureManager :public ResourceLoader
+namespace cocosgalaxy
 {
-public:
-	//单例模式
-	static TextureManager* getInstance();
+	class TextureManager :public ResourceLoader
+	{
+	public:
+		//单例模式
+		static TextureManager* getInstance();
 
-	virtual void LoadResource();
-	virtual void LoadResource(const vector<Name>& resNameList);
-	virtual void FreeAllResource();
-	virtual void FreeResource(const vector<Name>& resName);
+		virtual void LoadResource();
+		virtual void LoadResource(const vector<Name>& resNameList);
+		virtual void FreeAllResource();
+		virtual void FreeResource(const vector<Name>& resName);
 
-private:
-	TextureManager();
-	static TextureManager* p_myinstance;
+	private:
+		TextureManager();
+		static TextureManager* p_myinstance;
 
-};
-
+	};
+}
 
 

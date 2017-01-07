@@ -1,19 +1,22 @@
 #pragma once
 #include "CSkillEffect.h"
 
-class CSkillEffectInstant : public CSkillEffect
+namespace cocosgalaxy
 {
-public:
-	/*冷却时间*/
-	float ColdDown;
-	/*冷却时间剩余*/
-	float ColdDowning;
+	class CSkillEffectInstant : public CSkillEffect
+	{
+	public:
+		/*冷却时间*/
+		float ColdDown;
+		/*冷却时间剩余*/
+		float ColdDowning;
 
-	CSkillEffectInstant();
-	~CSkillEffectInstant();
+		CSkillEffectInstant();
+		~CSkillEffectInstant();
 
-	virtual CSkill* clone();
+		virtual CSkill* clone();
 
 
-};
+	};
+}
 

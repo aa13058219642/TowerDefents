@@ -1,5 +1,5 @@
 #include "CSkillGeneric.h"
-#include "UnitManager.h"
+using namespace cocosgalaxy;
 
 CSkillGeneric::CSkillGeneric()
 {

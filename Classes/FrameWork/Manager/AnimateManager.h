@@ -1,29 +1,30 @@
 #pragma once
-#include "stdfax.h"
+#include "GalaxyBase.h"
 #include "ResourceLoader.h"
 
-struct AnimateData;
-
-class AnimateManager : public ResourceLoader
+namespace cocosgalaxy
 {
-public:
-	//单例模式
-	static AnimateManager* getInstance();
-	~AnimateManager();
+	struct AnimateData;
 
-	virtual void LoadResource();
-	virtual void LoadResource(const vector<Name>& resNameList);
-	virtual void FreeAllResource();
-	virtual void FreeResource(const vector<Name>& resName);
+	class AnimateManager : public ResourceLoader
+	{
+	public:
+		//单例模式
+		static AnimateManager* getInstance();
+		~AnimateManager();
 
-	void playAnimate(const Name& animateName, Sprite* sprite, float playtime = 0, CallFunc* callFunc = nullptr);
+		virtual void LoadResource();
+		virtual void LoadResource(const vector<Name>& resNameList);
+		virtual void FreeAllResource();
+		virtual void FreeResource(const vector<Name>& resName);
 
+		void playAnimate(const Name& animateName, Sprite* sprite, float playtime = 0, CallFunc* callFunc = nullptr);
 
-private:
-	AnimateManager();
-	static AnimateManager* p_myinstance;
-	std::map<Name, AnimateData> animateData;
+	private:
+		AnimateManager();
+		static AnimateManager* p_myinstance;
+		std::map<Name, AnimateData> animateData;
 
-	Animation* createAnimation(const Name& animateName);
-};
-
+		Animation* createAnimation(const Name& animateName);
+	};
+}

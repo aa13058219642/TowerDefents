@@ -1,18 +1,28 @@
 #pragma once
 
-#include "cocos2d.h"
-#include "ui\CocosGUI.h"
-#include "editor-support\cocostudio\CCSGUIReader.h"
+//
+#include "Ability.h"
+#include "CModification.h"
+#include "GalaxyBase.h"
+#include "ResourceLoader.h"
+#include "DebugDraw.h"
 
+#include "CGameData.h"
+#include "CWeapon.h"
+#include "CUnit.h"
+#include "CBehavior.h"
+#include "CSkill.h"
+#include "CEffect.h"
+#include "CCost.h"
+#include "CPLayer.h"
 
-USING_NS_CC;
-//using namespace cocos2d::ui;
-//using namespace cocostudio;
-using std::string;
-using std::vector;
-using std::map;
-using std::list;
-typedef string Name;
+#include "TextureManager.h"
+#include "AnimateManager.h"
+#include "ActorManager.h"
+#include "BehaviorManager.h"
+#include "EffectManager.h"
+#include "SkillManager.h"
+#include "WeaponManager.h"
+#include "UnitManager.h"
 
-
-
+using namespace cocosgalaxy;

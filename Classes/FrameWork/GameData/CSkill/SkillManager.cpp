@@ -1,7 +1,8 @@
 #include "SkillManager.h"
-
 #include "CSkillEffectInstant.h"
 #include "CSkillAttactk.h"
+
+using namespace cocosgalaxy;
 
 SkillManager* SkillManager::p_myinstance = NULL;
 
@@ -71,7 +72,7 @@ void SkillManager::FreeResource(const vector<Name>& resName)
 	}
 }
 
-CSkill* SkillManager::createCSkill(string key, Unit* parent)
+CSkill* SkillManager::createCSkill(string key, CUnit* parent)
 {
 	if (findSkill(key)){
 		CSkill* skill = m_skilllist[key]->clone();

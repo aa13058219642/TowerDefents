@@ -1,31 +1,31 @@
 #pragma once
-#include "stdfax.h"
-#include "ResourceLoader.h"
 #include "CBehavior.h"
+#include "ResourceLoader.h"
 
-
-class BehaviorManager :public ResourceLoader
+namespace cocosgalaxy
 {
-public:
-	//单例模式
-	static BehaviorManager* getInstance();
-	~BehaviorManager();
+	class BehaviorManager :public ResourceLoader
+	{
+	public:
+		//单例模式
+		static BehaviorManager* getInstance();
+		~BehaviorManager();
 
-	virtual void LoadResource();
-	virtual void LoadResource(const vector<Name>& resNameList);
-	virtual void FreeAllResource();
-	virtual void FreeResource(const vector<Name>& resName);
+		virtual void LoadResource();
+		virtual void LoadResource(const vector<Name>& resNameList);
+		virtual void FreeAllResource();
+		virtual void FreeResource(const vector<Name>& resName);
 
-	CBehavior* createBehavior(string key, int parentID = -1, int targetID = -1);
-private:
-	BehaviorManager();
-	static BehaviorManager* p_myinstance;
+		CBehavior* createBehavior(string key, int parentID = -1, int targetID = -1);
+	private:
+		BehaviorManager();
+		static BehaviorManager* p_myinstance;
 
-	map<Name, CBehavior*> m_behaviorList;
-
-
-	CBehavior* loadBeahaviorBuff(JsonNode jNode);
-};
+		map<Name, CBehavior*> m_behaviorList;
 
 
+		CBehavior* loadBeahaviorBuff(JsonNode jNode);
+	};
+
+}
 

@@ -1,25 +1,28 @@
 #pragma once
 #include "CEffect.h"
 
-class CEffectSet : public CEffect
+namespace cocosgalaxy
 {
-public:
-	CEffectSet();
-	~CEffectSet();
+	class CEffectSet : public CEffect
+	{
+	public:
+		CEffectSet();
+		~CEffectSet();
 
-	//virtual void Install();
-	//virtual void Uninstall();
-	//void updateLifeTime(float dt);
-	virtual CEffect* clone();
-	virtual void execute();
+		//virtual void Install();
+		//virtual void Uninstall();
+		//void updateLifeTime(float dt);
+		virtual CEffect* clone();
+		virtual void execute();
 
-	virtual void setParent(int parentID);
-	virtual void setTarget(int targetID);
+		virtual void setParent(int parentID);
+		virtual void setTarget(int targetID);
 
-	std::list<CEffect*> getEffects();
-	void addEffect(CEffect* effect);
-private:
-	std::list<CEffect*> effects;
+		std::list<CEffect*> getEffects();
+		void addEffect(CEffect* effect);
+	private:
+		std::list<CEffect*> effects;
 
-};
+	};
 
+}

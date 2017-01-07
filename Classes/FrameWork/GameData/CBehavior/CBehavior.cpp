@@ -1,4 +1,5 @@
 #include "CBehavior.h"
+using namespace cocosgalaxy;
 
 CBehavior::CBehavior()
 {
@@ -13,7 +14,7 @@ CBehavior::~CBehavior()
 
 }
 
-//void CBehavior::setParent(Unit* parent)
+//void CBehavior::setParent(CUnit* parent)
 //{
 //	this->m_patert = parent;
 //}

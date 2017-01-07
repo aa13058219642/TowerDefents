@@ -1,5 +1,5 @@
 #include "TextureManager.h"
-
+using namespace cocosgalaxy;
 
 TextureManager* TextureManager::p_myinstance = nullptr;
 

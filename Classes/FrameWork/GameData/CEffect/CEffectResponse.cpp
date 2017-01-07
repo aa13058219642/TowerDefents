@@ -1,4 +1,5 @@
 #include "CEffectResponse.h"
+using namespace cocosgalaxy;
 
 CEffectResponse::CEffectResponse()
 {

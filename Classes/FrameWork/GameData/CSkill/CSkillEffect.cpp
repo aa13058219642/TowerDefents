@@ -1,7 +1,7 @@
 #include "CSkillEffect.h"
 #include "EffectManager.h"
-#include "AnimateManager.h"
 #include "UnitManager.h"
+using namespace cocosgalaxy;
 
 CSkillEffect::CSkillEffect()
 {
@@ -17,7 +17,7 @@ CSkillEffect::~CSkillEffect()
 
 void CSkillEffect::update(float dt)
 {
-	Unit* m_parent = getParent();
+	CUnit* m_parent = getParent();
 	if (m_parent == nullptr)return;
 
 	if (ColdDowning > dt)
@@ -95,7 +95,7 @@ void CSkillEffect::update(float dt)
 bool CSkillEffect::IsCanExecute()
 {
 	//至少有一个目标在攻击范围内时，发动技能
-	Unit* m_parent = getParent();
+	CUnit* m_parent = getParent();
 	auto vec = UnitManager::getInstance()->findUnit(Fliter);
 	for (auto target : vec)
 		if ((target->getPos() - m_parent->getPos()).lengthSquared() < Range*Range)

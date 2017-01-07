@@ -1,19 +1,23 @@
 #pragma once
-#include "stdfax.h"
+#include "GalaxyBase.h"
+#include "CGameData.h"
 
-typedef int CostRes_1;
-typedef int CostRes_2;
-typedef int CostRes_3;
-typedef int CostRes_Gold;
-
-
-class CCost
+namespace cocosgalaxy
 {
-public:
-	//virtual bool isCanPay() = 0;
-	//virtual void payCost() = 0;
+	typedef int CostRes_1;
+	typedef int CostRes_2;
+	typedef int CostRes_3;
+	typedef int CostRes_Gold;
 
-	CCost();
-	~CCost();
-};
 
+	class CCost :public CGameData
+	{
+	public:
+		virtual bool isCanPay(CGameData* gamedata);
+		virtual void payCost(CGameData* gamedata);
+
+		CCost();
+		~CCost();
+	};
+
+}

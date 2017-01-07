@@ -3,9 +3,9 @@
 #include "json/rapidjson.h"
 #include "json/document.h"
 
-//#include "EffectManager.h"
+using namespace cocosgalaxy;
 
-struct AnimateData {
+struct cocosgalaxy::AnimateData {
 	//string name;
 	double delay;
 	int framecount;
@@ -173,7 +173,7 @@ void AnimateManager::playAnimate(const Name& animateName, Sprite* sprite, float 
 	{
 		//µ¥Ö¡¶¯»­
 		auto& data = animateData[animateName];
-		auto s = SpriteFrameCache::getInstance()->getSpriteFrameByName(data.framedata[0].name)->clone();
+		SpriteFrame* s = SpriteFrameCache::getInstance()->getSpriteFrameByName(data.framedata[0].name)->clone();
 		s->setOffset(data.framedata[0].offset / Director::getInstance()->getContentScaleFactor());
 		sprite->setSpriteFrame(s);
 		if (playtime > 0 && callFunc != nullptr)

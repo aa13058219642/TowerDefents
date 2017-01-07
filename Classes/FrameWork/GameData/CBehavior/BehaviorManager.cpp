@@ -1,7 +1,7 @@
 #include "BehaviorManager.h"
-
 #include "CBeahaviorBuff.h"
 
+using namespace cocosgalaxy;
 
 BehaviorManager* BehaviorManager::p_myinstance = nullptr;
 
@@ -114,7 +114,7 @@ CBehavior* BehaviorManager::loadBeahaviorBuff(JsonNode jNode)
 
 		int Size = modNode.Size();
 		for (int i = 0; i < Size; i++) {
-			Modification mod;
+			CModification mod;
 			if (modNode[i].HasMember("modMainType"))	mod.mainType = (EModificationMainType)modNode[i]["modMainType"].GetInt();
 			if (modNode[i].HasMember("modValueType"))	mod.modType = (EModificationType)modNode[i]["modValueType"].GetInt();
 			if (modNode[i].HasMember("priority"))		mod.priority = modNode[i]["priority"].GetInt();

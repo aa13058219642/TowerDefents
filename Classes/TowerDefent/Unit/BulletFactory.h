@@ -10,7 +10,7 @@ public:
 	//µ¥ÀýÄ£Ê½
 	static BulletFactory* getInstance();
 
-	Bullet* CreateBullet(int BulletID, Point pos, Unit* target);
+	Bullet* CreateBullet(int BulletID, Point pos, CUnit* target);
 
 private:
 	BulletFactory();

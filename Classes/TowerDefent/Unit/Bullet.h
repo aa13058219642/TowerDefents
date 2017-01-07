@@ -1,8 +1,8 @@
 #pragma once
 #include "stdfax.h"
-#include "Unit.h"
+#include "CUnit.h"
 
-class Bullet : public Unit
+class Bullet : public CUnit
 {
 public:
 	Bullet();
@@ -16,14 +16,14 @@ public:
 	virtual void update(float dt);
 
 	void setParent(int patentID);
-	Unit* getParent();
+	CUnit* getParent();
 
 	void setTarget(int targetID);
-	Unit* getTarget();
+	CUnit* getTarget();
 
 
 
-	virtual void onMissTarget(Unit* target);
+	virtual void onMissTarget(CUnit* target);
 
 	virtual void setIsTrackTarget(bool IsTrackTarget);			//是否跟踪目标
 	virtual void setIsFaceToTargetPos(bool IsFaceToTargetPos);	//方向是否指向目标
@@ -32,9 +32,7 @@ public:
 	virtual Bullet* clone();//浅拷贝
 
 protected:
-	Point m_targetPos;
-	int m_parentID;
-	int m_targetID;
+
 	CEffect* m_hitEffect;
 
 

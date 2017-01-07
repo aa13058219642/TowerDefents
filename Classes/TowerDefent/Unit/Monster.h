@@ -1,8 +1,8 @@
 #pragma once
 #include "stdfax.h"
-#include "Unit.h"
+#include "CUnit.h"
 #include "GameMap.h"
-class Monster : public Unit
+class Monster : public CUnit
 {
 public:
 	//Monster();

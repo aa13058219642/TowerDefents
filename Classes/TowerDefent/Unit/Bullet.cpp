@@ -1,6 +1,6 @@
 #include "CEffect.h"
 #include "Bullet.h"
-#include "Actor.h"
+#include "CActor.h"
 //#include "ActorManager.h"
 #include "UnitManager.h"
 #include "EffectManager.h"
@@ -53,7 +53,7 @@ Bullet* Bullet::clone()
 
 void Bullet::update(float dt)
 {
-	Unit::update(dt);
+	CUnit::update(dt);
 
 	onMove(dt);
 }
@@ -87,7 +87,7 @@ void Bullet::setTarget(int targetID)
 
 }
 
-Unit* Bullet::getTarget()
+CUnit* Bullet::getTarget()
 {
 	return UnitManager::getInstance()->getUnit(m_targetID);
 }
@@ -97,7 +97,7 @@ void Bullet::setParent(int patentID)
 	m_parentID = patentID;
 }
 
-Unit* Bullet::getParent()
+CUnit* Bullet::getParent()
 {
 	return UnitManager::getInstance()->getUnit(m_parentID);
 }
@@ -122,7 +122,7 @@ void Bullet::setOnHitEffect(CEffect* effect)
 
 void Bullet::onMove(float dt)
 {
-	Unit* target = getTarget();
+	CUnit* target = getTarget();
 
 	if (isTrackTarget == true && target != nullptr)//×·×ÙÄ¿±ê
 		m_targetPos = target->getPos();
@@ -149,7 +149,7 @@ void Bullet::onMove(float dt)
 
 void Bullet::onHitTarget()
 {
-	Unit* target = getTarget();
+	CUnit* target = getTarget();
 
 	if (target != nullptr){
 		target->addEffect(EffectManager::getInstance()->createHitEffect(m_weapon,ID, m_targetID));
@@ -166,12 +166,12 @@ void Bullet::onDead()
 {
 	m_actor->setRotation(0);
 	//m_sprite->setSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("blank.png"));
-	Unit::onDead();
+	CUnit::onDead();
 }
 
 
 
-void Bullet::onMissTarget(Unit* target)
+void Bullet::onMissTarget(CUnit* target)
 {
 	//if (this->target==target){
 	//	this->target = nullptr;

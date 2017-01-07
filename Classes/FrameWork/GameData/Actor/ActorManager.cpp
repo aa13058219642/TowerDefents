@@ -1,4 +1,5 @@
 #include "ActorManager.h"
+using namespace cocosgalaxy;
 
 ActorManager* ActorManager::p_myinstance = nullptr;
 
@@ -85,7 +86,7 @@ void ActorManager::FreeResource(const vector<Name>& resName)
 	}
 }
 
-Actor* ActorManager::createActor(int id, Name name)
+CActor* ActorManager::createActor(int id, Name name)
 {
 	if (m_actordata.find(name) != m_actordata.end())
 	{
@@ -93,7 +94,7 @@ Actor* ActorManager::createActor(int id, Name name)
 		{
 			destoryActor(id);
 		}
-		Actor* actor = new Actor(id, m_actordata[name], m_layer);
+		CActor* actor = new CActor(id, m_actordata[name], m_layer);
 		m_actorlist[id] = actor;
 		return actor;
 	}

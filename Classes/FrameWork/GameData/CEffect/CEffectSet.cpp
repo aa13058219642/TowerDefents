@@ -1,4 +1,5 @@
 #include "CEffectSet.h"
+using namespace cocosgalaxy;
 
 CEffectSet::CEffectSet()
 {

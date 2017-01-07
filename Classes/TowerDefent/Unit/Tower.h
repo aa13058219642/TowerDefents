@@ -1,11 +1,11 @@
 #pragma once
 #include "stdfax.h"
-#include "Unit.h"
+#include "CUnit.h"
 #include "GridPos.h" 
 #include "SpellCard.h"
 #include "TowerCard.h"
 
-class Tower : public Unit
+class Tower : public CUnit
 {
 public:
 	//Tower();
@@ -33,7 +33,7 @@ private:
 	SpellCard* m_SpellTower[8];
 	const TowerCard* m_TowerCard;
 
-	virtual void onAttack(Unit* target);
+	virtual void onAttack(CUnit* target);
 	virtual void onBindSprite();
 
 };

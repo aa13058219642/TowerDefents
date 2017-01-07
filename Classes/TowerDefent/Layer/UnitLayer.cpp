@@ -21,8 +21,12 @@ UnitLayer* UnitLayer::create()
 
 bool UnitLayer::init()
 {
-	bool flag = false;
+	if (!Layer::init())
+	{
+		return false;
+	}
 
+	bool flag = false;
 	do{
 		this->setAnchorPoint(Point::ZERO);
 		//加载UI
@@ -33,7 +37,7 @@ bool UnitLayer::init()
 		//UI->setTouchEnabled(false);
 
 		//获取UI中的控件
-		//auto bt_output = (Button*)Helper::seekWidgetByName(UI, "btn_output");
+		//auto bt_output = (Button*)GalaxyHelper::seekWidgetByName(UI, "btn_output");
 
 		//添加监听
 		//Button* bt_output = new Button();
@@ -72,7 +76,7 @@ void UnitLayer::update(float dt){
 bool UnitLayer::onClick(Point pos)
 {
 
-	vector<Unit*> vec = UnitManager::getInstance()->findUnit(EUnitType::Unit_Unit);
+	vector<CUnit*> vec = UnitManager::getInstance()->findUnit(EUnitType::Unit_Unit);
 	for (auto obj : vec)
 	{
 		if (obj->isClickMe(pos))

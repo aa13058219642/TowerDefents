@@ -258,8 +258,9 @@ bool GameMap::initMap(int level)
 		//TextureManager::getInstance()->LoadResource();
 		vector<string> textureList;
 		textureList.push_back("texture/scene_battle_000.plist");
-		textureList.push_back("texture/TowerSelectLayer.plist");
-		textureList.push_back("texture/TowerInfoLayer.plist");
+		textureList.push_back("texture/UI/TowerSelectLayer.plist");
+		textureList.push_back("texture/UI/TowerInfoLayer.plist");
+		textureList.push_back("texture/UI/GameMapInfoLayer.plist");
 		textureList.push_back("texture/effect/effect_000.plist");
 		textureList.push_back("texture/Tower/Tower_000.plist");
 		textureList.push_back("texture/Tower/Tower_001.plist");

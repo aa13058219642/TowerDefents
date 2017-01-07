@@ -69,11 +69,16 @@ bool BattleScene::init(int level)
 	towerInfoLayer = TowerInfoLayer::create();
 	this->addChild(towerInfoLayer, 6000);
 
+	gameMapInfoLayer = GameMapInfoLayer::create();
+	this->addChild(gameMapInfoLayer, 5999);
+
+
+
 	if (DebugDraw::isDebug)
 	{
 		Node* layer;
 		layer = DebugDraw::getInstance();
-		this->addChild(layer, 9999);
+		this->addChild(layer, 999999);
 	}
 
 	this->scheduleUpdate();

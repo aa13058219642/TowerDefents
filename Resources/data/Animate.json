@@ -25,6 +25,30 @@
             ]
         },
         {
+            "name": "waveIcon",
+            "delay": 0.05,
+            "repeat": -1,
+            "framedata": [
+                { "name": "WaveIcon_000.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_001.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_002.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_003.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_004.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_005.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_006.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_007.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_008.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_009.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_010.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_011.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_012.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_013.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_014.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_015.png", "x": -32, "y": -32},
+                { "name": "WaveIcon_016.png", "x": -32, "y": -32}
+            ]
+        },
+        {
             "name": "t001_stand",
             "delay": 0.1,
             "repeat": -1,

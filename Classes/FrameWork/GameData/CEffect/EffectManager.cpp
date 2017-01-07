@@ -1,11 +1,11 @@
 #include "EffectManager.h"
-
 #include "CEffectSet.h"
 #include "CEffectResponse.h"
 
 #include "CEffectDamage.h"
 #include "CEffectLaunchMissile.h"
 #include "CEffectEnumArea.h"
+using namespace cocosgalaxy;
 
 EffectManager* EffectManager::p_myinstance = nullptr;
 

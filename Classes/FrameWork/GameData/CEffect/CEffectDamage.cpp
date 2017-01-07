@@ -1,5 +1,7 @@
 #include "CEffectDamage.h"
-#include "Helper.h"
+#include "GalaxyHelper.h"
+using namespace cocosgalaxy;
+
 CEffectDamage::CEffectDamage(float minDamage, float maxDamage, EDamageType damageType, Name effectAnimate, int parentID, int targetID)
 {
 	this->m_MinDamage = minDamage;
@@ -18,10 +20,10 @@ CEffectDamage::~CEffectDamage()
 
 void CEffectDamage::execute()
 {
-	Unit* target = getTarget();
+	CUnit* target = getTarget();
 	if (target != nullptr)
 	{
-		target->onBeAttack(Helper::rand(m_MinDamage, m_MaxDamage), m_damageType);
+		target->onBeAttack(GalaxyHelper::rand(m_MinDamage, m_MaxDamage), m_damageType);
 		target->applyAEffect(m_effectAnimate);
 	}
 

@@ -1,6 +1,7 @@
 #include "CEffectEnumArea.h"
-#include "EffectManager.h"
 #include "UnitManager.h"
+#include "EffectManager.h"
+using namespace cocosgalaxy;
 
 CEffectEnumArea::CEffectEnumArea(unsigned int filter, int areaRadius, string applyEffect, CEffect* effect, int parentID)
 {
@@ -22,7 +23,7 @@ CEffectEnumArea::~CEffectEnumArea()
 
 void CEffectEnumArea::execute()
 {
-	Unit* m_parent = getParent();
+	CUnit* m_parent = getParent();
 	if (m_parent != nullptr)m_pos = getParent()->getPos();
 
 	if (effect != nullptr)

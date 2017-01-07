@@ -1,4 +1,4 @@
-##v0.000
+﻿##v0.000
 - 建立源代码管理，把项目加入SVN管理
 
 ##v0.006
@@ -135,4 +135,7 @@
 - 2.新建 TowerCard 类，建塔数据由 Card 决定
 - 3.采用冒险岛纸娃娃作为图片素材
 
-
+#v0.037
+- 1.框架正式命名为CocosGalaxy
+- 2.新建CCostUnit等类，Actor、Unit改名CActor、CUnit
+- 3.设立命名空间cocosgalaxy

@@ -1,13 +1,5 @@
 #include "WeaponManager.h"
 
-#ifdef _DEBUG
-typedef string Name;
-#else
-typedef int Name;
-#endif
-
-
-
 WeaponManager* WeaponManager::p_myinstance = nullptr;
 
 WeaponManager::WeaponManager(){}

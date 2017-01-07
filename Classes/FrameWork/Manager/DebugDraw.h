@@ -1,25 +1,27 @@
 #pragma once
-#include "stdfax.h"
+#include "GalaxyBase.h"
 
-class DebugDraw :public Layer
+namespace cocosgalaxy
 {
-public:
-	//单例模式
-	static DebugDraw* getInstance();
-	static bool isDebug;
-	bool Draw();
+	class DebugDraw :public Layer
+	{
+	public:
+		//单例模式
+		static DebugDraw* getInstance();
+		static bool isDebug;
+		bool Draw();
 
-	DrawNode* getDrawNode();
-	Label* getLabel();
-private:
-	DebugDraw();
-	static DebugDraw* p_myinstance;
+		DrawNode* getDrawNode();
+		Label* getLabel();
+	private:
+		DebugDraw();
+		static DebugDraw* p_myinstance;
 
-	bool init();
+		bool init();
 
-	DrawNode* debugDrawNode;
-	Label* debugLabel;
-};
-
+		DrawNode* debugDrawNode;
+		Label* debugLabel;
+	};
+}
 
 

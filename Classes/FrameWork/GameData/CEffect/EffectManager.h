@@ -1,31 +1,32 @@
 #pragma once
 #include "CEffect.h"
-#include "CWeapon.h"
 #include "ResourceLoader.h"
+#include "CWeapon.h"
 
-
-class EffectManager :public ResourceLoader
+namespace cocosgalaxy
 {
-public:
-	//单例模式
-	static EffectManager* getInstance();
-	~EffectManager();
+	class EffectManager :public ResourceLoader
+	{
+	public:
+		//单例模式
+		static EffectManager* getInstance();
+		~EffectManager();
 
-	virtual void LoadResource();
-	virtual void LoadResource(const vector<Name>& resNameList);
-	virtual void FreeAllResource();
-	virtual void FreeResource(const vector<Name>& resName);
+		virtual void LoadResource();
+		virtual void LoadResource(const vector<Name>& resNameList);
+		virtual void FreeAllResource();
+		virtual void FreeResource(const vector<Name>& resName);
 
-	CEffect* createCEffect(string key, int parentID = -1, int targetID = -1);
-	CEffect* createHitEffect(CWeapon* weapon, int parentID, int targetID);
+		CEffect* createCEffect(string key, int parentID = -1, int targetID = -1);
+		CEffect* createHitEffect(CWeapon* weapon, int parentID, int targetID);
 
-	bool findEffect(const string& key);
-private:
-	static EffectManager* p_myinstance;
-	std::map<string, CEffect*> m_effectlist;
+		bool findEffect(const string& key);
+	private:
+		static EffectManager* p_myinstance;
+		std::map<string, CEffect*> m_effectlist;
 
-	EffectManager();
-};
-
+		EffectManager();
+	};
+}
 
 

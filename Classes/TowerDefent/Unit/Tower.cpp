@@ -1,11 +1,12 @@
 #include "TowerDefentShare.h"
 #include "Tower.h"
-#include "Actor.h"
+#include "CActor.h"
 #include "ActorManager.h"
 #include "SkillManager.h"
 #include "WeaponManager.h"
 #include "BehaviorManager.h"
 #include "GameMap.h"
+#include "Bullet.h"
 
 Tower::~Tower()
 {
@@ -98,7 +99,7 @@ void Tower::sellTower()
 
 void Tower::update(float dt)
 {
-	Unit::update(dt);
+	CUnit::update(dt);
 
 	//update Ability
 	if (m_actorName != "blank")
@@ -120,9 +121,10 @@ void Tower::onClick()
 
 
 
-void Tower::onAttack(Unit* target)
+void Tower::onAttack(CUnit* target)
 {
-
+	Bullet* bullet = new Bullet(m_weapon, this->ID, target->ID, this->getPos());
+	UnitManager::getInstance()->addUnit(bullet);
 }
 
 void Tower::onBindSprite()
