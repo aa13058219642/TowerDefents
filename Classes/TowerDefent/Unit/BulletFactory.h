@@ -11,6 +11,7 @@ public:
 	static BulletFactory* getInstance();
 
 	Bullet* CreateBullet(int BulletID, Point pos, CUnit* target);
+	Bullet* CreateBullet(int BulletID);
 
 private:
 	BulletFactory();

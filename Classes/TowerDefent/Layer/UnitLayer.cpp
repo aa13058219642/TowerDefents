@@ -76,7 +76,7 @@ void UnitLayer::update(float dt){
 bool UnitLayer::onClick(Point pos)
 {
 
-	vector<CUnit*> vec = UnitManager::getInstance()->findUnit(EUnitType::Unit_Unit);
+	vector<CUnit*> vec = UnitManager::getInstance()->findUnit(EUnitType::Unit);
 	for (auto obj : vec)
 	{
 		if (obj->isClickMe(pos))

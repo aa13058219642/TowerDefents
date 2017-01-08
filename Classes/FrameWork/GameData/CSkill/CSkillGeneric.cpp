@@ -4,7 +4,7 @@ using namespace cocosgalaxy;
 CSkillGeneric::CSkillGeneric()
 {
 	m_type = ESkillType::ECSkillEffect;
-	Fliter = EUnitType::Unit_Unit;
+	Fliter = EUnitType::Unit;
 	m_state = ESkillEffectState::SkillEffectState_ColdDowning;
 	Range = AutoUseRange = 0;
 	chance = 1;

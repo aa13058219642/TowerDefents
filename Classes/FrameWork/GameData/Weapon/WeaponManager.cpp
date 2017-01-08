@@ -76,7 +76,7 @@ void WeaponManager::LoadResource(const vector<Name> & resNameList)
 			if (jNode.HasMember("beforing_Animate"))	weapon->beforing_Animate	= jNode["beforing_Animate"].GetString();
 			if (jNode.HasMember("using_Animate"))		weapon->using_Animate		= jNode["using_Animate"].GetString();
 			if (jNode.HasMember("aftering_Animate"))	weapon->aftering_Animate	= jNode["aftering_Animate"].GetString();
-			if (jNode.HasMember("bulletType"))			weapon->bulletType			= (BulletType)jNode["bulletType"].GetInt();
+			//if (jNode.HasMember("bulletType"))			weapon->bulletType			= (BulletType)jNode["bulletType"].GetInt();
 			if (jNode.HasMember("IsTrackTarget"))		weapon->IsTrackTarget		= jNode["IsTrackTarget"].GetBool();
 			if (jNode.HasMember("IsFaceToTarget"))		weapon->IsFaceToTarget		= jNode["IsFaceToTarget"].GetBool();
 			if (jNode.HasMember("BulletSpeed"))			weapon->BulletSpeed			= jNode["BulletSpeed"].GetDouble();

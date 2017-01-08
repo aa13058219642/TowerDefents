@@ -4,11 +4,11 @@
 //#include "ActorManager.h"
 #include "UnitManager.h"
 #include "EffectManager.h"
-
+#include "TDUnitCreator.h"
 Bullet::Bullet()
 {
 	m_targetID = -1;
-	m_type = EUnitType::Unit_Bullet;
+	m_type = EUnitType::Bullet;
 	m_targetPos = Point::ZERO;
 	m_hitEffect = nullptr;
 	isTrackTarget = true;
@@ -19,7 +19,7 @@ Bullet::Bullet()
 Bullet::Bullet(CWeapon* weapon, int parentID, int targetID, Point pos)
 {
 	//m_type = weapon->BulletType;
-	m_type = EUnitType::Unit_Bullet;
+	m_type = EUnitType::Bullet;
 	isFaceToTargetPos = weapon->IsFaceToTarget;
 	isTrackTarget = weapon->IsTrackTarget;
 	Speed = weapon->BulletSpeed;
@@ -42,7 +42,7 @@ Bullet* Bullet::clone()
 {
 
 	Bullet* bullet = new Bullet();
-	bullet->setType(EUnitType::Unit_Bullet);
+	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(this->isTrackTarget);
 	bullet->setIsFaceToTargetPos(this->isFaceToTargetPos);
 	bullet->setOnHitEffect(this->m_hitEffect->clone());

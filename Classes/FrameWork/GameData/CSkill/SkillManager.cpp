@@ -32,7 +32,7 @@ void SkillManager::LoadResource(const vector<Name>& resNameList)
 {
 	//Skill Nuke
 	CSkillEffectInstant* skilleffect = new CSkillEffectInstant();
-	skilleffect->Fliter = EUnitType::Unit_Monster;
+	skilleffect->Fliter = 5;
 	skilleffect->Range = 300;
 	skilleffect->AutoUseRange = 300;
 	skilleffect->preparing_Delay = 0.4f;
@@ -42,10 +42,11 @@ void SkillManager::LoadResource(const vector<Name>& resNameList)
 	skilleffect->using_Delay = 0.5f;
 	skilleffect->using_Animate = "skill_using";
 	skilleffect->aftering_Delay = 0.2f;
-	skilleffect->aftering_Effect = "MissileBoom";
+	skilleffect->aftering_Effect = "LaunchMissile";
 	skilleffect->aftering_Animate = "skill_aftering";
 	skilleffect->ColdDown = 3;
 	skilleffect->ColdDowning = 3;
+	skilleffect->name = "Nuke";
 	m_skilllist["Nuke"] = skilleffect;
 
 	CSkillAttactk* skillattack = new CSkillAttactk();

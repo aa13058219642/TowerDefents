@@ -1,5 +1,6 @@
 #include "TowerDefentShare.h"
 #include "Tower.h"
+#include "TDUnitCreator.h"
 #include "CActor.h"
 #include "ActorManager.h"
 #include "SkillManager.h"
@@ -24,7 +25,7 @@ Tower::Tower(GridPos* GridPos)
 			m_SpellTower[i] = nullptr;
 
 		setPos(GridPos->getPos());
-		setType( EUnitType::Unit_Tower);
+		setType( EUnitType::Tower);
 		flag = true;
 		
 	} while (0);
@@ -57,7 +58,11 @@ void Tower::buildTower(const TowerCard* towerCard)
 	AP_RegenRate = towerCard->AP_RegenRate;
 
 	m_weapon = WeaponManager::getInstance()->getWeapon(towerCard->weaponName[0]);
-	this->addSkill(SkillManager::getInstance()->createCSkill("attack", this));
+
+	for (const string& skillname : towerCard->skillName)
+	{
+		this->addSkill(SkillManager::getInstance()->createCSkill(skillname, this));
+	}
 	//this->setActorName(StringUtils::format("Tower_%03d", towerCard->ID));
 
 	this->setActorName(towerCard->ActorName);

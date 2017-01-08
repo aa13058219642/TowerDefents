@@ -297,6 +297,12 @@
     <ClCompile Include="..\Classes\FrameWork\Helper\GalaxyHelper.cpp">
       <Filter>src\FrameWork\Helper</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitCreator.cpp">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Unit\TDUnitCreator.cpp">
+      <Filter>src\TowerDefent\Unit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -472,6 +478,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\Helper\GalaxyHelper.h">
       <Filter>src\FrameWork\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitCreator.h">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Unit\TDUnitCreator.h">
+      <Filter>src\TowerDefent\Unit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

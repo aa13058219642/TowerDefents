@@ -7,7 +7,7 @@ bool UnitManager::isDebug = false;
 UnitManager::UnitManager()
 {
 	next_UnitID = 0;
-	m_layer = nullptr;
+	unitCreator = nullptr;
 }
 
 UnitManager* UnitManager::getInstance()
@@ -19,26 +19,25 @@ UnitManager* UnitManager::getInstance()
 	return p_myinstance;
 }
 
-Layer* UnitManager::getLayer()
-{
-	return m_layer;
-}
 
-void UnitManager::setLayer(Layer* layer)
-{
-	m_layer = layer;
-}
-
-void UnitManager::init()
+void UnitManager::init(UnitCreator* unitCreator)
 {
 	next_UnitID = 0;
+	if (unitCreator == nullptr)
+	{
+		this->unitCreator = new UnitCreator();
+	}
+	else
+	{
+		this->unitCreator = unitCreator;
+	}
 }
 
 void UnitManager::update(float dt)
 {
 	//¸üÐÂCUnit
 	for (auto obj : m_UnitList)
-		if (!(obj->getType() & Unit_Death))
+		if (!(obj->getType() & EUnitType::Death))
 			obj->update(dt);
 
 
@@ -47,7 +46,7 @@ void UnitManager::update(float dt)
 	for (auto iter = m_UnitList.begin(); iter != m_UnitList.end();)
 	{
 		CUnit* obj = *iter;
-		if (obj->getType() & Unit_Destory)
+		if (obj->getType() & EUnitType::Destory)
 		{
 			delete obj;
 			iter = m_UnitList.erase(iter);
@@ -58,6 +57,26 @@ void UnitManager::update(float dt)
 
 	debugDraw();
 }
+
+void UnitManager::bindUnitCreator(UnitCreator* unitCreator)
+{
+	if (this->unitCreator != nullptr)
+	{
+		delete this->unitCreator;
+	}
+	this->unitCreator = unitCreator;
+}
+
+CUnit* UnitManager::CreateUnit(int typeID)
+{
+	return unitCreator->Create(typeID);
+}
+
+CUnit* UnitManager::CreateUnit(string typeName)
+{
+	return unitCreator->Create(typeName);
+}
+
 
 CUnit* UnitManager::getUnit(int id)
 {

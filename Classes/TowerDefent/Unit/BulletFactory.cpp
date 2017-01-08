@@ -1,6 +1,8 @@
 #include "BulletFactory.h"
 #include "EffectManager.h"
 #include "UnitManager.h"
+#include "TDUnitCreator.h"
+using namespace cocosgalaxy;
 
 BulletFactory* BulletFactory::p_myinstance = NULL;
 
@@ -26,10 +28,10 @@ int BulletFactory::LoadBulletList()
 
 	//从文件读取所有弹头
 	//ID=0 ///////////////////////////////////////////////////////////////
-	type = BulletType::Ball;
+	type = EBulletType::Ball;
 
 	bullet = new Bullet();
-	bullet->setType(EUnitType::Unit_Bullet);
+	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(false);
 	bullet->setIsFaceToTargetPos(false);
 
@@ -44,9 +46,9 @@ int BulletFactory::LoadBulletList()
 
 
 	//ID=1 ///////////////////////////////////////////////////////////////
-	type = BulletType::Missile;
+	type = EBulletType::Missile;
 	bullet = new Bullet();
-	bullet->setType(EUnitType::Unit_Bullet);
+	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(true);
 	bullet->setIsFaceToTargetPos(true);
 
@@ -60,9 +62,9 @@ int BulletFactory::LoadBulletList()
 	bulletlist[1] = bullet;
 
 	//ID=2 ///////////////////////////////////////////////////////////////
-	type = BulletType::Missile;
+	type = EBulletType::Missile;
 	bullet = new Bullet();
-	bullet->setType(EUnitType::Unit_Bullet);
+	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(false);
 	bullet->setIsFaceToTargetPos(true);
 
@@ -91,6 +93,10 @@ Bullet* BulletFactory::CreateBullet(int BulletID, Point pos, CUnit* target)
 	return bullet;
 }
 
+Bullet* BulletFactory::CreateBullet(int BulletID)
+{
+	return bulletlist[BulletID]->clone();
+}
 
 
 

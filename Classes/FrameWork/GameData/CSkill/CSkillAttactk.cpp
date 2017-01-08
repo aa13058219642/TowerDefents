@@ -19,6 +19,7 @@ CSkillAttactk::~CSkillAttactk()
 CSkill* CSkillAttactk::clone()
 {
 	CSkillAttactk* skill = new CSkillAttactk();
+	skill->name = this->name;
 	skill->m_state = this->m_state;
 	skill->Range = this->Range;
 	skill->AutoUseRange = this->AutoUseRange;

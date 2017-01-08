@@ -54,8 +54,11 @@ void CSkillEffect::update(float dt)
 		case SkillEffectState_Preparing:
 			ColdDowning = preparing_Delay;
 			m_parent->setState(EUnitState::UnitState_UsingSkill);
-			m_parent->addEffect(EffectManager::getInstance()->createCEffect(preparing_Effect, m_parent->ID));
 			m_parent->applyAction(preparing_Animate, beforing_Delay);
+			if (preparing_Effect != "")
+			{
+				m_parent->addEffect(EffectManager::getInstance()->createCEffect(preparing_Effect, m_parent->ID));
+			}
 			m_state = SkillEffectState_Beforing;
 			if (ColdDowning != 0)break;
 
@@ -67,14 +70,20 @@ void CSkillEffect::update(float dt)
 
 		case SkillEffectState_Using:
 			ColdDowning = using_Delay;
-			m_parent->addEffect(EffectManager::getInstance()->createCEffect(using_Effect,m_parent->ID));
+			if (using_Effect != "")
+			{
+				m_parent->addEffect(EffectManager::getInstance()->createCEffect(using_Effect,m_parent->ID));
+			}
 			m_parent->applyAction(using_Animate, using_Delay);
 			m_state = SkillEffectState_Aftering;
 			if (ColdDowning != 0)break;
 
 		case SkillEffectState_Aftering:
 			ColdDowning = aftering_Delay;
-			m_parent->addEffect(EffectManager::getInstance()->createCEffect(aftering_Effect, m_parent->ID));
+			if (aftering_Effect != "")
+			{
+				m_parent->addEffect(EffectManager::getInstance()->createCEffect(aftering_Effect, m_parent->ID));
+			}
 			m_parent->applyAction(aftering_Animate, aftering_Delay);
 			m_state = SkillEffectState_End;
 			if (ColdDowning != 0)break;
@@ -102,6 +111,4 @@ bool CSkillEffect::IsCanExecute()
 			return true;
 	return false;
 }
-
-
 

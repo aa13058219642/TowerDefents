@@ -16,7 +16,13 @@ CEffectLaunchMissile::~CEffectLaunchMissile()
 
 void CEffectLaunchMissile::execute()
 {
-	Bullet* bullet = BulletFactory::getInstance()->CreateBullet(BulletID, getParent()->getPos(), getTarget());
+	//Bullet* bullet = BulletFactory::getInstance()->CreateBullet(BulletID, getParent()->getPos(), getTarget());
+	
+	CUnit* unit = UnitManager::getInstance()->CreateUnit(BulletID);
+	//unit->setWeapon(getTarget()->getWeapon());
+	unit->setTarget(getTarget()->ID);
+	unit->setPos(getParent()->getPos());
+	UnitManager::getInstance()->addUnit(unit);
 
 	this->setState(ECEffectState::ECEffectState_Death);
 }

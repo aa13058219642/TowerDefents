@@ -139,3 +139,8 @@
 - 1.框架正式命名为CocosGalaxy
 - 2.新建CCostUnit等类，Actor、Unit改名CActor、CUnit
 - 3.设立命名空间cocosgalaxy
+
+#v0.038
+- 1.新增UnitCreator和TDUnitCreator，用于统一的Unit及其子类的创建
+- 2.修复了部分CEffect中的BUG
+- 3.CocosGalaxy完全脱离了对TowerDefent文件的依赖

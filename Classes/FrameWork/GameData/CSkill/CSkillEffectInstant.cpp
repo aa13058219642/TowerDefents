@@ -13,9 +13,11 @@ CSkillEffectInstant::~CSkillEffectInstant()
 }
 
 
+
 CSkill* CSkillEffectInstant::clone()
 {
 	CSkillEffectInstant* skill = new CSkillEffectInstant();
+	skill->name = this->name;
 	skill->m_state = this->m_state;
 	skill->ColdDown = this->ColdDown;
 	skill->ColdDowning = this->ColdDowning;
@@ -39,6 +41,7 @@ CSkill* CSkillEffectInstant::clone()
 
 	return skill;
 }
+
 
 
 

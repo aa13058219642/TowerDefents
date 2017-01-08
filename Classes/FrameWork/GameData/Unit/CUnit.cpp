@@ -6,13 +6,14 @@
 #include "CEffect.h"
 #include "CSkill.h"
 #include "ActorManager.h"
+#include "UnitManager.h"
 using namespace cocosgalaxy;
 
 CUnit::CUnit()
 {
 	ID = -1;
 	m_name = "";
-	m_type = EUnitType::Unit_Unit;
+	m_type = EUnitType::Unit;
 	m_state = EUnitState::UnitState_Normal;
 	m_pos = Point(0, 0);
 	m_actorName = "blank";
@@ -92,7 +93,16 @@ CWeapon* CUnit::getWeapon()
 	return m_weapon;
 }
 
+void CUnit::setTarget(int targetID)
+{
+	this->m_targetID = targetID;
+	this->m_targetPos = UnitManager::getInstance()->getUnit(targetID)->getPos();
+}
 
+CUnit* CUnit::getTarget()
+{
+	return UnitManager::getInstance()->getUnit(m_targetID);
+}
 
 void CUnit::bindActor()
 {
@@ -176,14 +186,14 @@ void CUnit::onHitTarget(){}
 void CUnit::onMissTarget(CUnit* target){}
 
 void CUnit::onDead(){ 
-	m_type |= Unit_Death;
+	m_type |= EUnitType::Death;
 	ActorManager::getInstance()->removeActor(ID);
 	onDeaded();
 }
 
 void CUnit::onDeaded()
 {
-	m_type |= Unit_Destory;
+	m_type |= EUnitType::Destory;
 }
 
 

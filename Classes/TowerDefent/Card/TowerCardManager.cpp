@@ -98,7 +98,7 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 				int s = jNode["skillName"].Size();
 				JsonNode node = jNode["skillName"];
 				for (int i = 0; i < s; i++)
-					towercard->weaponName.push_back(node[i].GetString());
+					towercard->skillName.push_back(node[i].GetString());
 			}
 			m_card[name] = towercard;
 		}

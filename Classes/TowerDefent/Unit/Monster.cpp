@@ -21,7 +21,7 @@ Monster::Monster(int MonsterID, MapPath path)
 	do{
 
 		//MonsterID
-		setType(EUnitType::Unit_Monster);
+		setType(5);
 		//get m_alility from MonsterID
 		HP = 100;
 		HP.Max = 100;
@@ -90,7 +90,7 @@ void Monster::OnEndPoint(){
 
 void Monster::onBeAttack(int damage, EDamageType damageType)
 {
-	if (!(m_type & Unit_Death))
+	if (!(m_type & EUnitType::Death))
 	{
 		HP.add(-damage);
 		float per = clampf(HP / (float)HP.Max, 0, 1);

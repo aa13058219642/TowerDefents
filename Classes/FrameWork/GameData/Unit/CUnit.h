@@ -70,8 +70,12 @@ namespace cocosgalaxy
 		void setState(EUnitState state);
 		EUnitState getState();
 
-		void setWeapon(CWeapon* weapon);
-		CWeapon* getWeapon();
+		virtual void setWeapon(CWeapon* weapon);
+		virtual CWeapon* getWeapon();
+
+		virtual void setTarget(int targetID);
+		virtual CUnit* getTarget();
+
 	protected:
 		/* ---- Ù–‘---- */
 		Name m_name;
@@ -80,7 +84,6 @@ namespace cocosgalaxy
 		Point m_pos;
 		CWeapon* m_weapon;
 		Point m_targetPos;
-		int m_parentID;
 		int m_targetID;
 
 		std::list<CEffect*> effects;

@@ -25,7 +25,7 @@ CWeapon::CWeapon()
 	ColdDown.Max.ValueMin = 0.1f;
 	TargetCount = 1;
 
-	Filter = EUnitType::Unit_Monster;
+	Filter = 5;
 	DamageType = EDamageType::EDamageType_Weapon;
 
 	Damage.Min = 1;
@@ -47,7 +47,7 @@ CWeapon::CWeapon()
 	using_Animate = "";
 	aftering_Animate = "";
 
-	bulletType = BulletType::Ball;
+	//bulletType = BulletType::Ball;
 	IsTrackTarget = true;
 	IsFaceToTarget = false;
 	BulletSpeed = 800;

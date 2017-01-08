@@ -66,7 +66,7 @@ namespace cocosgalaxy
 		std::string aftering_Animate;
 
 		/*子弹类型*/
-		BulletType bulletType;
+		//BulletType bulletType;
 		/*是否追踪目标*/
 		bool IsTrackTarget;
 		/*是否面向目标*/

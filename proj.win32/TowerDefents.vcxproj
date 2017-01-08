@@ -180,6 +180,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkillGeneric.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Unit\CUnit.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitCreator.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.cpp" />
@@ -206,6 +207,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TowerDefent\Unit\Bullet.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\Monster.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Unit\TDUnitCreator.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\Tower.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -238,6 +240,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkillGeneric.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\SkillManager.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Unit\CUnit.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitCreator.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitManager.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.h" />
@@ -266,6 +269,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\Unit\Bullet.h" />
     <ClInclude Include="..\Classes\TowerDefent\Unit\BulletFactory.h" />
     <ClInclude Include="..\Classes\TowerDefent\Unit\Monster.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Unit\TDUnitCreator.h" />
     <ClInclude Include="..\Classes\TowerDefent\Unit\Tower.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>

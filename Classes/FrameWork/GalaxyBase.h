@@ -26,17 +26,26 @@ namespace cocosgalaxy
 	//CUnit/////////////////////////////////////////////////////////////////
 
 	typedef unsigned int UnitType;
-	enum EUnitType : unsigned int
+	namespace EUnitType
 	{
-		Unit_Unit = 1,
-		Unit_Tower = 1 << 1,
-		Unit_Monster = 1 << 2,
-		Unit_Bullet = 1 << 3,
-		Unit_Land = 1 << 4,
-		Unit_Fly = 1 << 5,
-		Unit_Death = 1 << 29,
-		Unit_Destory = 1 << 30
+		const UnitType Unit = 1;
+		const UnitType Land = 1 << 2;
+		const UnitType Fly = 1 << 3;
+		const UnitType Death = 1 << 29;
+		const UnitType Destory = 1 << 30;
 	};
+
+	//enum EUnitType : unsigned int
+	//{
+	//	Unit_Unit = 1,
+	//	Unit_Tower = 1 << 1,
+	//	Unit_Monster = 1 << 2,
+	//	Unit_Bullet = 1 << 3,
+	//	Unit_Land = 1 << 4,
+	//	Unit_Fly = 1 << 5,
+	//	Unit_Death = 1 << 29,
+	//	Unit_Destory = 1 << 30
+	//};
 
 	enum EUnitState{
 		UnitState_Normal,
@@ -47,10 +56,6 @@ namespace cocosgalaxy
 
 
 
-	enum BulletType{
-		Ball,
-		Missile
-	};
 
 	/////////////////////////////////////////////////////////////////////////////
 	//CEffect/////////////////////////////////////////////////////////////////
@@ -59,7 +64,6 @@ namespace cocosgalaxy
 		EDamageType_Weapon,
 		EDamageType_Magic,
 		EDamageType_Real
-
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

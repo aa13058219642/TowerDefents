@@ -12,6 +12,7 @@
 #include "BehaviorManager.h"
 #include "SpellCardManager.h"
 #include "TowerCardManager.h"
+#include "TDUnitCreator.h"
 
 GameMap* GameMap::p_myinstance = nullptr;
 GameMap* GameMap::getInstance()
@@ -252,7 +253,7 @@ bool GameMap::initMap(int level)
 		//初始化所有Manager
 
 		WaveManager::getInstance()->init();
-		UnitManager::getInstance()->init();
+		UnitManager::getInstance()->init(new TDUnitCreator());
 
 
 		//TextureManager::getInstance()->LoadResource();
@@ -275,7 +276,7 @@ bool GameMap::initMap(int level)
 		WeaponManager::getInstance()->LoadResource();
 		SpellCardManager::getInstance()->LoadResource();
 		TowerCardManager::getInstance()->LoadResource();
-		//EffectManager::getInstance()->LoadResource();
+		EffectManager::getInstance()->LoadResource();
 
 
 

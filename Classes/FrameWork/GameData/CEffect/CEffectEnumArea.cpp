@@ -10,7 +10,10 @@ CEffectEnumArea::CEffectEnumArea(unsigned int filter, int areaRadius, string app
 	this->applyEffect = applyEffect;
 	this->effect = effect;
 	this->m_parentID = parentID;
-	this->m_pos = getParent()->getPos();
+	if (parentID != -1)
+	{
+		this->m_pos = getParent()->getPos();
+	}
 }
 
 

@@ -18,8 +18,8 @@ public:
 	void setParent(int patentID);
 	CUnit* getParent();
 
-	void setTarget(int targetID);
-	CUnit* getTarget();
+	virtual void setTarget(int targetID);
+	virtual CUnit* getTarget();
 
 
 
@@ -32,7 +32,7 @@ public:
 	virtual Bullet* clone();//Ç³¿½±´
 
 protected:
-
+	int m_parentID;
 	CEffect* m_hitEffect;
 
 

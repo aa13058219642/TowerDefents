@@ -32,7 +32,7 @@ void EffectManager::LoadResource(const vector<Name>& resNameList)
 {
 	m_effectlist["missileDamage"] = new CEffectDamage(2,4);
 	m_effectlist["missileDamageBoom"] = new CEffectDamage(100, 200, EDamageType_Real, "e002");
-	m_effectlist["MissileBoom"] = new CEffectEnumArea(EUnitType::Unit_Monster, 300,"missileDamageBoom");
+	m_effectlist["MissileBoom"] = new CEffectEnumArea(5, 300,"missileDamageBoom");
 	m_effectlist["LaunchBall"] = new CEffectLaunchMissile(0);
 	m_effectlist["LaunchMissile"] = new CEffectLaunchMissile(1);
 	m_effectlist["LaunchBoom"] = new CEffectLaunchMissile(2);
