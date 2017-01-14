@@ -85,6 +85,8 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 			if (jNode.HasMember("Color_G"))			towercard->color.g = jNode["Color_G"].GetInt();
 			if (jNode.HasMember("Color_B"))			towercard->color.b = jNode["Color_B"].GetInt();
 
+			//###
+			towercard->costPlayer.money = towercard->ID * 20;
 
 			if (jNode.HasMember("weaponName") && jNode["weaponName"].IsArray())
 			{

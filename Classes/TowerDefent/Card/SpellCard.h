@@ -1,5 +1,6 @@
 #pragma once
 #include "stdfax.h"
+#include "CCostPlayer.h"
 
 class SpellCard
 {
@@ -15,7 +16,7 @@ public:
 	Name behaviorName;
 	Name uiName;
 	Name uiDescription;
-	//CostPlayer
+	CCostPlayer costPlayer;
 private:
 
 };

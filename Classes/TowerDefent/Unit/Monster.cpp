@@ -2,6 +2,9 @@
 #include "CActor.h"
 #include "AnimateManager.h"
 #include "UnitManager.h"
+#include "TowerDefentShare.h"
+#include "Message\Message.h"
+
 //Monster::Monster()
 //{
 //
@@ -113,8 +116,14 @@ void Monster::onBindSprite()
 void Monster::onDead()
 {
 	CUnit::onDead();
-	//for (auto var : UnitManager::getInstance()->findUnit(EUnitType::Unit_UnKnow)){
-	//	var->onMissTarget(this);
-	//}
 
+	//NotificationMsg msg;
+	//msg["cmd"] = GameMap_addMoney;
+	//msg["addMoney"] = 100;
+	//NotificationCenter::getInstance()->postNotification(Message_GameMap, (Ref*)&msg);
+
+	Message msg;
+	msg.keyword = "Money";
+	msg.valueMap["value"] = 100;
+	msg.post(Message_Player);
 }

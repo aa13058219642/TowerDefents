@@ -106,14 +106,8 @@
     <Filter Include="src\TowerDefent\Card\TowerCard">
       <UniqueIdentifier>{7734d397-7f25-43cd-835e-bcc4af8c4ee9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\FrameWork\GameData\CPlayer">
-      <UniqueIdentifier>{bf6b27e9-e655-47f2-870d-b298b52ecfc1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\TowerDefent\Scene\PrepareScene">
       <UniqueIdentifier>{1e7811ca-98b6-4ebc-a6c5-c911e1dfe810}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FrameWork\GameData\CCost\CCostPlayer">
-      <UniqueIdentifier>{6dbd7df6-55b9-424a-acda-28b249400e6f}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\FrameWork\GameData\CEffect\CEffects">
       <UniqueIdentifier>{08f1d46a-1cdb-484b-b1d4-ff11ad1cec21}</UniqueIdentifier>
@@ -129,6 +123,18 @@
     </Filter>
     <Filter Include="src\FrameWork\GameData\CModification">
       <UniqueIdentifier>{d61a4093-b086-4c61-88d3-b33ff3de6b7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CPlayer">
+      <UniqueIdentifier>{bf6b27e9-e655-47f2-870d-b298b52ecfc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TowerDefent\Player">
+      <UniqueIdentifier>{ebb832e2-d9e9-4989-ace1-2aa377b7c9d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TowerDefent\Player\CCostPlayer">
+      <UniqueIdentifier>{6dbd7df6-55b9-424a-acda-28b249400e6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TowerDefent\Message">
+      <UniqueIdentifier>{5f7ca274-3725-471f-99c7-4d4f37af48e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -279,9 +285,6 @@
     <ClCompile Include="..\Classes\TowerDefent\Scene\PrepareScene.cpp">
       <Filter>src\TowerDefent\Scene\PrepareScene</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.cpp">
-      <Filter>src\FrameWork\GameData\CCost\CCostPlayer</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CGameData.cpp">
       <Filter>src\FrameWork\GameData</Filter>
     </ClCompile>
@@ -302,6 +305,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Unit\TDUnitCreator.cpp">
       <Filter>src\TowerDefent\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Player\Player.cpp">
+      <Filter>src\TowerDefent\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Player\CCostPlayer.cpp">
+      <Filter>src\TowerDefent\Player\CCostPlayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Message\Message.cpp">
+      <Filter>src\TowerDefent\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Message\MessageListener.cpp">
+      <Filter>src\TowerDefent\Message</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -458,9 +473,6 @@
     <ClInclude Include="..\Classes\FrameWork\GameData\Unit\CUnit.h">
       <Filter>src\FrameWork\GameData\CUnit</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.h">
-      <Filter>src\FrameWork\GameData\CCost\CCostPlayer</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\Actor\CActor.h">
       <Filter>src\FrameWork\GameData\CActor</Filter>
     </ClInclude>
@@ -484,6 +496,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Unit\TDUnitCreator.h">
       <Filter>src\TowerDefent\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Player\Player.h">
+      <Filter>src\TowerDefent\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Player\CCostPlayer.h">
+      <Filter>src\TowerDefent\Player\CCostPlayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Message\MessageListener.h">
+      <Filter>src\TowerDefent\Message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Message\Message.h">
+      <Filter>src\TowerDefent\Message</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

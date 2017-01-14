@@ -13,6 +13,7 @@
 #include "SpellCardManager.h"
 #include "TowerCardManager.h"
 #include "TDUnitCreator.h"
+#include "Player.h"
 
 GameMap* GameMap::p_myinstance = nullptr;
 GameMap* GameMap::getInstance()
@@ -32,6 +33,11 @@ GameMap::GameMap()
 
 	for (int i = 0; i < 8; i++)
 		m_SpellCard[i] = "";
+}
+
+GameMap::~GameMap()
+{
+
 }
 
 void GameMap::clear()
@@ -181,56 +187,17 @@ bool GameMap::loadMap(const int& level)
 	return true;
 }
 
-//bool GameMap::onClick(Point pos)
-//{
-//	for (auto var : m_gridPos)
-//	{
-//		if (var->getRect().containsPoint(pos))
-//		{
-//			var->onClick();
-//			return true;
-//		}
-//	}
-//	return false;
-//}
-
-TMXTiledMap*  GameMap::getMapLayer()
-{
-	return m_map;
-}
-
-GridPos* GameMap::getGridPos(int id)
-{
-	CCASSERT(id < (int)m_gridPos.size(), "GridPosID NOT found");
-	return m_gridPos[id];
-}
-
-GridPos* GameMap::getGridPos(Point pos)
-{
-	for (auto var : m_gridPos)
-	{
-		if (var->getPos() == pos)
-			return var;
-	}
-	return nullptr;
-}
-
-const Name* GameMap::getSpellCard()
-{
-	return m_SpellCard;
-}
-
-const Name* GameMap::getTowerCard()
-{
-	return m_TowerCard;
-}
-
 bool GameMap::initMap(int level)
 {
 	bool flag = true;
 
 	do{
 		//玩家选择的卡牌
+		Player* player = Player::getInstance();
+		player->reset();
+		player->setMoney(2000);
+		player->setLife(20);
+
 		m_SpellCard[0] = "Damage_Add_I";
 		m_SpellCard[1] = "Range_Add_I";
 		m_SpellCard[2] = "ColdDown_Div_I";
@@ -250,8 +217,9 @@ bool GameMap::initMap(int level)
 		m_TowerCard[7] = "card007";
 
 
-		//初始化所有Manager
 
+
+		//初始化所有Manager
 		WaveManager::getInstance()->init();
 		UnitManager::getInstance()->init(new TDUnitCreator());
 
@@ -277,9 +245,6 @@ bool GameMap::initMap(int level)
 		SpellCardManager::getInstance()->LoadResource();
 		TowerCardManager::getInstance()->LoadResource();
 		EffectManager::getInstance()->LoadResource();
-
-
-
 
 
 		//vector<string> effectList;
@@ -379,6 +344,38 @@ bool GameMap::initMap(int level)
 	return flag;
 }
 
+TMXTiledMap*  GameMap::getMapLayer()
+{
+	return m_map;
+}
+
+GridPos* GameMap::getGridPos(int id)
+{
+	CCASSERT(id < (int)m_gridPos.size(), "GridPosID NOT found");
+	return m_gridPos[id];
+}
+
+GridPos* GameMap::getGridPos(Point pos)
+{
+	for (auto var : m_gridPos)
+	{
+		if (var->getPos() == pos)
+			return var;
+	}
+	return nullptr;
+}
+
+const Name* GameMap::getSpellCard()
+{
+	return m_SpellCard;
+}
+
+const Name* GameMap::getTowerCard()
+{
+	return m_TowerCard;
+}
+
+
 
 void GameMap::update(float dt)
 {
@@ -468,9 +465,6 @@ void GameMap::update(float dt)
 //	memcpy(&dest, (char*)src+p, sizeof(dest));
 //	p += sizeof(dest);
 //}
-
-
-
 
 
 

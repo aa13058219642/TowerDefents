@@ -4,6 +4,13 @@
 //MessageCenter///////////////////////////////////////////////////////////////////////////
 #define Message_TowerSelectLayer "Message_TowerSelectLayer"
 #define Message_TowerInfoLayer "Message_TowerInfoLayer"
+#define Message_GameMapInfoLayer "Message_GameMapInfoLayer"
+#define Message_GameMap "Message_GameMap"
+
+#define Message_Player "Message_Player"
+#define Message_Global "Message_Global"
+
+
 typedef ValueMap NotificationMsg;
 
 enum MsgCMD : int{
@@ -11,7 +18,13 @@ enum MsgCMD : int{
 	TowerSelectLayer_ClickEmptyGridPos,
 	TowerSelectLayer_ClickTowerGridPos,
 	TowerSelectLayer_ClickSpellEmptyGridPos,
-	TowerSelectLayer_ClickSpellTowerGridPos
+	TowerSelectLayer_ClickSpellTowerGridPos,
+
+	TowerInfoLayer_UpdateMoney,
+	TowerInfoLayer_UpdateLife,
+
+	Player_UpdateMoney,
+
 };
 
 

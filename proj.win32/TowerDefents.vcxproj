@@ -71,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CPLayer;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\CModification;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Card;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot)cocos\audio\include;$(EngineRoot)external;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;$(EngineRoot)..;$(EngineRoot)..\Classes;$(EngineRoot)..\Classes\FrameWork;$(EngineRoot)..\Classes\FrameWork\GameData;$(EngineRoot)..\Classes\FrameWork\GameData\Actor;$(EngineRoot)..\Classes\FrameWork\GameData\Unit;$(EngineRoot)..\Classes\FrameWork\GameData\CSkill;$(EngineRoot)..\Classes\FrameWork\GameData\CCost;$(EngineRoot)..\Classes\FrameWork\GameData\CPLayer;$(EngineRoot)..\Classes\FrameWork\GameData\CEffect;$(EngineRoot)..\Classes\FrameWork\GameData\CModification;$(EngineRoot)..\Classes\FrameWork\GameData\Weapon;$(EngineRoot)..\Classes\FrameWork\DataStructure;$(EngineRoot)..\Classes\FrameWork\GameData\CBehavior;$(EngineRoot)..\Classes\FrameWork\Manager;$(EngineRoot)..\Classes\FrameWork\Helper;$(EngineRoot)..\Classes\TowerDefent;$(EngineRoot)..\Classes\TowerDefent\GameMap;$(EngineRoot)..\Classes\TowerDefent\Layer;$(EngineRoot)..\Classes\TowerDefent\Scene;$(EngineRoot)..\Classes\TowerDefent\Card;$(EngineRoot)..\Classes\TowerDefent\Player;$(EngineRoot)..\Classes\TowerDefent\Unit;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -161,7 +161,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCost.cpp" />
-    <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffect.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.cpp" />
@@ -201,6 +200,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\UnitLayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Message\Message.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Message\MessageListener.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Player\CCostPlayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Player\Player.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\BattleScene.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\PrepareScene.cpp" />
@@ -221,7 +224,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h" />
-    <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostPlayer.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffect.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.h" />
@@ -262,6 +264,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\UnitLayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Message\Message.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Message\MessageListener.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Player\CCostPlayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Player\Player.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\BattleScene.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\PrepareScene.h" />

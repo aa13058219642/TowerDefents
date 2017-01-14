@@ -1,6 +1,6 @@
 #pragma once
 #include "stdfax.h"
-
+#include "CCostPlayer.h"
 class TowerCard
 {
 public:
@@ -16,7 +16,8 @@ public:
 	float HP_RegenRate, MP_RegenRate, AP_RegenRate;
 	Name ActorName;
 	Color3B color;
-	
+	CCostPlayer costPlayer;
+
 	vector<Name> weaponName;
 	vector<Name> skillName;
 	/*

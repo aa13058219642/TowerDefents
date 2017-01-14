@@ -76,6 +76,7 @@ void SpellCardManager::LoadResource(const vector<Name>& resNameList)
 			if (jNode.HasMember("behaviorName"))	spellTower->behaviorName = jNode["behaviorName"].GetString();
 			if (jNode.HasMember("uiName"))			spellTower->uiName = jNode["uiName"].GetString();
 			if (jNode.HasMember("uiDescription"))	spellTower->uiDescription = jNode["uiDescription"].GetString();
+			spellTower->costPlayer.money = spellTower->ID * 20;
 
 			m_spellTower[name] = spellTower;
 		}

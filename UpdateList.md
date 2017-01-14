@@ -144,3 +144,9 @@
 - 1.新增UnitCreator和TDUnitCreator，用于统一的Unit及其子类的创建
 - 2.修复了部分CEffect中的BUG
 - 3.CocosGalaxy完全脱离了对TowerDefent文件的依赖
+
+#v0.039
+- 1.PlayerCost初步完成
+- 2.Player类初步完成
+- 3.新增Message、MessageLinstener，初步完成消息机制
+

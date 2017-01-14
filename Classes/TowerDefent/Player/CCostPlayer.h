@@ -12,7 +12,7 @@ namespace cocosgalaxy
 		virtual bool isCanPay(CGameData* gamedata);
 		virtual void payCost(CGameData* gamedata);
 
-
+		float money;
 	};
 
 }

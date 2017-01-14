@@ -1,5 +1,7 @@
 #include "GameMapInfoLayer.h"
 #include "AnimateManager.h"
+#include "Player.h"
+#include "TowerDefentShare.h"
 
 GameMapInfoLayer::GameMapInfoLayer(){}
 
@@ -28,6 +30,7 @@ bool GameMapInfoLayer::init()
 
 	this->initSprite();
 	this->initListener();
+	scheduleUpdate();
 
 	return true;
 }
@@ -153,14 +156,47 @@ void GameMapInfoLayer::initSprite()
 
 void GameMapInfoLayer::initListener()
 {
+	this->msgSubscribe(Message_Global);
+
+
+	//订阅消息
+	NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(GameMapInfoLayer::receiveMsg), Message_GameMapInfoLayer, NULL);
 
 
 }
 
+void GameMapInfoLayer::receiveMsg(Ref* pData)
+{
+	CCASSERT(pData != NULL, "Notification Message Data == NULL");
 
+	NotificationMsg msg = *(NotificationMsg*)pData;
+	int cmd = msg.at("cmd").asInt();
+	switch (cmd)
+	{
+	case MsgCMD::TowerInfoLayer_UpdateMoney:
+		lab_Money->setString(StringUtils::format("%f.0",Player::getInstance()->getMoney()));
+		break;
+	default:
+		CCASSERT(false, "Unkow notification message command");
+		break;
+	}
+}
+
+void GameMapInfoLayer::receive(const Message* message)
+{
+	if (message != nullptr)
+	{
+		if (message->keyword == "updateMoney")
+		{
+			int money = (int)Player::getInstance()->getMoney();
+			lab_Money->setString(StringUtils::format("%d", money));
+		}
+	}
+}
 
 
 void GameMapInfoLayer::update(float dt){
+
 
 }
 

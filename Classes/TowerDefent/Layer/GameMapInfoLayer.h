@@ -1,7 +1,8 @@
 #pragma once
 #include "stdfax.h"
+#include "Message\MessageListener.h"
 
-class GameMapInfoLayer : public Layer
+class GameMapInfoLayer : public Layer, MessageListener
 {
 public:
 	GameMapInfoLayer();
@@ -10,6 +11,7 @@ public:
 	static GameMapInfoLayer* create();
 	virtual bool init();
 	virtual void update(float dt);
+	virtual void receive(const Message* message);
 
 
 private:
@@ -40,7 +42,7 @@ private:
 	Sprite* bt_DoubleSpeed;
 	Sprite* bt_Pause;
 
-
+	void receiveMsg(Ref* pData);
 
 
 	void initSprite();

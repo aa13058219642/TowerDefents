@@ -2,7 +2,7 @@
 #include "stdfax.h"
 #include "WaveManager.h"
 #include "GridPos.h"
-
+#include "Player.h"
 
 class GameMap 
 {
@@ -13,7 +13,8 @@ public:
 	static GameMap* getInstance();
 	bool init(int level);
 	void update(float dt);
-	
+	~GameMap();
+
 	/*if something be click will return ture*/
 	//bool onClick(Point pos);
 
@@ -40,11 +41,7 @@ private:
 
 	bool loadMap(const int& level);
 	bool initMap(int level);
-	bool initPlayer();
 
-	//bool LoadMap(int level);
-	//template <typename T>
-	//void ReadData(T& dest,const void* src, int& p);
 };
 
 

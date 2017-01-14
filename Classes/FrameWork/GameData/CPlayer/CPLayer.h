@@ -8,11 +8,6 @@ namespace cocosgalaxy
 	{
 	public:
 
-		int money;
-		int life;
-		int wave;
-		int wavecount;
-
 		CPlayer();
 		~CPlayer();
 
