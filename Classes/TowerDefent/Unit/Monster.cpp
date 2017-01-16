@@ -124,6 +124,6 @@ void Monster::onDead()
 
 	Message msg;
 	msg.keyword = "Money";
-	msg.valueMap["value"] = 100;
+	msg.valueMap["value"] = 10;
 	msg.post(Message_Player);
 }

@@ -150,3 +150,5 @@
 - 2.Player类初步完成
 - 3.新增Message、MessageLinstener，初步完成消息机制
 
+#v0.040
+- 1.完成tower、spellPos、spellTower的建造花费系统

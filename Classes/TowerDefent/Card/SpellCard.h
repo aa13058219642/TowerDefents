@@ -17,6 +17,11 @@ public:
 	Name uiName;
 	Name uiDescription;
 	CCostPlayer costPlayer;
+
+	float cost;
+	CCostPlayer price;
+	float sell;
+
 private:
 
 };

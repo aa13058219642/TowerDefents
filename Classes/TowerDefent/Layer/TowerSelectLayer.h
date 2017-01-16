@@ -2,9 +2,9 @@
 #include "stdfax.h"
 #include "TowerDefentShare.h"
 #include "GridPos.h"
+#include "Message\MessageListener.h"
 
-
-class TowerSelectLayer : public Layer
+class TowerSelectLayer : public Layer, MessageListener
 {
 public:
 	TowerSelectLayer();
@@ -13,6 +13,7 @@ public:
 	static TowerSelectLayer* create();
 	virtual bool init();
 	virtual void update(float dt);
+	virtual void receive(const Message* message);
 
 	void cancel();
 
@@ -36,7 +37,7 @@ private:
 	Sprite* a_bt[8];		//周围按钮
 	Sprite* a_bg[8];		//周围按钮下方提示信息背景
 	Label* a_number[8];		//周围按钮下方提示信息数字
-
+	CCostPlayer price[8];	//价格
 
 	void initSprite();
 	void initListener();
@@ -61,4 +62,7 @@ private:
 	void clickEvent_sellTower();
 	void clickEvent_sellSpellPos();
 	void clickEvent_sellSpellTower();
+
+	void updateMoney();
+
 };

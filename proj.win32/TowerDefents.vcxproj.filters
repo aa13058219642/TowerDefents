@@ -509,6 +509,9 @@
     <ClInclude Include="..\Classes\TowerDefent\Message\Message.h">
       <Filter>src\TowerDefent\Message</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\GameConfig.h">
+      <Filter>src\TowerDefent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

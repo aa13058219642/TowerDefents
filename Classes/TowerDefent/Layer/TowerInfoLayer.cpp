@@ -127,7 +127,7 @@ void TowerInfoLayer::receiveMsg(Ref* pData)
 		m_card->removeFromParent();
 	}
 	//string str = StringUtils::format("card/card_%03d.png", (int)rand() % 8);
-	string str = StringUtils::format("card/card_%03d.png", m_parent->getTowerCard()->Icon);
+	string str = StringUtils::format("card/card_%03d.png", m_parent->getTowerCard().Icon);
 	//Sprite* m_card = Sprite::create(str);
 
 	Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(str);

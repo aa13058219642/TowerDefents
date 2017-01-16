@@ -16,15 +16,12 @@ public:
 	float HP_RegenRate, MP_RegenRate, AP_RegenRate;
 	Name ActorName;
 	Color3B color;
-	CCostPlayer costPlayer;
+	float cost;
+	CCostPlayer price;
+	float sell;
+	int spellPosPrice[8];
 
 	vector<Name> weaponName;
 	vector<Name> skillName;
-	/*
-	HP,MP,AP( RegenRate )
-	ActorName,Color
-	Cost
-	*/
-
 };
 

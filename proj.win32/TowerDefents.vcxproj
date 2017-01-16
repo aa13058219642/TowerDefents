@@ -256,6 +256,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\Card\SpellCardManager.h" />
     <ClInclude Include="..\Classes\TowerDefent\Card\TowerCard.h" />
     <ClInclude Include="..\Classes\TowerDefent\Card\TowerCardManager.h" />
+    <ClInclude Include="..\Classes\TowerDefent\GameConfig.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h" />

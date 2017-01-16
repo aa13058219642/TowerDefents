@@ -132,7 +132,7 @@ void GridPos::onClick()
 	}
 }
 
-void GridPos::buildTower(const TowerCard* towerCard)
+void GridPos::buildTower(const TowerCard towerCard)
 {
 	m_type = EGridPosType::GridPosType_Tower;
 	m_tower->buildTower(towerCard);
@@ -145,7 +145,7 @@ void GridPos::buildSpellPos(Tower* parent, Direction dirRelativeToTower)
 	m_dir = dirRelativeToTower;
 }
 
-void GridPos::buildSpellTower(const SpellCard* spellTower)
+void GridPos::buildSpellTower(const SpellCard spellTower)
 {
 	m_type = EGridPosType::GridPosType_SpellTower;
 	m_tower->buildSpellTower(m_dir, spellTower);

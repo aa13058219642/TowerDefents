@@ -31,8 +31,6 @@ GameMap::GameMap()
 	m_mapSize = Size::ZERO;
 	m_map = nullptr;
 
-	for (int i = 0; i < 8; i++)
-		m_SpellCard[i] = "";
 }
 
 GameMap::~GameMap()
@@ -192,32 +190,41 @@ bool GameMap::initMap(int level)
 	bool flag = true;
 
 	do{
+		SpellCardManager::getInstance()->LoadResource();
+		TowerCardManager::getInstance()->LoadResource();
+
+		std::vector<TowerCard> m_TowerCard;
+		std::vector<SpellCard> m_SpellCard;
+		auto towerMgr = TowerCardManager::getInstance();
+		auto spellMgr = SpellCardManager::getInstance();
+
+
+		SpellCard s(*spellMgr->getSpellCard("Damage_Add_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("Damage_Add_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("Range_Add_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("ColdDown_Div_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("TargetCount_Add_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("CriticalChance_Add_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("MaxDamage_Add_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("CriticalMultiplier_Add_I"));
+		m_SpellCard.push_back(*spellMgr->getSpellCard("BoomRange_Add_I"));
+							  
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card000"));
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card001"));
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card002"));
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card003"));
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card004"));
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card005"));
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card006"));
+		m_TowerCard.push_back(*towerMgr->getTowerCard("card007"));
+
 		//玩家选择的卡牌
 		Player* player = Player::getInstance();
 		player->reset();
 		player->setMoney(2000);
 		player->setLife(20);
-
-		m_SpellCard[0] = "Damage_Add_I";
-		m_SpellCard[1] = "Range_Add_I";
-		m_SpellCard[2] = "ColdDown_Div_I";
-		m_SpellCard[3] = "TargetCount_Add_I";
-		m_SpellCard[4] = "CriticalChance_Add_I";
-		m_SpellCard[5] = "MaxDamage_Add_I";
-		m_SpellCard[6] = "CriticalMultiplier_Add_I";
-		m_SpellCard[7] = "BoomRange_Add_I";
-
-		m_TowerCard[0] = "card000";
-		m_TowerCard[1] = "card001";
-		m_TowerCard[2] = "card002";
-		m_TowerCard[3] = "card003";
-		m_TowerCard[4] = "card004";
-		m_TowerCard[5] = "card005";
-		m_TowerCard[6] = "card006";
-		m_TowerCard[7] = "card007";
-
-
-
+		player->setTowerCard(m_TowerCard);
+		player->setSpellCard(m_SpellCard);
 
 		//初始化所有Manager
 		WaveManager::getInstance()->init();
@@ -242,8 +249,6 @@ bool GameMap::initMap(int level)
 		AnimateManager::getInstance()->LoadResource();
 		ActorManager::getInstance()->LoadResource();
 		WeaponManager::getInstance()->LoadResource();
-		SpellCardManager::getInstance()->LoadResource();
-		TowerCardManager::getInstance()->LoadResource();
 		EffectManager::getInstance()->LoadResource();
 
 
@@ -363,16 +368,6 @@ GridPos* GameMap::getGridPos(Point pos)
 			return var;
 	}
 	return nullptr;
-}
-
-const Name* GameMap::getSpellCard()
-{
-	return m_SpellCard;
-}
-
-const Name* GameMap::getTowerCard()
-{
-	return m_TowerCard;
 }
 
 

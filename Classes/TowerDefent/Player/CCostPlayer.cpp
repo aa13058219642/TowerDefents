@@ -19,7 +19,6 @@ bool CCostPlayer::isCanPay(CGameData* gamedata)
 
 	if (player->getMoney() >= this->money)
 	{
-
 		return true;
 	}
 
@@ -28,7 +27,8 @@ bool CCostPlayer::isCanPay(CGameData* gamedata)
 
 void CCostPlayer::payCost(CGameData* gamedata)
 {
-
+	Player* player = static_cast<Player*>(gamedata);
+	player->addMoney(-this->money);
 }
 
 

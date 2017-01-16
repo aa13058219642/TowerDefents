@@ -21,9 +21,7 @@ Tower::Tower(GridPos* GridPos)
 	do{
 		m_gridPos = GridPos;
 
-		for (int i = 0; i < 8; i++)
-			m_SpellTower[i] = nullptr;
-
+		spellPosCount = 0;
 		setPos(GridPos->getPos());
 		setType( EUnitType::Tower);
 		flag = true;
@@ -37,35 +35,39 @@ Color3B Tower::getColor()
 	return m_color;
 }
 
-const TowerCard* Tower::getTowerCard()
+TowerCard Tower::getTowerCard()
 {
 	return m_TowerCard;
 }
 
+int Tower::getSpellPosCount()
+{
+	return spellPosCount;
+}
 
 
-void Tower::buildTower(const TowerCard* towerCard)
+void Tower::buildTower(const TowerCard towerCard)
 {
 	Radius = 32;
 	m_TowerCard = towerCard;
 
-	m_color = towerCard->color;
-	HP = AbilityEx<float>(towerCard->HP, 0, towerCard->HP);
-	MP = AbilityEx<float>(towerCard->MP, 0, towerCard->MP);
-	AP = AbilityEx<float>(towerCard->AP, 0, towerCard->AP);
-	HP_RegenRate = towerCard->HP_RegenRate;
-	MP_RegenRate = towerCard->MP_RegenRate;
-	AP_RegenRate = towerCard->AP_RegenRate;
+	m_color = towerCard.color;
+	HP = AbilityEx<float>(towerCard.HP, 0, towerCard.HP);
+	MP = AbilityEx<float>(towerCard.MP, 0, towerCard.MP);
+	AP = AbilityEx<float>(towerCard.AP, 0, towerCard.AP);
+	HP_RegenRate = towerCard.HP_RegenRate;
+	MP_RegenRate = towerCard.MP_RegenRate;
+	AP_RegenRate = towerCard.AP_RegenRate;
 
-	m_weapon = WeaponManager::getInstance()->getWeapon(towerCard->weaponName[0]);
+	m_weapon = WeaponManager::getInstance()->getWeapon(towerCard.weaponName[0]);
 
-	for (const string& skillname : towerCard->skillName)
+	for (const string& skillname : towerCard.skillName)
 	{
 		this->addSkill(SkillManager::getInstance()->createCSkill(skillname, this));
 	}
 	//this->setActorName(StringUtils::format("Tower_%03d", towerCard->ID));
 
-	this->setActorName(towerCard->ActorName);
+	this->setActorName(towerCard.ActorName);
 	this->bindActor();
 	this->m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
 }
@@ -74,17 +76,18 @@ void Tower::buildSpellTowerPos(Direction direction)
 {
 	//m_SpellTower[direction] = new SpellTower(this, direction);
 	string str = StringUtils::format("spellPos%03d", (int)direction);
-	m_actor->playEffect(str, 99999, m_color, Point::ZERO, -999);
+	m_actor->playEffect(str, FLT_MAX, m_color, Point::ZERO, 1);
+	spellPosCount++;
 }
 
-void Tower::buildSpellTower(Direction direction, const SpellCard* spellTower)
+void Tower::buildSpellTower(Direction direction, const SpellCard spellTower)
 {
 
-	this->addBehavior(BehaviorManager::getInstance()->createBehavior(spellTower->behaviorName));
+	this->addBehavior(BehaviorManager::getInstance()->createBehavior(spellTower.behaviorName));
 
 	GridPos* GridPos = GameMap::getInstance()->getGridPos(m_gridPos->getAroundGridPosID(direction));
-	string str = StringUtils::format("SpellTower_%03d", spellTower->Icon);
-	m_actor->playEffect(str, 99999, m_color, Point(GridPos->getPos() - m_pos), 0);
+	string str = StringUtils::format("SpellTower_%03d", spellTower.Icon);
+	m_actor->playEffect(str, FLT_MAX, m_color, Point(GridPos->getPos() - m_pos), 2);
 }
 
 void Tower::sellSpellTower(Direction direction)

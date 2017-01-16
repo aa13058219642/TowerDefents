@@ -38,9 +38,9 @@ public:
 
 	void initTower();
 	
-	void buildTower(const TowerCard* towerCard);
+	void buildTower(const TowerCard towerCard);
 	void buildSpellPos(Tower* parent, Direction dirRelativeToTower);
-	void buildSpellTower(const SpellCard* spellTower);
+	void buildSpellTower(const SpellCard spellTower);
 
 	void drawMyOutLine(DrawNode* drawNode);
 private: 

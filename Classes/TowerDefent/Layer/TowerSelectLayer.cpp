@@ -4,7 +4,8 @@
 #include "Tower.h"
 #include "SpellCardManager.h"
 #include "TowerCardManager.h"
-
+#include "Player.h"
+#include "GameConfig.h"
 //using namespace cocos2d::ui;
 
 TowerSelectLayer::TowerSelectLayer(){
@@ -146,6 +147,7 @@ void TowerSelectLayer::initListener()
 	//listener->setSwallowTouches(true);//截断触摸事件
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+	this->msgSubscribe(Message_Global);
 
 	//订阅消息
 	NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(TowerSelectLayer::receiveMsg), Message_TowerSelectLayer, NULL);
@@ -178,6 +180,14 @@ void TowerSelectLayer::receiveMsg(Ref* pData)
 	}
 }
 
+
+void TowerSelectLayer::receive(const Message* message)
+{
+	if (message->keyword == "updateMoney")
+	{
+		updateMoney();
+	}
+}
 
 
 
@@ -308,12 +318,11 @@ void TowerSelectLayer::showFor_BuildTower()
 		{
 			a_bt[i]->setSpriteFrame(StringUtils::format("Tower_%03d.png", i));
 			//a_bt[i]->setSpriteFrame("TowerSelect_BuildTower.png");
-			a_number[i]->setString("9999");
 			a_number[i]->setVisible(true);
 			a_bg[i]->setVisible(true);
 			a_layer[i]->setVisible(true);
 		}
-
+		this->updateMoney();
 		this->show();
 	}
 }
@@ -328,6 +337,7 @@ void TowerSelectLayer::showFor_BuildSpellPos()
 		const int* around = m_gridPos->getAroundGridPosID();
 		auto gamemap = GameMap::getInstance();
 		for (int i = 0; i < 8; i++)
+		{
 			if (around[i] != -1 && gamemap->getGridPos(around[i])->getType() == EGridPosType::GridPosType_Empty)
 			{
 				a_bt[i]->setSpriteFrame(StringUtils::format("TowerSelect_SpellPos_%03d.png", i));
@@ -335,6 +345,8 @@ void TowerSelectLayer::showFor_BuildSpellPos()
 				a_bg[i]->setVisible(true);
 				a_layer[i]->setVisible(true);
 			}
+		}
+		this->updateMoney();
 		this->show();
 	}
 }
@@ -356,22 +368,20 @@ void TowerSelectLayer::showFor_BuildSpellTower(const NotificationMsg& msg)
 		const int* around = m_gridPos->getAroundGridPosID();
 		auto gamemap = GameMap::getInstance();
 
-		const Name* spellcard = gamemap->getSpellCard();
-
-		for (int i = 0; i < 8; i++)
+		//const Name* spellcard = gamemap->getSpellCard();
+		auto spellcard = Player::getInstance()->getSpellCard();
+		int size = spellcard.size();
+		for (int i = 0; i < size; i++)
 		{
-			if (!spellcard[i].empty())
+			if (!spellcard[i].name.empty())
 			{
-				const SpellCard* s = SpellCardManager::getInstance()->getSpellCard(spellcard[i]);
-				a_bt[i]->setSpriteFrame(StringUtils::format("TowerSelect_SpellTower_%03d.png", s->Icon));
-				//a_bt[i]->setSpriteFrame("SpellTower_000.png");
-				a_number[i]->setString("9999");
+				a_bt[i]->setSpriteFrame(StringUtils::format("TowerSelect_SpellTower_%03d.png", spellcard[i].Icon));
 				a_number[i]->setVisible(true);
 				a_bg[i]->setVisible(true);
 				a_layer[i]->setVisible(true);
 			}
 		}
-
+		this->updateMoney();
 		this->show();
 	}
 }
@@ -482,30 +492,43 @@ void TowerSelectLayer::clickEvent_showLayerFor_BuildSpellPos()
 void TowerSelectLayer::clickEvent_buildTower(Direction dir)
 {
 	//log("clickEvent_buildTower");
-	string TowerName = GameMap::getInstance()->getTowerCard()[dir];
-	const TowerCard* tower = TowerCardManager::getInstance()->getTowerCard(TowerName);
-	//m_gridPos->buildSpellTower(tower);
-	
-	
-	m_gridPos->buildTower(tower);
+	Player* player = Player::getInstance();
+	TowerCard towercard = player->getTowerCard()[dir];
+	if (towercard.price.isCanPay(player))
+	{
+		player->addTowerPrice(dir, TowerPriceAddition);
+		towercard.price.payCost(player);
+		m_gridPos->buildTower(towercard);
+	}
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_buildSpellPos(Direction dir)
 {
 	//log("clickEvent_buildSpellPos");
-	m_gridPos->getTower()->buildSpellTowerPos(dir);
-	GridPos* GridPos = GameMap::getInstance()->getGridPos(m_gridPos->getAroundGridPosID(dir));
-	GridPos->buildSpellPos(m_gridPos->getTower(), dir);
+	Player* player = Player::getInstance();
+	if (price[dir].isCanPay(player))
+	{
+		price[dir].payCost(player);
+		m_gridPos->getTower()->buildSpellTowerPos(dir);
+		GridPos* GridPos = GameMap::getInstance()->getGridPos(m_gridPos->getAroundGridPosID(dir));
+		GridPos->buildSpellPos(m_gridPos->getTower(), dir);
+	}
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_buildSpellTower(Direction dir)
 {
 	//log("clickEvent_buildSpellTower");
-	string spellTowerName = GameMap::getInstance()->getSpellCard()[dir];
-	const SpellCard* spell = SpellCardManager::getInstance()->getSpellCard(spellTowerName);
-	m_gridPos->buildSpellTower(spell);
+	Player* player = Player::getInstance();
+	SpellCard spellcard = player->getSpellCard()[dir];
+	if (spellcard.price.isCanPay(player))
+	{
+		player->addSpellPrice(dir, SpellTowerPriceAddition);
+		spellcard.price.payCost(player);
+		m_gridPos->buildSpellTower(spellcard);
+	}
+
 	this->cancel();
 }
 
@@ -533,3 +556,56 @@ void TowerSelectLayer::clickEvent_sellSpellTower()
 
 
 
+void TowerSelectLayer::updateMoney()
+{
+	float money = Player::getInstance()->getMoney();
+	int size;
+	if (m_state == ETowerSelectLayerState::ShowFor_BuildTower)
+	{
+		auto towercard = Player::getInstance()->getTowerCard();
+		size = towercard.size();
+		for (int i = 0; i < size; i++)
+		{
+			price[i].money = towercard[i].price.money;
+		}
+
+	}
+	else if (m_state == ETowerSelectLayerState::ShowFor_BuildSpellPos)
+	{
+		const int* around = m_gridPos->getAroundGridPosID();
+		
+		size = 8;
+		int SpellPosCount = m_gridPos->getTower()->getSpellPosCount();
+		TowerCard towercard = m_gridPos->getTower()->getTowerCard();
+		for (int i = 0; i < 8; i++)
+		{
+			price[i].money = towercard.spellPosPrice[i] + SpellPosCount * SpellPosPriceAddition;
+		}
+	}
+	else if (m_state == ETowerSelectLayerState::ShowFor_BuildSpellTower)
+	{
+		auto spellcard = Player::getInstance()->getSpellCard();
+		size = spellcard.size();
+		for (int i = 0; i < size; i++)
+		{
+			price[i].money = spellcard[i].price.money;
+		}
+	}
+	else
+	{
+		return;
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		a_number[i]->setString(StringUtils::format("%d", (int)price[i].money));
+		if (money < price[i].money)
+		{
+			a_number[i]->setColor(Color3B::RED);
+		}
+		else
+		{
+			a_number[i]->setColor(Color3B::WHITE);
+		}
+	}
+}

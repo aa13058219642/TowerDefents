@@ -47,6 +47,8 @@ void TowerCardManager::LoadResource()
 
 void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 {
+	bool fullLoad = true;
+	if (resNameList.size() != 0)fullLoad = false;
 
 	//1.打开文件
 	FileUtils* fin = FileUtils::getInstance();
@@ -60,8 +62,6 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 	CCASSERT(root.IsObject() && root.HasMember("TowerCard") && root["TowerCard"].IsArray(), "illegal [TowerCard.json]");
 
 	//3.读取json数据
-	bool fullLoad = true;
-	if (resNameList.size() != 0)fullLoad = false;
 	int Size = root["TowerCard"].Size();
 	for (int i = 0; i < Size; i++) {
 		JsonNode jNode = root["TowerCard"][i];
@@ -84,10 +84,17 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 			if (jNode.HasMember("Color_R"))			towercard->color.r = jNode["Color_R"].GetInt();
 			if (jNode.HasMember("Color_G"))			towercard->color.g = jNode["Color_G"].GetInt();
 			if (jNode.HasMember("Color_B"))			towercard->color.b = jNode["Color_B"].GetInt();
+			if (jNode.HasMember("cost"))			towercard->cost = jNode["cost"].GetDouble();
+			if (jNode.HasMember("price"))			towercard->price.money = jNode["price"].GetDouble();
+			if (jNode.HasMember("sell"))			towercard->sell = jNode["sell"].GetDouble();
 
-			//###
-			towercard->costPlayer.money = towercard->ID * 20;
-
+			if (jNode.HasMember("spellPosPrice") && jNode["spellPosPrice"].IsArray())
+			{
+				int s = jNode["spellPosPrice"].Size();
+				JsonNode node = jNode["spellPosPrice"];
+				for (int i = 0; i < s; i++)
+					towercard->spellPosPrice[i] = node[i].GetInt();
+			}
 			if (jNode.HasMember("weaponName") && jNode["weaponName"].IsArray())
 			{
 				int s = jNode["weaponName"].Size();
@@ -109,7 +116,7 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 
 void TowerCardManager::FreeAllResource()
 {
-
+	
 }
 
 void TowerCardManager::FreeResource(const vector<Name>& resName)
