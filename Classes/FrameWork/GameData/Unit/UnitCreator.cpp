@@ -13,21 +13,24 @@ UnitCreator::~UnitCreator()
 }
 
 
-CUnit* UnitCreator::Create(string typeName, int tag)
+CGameData* UnitCreator::Create(string className, string typeName)
 {
-	if (typeName == string("CUnit"))
+	CGameData* data = nullptr;
+	if (className == string("CUnit"))
 	{
-		return Create(UTYPE_CUNIT, tag);
+		data = Create(typeid(CUnit).hash_code(), typeName);
 	}
-	return nullptr;
+	return data;
 }
 
-CUnit* UnitCreator::Create(int typeID, int tag)
+CGameData* UnitCreator::Create(int classHash, string typeName)
 {
-	switch (typeID)
-	{
-	case UTYPE_CUNIT: return new CUnit();
-	default: return nullptr;
-	}
-	return nullptr;
+	CGameData* data;
+
+	if (classHash == typeid(CUnit).hash_code())
+		data = new CUnit();
+	else
+		data = nullptr;
+
+	return data;
 }

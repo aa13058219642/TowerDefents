@@ -30,6 +30,10 @@ public:
 	const Rect& getRect();
 	Point getPos();
 	Tower* getTower();
+	float getSellPrice();
+	Direction getDirection();
+	void sell();
+	void reset();
 
 	void setAroundGridPosID(const int* around);
 	void setAroundGridPosID(Direction dir, int id);
@@ -46,6 +50,7 @@ public:
 private: 
 	EGridPosType m_type;
 	Tower* m_tower;
+	Tower* m_parent;
 	Rect m_rect;
 	Point m_pos;
 	Direction m_dir;

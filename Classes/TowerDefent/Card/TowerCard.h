@@ -7,7 +7,8 @@ public:
 	TowerCard();
 	~TowerCard();
 
-	int ID;
+	int ID;			//所有卡片的ID
+	int gid;		//游戏进行时的ID（0-7）
 	int Icon;
 	Name uiName;
 	Name uiDescription;
@@ -18,7 +19,6 @@ public:
 	Color3B color;
 	float cost;
 	CCostPlayer price;
-	float sell;
 	int spellPosPrice[8];
 
 	vector<Name> weaponName;

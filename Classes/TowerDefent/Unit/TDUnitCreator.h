@@ -1,8 +1,6 @@
 #pragma once
 #include "stdfax.h"
 
-#define UTYPE_BULLET 1
-
 namespace cocosgalaxy
 {
 	namespace EUnitType
@@ -22,13 +20,12 @@ namespace cocosgalaxy
 };
 
 
-
 class TDUnitCreator : public cocosgalaxy::UnitCreator
 {
 public:
 	TDUnitCreator();
 	~TDUnitCreator();
 
-	virtual CUnit* Create(string typeName, int tag = 0);
-	virtual CUnit* Create(int typeID, int tag = 0);
+	virtual CGameData* Create(string className, string typeName = "");
+	virtual CGameData* Create(int classHash, string typeName = "");
 };

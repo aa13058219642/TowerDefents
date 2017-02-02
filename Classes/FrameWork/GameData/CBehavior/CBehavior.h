@@ -6,12 +6,6 @@
 
 namespace cocosgalaxy
 {
-
-	enum EBehaviorType{
-		ECBehavior,
-		ECBeahaviorBuff
-	};
-
 	class CBehavior : public CGameData
 	{
 	public:
@@ -37,10 +31,10 @@ namespace cocosgalaxy
 		virtual void update(float dt) = 0;
 
 		//void setParent(CUnit* parent);
-		EBehaviorType getType();
+		//EBehaviorType getType();
 		bool isDeath();
 	protected:
-		EBehaviorType m_type;
+		//EBehaviorType m_type;
 		EBehaviorState m_state;
 		CUnit* m_parent;
 	};

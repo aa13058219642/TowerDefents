@@ -31,6 +31,7 @@ int BulletFactory::LoadBulletList()
 	type = EBulletType::Ball;
 
 	bullet = new Bullet();
+	bullet->name = "Bullet001";
 	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(false);
 	bullet->setIsFaceToTargetPos(false);
@@ -48,6 +49,7 @@ int BulletFactory::LoadBulletList()
 	//ID=1 ///////////////////////////////////////////////////////////////
 	type = EBulletType::Missile;
 	bullet = new Bullet();
+	bullet->name = "Bullet002";
 	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(true);
 	bullet->setIsFaceToTargetPos(true);
@@ -64,6 +66,7 @@ int BulletFactory::LoadBulletList()
 	//ID=2 ///////////////////////////////////////////////////////////////
 	type = EBulletType::Missile;
 	bullet = new Bullet();
+	bullet->name = "Bullet003";
 	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(false);
 	bullet->setIsFaceToTargetPos(true);
@@ -98,6 +101,21 @@ Bullet* BulletFactory::CreateBullet(int BulletID)
 	return bulletlist[BulletID]->clone();
 }
 
+Bullet* BulletFactory::CreateBullet(string bulletName)
+{
+	Bullet* bullet = nullptr;
+	for (auto& b : bulletlist)
+	{
+		if (b.second->name == bulletName)
+		{
+			bullet = b.second->clone();
+		}
+	}
+
+	CCASSERT(bullet != nullptr, "Unknow bullet name !");
+
+	return bullet;
+}
 
 
 

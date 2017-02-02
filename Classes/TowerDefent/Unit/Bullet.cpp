@@ -27,8 +27,8 @@ Bullet::Bullet(CWeapon* weapon, int parentID, int targetID, Point pos)
 	m_parentID = parentID;
 	m_targetID = targetID;
 	m_pos = pos;
-	//m_hitEffect = weapon.createHitEffect(parentID, targetID);
-	m_weapon = new CWeapon(*weapon);
+	m_hitEffect = EffectManager::getInstance()->createHitEffect(m_weapon, m_parentID, m_targetID);
+	m_weapon = nullptr;
 }
 
 
@@ -42,12 +42,14 @@ Bullet* Bullet::clone()
 {
 
 	Bullet* bullet = new Bullet();
+	bullet->name = this->name;
 	bullet->setType(EUnitType::Bullet);
 	bullet->setIsTrackTarget(this->isTrackTarget);
 	bullet->setIsFaceToTargetPos(this->isFaceToTargetPos);
 	bullet->setOnHitEffect(this->m_hitEffect->clone());
 	bullet->setActorName(this->m_actorName);
-
+	bullet->Radius = this->Radius;
+	bullet->Speed = this->Speed;
 	return bullet;
 }
 
@@ -151,12 +153,15 @@ void Bullet::onHitTarget()
 {
 	CUnit* target = getTarget();
 
-	if (target != nullptr){
-		target->addEffect(EffectManager::getInstance()->createHitEffect(m_weapon,ID, m_targetID));
+	if (target != nullptr)
+	{
+		CEffect* effect = m_hitEffect->clone();
+		effect->setTarget(target->ID);
+		target->addEffect(effect);
 	}
 	else
 	{
-		EffectManager::getInstance()->createHitEffect(m_weapon, ID, m_targetID)->execute();
+		m_hitEffect->execute();
 	}
 
 	this->onDead();
@@ -185,4 +190,7 @@ void Bullet::onTargetDead()
 }
 
 
-
+void Bullet::onBindSprite()
+{
+	m_actor->setLocalLevel(1);
+}

@@ -3,6 +3,16 @@
 #include "EffectManager.h"
 using namespace cocosgalaxy;
 
+CEffectEnumArea::CEffectEnumArea()
+{
+	this->filter = 0;
+	this->areaRadius = 0;
+	this->applyEffect = "";
+	this->effect = nullptr;
+	this->m_parentID = -1;
+	this->m_pos = Point::ZERO;
+}
+
 CEffectEnumArea::CEffectEnumArea(unsigned int filter, int areaRadius, string applyEffect, CEffect* effect, int parentID)
 {
 	this->filter = filter;

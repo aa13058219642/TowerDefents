@@ -3,7 +3,7 @@ using namespace cocosgalaxy;
 
 CBehavior::CBehavior()
 {
-	m_type = EBehaviorType::ECBehavior;
+	//m_type = EBehaviorType::ECBehavior;
 	m_state = EBehaviorState::EBehaviorState_Unused;
 	m_parent = nullptr;
 }
@@ -20,10 +20,10 @@ CBehavior::~CBehavior()
 //}
 
 
-EBehaviorType CBehavior::getType()
-{
-	return m_type;
-}
+//EBehaviorType CBehavior::getType()
+//{
+//	return m_type;
+//}
 
 
 

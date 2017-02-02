@@ -8,6 +8,9 @@ namespace cocosgalaxy
 	public:
 		CGameData();
 		~CGameData();
+
+		int ID;
+		std::string name;
 	};
 
 }

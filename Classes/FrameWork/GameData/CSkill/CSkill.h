@@ -10,9 +10,6 @@ namespace cocosgalaxy
 	public:
 		/* ---- Ù–‘---- */
 
-		int ID;
-		string name;
-
 
 		/* ----∑Ω∑®---- */
 
@@ -33,5 +30,7 @@ namespace cocosgalaxy
 		string groupID;
 		ESkillType m_type;
 		int m_parentID;
+		int m_targetID;
+		Point m_targetPos;
 	};
 }

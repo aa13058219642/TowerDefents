@@ -4,10 +4,10 @@
 #include "CActor.h"
 #include "ActorManager.h"
 #include "SkillManager.h"
-#include "WeaponManager.h"
-#include "BehaviorManager.h"
+
 #include "GameMap.h"
 #include "Bullet.h"
+#include "GameConfig.h"
 
 Tower::~Tower()
 {
@@ -26,6 +26,13 @@ Tower::Tower(GridPos* GridPos)
 		setType( EUnitType::Tower);
 		flag = true;
 		
+		m_TowerCard = TowerCard();
+		for (int i = 0; i < 8; i++)
+		{
+			m_SpellTower[i] = nullptr;
+		}
+
+
 	} while (0);
 }
 
@@ -40,9 +47,38 @@ TowerCard Tower::getTowerCard()
 	return m_TowerCard;
 }
 
+const SpellCard* Tower::getSpellCard(Direction direction)
+{
+	return m_SpellTower[direction];
+
+}
+
 int Tower::getSpellPosCount()
 {
 	return spellPosCount;
+}
+
+float Tower::getSumPrice()
+{
+	float sum = m_TowerCard.price.money;
+	for (int i = 0; i < 8; i++)
+	{
+		if (m_SpellTower[i] != nullptr)
+		{
+			sum += m_SpellTower[i]->price.money;
+		}
+	}
+	return sum;
+}
+
+float Tower::getSellPrice()
+{
+	return getSumPrice()* SellPercent;
+}
+
+float Tower::getSellSpellPosPrice(Direction direction)
+{
+	return (m_TowerCard.spellPosPrice[direction] + (spellPosCount - 1)*SpellPosPriceAddition)*SellPercent;
 }
 
 
@@ -50,6 +86,7 @@ void Tower::buildTower(const TowerCard towerCard)
 {
 	Radius = 32;
 	m_TowerCard = towerCard;
+	spellPosCount = 0;
 
 	m_color = towerCard.color;
 	HP = AbilityEx<float>(towerCard.HP, 0, towerCard.HP);
@@ -59,13 +96,11 @@ void Tower::buildTower(const TowerCard towerCard)
 	MP_RegenRate = towerCard.MP_RegenRate;
 	AP_RegenRate = towerCard.AP_RegenRate;
 
-	m_weapon = WeaponManager::getInstance()->getWeapon(towerCard.weaponName[0]);
-
+	this->setWeapon(towerCard.weaponName[0]);
 	for (const string& skillname : towerCard.skillName)
 	{
-		this->addSkill(SkillManager::getInstance()->createCSkill(skillname, this));
+		this->addSkill(skillname);
 	}
-	//this->setActorName(StringUtils::format("Tower_%03d", towerCard->ID));
 
 	this->setActorName(towerCard.ActorName);
 	this->bindActor();
@@ -74,36 +109,56 @@ void Tower::buildTower(const TowerCard towerCard)
 
 void Tower::buildSpellTowerPos(Direction direction)
 {
-	//m_SpellTower[direction] = new SpellTower(this, direction);
-	string str = StringUtils::format("spellPos%03d", (int)direction);
-	m_actor->playEffect(str, FLT_MAX, m_color, Point::ZERO, 1);
+	string name = StringUtils::format("spellPos%03d", (int)direction);
+	m_actor->playEffect(name, FLT_MAX, m_color, Point::ZERO, 0, direction);
+
+	m_TowerCard.price.money += m_TowerCard.spellPosPrice[direction] + spellPosCount*SpellPosPriceAddition;
 	spellPosCount++;
 }
 
 void Tower::buildSpellTower(Direction direction, const SpellCard spellTower)
 {
-
-	this->addBehavior(BehaviorManager::getInstance()->createBehavior(spellTower.behaviorName));
+	this->addBehavior(spellTower.behaviorName);
 
 	GridPos* GridPos = GameMap::getInstance()->getGridPos(m_gridPos->getAroundGridPosID(direction));
-	string str = StringUtils::format("SpellTower_%03d", spellTower.Icon);
-	m_actor->playEffect(str, FLT_MAX, m_color, Point(GridPos->getPos() - m_pos), 2);
+	string name = StringUtils::format("SpellTower_%03d", spellTower.Icon);
+	m_actor->playEffect(name, FLT_MAX, m_color, Point(GridPos->getPos() - m_pos), 0, direction);
+
+	m_SpellTower[direction] = new SpellCard(spellTower);
 }
 
-void Tower::sellSpellTower(Direction direction)
-{
-	//delete m_SpellTower[direction];
-	//m_SpellTower[direction] = nullptr;
-}
 
 void Tower::sellTower()
 {
 	for (int i = 0; i < 8; i++)
-		this->sellSpellTower((Direction)i);
+	{
+		if (m_SpellTower[(Direction)i] != nullptr)
+		{
+			this->sellSpellTower((Direction)i);
+		}
+	}
 
-	ActorManager::getInstance()->removeActor(ID);
+	this->setActorName("blank");
+	this->bindActor();
 }
 
+void Tower::sellSpellPos(Direction direction)
+{
+	string name = StringUtils::format("spellPos%03d", (int)direction);
+	m_actor->removeEffect(name, direction);
+
+	spellPosCount--;
+	m_TowerCard.price.money -= m_TowerCard.spellPosPrice[direction] + spellPosCount*SpellPosPriceAddition;
+}
+
+void Tower::sellSpellTower(Direction direction)
+{
+	string name = StringUtils::format("SpellTower_%03d", m_SpellTower[direction]->Icon);
+	m_actor->removeEffect(name, direction);
+	this->removeBehavior(m_SpellTower[direction]->behaviorName);
+
+	m_SpellTower[direction] = nullptr;
+}
 
 void Tower::update(float dt)
 {
@@ -126,9 +181,6 @@ void Tower::onClick()
 
 }
 
-
-
-
 void Tower::onAttack(CUnit* target)
 {
 	Bullet* bullet = new Bullet(m_weapon, this->ID, target->ID, this->getPos());
@@ -139,8 +191,6 @@ void Tower::onBindSprite()
 {
 	m_actor->setShowUnitPos(true);
 }
-
-
 
 void Tower::drawMyOutLine(DrawNode* drawNode){
 	Point point[4];

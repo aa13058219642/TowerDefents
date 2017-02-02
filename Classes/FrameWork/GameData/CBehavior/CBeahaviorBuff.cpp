@@ -3,7 +3,7 @@ using namespace cocosgalaxy;
 
 CBeahaviorBuff::CBeahaviorBuff()
 {
-	m_type = EBehaviorType::ECBeahaviorBuff;
+	//m_type = EBehaviorType::ECBeahaviorBuff;
 	isTimeLimitBuff = false;
 	m_lifetime = 0;
 	m_cycle = 0;
@@ -21,7 +21,7 @@ CBehavior* CBeahaviorBuff::clone()
 {
 	CBeahaviorBuff* behavior = new CBeahaviorBuff();
 
-	behavior->m_type = this->m_type;
+	//behavior->m_type = this->m_type;
 	behavior->cost = this->cost;
 	behavior->m_modList = this->m_modList;
 	behavior->m_lifetime = this->m_lifetime;
@@ -69,8 +69,6 @@ void CBeahaviorBuff::Uninstall(CUnit* parent)
 	}
 	m_state = EBehaviorState::EBehaviorState_Death;
 }
-
-
 
 
 

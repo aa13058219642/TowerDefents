@@ -4,7 +4,8 @@
 #include "cocos2d.h"
 #include "ui\CocosGUI.h"
 #include "editor-support\cocostudio\CCSGUIReader.h"
-
+#include "json\stringbuffer.h"
+#include "json\writer.h"
 //USING_NS_CC;
 ////using namespace cocos2d::ui;
 ////using namespace cocostudio;
@@ -19,6 +20,7 @@ namespace cocosgalaxy
 	using std::list;
 
 	typedef std::string Name;
+	typedef rapidjson::GenericValue<rapidjson::UTF8<char>>& JsonNode;
 
 
 
@@ -34,18 +36,6 @@ namespace cocosgalaxy
 		const UnitType Death = 1 << 29;
 		const UnitType Destory = 1 << 30;
 	};
-
-	//enum EUnitType : unsigned int
-	//{
-	//	Unit_Unit = 1,
-	//	Unit_Tower = 1 << 1,
-	//	Unit_Monster = 1 << 2,
-	//	Unit_Bullet = 1 << 3,
-	//	Unit_Land = 1 << 4,
-	//	Unit_Fly = 1 << 5,
-	//	Unit_Death = 1 << 29,
-	//	Unit_Destory = 1 << 30
-	//};
 
 	enum EUnitState{
 		UnitState_Normal,

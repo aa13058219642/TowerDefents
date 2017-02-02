@@ -32,11 +32,10 @@ private:
 
 	Layer* selectLayer;
 	Sprite* bg_circle;		//背景圈
-	Sprite* bt_center;		//中心按钮
-	Layer*  a_layer[8];		//周围按钮层
-	Sprite* a_bt[8];		//周围按钮
-	Sprite* a_bg[8];		//周围按钮下方提示信息背景
-	Label* a_number[8];		//周围按钮下方提示信息数字
+	Layer*  a_layer[9];		//周围按钮层
+	Sprite* a_bt[9];		//周围按钮
+	Sprite* a_bg[9];		//周围按钮下方提示信息背景
+	Label* a_number[9];		//周围按钮下方提示信息数字
 	CCostPlayer price[8];	//价格
 
 	void initSprite();

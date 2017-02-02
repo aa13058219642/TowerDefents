@@ -8,6 +8,7 @@ UnitManager::UnitManager()
 {
 	next_UnitID = 0;
 	unitCreator = nullptr;
+	isInit = false;
 }
 
 UnitManager* UnitManager::getInstance()
@@ -31,10 +32,14 @@ void UnitManager::init(UnitCreator* unitCreator)
 	{
 		this->unitCreator = unitCreator;
 	}
+
+	isInit = true;
 }
 
 void UnitManager::update(float dt)
 {
+	CCASSERT(isInit, "the UnitManager is NOT init !");
+
 	//¸üÐÂCUnit
 	for (auto obj : m_UnitList)
 		if (!(obj->getType() & EUnitType::Death))
@@ -60,6 +65,8 @@ void UnitManager::update(float dt)
 
 void UnitManager::bindUnitCreator(UnitCreator* unitCreator)
 {
+	CCASSERT(isInit, "the UnitManager is NOT init !");
+
 	if (this->unitCreator != nullptr)
 	{
 		delete this->unitCreator;
@@ -67,14 +74,14 @@ void UnitManager::bindUnitCreator(UnitCreator* unitCreator)
 	this->unitCreator = unitCreator;
 }
 
-CUnit* UnitManager::CreateUnit(int typeID)
+CUnit* UnitManager::CreateUnit(int classHash, string typeName)
 {
-	return unitCreator->Create(typeID);
+	return static_cast<CUnit*>(unitCreator->Create(classHash, typeName));
 }
 
-CUnit* UnitManager::CreateUnit(string typeName)
+CUnit* UnitManager::CreateUnit(string className, string typeName)
 {
-	return unitCreator->Create(typeName);
+	return static_cast<CUnit*>(unitCreator->Create(className, typeName));
 }
 
 

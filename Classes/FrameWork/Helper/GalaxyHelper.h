@@ -1,18 +1,12 @@
 #pragma once
 #include "GalaxyBase.h"
 
-namespace cocosgalaxy
+namespace helper
 {
-	class GalaxyHelper
-	{
-	public:
-		~GalaxyHelper();
-		static int hashCode(string str);
+	int hashCode(std::string str);
 
-		/*return [min,max) */
-		static float rand(float min, float max);
-	private:
-		GalaxyHelper();
-	};
+	/*return [min,max) */
+	float rand(float min, float max);
+
 }
 

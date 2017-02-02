@@ -43,5 +43,6 @@ protected:
 	virtual void onMove(float dt);
 	virtual void onHitTarget();
 	virtual void onDead();
+	virtual void onBindSprite();
 };
 

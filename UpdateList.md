@@ -135,20 +135,26 @@
 - 2.新建 TowerCard 类，建塔数据由 Card 决定
 - 3.采用冒险岛纸娃娃作为图片素材
 
-#v0.037
+##v0.037
 - 1.框架正式命名为CocosGalaxy
 - 2.新建CCostUnit等类，Actor、Unit改名CActor、CUnit
 - 3.设立命名空间cocosgalaxy
 
-#v0.038
+##v0.038
 - 1.新增UnitCreator和TDUnitCreator，用于统一的Unit及其子类的创建
 - 2.修复了部分CEffect中的BUG
 - 3.CocosGalaxy完全脱离了对TowerDefent文件的依赖
 
-#v0.039
+##v0.039
 - 1.PlayerCost初步完成
 - 2.Player类初步完成
 - 3.新增Message、MessageLinstener，初步完成消息机制
 
-#v0.040
+##v0.040
 - 1.完成tower、spellPos、spellTower的建造花费系统
+
+##v0.041
+- 1.完成变卖系统
+- 2.完成CEffect载入json化
+- 3.新增behaviorCreator
+- 4.大改关于Effect、Bullet、Skill等的相互调用关系

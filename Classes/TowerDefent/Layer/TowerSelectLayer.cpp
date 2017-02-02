@@ -69,15 +69,12 @@ void TowerSelectLayer::initSprite()
 	bg_circle->runAction(RepeatForever::create(RotateBy::create(60, 360)));
 	selectLayer->addChild(bg_circle);
 
-	//建塔按钮
-	bt_center = Sprite::createWithSpriteFrameName("TowerSelect_BuildTower.png");
-	bt_center->setVisible(false);
-	selectLayer->addChild(bt_center);
+
 
 	//升级按钮
 	float dis = 1.414213f * 82 / Director::getInstance()->getContentScaleFactor();
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		a_layer[i] = Layer::create();
 		Point pos(dis, 0);
@@ -91,6 +88,7 @@ void TowerSelectLayer::initSprite()
 		case SouthEast:	pos.rotate(Point::ZERO, CC_DEGREES_TO_RADIANS(315)); break;
 		case East:		pos.rotate(Point::ZERO, CC_DEGREES_TO_RADIANS(  0)); break;
 		case NorthEast:	pos.rotate(Point::ZERO, CC_DEGREES_TO_RADIANS( 45)); break;
+		case Center:	pos = Point::ZERO; break;
 		default:CCASSERT(false, "Unknow Direction"); break;
 		}
 		a_layer[i]->setPosition(pos);
@@ -116,7 +114,9 @@ void TowerSelectLayer::initSprite()
 		selectLayer->addChild(a_layer[i]);
 	}
 
-	//cocos2d::ui::Button* bt = cocos2d::ui::Button::create("", "", "", cocos2d::ui::Widget::TextureResType::PLIST);
+	//建塔按钮
+	a_bt[Direction::Center]->setSpriteFrame("TowerSelect_BuildTower.png");
+
 }
 
 void TowerSelectLayer::initListener()
@@ -220,8 +220,7 @@ void TowerSelectLayer::cancel()
 
 void TowerSelectLayer::hideAllButton()
 {
-	bt_center->setVisible(false);
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		a_layer[i]->setVisible(false);
 		a_bg[i]->setVisible(false);
@@ -239,10 +238,12 @@ void TowerSelectLayer::showFor_EmptyPos(const NotificationMsg& msg)
 		selectLayer->setPosition(pos);
 		this->hideAllButton();
 
-		bt_center->setSpriteFrame("TowerSelect_BuildTower.png");
-		bg_circle->setColor(Color3B::WHITE);
-		bt_center->setVisible(true);
+		a_bt[Direction::Center]->setSpriteFrame("TowerSelect_BuildTower.png");
+		a_bt[Direction::Center]->setColor(Color3B::WHITE);
+		a_bt[Direction::Center]->setVisible(true);
+		a_layer[Direction::Center]->setVisible(true);
 
+		bg_circle->setColor(Color3B::WHITE);
 		this->show();
 	}
 }
@@ -268,7 +269,7 @@ void TowerSelectLayer::showFor_TowerPos(const NotificationMsg& msg)
 
 		//变卖按钮
 		a_bt[Direction::South]->setSpriteFrame("TowerSelect_Sell.png");
-		a_number[Direction::South]->setString("6666");
+		a_number[Direction::South]->setString(StringUtils::format("%d", (int)m_gridPos->getSellPrice()));
 		a_number[Direction::South]->setVisible(true);
 		a_bg[Direction::South]->setVisible(true);
 		a_layer[Direction::South]->setVisible(true);
@@ -294,7 +295,7 @@ void TowerSelectLayer::showFor_SpellPos(const NotificationMsg& msg)
 
 		//变卖按钮
 		a_bt[Direction::South]->setSpriteFrame("TowerSelect_Sell.png");
-		a_number[Direction::South]->setString("333");
+		a_number[Direction::South]->setString(StringUtils::format("%d",(int)m_gridPos->getSellPrice()));
 		a_number[Direction::South]->setVisible(true);
 		a_bg[Direction::South]->setVisible(true);
 		a_layer[Direction::South]->setVisible(true);
@@ -362,8 +363,12 @@ void TowerSelectLayer::showFor_BuildSpellTower(const NotificationMsg& msg)
 		selectLayer->setPosition(pos);
 		this->hideAllButton();
 
-		bt_center->setSpriteFrame("TowerSelect_Sell.png");
-		bt_center->setVisible(true);
+		a_bt[Direction::Center]->setSpriteFrame("TowerSelect_Sell.png");
+		a_bt[Direction::Center]->setVisible(true);
+		a_number[Direction::Center]->setString(StringUtils::format("%d", (int)m_gridPos->getSellPrice()));
+		a_number[Direction::Center]->setVisible(true);
+		a_bg[Direction::Center]->setVisible(true);
+		a_layer[Direction::Center]->setVisible(true);
 
 		const int* around = m_gridPos->getAroundGridPosID();
 		auto gamemap = GameMap::getInstance();
@@ -392,15 +397,15 @@ bool TowerSelectLayer::onClick(Point pos)
 {
 	
 
-	//计算被点击的按钮( 0-7=a_bt, 8=bt_center, -1=无)
+	//计算被点击的按钮( 0-7=a_bt, 8=a_bt[Direction::Center], -1=无)
 	int index = -1;
 	do{
-		if (bt_center->isVisible())
+		if (a_bt[Direction::Center]->isVisible())
 		{
 			Rect rect = RectApplyAffineTransform(
-				Rect(Point::ZERO, bt_center->getContentSize()), 
-				bt_center->getNodeToWorldAffineTransform());
-			if (bt_center->isVisible() && rect.containsPoint(pos))
+				Rect(Point::ZERO, a_bt[Direction::Center]->getContentSize()), 
+				a_bt[Direction::Center]->getNodeToWorldAffineTransform());
+			if (a_bt[Direction::Center]->isVisible() && rect.containsPoint(pos))
 			{
 				index = Direction::Center;
 				break;
@@ -535,26 +540,60 @@ void TowerSelectLayer::clickEvent_buildSpellTower(Direction dir)
 void TowerSelectLayer::clickEvent_sellTower()
 {
 	//log("clickEvent_sellTower");
+	Tower* tower = m_gridPos->getTower();
+	Player* player = Player::getInstance();
+	player->addMoney(m_gridPos->getSellPrice());
+	player->addTowerPrice(tower->getTowerCard().gid, -TowerPriceAddition);
+
+	GameMap* gamemap = GameMap::getInstance();
+
+	for (int i = 0; i < 8; i++)
+	{
+		//恢复spell塔价格
+		if (tower->getSpellCard((Direction)i)!= nullptr)
+		{
+			player->addSpellPrice(tower->getSpellCard((Direction)i)->gid, -SpellTowerPriceAddition);
+		}
+
+		//重置与本tower有关的gridpos
+		int aid = m_gridPos->getAroundGridPosID()[i];
+		if (aid != -1)
+		{
+			GridPos* agrid = gamemap->getGridPos(aid);
+			if (agrid->getTower() == m_gridPos->getTower())
+			{
+				agrid->reset();
+			}
+		}
+
+	}
+	
+
+
+	m_gridPos->sell();
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_sellSpellPos()
 {
 	//log("clickEvent_sellSpellPos");
+	Player* player = Player::getInstance();
+	player->addMoney(m_gridPos->getSellPrice());
+
+	m_gridPos->sell();
 	this->cancel();
 }
 
 void TowerSelectLayer::clickEvent_sellSpellTower()
 {
 	//log("clickEvent_sellSpellTower");
+	Player* player = Player::getInstance();
+	player->addMoney(m_gridPos->getSellPrice());
+	player->addSpellPrice(m_gridPos->getTower()->getSpellCard(m_gridPos->getDirection())->gid, -SpellTowerPriceAddition);
+
+	m_gridPos->sell();
 	this->cancel();
 }
-
-
-
-
-
-
 
 void TowerSelectLayer::updateMoney()
 {

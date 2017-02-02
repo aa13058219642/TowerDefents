@@ -156,8 +156,6 @@ void CSkillAttactk::onAttack(CUnit* parent)
 			costPerAtk.payCost(parent);
 			missTaget = false;
 			m_parent->onAttack(target);
-			//Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
-			//UnitManager::getInstance()->addUnit(bullet);
 			targetCount--;
 		}
 	}
@@ -178,14 +176,6 @@ void CSkillAttactk::onAttack(CUnit* parent)
 
 	if (!missTaget)
 	{
-		//targetCount = m_weapon->TargetCount - targetCount;
-		//
-		//CCostUnit costAtk;
-		//costAtk.HP = m_weapon->CostBase.HP + costPerAtk * m_weapon->CostDamageRate.HP.getValue() * targetCount;
-		//costAtk.MP = m_weapon->CostBase.MP + costPerAtk * m_weapon->CostDamageRate.MP.getValue() * targetCount;
-		//costAtk.AP = m_weapon->CostBase.AP + costPerAtk * m_weapon->CostDamageRate.AP.getValue() * targetCount;
-		//costAtk.Speed = m_weapon->CostBase.Speed + costPerAtk * m_weapon->CostDamageRate.Speed.getValue() * targetCount;
-
 		m_weapon->CostBase.payCost(parent);
 	}
 }

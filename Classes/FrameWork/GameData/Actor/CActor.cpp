@@ -10,6 +10,7 @@ CActor::CActor()
 	m_pos = Point::ZERO;
 	m_defaultAnimate = "error";
 	m_face = FACE_TO_RIGHT;
+	LocalLevel = 0;
 
 	m_parent = nullptr;
 	m_sprite = nullptr;
@@ -23,6 +24,7 @@ CActor::CActor(int id, ActorData data, Layer* parent)
 	ID = id;
 	m_pos = Point::ZERO;
 	m_face = FACE_TO_RIGHT;
+	LocalLevel = 0;
 
 	m_parent = parent;
 	m_sprite = nullptr;
@@ -69,7 +71,7 @@ void CActor::setPos(Point pos)
 {
 	m_pos = pos;
 	m_layer->setPosition(m_pos);
-	m_layer->setLocalZOrder(Director::getInstance()->getVisibleSize().height - m_pos.y);
+	m_layer->setLocalZOrder(Director::getInstance()->getVisibleSize().height*(LocalLevel + 1) - m_pos.y);
 }
 
 void CActor::setRotation(float rotation)
@@ -86,6 +88,11 @@ void CActor::setDefaultAnimate(const Name& defaultAnimate)
 void CActor::setAnimateList(map<Name, Name> animateList)
 {
 	this->m_animateList = animateList;
+}
+
+void CActor::setLocalLevel(int level)
+{
+	this->LocalLevel = level;
 }
 
 
@@ -120,20 +127,23 @@ void CActor::playAction(const Name& actionName, float playtime, Color3B color)
 	}
 	else
 	{
+		//CCASSERT(false, StringUtils::format("Action [%s] NOT found !", actionName).c_str());
 		playDefaultAnimate();
 	}
 
 }
 
-void CActor::playEffect(const Name& animateName, float playtime, Color3B color, Point offset, int localZOrder)
+void CActor::playEffect(const Name& animateName, float playtime, Color3B color, Point offset, int localZOrder, int tag)
 {
 	Sprite* sprite = Sprite::create();
-	CallFunc* func = CallFunc::create(CC_CALLBACK_0(Node::removeFromParent, sprite));
+	sprite->setName(animateName);
+	sprite->setTag(tag);
 	sprite->setLocalZOrder(localZOrder);
 	sprite->setAnchorPoint(Vec2(0, 1));
 	sprite->setPosition(offset );
 	sprite->setColor(color);
 	m_layer->addChild(sprite);
+	CallFunc* func = CallFunc::create(CC_CALLBACK_0(Node::removeFromParent, sprite));
 	AnimateManager::getInstance()->playAnimate(animateName, sprite, playtime, func);
 }
 
@@ -156,6 +166,22 @@ void CActor::remove()
 		ActorManager::getInstance()->destoryActor(ID);
 	}
 }
+
+void CActor::removeEffect(const Name& animateName, int tag)
+{
+	Vector<Node*> childs = m_layer->getChildren();
+
+	for (Node* child : childs)
+	{
+		if (child->getTag() == tag && child->getName() == animateName)
+		{
+			child->removeFromParent();
+			return;
+		}
+	}
+}
+
+
 
 
 

@@ -6,7 +6,6 @@
             "name": "Damage_Add_I",
             "cost": 10,
             "price": 50,
-            "sell": 25,
             "behaviorName": "BBuff_Damage_Add_10",
             "uiName": "SpellCard_000_Name",
             "uiDescription": "SpellCard_000_Info"
@@ -18,7 +17,6 @@
             "name": "Range_Add_I",
             "cost": 10,
             "price": 100,
-            "sell": 50,
             "behaviorName": "BBuff_Range_Add_75",
             "uiName": "SpellCard_001_Name",
             "uiDescription": "SpellCard_001_Info"
@@ -29,7 +27,6 @@
             "name": "ColdDown_Div_I",
             "cost": 10,
             "price": 200,
-            "sell": 100,
             "behaviorName": "BBuff_ColdDown_Div_0.5",
             "uiName": "SpellCard_002_Name",
             "uiDescription": "SpellCard_002_Info"
@@ -40,7 +37,6 @@
             "name": "TargetCount_Add_I",
             "cost": 10,
             "price": 100,
-            "sell": 50,
             "behaviorName": "BBuff_TargetCount_Add_1",
             "uiName": "SpellCard_003_Name",
             "uiDescription": "SpellCard_003_Info"
@@ -51,7 +47,6 @@
             "name": "CriticalChance_Add_I",
             "cost": 10,
             "price": 100,
-            "sell": 50,
             "behaviorName": "BBuff_CriticalChance_Add_0.3",
             "uiName": "SpellCard_004_Name",
             "uiDescription": "SpellCard_004_Info"
@@ -62,7 +57,6 @@
             "name": "MaxDamage_Add_I",
             "cost": 10,
             "price": 100,
-            "sell": 50,
             "behaviorName": "BBuff_MaxDamage_Add_30",
             "uiName": "SpellCard_005_Name",
             "uiDescription": "SpellCard_005_Info"
@@ -73,7 +67,6 @@
             "name": "CriticalMultiplier_Add_I",
             "cost": 10,
             "price": 100,
-            "sell": 50,
             "behaviorName": "BBuff_CriticalMultiplier_Mul_2.0",
             "uiName": "SpellCard_006_Name",
             "uiDescription": "SpellCard_006_Info"
@@ -84,7 +77,6 @@
             "name": "BoomRange_Add_I",
             "cost": 10,
             "price": 100,
-            "sell": 50,
             "behaviorName": "BBuff_BoomRange_Add_75",
             "uiName": "SpellCard_007_Name",
             "uiDescription": "SpellCard_007_Info"

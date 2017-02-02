@@ -10,9 +10,10 @@ namespace cocosgalaxy
 		CSkillEffectInstant();
 		~CSkillEffectInstant();
 
+		virtual void update(float dt);
 		virtual CSkill* clone();
 
-
+		void applyEffect(string effectName);
 	};
 }
 

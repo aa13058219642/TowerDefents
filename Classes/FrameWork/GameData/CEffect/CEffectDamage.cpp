@@ -2,12 +2,23 @@
 #include "GalaxyHelper.h"
 using namespace cocosgalaxy;
 
+CEffectDamage::CEffectDamage()
+{
+	this->minDamage = 0;
+	this->maxDamage = 0;
+	this->damageType = EDamageType::EDamageType_Weapon;
+	this->effectAnimate = "";
+	this->m_parentID = -1;
+	this->m_targetID = -1;
+}
+
+
 CEffectDamage::CEffectDamage(float minDamage, float maxDamage, EDamageType damageType, Name effectAnimate, int parentID, int targetID)
 {
-	this->m_MinDamage = minDamage;
-	this->m_MaxDamage = maxDamage;
-	this->m_damageType = damageType;
-	this->m_effectAnimate = effectAnimate;
+	this->minDamage = minDamage;
+	this->maxDamage = maxDamage;
+	this->damageType = damageType;
+	this->effectAnimate = effectAnimate;
 	this->m_parentID = parentID;
 	this->m_targetID = targetID;
 }
@@ -23,8 +34,8 @@ void CEffectDamage::execute()
 	CUnit* target = getTarget();
 	if (target != nullptr)
 	{
-		target->onBeAttack(GalaxyHelper::rand(m_MinDamage, m_MaxDamage), m_damageType);
-		target->applyAEffect(m_effectAnimate);
+		target->onBeAttack(helper::rand(minDamage, maxDamage), damageType);
+		target->applyAEffect(effectAnimate);
 	}
 
 	this->setState(ECEffectState::ECEffectState_Death);
@@ -34,6 +45,6 @@ void CEffectDamage::execute()
 
 CEffect* CEffectDamage::clone()
 {
-	CEffectDamage* effect = new CEffectDamage(m_MinDamage, m_MaxDamage, m_damageType, m_effectAnimate);
+	CEffectDamage* effect = new CEffectDamage(minDamage, maxDamage, damageType, effectAnimate);
 	return effect;
 }

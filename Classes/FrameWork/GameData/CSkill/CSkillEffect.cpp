@@ -57,7 +57,7 @@ void CSkillEffect::update(float dt)
 			m_parent->applyAction(preparing_Animate, beforing_Delay);
 			if (preparing_Effect != "")
 			{
-				m_parent->addEffect(EffectManager::getInstance()->createCEffect(preparing_Effect, m_parent->ID));
+				m_parent->addEffect(EffectManager::getInstance()->createCEffect(preparing_Effect, m_parent->ID, m_targetID));
 			}
 			m_state = SkillEffectState_Beforing;
 			if (ColdDowning != 0)break;
@@ -72,7 +72,7 @@ void CSkillEffect::update(float dt)
 			ColdDowning = using_Delay;
 			if (using_Effect != "")
 			{
-				m_parent->addEffect(EffectManager::getInstance()->createCEffect(using_Effect,m_parent->ID));
+				m_parent->addEffect(EffectManager::getInstance()->createCEffect(using_Effect, m_parent->ID, m_targetID));
 			}
 			m_parent->applyAction(using_Animate, using_Delay);
 			m_state = SkillEffectState_Aftering;
@@ -82,7 +82,7 @@ void CSkillEffect::update(float dt)
 			ColdDowning = aftering_Delay;
 			if (aftering_Effect != "")
 			{
-				m_parent->addEffect(EffectManager::getInstance()->createCEffect(aftering_Effect, m_parent->ID));
+				m_parent->addEffect(EffectManager::getInstance()->createCEffect(aftering_Effect, m_parent->ID, m_targetID));
 			}
 			m_parent->applyAction(aftering_Animate, aftering_Delay);
 			m_state = SkillEffectState_End;
@@ -107,8 +107,14 @@ bool CSkillEffect::IsCanExecute()
 	CUnit* m_parent = getParent();
 	auto vec = UnitManager::getInstance()->findUnit(Fliter);
 	for (auto target : vec)
+	{
 		if ((target->getPos() - m_parent->getPos()).lengthSquared() < Range*Range)
+		{
+			m_targetID = target->ID;
+			m_targetPos = target->getPos();
 			return true;
+		}
+	} 
 	return false;
 }
 

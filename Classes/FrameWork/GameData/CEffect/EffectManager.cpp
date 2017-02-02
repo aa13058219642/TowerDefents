@@ -11,7 +11,8 @@ EffectManager* EffectManager::p_myinstance = nullptr;
 
 EffectManager::EffectManager()
 {
-
+	isInit = false;
+	effectCreator = nullptr;
 }
 
 EffectManager* EffectManager::getInstance()
@@ -23,6 +24,21 @@ EffectManager* EffectManager::getInstance()
 	return p_myinstance;
 }
 
+void EffectManager::init(EffectCreator* effectCreator)
+{
+	if (effectCreator == nullptr)
+	{
+		this->effectCreator = new EffectCreator();
+	}
+	else
+	{
+		this->effectCreator = effectCreator;
+	}
+	isInit = true;
+}
+
+
+
 void EffectManager::LoadResource()
 {
 	this->LoadResource(vector<Name>());
@@ -30,13 +46,37 @@ void EffectManager::LoadResource()
 
 void EffectManager::LoadResource(const vector<Name>& resNameList)
 {
-	m_effectlist["missileDamage"] = new CEffectDamage(2,4);
-	m_effectlist["missileDamageBoom"] = new CEffectDamage(100, 200, EDamageType_Real, "e002");
-	m_effectlist["MissileBoom"] = new CEffectEnumArea(5, 300,"missileDamageBoom");
-	m_effectlist["LaunchBall"] = new CEffectLaunchMissile(0);
-	m_effectlist["LaunchMissile"] = new CEffectLaunchMissile(1);
-	m_effectlist["LaunchBoom"] = new CEffectLaunchMissile(2);
+	CCASSERT(isInit, "the EffectManager is NOT init !");
 
+	//1.打开文件
+	FileUtils* fin = FileUtils::getInstance();
+	Data data = fin->getDataFromFile("data/Effect.json");
+	CCASSERT(!data.isNull(), "[Effect.json] NOT found");
+
+	//2.载入json
+	string str = string((char*)data.getBytes(), data.getSize());
+	rapidjson::Document root;
+	root.Parse<0>(str.c_str());
+	CCASSERT(root.IsObject() && root.HasMember("Effects") && root["Effects"].IsArray(), "illegal [Effect.json]: EffectsData error");
+
+	//3.读取json数据
+	float scale = 1 / Director::getInstance()->getContentScaleFactor();
+
+	bool fullLoad = true;
+	if (resNameList.size() != 0)fullLoad = false;
+	int Size = root["Effects"].Size();
+	for (int i = 0; i < Size; i++) {
+		JsonNode jNode = root["Effects"][i];
+		string name = jNode["name"].GetString();
+		if (fullLoad || std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
+		{
+			string className = jNode["class"].GetString();
+			rapidjson::StringBuffer buffer;
+			rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+			jNode.Accept(writer);
+			m_effectlist[name] = static_cast<CEffect*>(effectCreator->Create(className, buffer.GetString()));
+		}
+	}
 }
 
 void EffectManager::FreeAllResource()

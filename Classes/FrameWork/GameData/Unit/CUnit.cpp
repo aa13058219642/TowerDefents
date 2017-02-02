@@ -5,8 +5,12 @@
 #include "CBehavior.h"
 #include "CEffect.h"
 #include "CSkill.h"
+
 #include "ActorManager.h"
 #include "UnitManager.h"
+#include "WeaponManager.h"
+#include "BehaviorManager.h"
+
 using namespace cocosgalaxy;
 
 CUnit::CUnit()
@@ -84,9 +88,18 @@ EUnitState CUnit::getState()
 
 void CUnit::setWeapon(CWeapon* weapon)
 {
-	if (m_weapon != nullptr)delete m_weapon;
+	if (m_weapon != nullptr)
+	{
+		delete m_weapon;
+	}
 	m_weapon = weapon;
 }
+
+void CUnit::setWeapon(const Name& weaponName)
+{
+	setWeapon(WeaponManager::getInstance()->getWeapon(weaponName));
+}
+
 
 CWeapon* CUnit::getWeapon()
 {
@@ -205,10 +218,17 @@ void CUnit::addEffect(CEffect* effect)
 		effects.push_back(effect);
 }
 
+
+
 void CUnit::addSkill(CSkill* skill)
 {
 	if (skill != nullptr)
 		skills.push_back(skill);
+}
+
+void CUnit::addSkill(const Name& skillName)
+{
+	addSkill(SkillManager::getInstance()->createCSkill(skillName, this));
 }
 
 
@@ -222,6 +242,41 @@ void CUnit::addBehavior(CBehavior* behavior)
 	}
 
 }
+
+
+void CUnit::addBehavior(const Name& behaviorName)
+{
+	this->addBehavior(BehaviorManager::getInstance()->createBehavior(behaviorName));
+}
+
+void CUnit::removeEffect(const Name& effectName)
+{
+	for (auto effect : effects)
+	{
+		if (effect->name == effectName)
+		{
+			effect->setState(ECEffectState::ECEffectState_Death);
+		}
+	}
+}
+
+void CUnit::removeSkill(const Name& skillName)
+{
+
+}
+
+void CUnit::removeBehavior(const Name& behaviorName)
+{
+	for (auto behavior : m_behaviors)
+	{
+		if (behavior->name == behaviorName)
+		{
+			behavior->Uninstall(this);
+			return;
+		}
+	}
+}
+
 
 void CUnit::updateModification()
 {

@@ -14,11 +14,14 @@
 SpellCard::SpellCard()
 {
 	ID = -1;
+	gid = -1;
 	name = "";
 	Icon = -1;
 	behaviorName = "";
 	uiName = "";
 	uiDescription = "";
+	price.money = 0;
+	cost = 0;
 }
 
 

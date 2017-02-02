@@ -2,10 +2,16 @@
 #include "BulletFactory.h"
 using namespace cocosgalaxy;
 
-
-CEffectLaunchMissile::CEffectLaunchMissile(int BulletID)
+CEffectLaunchMissile::CEffectLaunchMissile()
 {
-	this->BulletID = BulletID;
+	this->className = "";
+	this->typeName = "";
+}
+
+CEffectLaunchMissile::CEffectLaunchMissile(string className, string typeName)
+{
+	this->className = className;
+	this->typeName = typeName;
 }
 
 
@@ -16,11 +22,8 @@ CEffectLaunchMissile::~CEffectLaunchMissile()
 
 void CEffectLaunchMissile::execute()
 {
-	//Bullet* bullet = BulletFactory::getInstance()->CreateBullet(BulletID, getParent()->getPos(), getTarget());
-	
-	CUnit* unit = UnitManager::getInstance()->CreateUnit(BulletID);
-	//unit->setWeapon(getTarget()->getWeapon());
-	unit->setTarget(getTarget()->ID);
+	CUnit* unit = UnitManager::getInstance()->CreateUnit(className, typeName);
+	unit->setTarget(m_targetID);
 	unit->setPos(getParent()->getPos());
 	UnitManager::getInstance()->addUnit(unit);
 
@@ -31,7 +34,7 @@ void CEffectLaunchMissile::execute()
 
 CEffect* CEffectLaunchMissile::clone()
 {
-	CEffectLaunchMissile* effect = new CEffectLaunchMissile(BulletID);
+	CEffectLaunchMissile* effect = new CEffectLaunchMissile(className, typeName);
 	return effect;
 }
 

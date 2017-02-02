@@ -25,4 +25,11 @@
 #include "WeaponManager.h"
 #include "UnitManager.h"
 
+#include "GalaxyHelper.h"
+
+namespace cocosgalaxy
+{
+	using namespace helper;
+};
+
 using namespace cocosgalaxy;

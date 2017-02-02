@@ -1,4 +1,6 @@
 #include "CSkillEffectInstant.h"
+#include "EffectManager.h"
+#include "UnitManager.h"
 using namespace cocosgalaxy;
 
 CSkillEffectInstant::CSkillEffectInstant()
@@ -11,6 +13,109 @@ CSkillEffectInstant::~CSkillEffectInstant()
 {
 
 }
+
+
+void CSkillEffectInstant::update(float dt)
+{
+	CUnit* m_parent = getParent();
+	if (m_parent == nullptr)return;
+
+	if (ColdDowning > dt)
+		ColdDowning -= dt;
+	else
+	{
+		switch (m_state)
+		{
+		case SkillEffectState_ColdDowning:
+			ColdDowning = 0;
+			m_state = SkillEffectState_Ready;
+			break;
+
+		case SkillEffectState_Ready:
+			//使用技能的条件
+			if (m_parent->getState() == EUnitState::UnitState_Normal && AutoUseRange > 0 && IsCanExecute())
+			{
+				//成功率判断
+				if (chance == 1 || rand_0_1() <= chance)
+				{
+					m_parent->setState(EUnitState::UnitState_UsingSkill);
+					m_state = SkillEffectState_Approaching;
+				}
+				else
+					m_state = SkillEffectState_End;
+			}
+			break;
+
+		case SkillEffectState_Approaching:
+			ColdDowning = 0;
+			m_state = SkillEffectState_Preparing;
+			if (ColdDowning != 0)break;
+
+		case SkillEffectState_Preparing:
+			ColdDowning = preparing_Delay;
+			m_parent->setState(EUnitState::UnitState_UsingSkill);
+			m_parent->applyAction(preparing_Animate, beforing_Delay);
+			if (preparing_Effect != "")
+			{
+				applyEffect(preparing_Effect);
+			}
+			m_state = SkillEffectState_Beforing;
+			if (ColdDowning != 0)break;
+
+		case SkillEffectState_Beforing:
+			ColdDowning = beforing_Delay;
+			m_parent->applyAction(beforing_Animate, beforing_Delay);
+			m_state = SkillEffectState_Using;
+			if (ColdDowning != 0)break;
+
+		case SkillEffectState_Using:
+			ColdDowning = using_Delay;
+			if (using_Effect != "")
+			{
+				applyEffect(using_Effect);
+			}
+			m_parent->applyAction(using_Animate, using_Delay);
+			m_state = SkillEffectState_Aftering;
+			if (ColdDowning != 0)break;
+
+		case SkillEffectState_Aftering:
+			ColdDowning = aftering_Delay;
+			if (aftering_Effect != "")
+			{
+				applyEffect(aftering_Effect);
+			}
+			m_parent->applyAction(aftering_Animate, aftering_Delay);
+			m_state = SkillEffectState_End;
+			if (ColdDowning != 0)break;
+
+		case SkillEffectState_End:
+			ColdDowning = ColdDown;
+			m_parent->setState(EUnitState::UnitState_Normal);
+			m_state = SkillEffectState_ColdDowning;
+			if (ColdDowning != 0)break;
+		default:
+			break;
+		}
+	}
+}
+
+void CSkillEffectInstant::applyEffect(string effectName)
+{
+	CUnit* target = UnitManager::getInstance()->getUnit(m_targetID);
+	//如果失去目标，原来锁定的目标在前摇时跑出了攻击范围，则强制攻击一开始锁定的目标
+	if (target == nullptr)
+	{
+		if (IsCanExecute())
+		{
+			EffectManager::getInstance()->createCEffect(aftering_Effect, m_parentID, m_targetID)->execute();
+		}
+	}
+	else
+	{
+		EffectManager::getInstance()->createCEffect(aftering_Effect, m_parentID, m_targetID)->execute();
+	}
+}
+
 
 
 

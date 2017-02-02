@@ -1,5 +1,6 @@
 #pragma once
 #include "CBehavior.h"
+#include "BehaviorCreator.h"
 #include "ResourceLoader.h"
 
 namespace cocosgalaxy
@@ -11,6 +12,8 @@ namespace cocosgalaxy
 		static BehaviorManager* getInstance();
 		~BehaviorManager();
 
+		void init(BehaviorCreator* behaviorCreator = nullptr);
+
 		virtual void LoadResource();
 		virtual void LoadResource(const vector<Name>& resNameList);
 		virtual void FreeAllResource();
@@ -18,12 +21,13 @@ namespace cocosgalaxy
 
 		CBehavior* createBehavior(string key, int parentID = -1, int targetID = -1);
 	private:
-		BehaviorManager();
 		static BehaviorManager* p_myinstance;
 
+		bool isInit;
 		map<Name, CBehavior*> m_behaviorList;
+		BehaviorCreator* behaviorCreator;
 
-
+		BehaviorManager();
 		CBehavior* loadBeahaviorBuff(JsonNode jNode);
 	};
 

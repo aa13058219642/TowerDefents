@@ -6,6 +6,7 @@ namespace cocosgalaxy
 	class CEffectDamage : public CEffectResponse
 	{
 	public:
+		CEffectDamage();
 		CEffectDamage(float minDamage, float maxDamage, EDamageType damageType = EDamageType::EDamageType_Weapon, Name effectAnimate = "", int parentID = -1, int targetID = -1);
 		~CEffectDamage();
 
@@ -13,11 +14,11 @@ namespace cocosgalaxy
 		virtual void execute();
 
 
+		float minDamage;			//最小伤害
+		float maxDamage;			//最大伤害
+		EDamageType damageType;	//伤害类型
+		Name effectAnimate;		//效果动画
 	private:
-		float m_MinDamage;
-		float m_MaxDamage;
-		EDamageType m_damageType;
-		Name m_effectAnimate;
 
 
 	};

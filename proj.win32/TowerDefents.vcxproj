@@ -155,19 +155,23 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\FrameWork\DataStructure\Ability.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\DataStructure\ResourceLoader.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Actor\CActor.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\Actor\ActorManager.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorCreator.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCost.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CCreator\CCreator.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffect.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectEnumArea.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectLaunchMissile.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectResponse.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffectSet.cpp" />
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\EffectCreator.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\EffectManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CGameData.cpp" />
     <ClCompile Include="..\Classes\FrameWork\GameData\CModification\CModification.cpp" />
@@ -186,7 +190,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\FrameWork\Helper\GalaxyHelper.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\AnimateManager.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\DebugDraw.cpp" />
-    <ClCompile Include="..\Classes\FrameWork\Manager\ResourceLoader.cpp" />
     <ClCompile Include="..\Classes\FrameWork\Manager\TextureManager.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Card\SpellCard.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Card\SpellCardManager.cpp" />
@@ -217,20 +220,24 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\FrameWork\DataStructure\Ability.h" />
+    <ClInclude Include="..\Classes\FrameWork\DataStructure\ResourceLoader.h" />
     <ClInclude Include="..\Classes\FrameWork\GalaxyBase.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Actor\CActor.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\Actor\ActorManager.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorCreator.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorManager.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBeahaviorBuff.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCostUnit.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCreator\CCreator.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffect.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectDamage.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectEnumArea.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectLaunchMissile.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectResponse.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffectSet.h" />
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\EffectCreator.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\EffectManager.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CGameData.h" />
     <ClInclude Include="..\Classes\FrameWork\GameData\CModification\CModification.h" />
@@ -249,7 +256,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FrameWork\Helper\GalaxyHelper.h" />
     <ClInclude Include="..\Classes\FrameWork\Manager\AnimateManager.h" />
     <ClInclude Include="..\Classes\FrameWork\Manager\DebugDraw.h" />
-    <ClInclude Include="..\Classes\FrameWork\Manager\ResourceLoader.h" />
     <ClInclude Include="..\Classes\FrameWork\Manager\TextureManager.h" />
     <ClInclude Include="..\Classes\FrameWork\stdfax.h" />
     <ClInclude Include="..\Classes\TowerDefent\Card\SpellCard.h" />

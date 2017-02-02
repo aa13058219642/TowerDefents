@@ -14,7 +14,6 @@ namespace cocosgalaxy
 	class CActor : public CGameData
 	{
 	public:
-		int ID;
 
 		CActor();
 		CActor(int id, ActorData data, Layer* parent);
@@ -27,6 +26,8 @@ namespace cocosgalaxy
 		void setRotation(float rotation);
 		void setDefaultAnimate(const Name& defaultAnimate);
 		void setAnimateList(std::map<Name, Name> animateList);
+		/*设置显示层级，越高就在越上面*/
+		void setLocalLevel(int level);
 
 		/*设置是否显示血条，默认不显示*/
 		void setShowHpBar(bool isShow, Point pos = Point::ZERO, Size size = Size::ZERO);
@@ -37,9 +38,10 @@ namespace cocosgalaxy
 
 		void playDefaultAnimate();
 		void playAction(const Name& actionName, float playtime = 0, Color3B color = Color3B::WHITE);
-		void playEffect(const Name& animateName, float playtime = 0, Color3B color = Color3B::WHITE, Point offset = Point::ZERO, int localZOrder = 1);
+		void playEffect(const Name& animateName, float playtime = 0, Color3B color = Color3B::WHITE, Point offset = Point::ZERO, int localZOrder = 1, int tag = 0);
 
 		void remove();
+		void removeEffect(const Name& animateName, int tag = 0);
 
 		enum Face : int{ FACE_TO_LEFT, FACE_TO_RIGHT };
 		void changeFace(Face face);
@@ -49,6 +51,7 @@ namespace cocosgalaxy
 		Layer* m_layer;
 		Point m_pos;
 		Layer* m_parent;
+		int LocalLevel;
 
 		Face m_face;
 		Sprite* m_sprite;
@@ -57,6 +60,7 @@ namespace cocosgalaxy
 
 		Name m_defaultAnimate;
 		std::map<Name, Name> m_animateList;
+		std::map<Name, Sprite*> m_effectList;
 
 
 	};

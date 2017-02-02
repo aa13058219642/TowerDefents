@@ -4,6 +4,7 @@ TowerCard::TowerCard()
 {
 	ID = -1;
 	Icon = -1;
+	gid = -1;
 	uiName= uiDescription = ActorName = "";
 	HP = MP = AP = HP_RegenRate = MP_RegenRate = AP_RegenRate = 0;
 	color = Color3B::WHITE;
@@ -13,7 +14,7 @@ TowerCard::TowerCard()
 		spellPosPrice[i] = 0;
 	}
 
-	cost = price.money = sell = 0;
+	cost = price.money = 0;
 }
 
 

@@ -1,3 +1,4 @@
+#include "GameConfig.h"
 #include "GridPos.h"
 #include "Tower.h"
 
@@ -35,7 +36,7 @@ EGridPosType GridPos::getType()
 
 Tower* GridPos::getTower()
 {
-	return m_tower;
+	return m_parent;
 }
 
 const Rect& GridPos::getRect()
@@ -71,12 +72,84 @@ int GridPos::getAroundGridPosID(Direction dir)
 	return m_around[dir];
 }
 
+//SpellCard GridPos::getSpellCard()
+//{
+//	CCASSERT(m_type == GridPosType_SpellTower, "this GridPos is NOT a SpellTower");
+//
+//	return getTower()->getSpellCard(m_dir);
+//}
+
+float GridPos::getSellPrice()
+{
+	float price = 0;
+
+	switch (m_type)
+	{
+	case GridPosType_Empty:
+		price = 0;
+		break;
+	case GridPosType_Tower:
+		price = getTower()->getSellPrice();
+		break;
+	case GridPosType_SpellEmpty:
+		price = getTower()->getSellSpellPosPrice(m_dir);
+		break;
+	case GridPosType_SpellTower:
+		price = getTower()->getSpellCard(m_dir)->price.money*SellPercent;
+		break;
+	default:
+		break;
+	}
+	return price;
+}
+
+Direction GridPos::getDirection()
+{
+	return m_dir;
+}
+
+
+void GridPos::sell()
+{
+	switch (m_type)
+	{
+	case GridPosType_Empty:
+		break;
+	case GridPosType_Tower:
+		getTower()->sellTower();
+		m_type = GridPosType_Empty;
+		m_parent = m_tower;
+		m_dir = Direction::Center;
+		break;
+	case GridPosType_SpellEmpty:
+		getTower()->sellSpellPos(m_dir);
+		m_type = GridPosType_Empty;
+		m_parent = m_tower;
+		m_dir = Direction::Center;
+		break;
+	case GridPosType_SpellTower:
+		getTower()->sellSpellTower(m_dir);
+		m_type = GridPosType_SpellEmpty;
+		break;
+	default:
+		break;
+	}
+}
+
+void GridPos::reset()
+{
+	m_type = GridPosType_Empty;
+	m_parent = m_tower;
+	m_dir = Direction::Center;
+}
+
 
 void GridPos::initTower()
 {
 	m_tower = new Tower(this);
 	m_tower->setActorName("blank");
 	UnitManager::getInstance()->addUnit(m_tower);
+	m_parent = m_tower;
 }
 
 void GridPos::onClick()
@@ -100,9 +173,9 @@ void GridPos::onClick()
 		msg["GridPos"] = (int)this;
 		msg["x"] = m_pos.x;
 		msg["y"] = m_pos.y;
-		msg["color_r"] = (int)m_tower->getColor().r;
-		msg["color_g"] = (int)m_tower->getColor().g;
-		msg["color_b"] = (int)m_tower->getColor().b;
+		msg["color_r"] = (int)m_parent->getColor().r;
+		msg["color_g"] = (int)m_parent->getColor().g;
+		msg["color_b"] = (int)m_parent->getColor().b;
 		NotificationCenter::getInstance()->postNotification(Message_TowerSelectLayer, (Ref*)&msg);
 		break;
 
@@ -111,9 +184,9 @@ void GridPos::onClick()
 		msg["GridPos"] = (int)this;
 		msg["x"] = m_pos.x;
 		msg["y"] = m_pos.y;
-		msg["color_r"] = (int)m_tower->getColor().r;
-		msg["color_g"] = (int)m_tower->getColor().g;
-		msg["color_b"] = (int)m_tower->getColor().b;
+		msg["color_r"] = (int)m_parent->getColor().r;
+		msg["color_g"] = (int)m_parent->getColor().g;
+		msg["color_b"] = (int)m_parent->getColor().b;
 		NotificationCenter::getInstance()->postNotification(Message_TowerSelectLayer, (Ref*)&msg);
 		break;
 
@@ -122,9 +195,9 @@ void GridPos::onClick()
 		msg["GridPos"] = (int)this;
 		msg["x"] = m_pos.x;
 		msg["y"] = m_pos.y;
-		msg["color_r"] = (int)m_tower->getColor().r;
-		msg["color_g"] = (int)m_tower->getColor().g;
-		msg["color_b"] = (int)m_tower->getColor().b;
+		msg["color_r"] = (int)m_parent->getColor().r;
+		msg["color_g"] = (int)m_parent->getColor().g;
+		msg["color_b"] = (int)m_parent->getColor().b;
 		NotificationCenter::getInstance()->postNotification(Message_TowerSelectLayer, (Ref*)&msg);
 		break;
 
@@ -141,14 +214,14 @@ void GridPos::buildTower(const TowerCard towerCard)
 void GridPos::buildSpellPos(Tower* parent, Direction dirRelativeToTower)
 {
 	m_type = EGridPosType::GridPosType_SpellEmpty;
-	m_tower = parent;
+	m_parent = parent;
 	m_dir = dirRelativeToTower;
 }
 
 void GridPos::buildSpellTower(const SpellCard spellTower)
 {
 	m_type = EGridPosType::GridPosType_SpellTower;
-	m_tower->buildSpellTower(m_dir, spellTower);
+	m_parent->buildSpellTower(m_dir, spellTower);
 }
 
 void GridPos::drawMyOutLine(DrawNode* drawNode){

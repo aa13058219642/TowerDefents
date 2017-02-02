@@ -12,6 +12,7 @@ public:
 
 	Bullet* CreateBullet(int BulletID, Point pos, CUnit* target);
 	Bullet* CreateBullet(int BulletID);
+	Bullet* CreateBullet(string bulletName);
 
 private:
 	BulletFactory();

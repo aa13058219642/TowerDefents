@@ -3,7 +3,6 @@
 
 namespace cocosgalaxy
 {
-	typedef rapidjson::GenericValue<rapidjson::UTF8<char>>& JsonNode;
 
 	class ResourceLoader
 	{

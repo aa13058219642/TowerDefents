@@ -113,13 +113,11 @@ std::vector<SpellCard> Player::getSpellCard()
 void Player::addTowerPrice(int id, float money)
 {
 	m_TowerCard[id].price.money += money;
-	m_TowerCard[id].sell += money / 2;
 }
 
 void Player::addSpellPrice(int id, float money)
 {
 	m_SpellCard[id].price.money += money;
-	m_SpellCard[id].sell += money / 2;
 }
 
 

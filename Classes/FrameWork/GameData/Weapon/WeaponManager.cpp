@@ -37,22 +37,19 @@ void WeaponManager::LoadResource(const vector<Name> & resNameList)
 	CCASSERT(root.IsObject() && root.HasMember("Weapon") && root["Weapon"].IsArray(), "illegal [Weapon.json]: weapondata error");
 
 	//3.¶ÁÈ¡jsonÊý¾Ý
-	//CCASSERT(root["weapondata"].HasMember("count"), "illegal [Weapon.json]: weapondata.count NOT found");
-	//int count = root["weapondata"]["count"].GetInt();
 	float scale =1 / Director::getInstance()->getContentScaleFactor();
 
 	bool fullLoad = true;
 	if (resNameList.size() != 0)fullLoad = false;
 	int Size = root["Weapon"].Size();
-	for (int i = 0; i < Size; i++) {
-		//string index = StringUtils::format("w%03d",i);
-		//CCASSERT(root["weapondata"].HasMember(index.c_str()) && root["weapondata"][index.c_str()].IsObject(), string("illegal [Weapon.json]: weapondata" + index + " NOT found").c_str());
-
+	for (int i = 0; i < Size; i++) 
+	{
 		JsonNode jNode = root["Weapon"][i];
 		string name = jNode["name"].GetString();
 		if (fullLoad || std::find(resNameList.begin(), resNameList.end(), name) != resNameList.end())
 		{
 			CWeapon* weapon = new CWeapon();
+			weapon->name = name;
 
 			if (jNode.HasMember("chance"))				weapon->chance				= jNode["chance"].GetDouble();
 			if (jNode.HasMember("Range"))				weapon->Range				= jNode["Range"].GetDouble() * scale;
@@ -111,8 +108,10 @@ CWeapon* WeaponManager::getWeapon(const string& weaponName)
 {
 	CCASSERT(m_weapon.find(weaponName) != m_weapon.end(), string("Weapon [" + weaponName + "] NOT found").c_str());
 
-	if (m_weapon.find(weaponName) != m_weapon.end())return new CWeapon(*m_weapon[weaponName]);
-	else return nullptr;
+	if (m_weapon.find(weaponName) != m_weapon.end())
+		return new CWeapon(*m_weapon[weaponName]);
+	else 
+		return nullptr;
 }
 
 

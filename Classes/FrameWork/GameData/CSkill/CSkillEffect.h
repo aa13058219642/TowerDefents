@@ -63,5 +63,7 @@ namespace cocosgalaxy
 
 		virtual void update(float dt);
 		virtual bool IsCanExecute();
+
+
 	};
 }

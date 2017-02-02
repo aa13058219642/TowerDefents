@@ -3,7 +3,8 @@ using namespace cocosgalaxy;
 
 CGameData::CGameData()
 {
-
+	ID = -1;
+	name = "";
 }
 
 

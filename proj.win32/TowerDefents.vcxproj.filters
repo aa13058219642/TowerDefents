@@ -73,9 +73,6 @@
     <Filter Include="src\TowerDefent\Layer">
       <UniqueIdentifier>{5faf1216-1a7e-476b-ba3e-3958c2fc42d4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\FrameWork\Manager\ResourceLoader">
-      <UniqueIdentifier>{6c1d0021-7717-4f1d-8bf4-2f5e17ea43de}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\FrameWork\GameData\CBehavior">
       <UniqueIdentifier>{aafdbc53-a637-4c1c-a2ad-7d3590c9d5d8}</UniqueIdentifier>
     </Filter>
@@ -135,6 +132,12 @@
     </Filter>
     <Filter Include="src\TowerDefent\Message">
       <UniqueIdentifier>{5f7ca274-3725-471f-99c7-4d4f37af48e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\DataStructure\ResourceLoader">
+      <UniqueIdentifier>{6c1d0021-7717-4f1d-8bf4-2f5e17ea43de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FrameWork\GameData\CCreator">
+      <UniqueIdentifier>{f97aa147-2f13-4b7d-aab0-81c571bce852}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -234,9 +237,6 @@
     <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.cpp">
       <Filter>src\FrameWork\GameData\CWeapon</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\Manager\ResourceLoader.cpp">
-      <Filter>src\FrameWork\Manager\ResourceLoader</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp">
       <Filter>src\TowerDefent\GameMap</Filter>
     </ClCompile>
@@ -317,6 +317,18 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Message\MessageListener.cpp">
       <Filter>src\TowerDefent\Message</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorCreator.cpp">
+      <Filter>src\FrameWork\GameData\CBehavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\DataStructure\ResourceLoader.cpp">
+      <Filter>src\FrameWork\DataStructure\ResourceLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CCreator\CCreator.cpp">
+      <Filter>src\FrameWork\GameData\CCreator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\EffectCreator.cpp">
+      <Filter>src\FrameWork\GameData\CEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -419,9 +431,6 @@
     <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.h">
       <Filter>src\FrameWork\GameData\CWeapon</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\Manager\ResourceLoader.h">
-      <Filter>src\FrameWork\Manager\ResourceLoader</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h">
       <Filter>src\TowerDefent\GameMap</Filter>
     </ClInclude>
@@ -511,6 +520,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\GameConfig.h">
       <Filter>src\TowerDefent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\BehaviorCreator.h">
+      <Filter>src\FrameWork\GameData\CBehavior</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\DataStructure\ResourceLoader.h">
+      <Filter>src\FrameWork\DataStructure\ResourceLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CCreator\CCreator.h">
+      <Filter>src\FrameWork\GameData\CCreator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\EffectCreator.h">
+      <Filter>src\FrameWork\GameData\CEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

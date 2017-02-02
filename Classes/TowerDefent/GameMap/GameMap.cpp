@@ -198,25 +198,42 @@ bool GameMap::initMap(int level)
 		auto towerMgr = TowerCardManager::getInstance();
 		auto spellMgr = SpellCardManager::getInstance();
 
+		vector<string> spellcardList;
+		spellcardList.push_back("Damage_Add_I");
+		spellcardList.push_back("Range_Add_I");
+		spellcardList.push_back("ColdDown_Div_I");
+		spellcardList.push_back("TargetCount_Add_I");
+		spellcardList.push_back("CriticalChance_Add_I");
+		spellcardList.push_back("MaxDamage_Add_I");
+		spellcardList.push_back("CriticalMultiplier_Add_I");
+		spellcardList.push_back("BoomRange_Add_I");
 
-		SpellCard s(*spellMgr->getSpellCard("Damage_Add_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("Damage_Add_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("Range_Add_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("ColdDown_Div_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("TargetCount_Add_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("CriticalChance_Add_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("MaxDamage_Add_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("CriticalMultiplier_Add_I"));
-		m_SpellCard.push_back(*spellMgr->getSpellCard("BoomRange_Add_I"));
-							  
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card000"));
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card001"));
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card002"));
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card003"));
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card004"));
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card005"));
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card006"));
-		m_TowerCard.push_back(*towerMgr->getTowerCard("card007"));
+		SpellCard scard;
+		for (int i = 0; i < 8; i++)
+		{
+			scard = *spellMgr->getSpellCard(spellcardList[i]);
+			scard.gid = i;
+			m_SpellCard.push_back(scard);
+		}
+
+
+		vector<string> towercardList;
+		towercardList.push_back("card000");
+		towercardList.push_back("card001");
+		towercardList.push_back("card002");
+		towercardList.push_back("card003");
+		towercardList.push_back("card004");
+		towercardList.push_back("card005");
+		towercardList.push_back("card006");
+		towercardList.push_back("card007");
+
+		TowerCard tcard;
+		for (int i = 0; i < 8; i++)
+		{
+			tcard = *towerMgr->getTowerCard(towercardList[i]);
+			tcard.gid = i;
+			m_TowerCard.push_back(tcard);
+		}
 
 		//玩家选择的卡牌
 		Player* player = Player::getInstance();
@@ -229,9 +246,11 @@ bool GameMap::initMap(int level)
 		//初始化所有Manager
 		WaveManager::getInstance()->init();
 		UnitManager::getInstance()->init(new TDUnitCreator());
+		BehaviorManager::getInstance()->init();
+		EffectManager::getInstance()->init();
 
 
-		//TextureManager::getInstance()->LoadResource();
+		//载入资源
 		vector<string> textureList;
 		textureList.push_back("texture/scene_battle_000.plist");
 		textureList.push_back("texture/UI/TowerSelectLayer.plist");
@@ -241,8 +260,8 @@ bool GameMap::initMap(int level)
 		textureList.push_back("texture/Tower/Tower_000.plist");
 		textureList.push_back("texture/Tower/Tower_001.plist");
 		textureList.push_back("texture/Tower/Tower_006.plist");
-
 		TextureManager::getInstance()->LoadResource(textureList);
+
 
 		SkillManager::getInstance()->LoadResource();
 		BehaviorManager::getInstance()->LoadResource();
@@ -356,7 +375,7 @@ TMXTiledMap*  GameMap::getMapLayer()
 
 GridPos* GameMap::getGridPos(int id)
 {
-	CCASSERT(id < (int)m_gridPos.size(), "GridPosID NOT found");
+	CCASSERT(id!=-1 && id < (int)m_gridPos.size(), "GridPosID NOT found");
 	return m_gridPos[id];
 }
 

@@ -6,16 +6,15 @@ namespace cocosgalaxy
 	class CEffectLaunchMissile : public CEffectResponse
 	{
 	public:
-		CEffectLaunchMissile(int BulletID);
+		CEffectLaunchMissile();
+		CEffectLaunchMissile(string className, string typeName);
 		~CEffectLaunchMissile();
 
 		virtual CEffect* clone();
 		virtual void execute();
 
-
-
+		string className;	//类名
+		string typeName;	//子类标签(参数)
 	private:
-		int BulletID;
-
 	};
 }

@@ -9,6 +9,8 @@ CSkill::CSkill()
 	groupID = "";
 	m_type = ESkillType::ECSkill;
 	m_parentID = -1;
+	m_targetID = -1;
+	m_targetPos = Point::ZERO;
 }
 
 

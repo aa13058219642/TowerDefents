@@ -1,15 +1,15 @@
 #pragma once
 #include "GalaxyBase.h"
+#include "CGameData.h"
 #include "CCreator\CCreator.h"
-#include "CUnit.h"
 
 namespace cocosgalaxy
 {
-	class UnitCreator : public CCreator
+	class BehaviorCreator : public CCreator
 	{
 	public:
-		UnitCreator();
-		~UnitCreator();
+		BehaviorCreator();
+		~BehaviorCreator();
 
 		virtual CGameData* Create(string className, string typeName = "");
 		virtual CGameData* Create(int classHash, string typeName = "");

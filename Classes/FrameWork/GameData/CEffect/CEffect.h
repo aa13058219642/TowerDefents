@@ -17,8 +17,6 @@ namespace cocosgalaxy
 	public:
 
 		/* ---- Ù–‘---- */
-
-		string id;
 		float lifetime;
 		UnitType filter;
 

@@ -2,6 +2,7 @@
 #include "CEffect.h"
 #include "ResourceLoader.h"
 #include "CWeapon.h"
+#include "EffectCreator.h"
 
 namespace cocosgalaxy
 {
@@ -11,6 +12,8 @@ namespace cocosgalaxy
 		//µ¥ÀýÄ£Ê½
 		static EffectManager* getInstance();
 		~EffectManager();
+
+		void init(EffectCreator* effectCreator = nullptr);
 
 		virtual void LoadResource();
 		virtual void LoadResource(const vector<Name>& resNameList);
@@ -23,6 +26,9 @@ namespace cocosgalaxy
 		bool findEffect(const string& key);
 	private:
 		static EffectManager* p_myinstance;
+
+		bool isInit;
+		EffectCreator* effectCreator;
 		std::map<string, CEffect*> m_effectlist;
 
 		EffectManager();

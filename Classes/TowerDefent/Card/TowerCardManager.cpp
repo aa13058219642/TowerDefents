@@ -86,7 +86,6 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 			if (jNode.HasMember("Color_B"))			towercard->color.b = jNode["Color_B"].GetInt();
 			if (jNode.HasMember("cost"))			towercard->cost = jNode["cost"].GetDouble();
 			if (jNode.HasMember("price"))			towercard->price.money = jNode["price"].GetDouble();
-			if (jNode.HasMember("sell"))			towercard->sell = jNode["sell"].GetDouble();
 
 			if (jNode.HasMember("spellPosPrice") && jNode["spellPosPrice"].IsArray())
 			{

@@ -14,29 +14,32 @@ TDUnitCreator::~TDUnitCreator()
 }
 
 
-CUnit* TDUnitCreator::Create(string typeName, int tag)
+CGameData* TDUnitCreator::Create(string className, string typeName)
 {
-	CUnit* unit = UnitCreator::Create(typeName, tag);
-	if (unit != nullptr)
-		return unit;
-
-	if (typeName == string("Bullet"))
+	CGameData* unit = UnitCreator::Create(className, typeName);
+	if (unit == nullptr)
 	{
-		return Create(UTYPE_BULLET, tag);
+		if (className == string("Bullet"))
+		{
+			unit = Create(typeid(Bullet).hash_code(), typeName);
+		}
 	}
-	return nullptr;
+	return unit;
 }
 
-CUnit* TDUnitCreator::Create(int typeID, int tag)
+CGameData* TDUnitCreator::Create(int classHash, string typeName)
 {
-	CUnit* unit = UnitCreator::Create(typeID, tag);
-	if (unit != nullptr)
-		return unit;
+	CGameData* data = UnitCreator::Create(classHash, typeName);
 
-	switch (typeID)
+	if (data == nullptr)
 	{
-	case UTYPE_BULLET: return BulletFactory::getInstance()->CreateBullet(tag);
-	default: return nullptr;
+		if (classHash == typeid(Bullet).hash_code())
+		{
+			data = BulletFactory::getInstance()->CreateBullet(typeName);
+		}
+		else
+			data = nullptr;
 	}
-	return nullptr;
+
+	return data;
 }

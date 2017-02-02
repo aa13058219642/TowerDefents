@@ -16,8 +16,7 @@ namespace cocosgalaxy
 	{
 	public:
 		/* ----属性---- */
-
-		int ID;
+		
 		AbilityEx<float> HP;
 		AbilityEx<float> MP;
 		AbilityEx<float> AP;
@@ -58,11 +57,27 @@ namespace cocosgalaxy
 		virtual void onBeAttack(int damage, EDamageType damageType);
 		virtual void onMissTarget(CUnit* target);
 
+		/*添加效果*/
 		virtual void addEffect(CEffect* effect);
+		/*添加技能*/
 		virtual void addSkill(CSkill* skill);
+		/*添加技能*/
+		virtual void addSkill(const Name& skillName);
+		/*添加行为*/
 		virtual void addBehavior(CBehavior* behavior);
+		/*添加行为*/
+		virtual void addBehavior(const Name& behaviorName);
+		/*播放动作*/
 		virtual void applyAction(Name actionName, float playtime = 0);
+		/*播放效果*/
 		virtual void applyAEffect(Name effectName, float playtime = 0);
+		/*移除效果*/
+		virtual void removeEffect(const Name& effectName);
+		/*移除技能*/
+		virtual void removeSkill(const Name& skillName);
+		/*移除行为*/
+		virtual void removeBehavior(const Name& behaviorName);
+
 
 		virtual void setType(UnitType type);
 		virtual UnitType getType();
@@ -71,6 +86,7 @@ namespace cocosgalaxy
 		EUnitState getState();
 
 		virtual void setWeapon(CWeapon* weapon);
+		virtual void setWeapon(const Name& weapon);
 		virtual CWeapon* getWeapon();
 
 		virtual void setTarget(int targetID);

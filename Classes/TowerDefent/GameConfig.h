@@ -9,7 +9,8 @@
 /*spell塔的价格增加值*/
 #define SpellTowerPriceAddition 25
 
-
+/*变卖返还比率*/
+#define SellPercent 0.5
 
 
 
