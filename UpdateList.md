@@ -158,3 +158,9 @@
 - 2.完成CEffect载入json化
 - 3.新增behaviorCreator
 - 4.大改关于Effect、Bullet、Skill等的相互调用关系
+
+##v0.042
+- 1.完成loading界面，提供预加载功能
+- 2.完成标题界面titleScene
+- 3.修复bullet的hiteffect中的bug
+- 4.优化buildtower方案
