@@ -2,6 +2,7 @@
 #include "stdfax.h"
 #include "SpellCard.h"
 #include "TowerCard.h"
+#include "CActor.h"
 
 enum EGridPosType{
 	GridPosType_Empty,
@@ -25,6 +26,7 @@ public:
 
 	~GridPos();
 
+	bool isClickMe(Point pos);
 	void onClick();
 	EGridPosType getType();
 	const Rect& getRect();
@@ -40,7 +42,7 @@ public:
 	const int* getAroundGridPosID();
 	int getAroundGridPosID(Direction dir);
 
-	void initTower();
+	void bindActor();
 	
 	void buildTower(const TowerCard towerCard);
 	void buildSpellPos(Tower* parent, Direction dirRelativeToTower);
@@ -49,6 +51,7 @@ public:
 	void drawMyOutLine(DrawNode* drawNode);
 private: 
 	EGridPosType m_type;
+	CActor* m_actor;
 	Tower* m_tower;
 	Tower* m_parent;
 	Rect m_rect;

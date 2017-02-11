@@ -138,8 +138,12 @@ void Tower::sellTower()
 		}
 	}
 
+	this->setWeapon(nullptr);
+
 	this->setActorName("blank");
 	this->bindActor();
+
+	this->onDead();
 }
 
 void Tower::sellSpellPos(Direction direction)
@@ -189,7 +193,7 @@ void Tower::onAttack(CUnit* target)
 
 void Tower::onBindSprite()
 {
-	m_actor->setShowUnitPos(true);
+	//m_actor->setShowUnitPos(true);
 }
 
 void Tower::drawMyOutLine(DrawNode* drawNode){

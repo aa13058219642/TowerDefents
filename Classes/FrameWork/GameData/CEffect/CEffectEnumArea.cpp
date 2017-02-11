@@ -34,6 +34,15 @@ CEffectEnumArea::~CEffectEnumArea()
 		delete effect;
 }
 
+void CEffectEnumArea::setParent(int parentID)
+{
+	this->m_parentID = parentID;
+	if (parentID != -1)
+	{
+		this->m_pos = getParent()->getPos();
+	}
+}
+
 void CEffectEnumArea::execute()
 {
 	CUnit* m_parent = getParent();

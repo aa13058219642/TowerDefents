@@ -262,7 +262,14 @@ void CUnit::removeEffect(const Name& effectName)
 
 void CUnit::removeSkill(const Name& skillName)
 {
-
+	for (auto skill : skills)
+	{
+		if (skill->name == skillName)
+		{
+			skills.remove(skill);
+			break;
+		}
+	}
 }
 
 void CUnit::removeBehavior(const Name& behaviorName)

@@ -35,7 +35,8 @@ void TextureManager::LoadResource(const vector<Name>& resNameList)
 
 	for (auto& var : resNameList)
 	{
-		CCASSERT(!fileUtils->isFileExist(var.substr(var.find_last_of('/')+1)), string("Texture [" + var + "] NOT found").c_str());
+		//CCASSERT(!fileUtils->isFileExist(var.substr(var.find_last_of('/') + 1)), string("Texture [" + var + "] NOT found").c_str());
+		CCASSERT(fileUtils->isFileExist(var), string("Texture [" + var + "] NOT found").c_str());
 		frameCache->addSpriteFramesWithFile(var);
 	}
 
