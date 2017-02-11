@@ -29,20 +29,20 @@ bool GameMapLayer::init()
 	this->addChild(GameMap::getInstance()->getMapLayer());
 
 
-	//ÉèÖÃ¼àÌý
-	auto listener = EventListenerTouchOneByOne::create();
-	listener->onTouchBegan = [](Touch* touch, Event* event){return true;};
-	listener->onTouchEnded = [&](Touch* touch, Event* event){
-		Point pos = Director::getInstance()->convertToGL(touch->getLocationInView());
-		pos = pos / Director::getInstance()->getContentScaleFactor();
-		//log("TouchPos:(%f,%f)", pos.x, pos.y);
-		if (GameMap::getInstance()->onClick(pos))
-		{
-			event->stopPropagation();
-		}
-	};
-	//listener->setSwallowTouches(true);//½Ø¶Ï´¥ÃþÊÂ¼þ
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+	////ÉèÖÃ¼àÌý
+	//auto listener = EventListenerTouchOneByOne::create();
+	//listener->onTouchBegan = [](Touch* touch, Event* event){return true;};
+	//listener->onTouchEnded = [&](Touch* touch, Event* event){
+	//	//Point pos = Director::getInstance()->convertToGL(touch->getLocationInView());
+	//	//pos = pos / Director::getInstance()->getContentScaleFactor();
+	//	////log("TouchPos:(%f,%f)", pos.x, pos.y);
+	//	//if (GameMap::getInstance()->onClick(pos))
+	//	//{
+	//	//	event->stopPropagation();
+	//	//}
+	//};
+	////listener->setSwallowTouches(true);//½Ø¶Ï´¥ÃþÊÂ¼þ
+	//_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 
 

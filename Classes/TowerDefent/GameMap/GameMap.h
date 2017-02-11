@@ -16,7 +16,7 @@ public:
 	~GameMap();
 
 	/*if something be click will return ture*/
-	bool onClick(Point pos);
+	//bool onClick(Point pos);
 
 	TMXTiledMap* getMapLayer();
 	GridPos* getGridPos(int id);

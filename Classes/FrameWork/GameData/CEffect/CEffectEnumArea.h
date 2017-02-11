@@ -12,7 +12,6 @@ namespace cocosgalaxy
 
 		virtual CEffect* clone();
 		virtual void execute();
-		virtual void setParent(int parentID);
 
 		int areaRadius;		//范围
 		string applyEffect;	//应用效果名

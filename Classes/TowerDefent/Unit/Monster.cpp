@@ -29,7 +29,7 @@ Monster::Monster(int MonsterID, MapPath path)
 		HP = 100;
 		HP.Max = 100;
 		Radius = 32;
-		Speed =100;
+		Speed = 500;
 
 
 

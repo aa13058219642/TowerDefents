@@ -139,12 +139,6 @@
     <Filter Include="src\FrameWork\GameData\CCreator">
       <UniqueIdentifier>{f97aa147-2f13-4b7d-aab0-81c571bce852}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\TowerDefent\Scene\TitleScene">
-      <UniqueIdentifier>{c9a6ad35-e3c7-4ca8-bb14-4b3092ce1144}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\TowerDefent\Scene\LoadingScene">
-      <UniqueIdentifier>{bee87447-0759-4a7b-92d6-897d2742ea69}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -335,12 +329,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\EffectCreator.cpp">
       <Filter>src\FrameWork\GameData\CEffect</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\Scene\LoadingScene.cpp">
-      <Filter>src\TowerDefent\Scene\LoadingScene</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\Scene\TitleScene.cpp">
-      <Filter>src\TowerDefent\Scene\TitleScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -544,12 +532,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\EffectCreator.h">
       <Filter>src\FrameWork\GameData\CEffect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\Scene\LoadingScene.h">
-      <Filter>src\TowerDefent\Scene\LoadingScene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\Scene\TitleScene.h">
-      <Filter>src\TowerDefent\Scene\TitleScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

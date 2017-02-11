@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
-#include "TitleScene.h"
+#include "BattleScene.h"
+#include "PrepareScene.h"
 
 USING_NS_CC;
 
@@ -81,7 +82,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
 	//director->setContentScaleFactor(1);
 	std::srand(time(0));
-	auto scene = TitleScene::createScene();
+	auto scene = BattleScene::createScene(1);
 	//###############################################################################
 
 

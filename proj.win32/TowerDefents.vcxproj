@@ -209,9 +209,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TowerDefent\Player\Player.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\BattleScene.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\HelloWorldScene.cpp" />
-    <ClCompile Include="..\Classes\TowerDefent\Scene\LoadingScene.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Scene\PrepareScene.cpp" />
-    <ClCompile Include="..\Classes\TowerDefent\Scene\TitleScene.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\Bullet.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\BulletFactory.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Unit\Monster.cpp" />
@@ -279,9 +277,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\Player\Player.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\BattleScene.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\HelloWorldScene.h" />
-    <ClInclude Include="..\Classes\TowerDefent\Scene\LoadingScene.h" />
     <ClInclude Include="..\Classes\TowerDefent\Scene\PrepareScene.h" />
-    <ClInclude Include="..\Classes\TowerDefent\Scene\TitleScene.h" />
     <ClInclude Include="..\Classes\TowerDefent\TowerDefentShare.h" />
     <ClInclude Include="..\Classes\TowerDefent\Unit\Bullet.h" />
     <ClInclude Include="..\Classes\TowerDefent\Unit\BulletFactory.h" />

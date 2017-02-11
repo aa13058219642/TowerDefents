@@ -118,13 +118,13 @@ void GridPos::sell()
 	case GridPosType_Tower:
 		getTower()->sellTower();
 		m_type = GridPosType_Empty;
-		m_parent = m_tower = nullptr;
+		m_parent = m_tower;
 		m_dir = Direction::Center;
 		break;
 	case GridPosType_SpellEmpty:
 		getTower()->sellSpellPos(m_dir);
 		m_type = GridPosType_Empty;
-		m_parent = m_tower = nullptr;
+		m_parent = m_tower;
 		m_dir = Direction::Center;
 		break;
 	case GridPosType_SpellTower:
@@ -139,29 +139,18 @@ void GridPos::sell()
 void GridPos::reset()
 {
 	m_type = GridPosType_Empty;
-	m_parent = m_tower = nullptr;
+	m_parent = m_tower;
 	m_dir = Direction::Center;
 }
 
 
-void GridPos::bindActor()
+void GridPos::initTower()
 {
-	//m_tower = new Tower(this);
-	//m_tower->setActorName("blank");
-	//UnitManager::getInstance()->addUnit(m_tower);
-	//m_parent = m_tower;
-
-
-	m_actor = ActorManager::getInstance()->createActor(ID+100000, "blank");
-	m_actor->setPos(m_pos);
-	m_actor->setShowUnitPos(true);
+	m_tower = new Tower(this);
+	m_tower->setActorName("blank");
+	UnitManager::getInstance()->addUnit(m_tower);
+	m_parent = m_tower;
 }
-
-bool GridPos::isClickMe(Point pos)
-{
-	return m_rect.containsPoint(pos);
-}
-
 
 void GridPos::onClick()
 {
@@ -219,11 +208,6 @@ void GridPos::onClick()
 void GridPos::buildTower(const TowerCard towerCard)
 {
 	m_type = EGridPosType::GridPosType_Tower;
-
-	m_tower = new Tower(this);
-	m_tower->setActorName("blank");
-	UnitManager::getInstance()->addUnit(m_tower);
-	m_parent = m_tower;
 	m_tower->buildTower(towerCard);
 }
 

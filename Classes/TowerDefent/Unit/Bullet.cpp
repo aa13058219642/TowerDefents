@@ -27,7 +27,7 @@ Bullet::Bullet(CWeapon* weapon, int parentID, int targetID, Point pos)
 	m_parentID = parentID;
 	m_targetID = targetID;
 	m_pos = pos;
-	m_hitEffect = EffectManager::getInstance()->createHitEffect(weapon, m_parentID, m_targetID);
+	m_hitEffect = EffectManager::getInstance()->createHitEffect(m_weapon, m_parentID, m_targetID);
 	m_weapon = nullptr;
 }
 
@@ -156,7 +156,6 @@ void Bullet::onHitTarget()
 	if (target != nullptr)
 	{
 		CEffect* effect = m_hitEffect->clone();
-		effect->setParent(ID);
 		effect->setTarget(target->ID);
 		target->addEffect(effect);
 	}

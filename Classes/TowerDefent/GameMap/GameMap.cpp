@@ -57,6 +57,8 @@ bool GameMap::init(int level)
 	
 	this->clear();
 
+	//this->LoadMap(level);//<-----
+
 	loadMap(m_level);
 	this->initMap(level);
 
@@ -88,7 +90,6 @@ bool GameMap::loadMap(const int& level)
 				dict.at("y").asFloat(),
 				dict.at("width").asFloat(),
 				dict.at("height").asFloat()));
-			m_gridPos[i]->bindActor();
 			i++;
 		}
 	}
@@ -187,89 +188,88 @@ bool GameMap::loadMap(const int& level)
 bool GameMap::initMap(int level)
 {
 	bool flag = true;
-	/*
+
 	do{
-		
-		//SpellCardManager::getInstance()->LoadResource();
-		//TowerCardManager::getInstance()->LoadResource();
+		SpellCardManager::getInstance()->LoadResource();
+		TowerCardManager::getInstance()->LoadResource();
 
-		//std::vector<TowerCard> m_TowerCard;
-		//std::vector<SpellCard> m_SpellCard;
-		//auto towerMgr = TowerCardManager::getInstance();
-		//auto spellMgr = SpellCardManager::getInstance();
+		std::vector<TowerCard> m_TowerCard;
+		std::vector<SpellCard> m_SpellCard;
+		auto towerMgr = TowerCardManager::getInstance();
+		auto spellMgr = SpellCardManager::getInstance();
 
-		//vector<string> spellcardList;
-		//spellcardList.push_back("Damage_Add_I");
-		//spellcardList.push_back("Range_Add_I");
-		//spellcardList.push_back("ColdDown_Div_I");
-		//spellcardList.push_back("TargetCount_Add_I");
-		//spellcardList.push_back("CriticalChance_Add_I");
-		//spellcardList.push_back("MaxDamage_Add_I");
-		//spellcardList.push_back("CriticalMultiplier_Add_I");
-		//spellcardList.push_back("BoomRange_Add_I");
+		vector<string> spellcardList;
+		spellcardList.push_back("Damage_Add_I");
+		spellcardList.push_back("Range_Add_I");
+		spellcardList.push_back("ColdDown_Div_I");
+		spellcardList.push_back("TargetCount_Add_I");
+		spellcardList.push_back("CriticalChance_Add_I");
+		spellcardList.push_back("MaxDamage_Add_I");
+		spellcardList.push_back("CriticalMultiplier_Add_I");
+		spellcardList.push_back("BoomRange_Add_I");
 
-		//SpellCard scard;
-		//for (int i = 0; i < 8; i++)
-		//{
-		//	scard = *spellMgr->getSpellCard(spellcardList[i]);
-		//	scard.gid = i;
-		//	m_SpellCard.push_back(scard);
-		//}
-
-
-		//vector<string> towercardList;
-		//towercardList.push_back("card000");
-		//towercardList.push_back("card001");
-		//towercardList.push_back("card002");
-		//towercardList.push_back("card003");
-		//towercardList.push_back("card004");
-		//towercardList.push_back("card005");
-		//towercardList.push_back("card006");
-		//towercardList.push_back("card007");
-
-		//TowerCard tcard;
-		//for (int i = 0; i < 8; i++)
-		//{
-		//	tcard = *towerMgr->getTowerCard(towercardList[i]);
-		//	tcard.gid = i;
-		//	m_TowerCard.push_back(tcard);
-		//}
-
-		////玩家选择的卡牌
-		//Player* player = Player::getInstance();
-		//player->reset();
-		//player->setMoney(2000);
-		//player->setLife(20);
-		//player->setTowerCard(m_TowerCard);
-		//player->setSpellCard(m_SpellCard);
-
-		////初始化所有Manager
-		//WaveManager::getInstance()->init();
-		//UnitManager::getInstance()->init(new TDUnitCreator());
-		//BehaviorManager::getInstance()->init();
-		//EffectManager::getInstance()->init();
+		SpellCard scard;
+		for (int i = 0; i < 8; i++)
+		{
+			scard = *spellMgr->getSpellCard(spellcardList[i]);
+			scard.gid = i;
+			m_SpellCard.push_back(scard);
+		}
 
 
-		////载入资源
-		//vector<string> textureList;
-		//textureList.push_back("texture/scene_battle_000.plist");
-		//textureList.push_back("texture/UI/TowerSelectLayer.plist");
-		//textureList.push_back("texture/UI/TowerInfoLayer.plist");
-		//textureList.push_back("texture/UI/GameMapInfoLayer.plist");
-		//textureList.push_back("texture/effect/effect_000.plist");
-		//textureList.push_back("texture/Tower/Tower_000.plist");
-		//textureList.push_back("texture/Tower/Tower_001.plist");
-		//textureList.push_back("texture/Tower/Tower_006.plist");
-		//TextureManager::getInstance()->LoadResource(textureList);
+		vector<string> towercardList;
+		towercardList.push_back("card000");
+		towercardList.push_back("card001");
+		towercardList.push_back("card002");
+		towercardList.push_back("card003");
+		towercardList.push_back("card004");
+		towercardList.push_back("card005");
+		towercardList.push_back("card006");
+		towercardList.push_back("card007");
+
+		TowerCard tcard;
+		for (int i = 0; i < 8; i++)
+		{
+			tcard = *towerMgr->getTowerCard(towercardList[i]);
+			tcard.gid = i;
+			m_TowerCard.push_back(tcard);
+		}
+
+		//玩家选择的卡牌
+		Player* player = Player::getInstance();
+		player->reset();
+		player->setMoney(2000);
+		player->setLife(20);
+		player->setTowerCard(m_TowerCard);
+		player->setSpellCard(m_SpellCard);
+
+		//初始化所有Manager
+		WaveManager::getInstance()->init();
+		UnitManager::getInstance()->init(new TDUnitCreator());
+		BehaviorManager::getInstance()->init();
+		EffectManager::getInstance()->init();
 
 
-		//SkillManager::getInstance()->LoadResource();
-		//BehaviorManager::getInstance()->LoadResource();
-		//AnimateManager::getInstance()->LoadResource();
-		//ActorManager::getInstance()->LoadResource();
-		//WeaponManager::getInstance()->LoadResource();
-		//EffectManager::getInstance()->LoadResource();
-		
+		//载入资源
+		vector<string> textureList;
+		textureList.push_back("texture/scene_battle_000.plist");
+		textureList.push_back("texture/UI/TowerSelectLayer.plist");
+		textureList.push_back("texture/UI/TowerInfoLayer.plist");
+		textureList.push_back("texture/UI/GameMapInfoLayer.plist");
+		textureList.push_back("texture/effect/effect_000.plist");
+		textureList.push_back("texture/Tower/Tower_000.plist");
+		textureList.push_back("texture/Tower/Tower_001.plist");
+		textureList.push_back("texture/Tower/Tower_006.plist");
+		TextureManager::getInstance()->LoadResource(textureList);
+
+
+		SkillManager::getInstance()->LoadResource();
+		BehaviorManager::getInstance()->LoadResource();
+		AnimateManager::getInstance()->LoadResource();
+		ActorManager::getInstance()->LoadResource();
+		WeaponManager::getInstance()->LoadResource();
+		EffectManager::getInstance()->LoadResource();
+
 
 		//vector<string> effectList;
 		//SkillManager::getInstance()->LoadResource(effectList);
@@ -364,7 +364,7 @@ bool GameMap::initMap(int level)
 		}
 
 	} while (0);
-	*/
+
 	return flag;
 }
 
@@ -397,19 +397,89 @@ void GameMap::update(float dt)
 	WaveManager::getInstance()->update(dt);
 }
 
+//
+//bool GameMap::LoadMap(int level)
+//{
+//	FileUtils* fin = FileUtils::getInstance();
+//
+//	//string filePath = fin->getWritablePath();
+//	string filePath = "";
+//	string fileName = StringUtils::format("map/level_%d.map",level);
+//	Data data = fin->getDataFromFile(filePath + fileName);
+//	CCASSERT(!data.isNull(), string("map:" + filePath + fileName + " NOT exists").c_str());
+//
+//	byte* byt = data.getBytes();
+//	int p = 0;
+//
+//	//MapSize
+//	ReadData(m_mapSize.width, byt, p);
+//	ReadData(m_mapSize.height, byt, p);
+//
+//	//GridPos
+//	int GridPosCount, x, y;
+//	ReadData(GridPosCount, byt, p);
+//	p += GridPosCount * 8;//<----skip load tower pos
+//	//for (int i = 0; i < GridPosCount; i++)
+//	//{
+//	//	ReadData(x, byt, p);
+//	//	ReadData(y, byt, p);
+//	//	GridPos.push_back(Point(x, y));
+//	//}
+//
+//	//MonsterPath
+//	int PathCount,PosCount;
+//	ReadData(PathCount, byt, p);
+//	//MonsterPath.resize(PathCount);
+//	for (int i = 0; i < PathCount; i++){
+//	//	//MapPath path;
+//		int cccc;
+//		ReadData(cccc, byt, p);
+//		ReadData(PosCount, byt, p);
+//		p += PosCount * 8;//<----skip load pos
+//
+//	//	for (int j = 0; j < PosCount; j++)
+//	//	{
+//	//		ReadData(x, byt, p);
+//	//		ReadData(y, byt, p);
+//
+//	//		path.pos.push_back(Point(x, y));
+//	//	}
+//	//	MonsterPath.push_back(path);
+//	}
+//
+//	//Wave
+//	int waveCount,waveDataCount;
+//	ReadData(waveCount, byt, p);
+//	WaveList.resize(waveCount);
+//
+//	for (int i = 0; i < waveCount; i++)
+//	{
+//		Wave wave;
+//		ReadData(wave.WaveTime, byt, p);
+//		ReadData(waveDataCount, byt, p);
+//		for (int j = 0; j <waveDataCount; j++)
+//		{
+//			WaveData data;
+//			ReadData(data.PathID, byt, p);
+//			ReadData(data.MonsterID, byt, p);
+//			ReadData(data.NextDalay, byt, p);
+//			wave.wavedata.push_back(data);
+//		}
+//		WaveList.push_back(wave);
+//	}
+//
+//	//delete[] byt;
+//	m_level = level;
+//
+//	return true;
+//}
+//
+//template <typename T>
+//void GameMap::ReadData(T& dest, const void* src, int& p){
+//	memcpy(&dest, (char*)src+p, sizeof(dest));
+//	p += sizeof(dest);
+//}
 
-bool GameMap::onClick(Point pos)
-{
-	for (auto grid : m_gridPos)
-	{
-		if (grid->isClickMe(pos))
-		{
-			grid->onClick();
-			return true;
 
-		}
-	}
-	return false;
-}
 
 
