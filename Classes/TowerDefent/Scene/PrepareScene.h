@@ -1,14 +1,83 @@
 #pragma once
-#include "stdfax.h"
+#include "cocostudio/CocoStudio.h"
+#include "ui/CocosGUI.h"
+#include "cocos2d.h"
+#include "GridPageView.h"
+#include "Message\MessageListener.h"
+#include "TowerCardManager.h"
+#include "SpellCardManager.h"
 
-class PrepareScene : public Layer
+
+
+class CardGridItem :public cocos2d::ui::GridItem
+{
+public:
+	CardGridItem(){};
+	~CardGridItem(){};
+	CREATE_FUNC(CardGridItem);
+
+	virtual bool init();
+	virtual void onTouchEnded(Touch* touch, Event* event);
+
+	enum CardGridItemType{empty, tower,spell};
+
+	int type;
+	const TowerCard* tcard;
+	const SpellCard* scard;
+};
+
+
+class PrepareScene : public cocos2d::Scene,MessageListener
 {
 public:
 	PrepareScene();
 	~PrepareScene();
 
-	static Scene* createScene();
 	virtual bool init();
 	CREATE_FUNC(PrepareScene);
+
+	virtual void receive(const Message* message);
+	void initData(int wrold, int level);
+
+private:
+	void initUI();
+	void initListener();
+	void initPlayerData();
+	void initMapData(string levelname);
+
+	void event_btGO_click();
+	void event_btReturn_click();
+
+	cocos2d::Layer* m_layer;
+
+	cocos2d::ui::CheckBox* cb_tabbt_card;
+	cocos2d::ui::CheckBox* cb_tabbt_map;
+	cocos2d::ui::Button* bt_return;
+	cocos2d::ui::Button* bt_go;
+	cocos2d::ui::Button* bt_addmoney;
+	cocos2d::ui::Text* label_money;
+	cocos2d::ui::Text* label_cost;
+	cocos2d::ui::Layout* panel_selectionCard;
+	cocos2d::ui::ImageView* image_dialogBG;
+	cocos2d::ui::Text* title0;
+
+	cocos2d::ui::Layout* panel_card_left;
+	cocos2d::ui::Text* title1;
+	cocos2d::ui::Layout* panel_gridview1;
+	cocos2d::ui::GridPageView* gridview1;
+
+	cocos2d::ui::Layout* panel_card_right;
+	cocos2d::ui::Text* title2;
+	cocos2d::ui::ImageView* image_card;
+	cocos2d::ui::Text* cardinfo;
+	cocos2d::ui::Button* bt_choose;
+
+	cocos2d::ui::Layout* panel_map_left;
+	cocos2d::ui::Text* title3;
+	cocos2d::ui::ImageView* image_map;
+
+	cocos2d::ui::Layout* panel_map_right;
+	cocos2d::ui::Text* title4;
+	cocos2d::ui::Layout* panel_gridview2;
 
 };

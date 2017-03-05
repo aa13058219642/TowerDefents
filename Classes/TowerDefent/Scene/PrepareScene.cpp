@@ -1,45 +1,411 @@
 #include "PrepareScene.h"
+#include "LoadingScene.h"
+#include "WorldMapScene.h"
+#include "UserData.h"
+#include "TowerDefentShare.h"
+#include "BattleScene.h"
+
+
+#include "TextureManager.h"
+#include "AnimateManager.h"
+#include "UnitManager.h"
+#include "WaveManager.h"
+#include "ActorManager.h"
+#include "WeaponManager.h"
+#include "EffectManager.h"
+#include "SkillManager.h"
+#include "BehaviorManager.h"
+#include "SpellCardManager.h"
+#include "TowerCardManager.h"
+#include "TDUnitCreator.h"
+#include "Player.h"
+
+using namespace cocos2d;
+using namespace cocos2d::ui;
+
+bool CardGridItem::init()
+{
+	if (!GridItem::init())
+	{
+		return false;
+	}
+
+	id = -1;
+	tcard = nullptr;
+	scard = nullptr;
+
+	return true;
+}
+
+void CardGridItem::onTouchEnded(Touch* touch, Event* event)
+{
+	Message msg;
+	msg.keyword = "card_info";
+	ValueMap map;
+	map["id"] = id;
+	msg.valueMap = map;
+	msg.post(Message_PrepareScene);
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
 
 PrepareScene::PrepareScene(){}
 
 PrepareScene::~PrepareScene(){}
 
 
-Scene* PrepareScene::createScene(){
- 	auto scene = Scene::create();
-
-	auto layer = PrepareScene::create();
-	scene->addChild(layer, 1);
-
-
-	return scene;
-}
-
-
 bool PrepareScene::init()
 {
-	if (!Layer::init())
+	if (!Scene::init())
 	{
 		return false;
 	}
 
-
-	cocos2d::ui::Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("ui/PrepareLayer.ExportJson");
-	this->addChild(widget);
-
-
-
-
+	initUI();
+	initListener();
+	m_layer = Layer::create();
+	this->addChild(m_layer);
 
 	return true;
 }
 
 
+void PrepareScene::initUI()
+{
+	Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("ui/PrepareLayer.ExportJson");
+	this->addChild(widget);
+
+	//设置拉伸BG
+	Sprite* bg = Sprite::create("ui/ui_bg.png");
+	bg->setAnchorPoint(Point(0, 0));
+	bg->setColor(Color3B(0, 204, 255));
+	Size size = Director::getInstance()->getVisibleSize();
+	float scale = MAX(size.width / bg->getContentSize().width, size.height / bg->getContentSize().height);
+	bg->setScale(scale);
+	widget->addChild(bg, -1);
+
+	//载入控件 
+	Layout* panel = static_cast<Layout*>(widget->getChildByName("panel"));
+
+	cb_tabbt_card = static_cast<CheckBox*>(panel->getChildByName("cb_tabbt_card"));
+	cb_tabbt_map = static_cast<CheckBox*>(panel->getChildByName("cb_tabbt_map"));
+	bt_go = static_cast<Button*>(panel->getChildByName("bt_go"));
+	bt_return = static_cast<Button*>(panel->getChildByName("bt_return"));
+	bt_addmoney = static_cast<Button*>(panel->getChildByName("bt_addmoney"));
+	label_money = static_cast<Text*>(panel->getChildByName("label_money"));
+	label_cost = static_cast<Text*>(panel->getChildByName("label_cost"));
+	panel_selectionCard = static_cast<Layout*>(panel->getChildByName("panel_selectionCard"));
+	image_dialogBG = static_cast<ImageView*>(panel->getChildByName("image_dialogBG"));
+	title0 = static_cast<Text*>(panel->getChildByName("title0"));
+
+	panel_card_left = static_cast<Layout*>(panel->getChildByName("panel_card_left"));
+	title1 = static_cast<Text*>(panel_card_left->getChildByName("title1"));
+	panel_gridview1 = static_cast<Layout*>(panel_card_left->getChildByName("panel_gridview1"));
+
+	panel_card_right = static_cast<Layout*>(panel->getChildByName("panel_card_right"));
+	title2 = static_cast<Text*>(panel_card_right->getChildByName("title2"));
+	cardinfo = static_cast<Text*>(panel_card_right->getChildByName("cardinfo"));
+	bt_choose = static_cast<Button*>(panel_card_right->getChildByName("bt_choose"));
+	image_card = static_cast<ImageView*>(panel_card_right->getChildByName("card"));
+
+	panel_map_left = static_cast<Layout*>(panel->getChildByName("panel_map_left"));
+	title3 = static_cast<Text*>(panel_map_left->getChildByName("title3"));
+	image_map = static_cast<ImageView*>(panel_map_left->getChildByName("image_map"));
+
+	panel_map_right = static_cast<Layout*>(panel->getChildByName("panel_map_right"));
+	title4 = static_cast<Text*>(panel_map_right->getChildByName("title4"));
+	panel_gridview2 = static_cast<Layout*>(panel_map_right->getChildByName("panel_gridview2"));
+
+	//载入gridview
+	gridview1 = GridPageView::create(Size(340,271), Size(64, 64), GridView::Direction::VERTICAL);
+	gridview1->setSpacing(5, 5);
+	gridview1->setPosition(Size(200,160));
+	//gridview1->setBackGroundColorType(Layout::BackGroundColorType::SOLID);
+	panel_card_left->addChild(gridview1);
+
+
+
+	//隐藏部分UI
+	image_dialogBG->loadTexture("ui/dialog_bg.png");
+
+	panel_card_left->setVisible(false);
+	panel_card_right->setVisible(false);
+	panel_map_left->setVisible(true);
+	panel_map_right->setVisible(true);
+	cb_tabbt_card->setSelected(false);
+	cb_tabbt_map->setSelected(true);
+
+
+}
+
+void PrepareScene::initData(int wrold, int level)
+{
+	string levelname = StringUtils::format("%d-%d", wrold, level);
+	this->initMapData(levelname);
+	this->initPlayerData();
+}
+
+void PrepareScene::initPlayerData()
+{
+	UserData* userdata = UserData::getInstance();
+
+	TowerCardManager* tmgr = TowerCardManager::getInstance();
+	SpellCardManager* smgr = SpellCardManager::getInstance();
+
+	//tmgr->
+	for (int i = 0; i < 8; i++)
+	{
+		const TowerCard* tcard = tmgr->getTowerCard(i);
+		CardGridItem* item = CardGridItem::create();
+		item->type = CardGridItem::CardGridItemType::tower;
+		item->tcard = tcard;
+		item->setContentSize(Size(64, 64));
+		Sprite* s = Sprite::create();
+		s->setSpriteFrame(StringUtils::format("Tower_%03d.png", i));
+		s->setPosition(item->getContentSize() / 2);
+		item->addChild(s);
+
+		gridview1->addItem(item);
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		const SpellCard* scard = smgr->getSpellCard(i);
+		CardGridItem* item = CardGridItem::create();
+		item->type = CardGridItem::CardGridItemType::spell;
+		item->scard = scard;
+		item->setContentSize(Size(64, 64));
+
+		Sprite* s = Sprite::create();
+		s->setSpriteFrame(StringUtils::format("SpellTower_%03d.png", i));
+		s->setPosition(item->getContentSize() / 2);
+		item->addChild(s);
+
+		s = Sprite::create();
+		s->setSpriteFrame(StringUtils::format("TowerSelect_SpellTower_%03d.png", i));
+		s->setPosition(item->getContentSize() / 2);
+		item->addChild(s);
+
+		gridview1->addItem(item);
+	}
+
+
+}
+
+void PrepareScene::initMapData(string levelname)
+{
+	//1.打开文件
+	FileUtils* fin = FileUtils::getInstance();
+	Data data = fin->getDataFromFile("data/LevelData.json");
+	CCASSERT(!data.isNull(), "[LevelData.json] Lost!");
+
+	//2.载入json
+	string str = string((char*)data.getBytes(), data.getSize());
+	rapidjson::Document root;
+	root.Parse<0>(str.c_str());
+	CCASSERT(root.IsObject() && root.HasMember("leveldata") && root["leveldata"].IsObject(), "illegal [LevelData.json]");
+
+	//3.读取json数据
+	if (root["leveldata"].HasMember(levelname.c_str()) && root["leveldata"][levelname.c_str()].IsObject())
+	{
+		JsonNode jNode = root["leveldata"][levelname.c_str()];
+
+		string t = jNode["title"].GetString();
+		string str1 = StringUtils::format("%s %s", levelname.c_str(), t.c_str());
+		log(str1.c_str());
+		title0->setString(str1);
+
+		str1 = StringUtils::format("minimap/%s", string(jNode["minimap"].GetString()).c_str());
+		log(str1.c_str());
+		image_map->loadTexture(str1);
+	}
+	else
+	{
+		CCASSERT(false, StringUtils::format("ERROR %s NOT found", levelname).c_str());
+	}
+}
+
+void PrepareScene::initListener()
+{
+	//设置事件
+	bt_go->addClickEventListener(CC_CALLBACK_0(PrepareScene::event_btGO_click, this));
+	bt_return->addClickEventListener(CC_CALLBACK_0(PrepareScene::event_btReturn_click, this));
+
+	cb_tabbt_map->addClickEventListener([=](Ref* pSender){
+		panel_card_left->setVisible(false);
+		panel_card_right->setVisible(false);
+		panel_map_left->setVisible(true);
+		panel_map_right->setVisible(true);
+		cb_tabbt_card->setSelected(false);
+		cb_tabbt_map->setSelected(true);
+	});
+
+	cb_tabbt_card->addClickEventListener([=](Ref* pSender){
+		panel_card_left->setVisible(true);
+		panel_card_right->setVisible(true);
+		panel_map_left->setVisible(false);
+		panel_map_right->setVisible(false);
+		cb_tabbt_card->setSelected(true);
+		cb_tabbt_map->setSelected(false);
+	});
+
+	msgSubscribe(Message_PrepareScene);
+}
+
+
+void PrepareScene::receive(const Message* message)
+{
+	if (message->keyword == "card_info")
+	{
+		ValueMap map = message->valueMap;
+		int id = map["id"].asInt();
+
+		CardGridItem* item = (CardGridItem*)gridview1->getItem(id);
+
+		if (item->type == CardGridItem::CardGridItemType::tower)
+		{
+			
+			image_card->loadTexture(StringUtils::format("Tower_%03d.png", item->tcard->Icon), Widget::TextureResType::PLIST);
+		}
+		else if(item->type == CardGridItem::CardGridItemType::spell)
+		{
+			image_card->loadTexture(StringUtils::format("SpellTower_%03d.png", item->scard->Icon), Widget::TextureResType::PLIST);
+		}
+	}
+}
+
+
+
+void PrepareScene::event_btGO_click()
+{
+
+	log("TitleScene::click_startgame()");
+
+	LoadingScene* loading = LoadingScene::create();
+
+	ValueMap map;
+	map["level"] = 1;
+
+	loading->setData(map);
+
+	loading->bindFinishFunction([=](){
+		ValueMap map = loading->getData();
+
+		int level = map["level"].asInt();
+
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)BattleScene::createScene(level)));
+
+		WaveManager::getInstance()->init();
+	});
+
+	std::queue<LoadingScene::LoadingCallback> list;
+	list.push([](){
+		log("load TowerCardManager");
+
+		TowerCardManager::getInstance()->LoadResource();
+		std::vector<TowerCard> m_TowerCard;
+		auto towerMgr = TowerCardManager::getInstance();
+
+		vector<string> towercardList;
+		towercardList.push_back("card000");
+		towercardList.push_back("card001");
+		towercardList.push_back("card002");
+		towercardList.push_back("card003");
+		towercardList.push_back("card004");
+		towercardList.push_back("card005");
+		towercardList.push_back("card006");
+		towercardList.push_back("card007");
+
+		TowerCard tcard;
+		for (int i = 0; i < 8; i++)
+		{
+			tcard = *towerMgr->getTowerCard(towercardList[i]);
+			tcard.gid = i;
+			m_TowerCard.push_back(tcard);
+		}
+
+		Player::getInstance()->setTowerCard(m_TowerCard);
+	});
+	list.push([](){
+		log("load SpellCardManager");
+
+		SpellCardManager::getInstance()->LoadResource();
+
+		std::vector<SpellCard> m_SpellCard;
+		auto spellMgr = SpellCardManager::getInstance();
+
+		vector<string> spellcardList;
+		spellcardList.push_back("Damage_Add_I");
+		spellcardList.push_back("Range_Add_I");
+		spellcardList.push_back("ColdDown_Div_I");
+		spellcardList.push_back("TargetCount_Add_I");
+		spellcardList.push_back("CriticalChance_Add_I");
+		spellcardList.push_back("MaxDamage_Add_I");
+		spellcardList.push_back("CriticalMultiplier_Add_I");
+		spellcardList.push_back("BoomRange_Add_I");
+
+		SpellCard scard;
+		for (int i = 0; i < 8; i++)
+		{
+			scard = *spellMgr->getSpellCard(spellcardList[i]);
+			scard.gid = i;
+			m_SpellCard.push_back(scard);
+		}
+
+		Player::getInstance()->setSpellCard(m_SpellCard);
+
+	});
+	list.push([](){
+		log("load Player");
+
+		Player* player = Player::getInstance();
+		player->reset();
+		player->setMoney(2000);
+		player->setLife(20);
+
+	});
+	list.push([](){ log("load UnitManager");  UnitManager::getInstance()->init(new TDUnitCreator()); });
+	list.push([](){ log("load BehaviorManager");  BehaviorManager::getInstance()->init(); });
+	list.push([](){ log("load EffectManager");  	EffectManager::getInstance()->init(); });
+	list.push([](){
+		log("load TextureManager");
+		vector<string> textureList;
+		textureList.push_back("texture/scene_battle_000.plist");
+		textureList.push_back("texture/UI/TowerSelectLayer.plist");
+		textureList.push_back("texture/UI/TowerInfoLayer.plist");
+		textureList.push_back("texture/UI/GameMapInfoLayer.plist");
+		textureList.push_back("texture/effect/effect_000.plist");
+		textureList.push_back("texture/Tower/Tower_000.plist");
+		textureList.push_back("texture/Tower/Tower_001.plist");
+		textureList.push_back("texture/Tower/Tower_006.plist");
+		TextureManager::getInstance()->LoadResource(textureList);
+	});
+	list.push([](){ log("load SkillManager");  SkillManager::getInstance()->LoadResource(); });
+	list.push([](){ log("load BehaviorManager");  BehaviorManager::getInstance()->LoadResource(); });
+	list.push([](){ log("load AnimateManager");  AnimateManager::getInstance()->LoadResource(); });
+	list.push([](){ log("load ActorManager");  ActorManager::getInstance()->LoadResource(); });
+	list.push([](){ log("load WeaponManager"); WeaponManager::getInstance()->LoadResource(); });
+	list.push([](){ log("load EffectManager"); EffectManager::getInstance()->LoadResource(); });
+
+	loading->setLambdaLoadList(list);
+
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)loading));
+
+}
 
 
 
 
 
+void PrepareScene::event_btReturn_click()
+{
+	LoadingScene* loading = LoadingScene::create();
 
+	loading->bindFinishFunction([=](){
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)WorldMapScene::createScene()));
+	});
 
+	loading->replaceScene(loading);
+}
 

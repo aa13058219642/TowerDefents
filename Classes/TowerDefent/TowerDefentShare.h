@@ -6,6 +6,7 @@
 #define Message_TowerInfoLayer "Message_TowerInfoLayer"
 #define Message_GameMapInfoLayer "Message_GameMapInfoLayer"
 #define Message_GameMap "Message_GameMap"
+#define Message_PrepareScene "Message_PrepareScene"
 
 #define Message_Player "Message_Player"
 #define Message_Global "Message_Global"

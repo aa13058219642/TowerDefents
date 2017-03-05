@@ -18,11 +18,35 @@ LoadingScene::LoadingScene()
 
 LoadingScene::~LoadingScene(){}
 
+void LoadingScene::replaceScene(LoadingScene* scene)
+{
+	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)scene));
+}
 
-LoadingScene* LoadingScene::createScene(){
-	auto scene = LoadingScene::create();
 
-	return scene;
+
+bool LoadingScene::init()
+{
+	if (!Scene::init())
+	{
+		return false;
+	}
+
+	Layer* layer = Layer::create();
+	Size size = Director::getInstance()->getVisibleSize();
+	layer->setPosition(Point(size.width / 2, size.height / 2));
+
+	Sprite* sprite = Sprite::create("ui/loading.png");
+	sprite->runAction(RepeatForever::create(EaseBackOut::create(RotateBy::create(1.0f, 60))));
+	sprite->setColor(Color3B(102, 204, 255));
+	layer->addChild(sprite);
+
+	Sprite* sprite2 = Sprite::create("ui/loading2.png");
+	layer->addChild(sprite2);
+
+	this->addChild(layer);
+
+	return true;
 }
 
 void LoadingScene::onEnterTransitionDidFinish()
@@ -73,12 +97,12 @@ void LoadingScene::setLambdaLoadList(std::queue<LoadingCallback> list)
 	q_lambda = list;
 }
 
-void  LoadingScene::setBuffData(cocos2d::ValueMap data)
+void  LoadingScene::setData(ValueMap data)
 {
 	buffData = data;
 }
 
-cocos2d::ValueMap LoadingScene::getBuffData()
+ValueMap LoadingScene::getData()
 {
 	return buffData;
 }
@@ -97,8 +121,6 @@ float LoadingScene::getLoadingProgress()
 {
 	return getLoadedCount() / (float)getResCount();
 }
-
-
 
 
 void LoadingScene::start()
@@ -159,7 +181,7 @@ void LoadingScene::update(float dt)
 
 
 
-void LoadingScene::callback_texture(cocos2d::Texture2D *texture)
+void LoadingScene::callback_texture(Texture2D *texture)
 {
 	q_texture.pop();
 	loadedCount++;
@@ -172,7 +194,7 @@ void LoadingScene::callback_texture(cocos2d::Texture2D *texture)
 	doLoad(0);
 }
 
-void LoadingScene::callback_plist(cocos2d::Texture2D *texture)
+void LoadingScene::callback_plist(Texture2D *texture)
 {
 	q_plist.pop();
 	loadedCount++;

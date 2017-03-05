@@ -8,8 +8,10 @@ class LoadingScene : public cocos2d::Scene
 public:
 	LoadingScene();
 	~LoadingScene();
-	static LoadingScene* createScene();
 	CREATE_FUNC(LoadingScene);
+	static void replaceScene(LoadingScene* scene);
+
+	virtual bool init();
 	virtual void onEnterTransitionDidFinish();
 
 	typedef std::function<void()> LoadingCallback;
@@ -55,14 +57,14 @@ public:
 	注意：lambda函数中不得使用前一场景中的局部变量，
 	因为场景会在加载途中被释放，因此必须将数据存至buff data
 	*/
-	void setBuffData(cocos2d::ValueMap data);
+	void setData(cocos2d::ValueMap data);
 
 	/*
 	获取临时数据
 	注意：lambda函数中不得使用前一场景中的局部变量，
 	因为场景会在加载途中被释放，因此必须将数据存至buff data
 	*/
-	cocos2d::ValueMap getBuffData();
+	cocos2d::ValueMap getData();
 
 
 
@@ -81,7 +83,6 @@ private:
 	void callback_plist(cocos2d::Texture2D *texture);
 	void callback_lambda();
 	void callback_audio();
-
 
 private:
 	bool isLoading;

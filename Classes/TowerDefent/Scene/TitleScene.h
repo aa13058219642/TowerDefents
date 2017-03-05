@@ -9,7 +9,6 @@ public:
 
 	static cocos2d::Scene* createScene();
 	virtual bool init();
-	virtual void onExit();
 	CREATE_FUNC(TitleScene);
 
 	void click_startgame();

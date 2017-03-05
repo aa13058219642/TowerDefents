@@ -164,3 +164,12 @@
 - 2.完成标题界面titleScene
 - 3.修复bullet的hiteffect中的bug
 - 4.优化buildtower方案
+
+##v0.043
+- 1.增加LZ77类，处理文件压缩解压
+- 2.增加UserData类，使用压缩json保存数据
+- 3.增加GridPageView和GridScrollView类
+- 4.增加WorldMapScene场景，并完成各场景切换联动
+- 5.使用LevelData.json保存关卡基本信息
+
+

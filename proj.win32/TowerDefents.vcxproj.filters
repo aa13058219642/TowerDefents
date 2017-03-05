@@ -145,6 +145,12 @@
     <Filter Include="src\TowerDefent\Scene\LoadingScene">
       <UniqueIdentifier>{bee87447-0759-4a7b-92d6-897d2742ea69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TowerDefent\Scene\WorldMapScene">
+      <UniqueIdentifier>{27b95077-53d1-4ed1-a59c-f2b259f15b45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\TowerDefent\ext">
+      <UniqueIdentifier>{fccb1501-0759-423e-bc54-3e181b4ecadc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -341,6 +347,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Scene\TitleScene.cpp">
       <Filter>src\TowerDefent\Scene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Scene\WorldMapScene.cpp">
+      <Filter>src\TowerDefent\Scene\WorldMapScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\DataStructure\LZ77.cpp">
+      <Filter>src\FrameWork\DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\DataStructure\UserData.cpp">
+      <Filter>src\FrameWork\DataStructure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\ext\GridItem.cpp">
+      <Filter>src\TowerDefent\ext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\ext\GridView.cpp">
+      <Filter>src\TowerDefent\ext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\ext\GridPageView.cpp">
+      <Filter>src\TowerDefent\ext</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\ext\GridScrollView.cpp">
+      <Filter>src\TowerDefent\ext</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -550,6 +577,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Scene\TitleScene.h">
       <Filter>src\TowerDefent\Scene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Scene\WorldMapScene.h">
+      <Filter>src\TowerDefent\Scene\WorldMapScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\DataStructure\UserData.h">
+      <Filter>src\FrameWork\DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\DataStructure\LZ77.h">
+      <Filter>src\FrameWork\DataStructure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\ext\GridItem.h">
+      <Filter>src\TowerDefent\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\ext\GridView.h">
+      <Filter>src\TowerDefent\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\ext\GridScrollView.h">
+      <Filter>src\TowerDefent\ext</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\ext\GridPageView.h">
+      <Filter>src\TowerDefent\ext</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

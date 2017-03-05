@@ -1,0 +1,17 @@
+{
+    "leveldata": {
+        "1-1": {
+            "title": "6666",
+            "minimap": "minimap_1_1.png",
+            "money": 1000,
+            "enemy": [ 1 ]
+        },
+        "1-2": {
+            "title": "大中至正222",
+            "minimap": "minimap_1_2.png",
+            "money": 2000,
+            "enemy": [ 1 ]
+        }
+    }
+
+}
