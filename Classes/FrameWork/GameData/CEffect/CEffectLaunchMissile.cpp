@@ -1,5 +1,5 @@
 #include "CEffectLaunchMissile.h"
-#include "BulletFactory.h"
+#include "UnitManager.h"
 using namespace cocosgalaxy;
 
 CEffectLaunchMissile::CEffectLaunchMissile()

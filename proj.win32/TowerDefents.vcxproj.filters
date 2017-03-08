@@ -228,9 +228,6 @@
     <ClCompile Include="..\Classes\TowerDefent\Unit\Bullet.cpp">
       <Filter>src\TowerDefent\Unit\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\Unit\BulletFactory.cpp">
-      <Filter>src\TowerDefent\Unit\Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Unit\Monster.cpp">
       <Filter>src\TowerDefent\Unit\Monster</Filter>
     </ClCompile>
@@ -369,6 +366,12 @@
     <ClCompile Include="..\Classes\TowerDefent\ext\GridScrollView.cpp">
       <Filter>src\TowerDefent\ext</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Unit\BulletManager.cpp">
+      <Filter>src\TowerDefent\Unit\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Unit\MonsterManager.cpp">
+      <Filter>src\TowerDefent\Unit\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -442,9 +445,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Layer\UnitLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\Unit\BulletFactory.h">
-      <Filter>src\TowerDefent\Unit\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Unit\Bullet.h">
       <Filter>src\TowerDefent\Unit\Bullet</Filter>
@@ -599,6 +599,12 @@
     <ClInclude Include="..\Classes\TowerDefent\ext\GridPageView.h">
       <Filter>src\TowerDefent\ext</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Unit\BulletManager.h">
+      <Filter>src\TowerDefent\Unit\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Unit\MonsterManager.h">
+      <Filter>src\TowerDefent\Unit\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
@@ -608,5 +614,6 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>

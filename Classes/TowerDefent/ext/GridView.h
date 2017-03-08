@@ -42,6 +42,9 @@ namespace ui {
 		/*取item*/
 		virtual GridItem* getItem(int index) = 0;
 
+		/*删除item*/
+		virtual void removeItem(int index) = 0;
+
 		/*设置每个item的大小*/
 		virtual void setItemSize(const Size& itemsize) = 0;
 
@@ -53,6 +56,7 @@ namespace ui {
 
 		/*行列之间的间距*/
 		virtual void setSpacing(float horizontalSpacing, float verticalSpacing) = 0;
+
 
 	protected:
 		virtual void onSizeChanged() = 0;

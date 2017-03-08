@@ -5,8 +5,8 @@
 class Monster : public CUnit
 {
 public:
-	//Monster();
-	Monster(int MonsterID, MapPath path);
+	//Monster(int MonsterID, MapPath path);
+	Monster();
 	~Monster();
 
 	//static Monster* create(int MonsterID, MapPath path);
@@ -14,10 +14,16 @@ public:
 	virtual void drawMyOutLine(DrawNode* drawNode);
 	virtual void update(float dt);
 
-	CC_SYNTHESIZE(MapPath, m_path, MovePath);
+	void setMapPath(MapPath path);
+	MapPath getMapPath();
 
+	virtual Monster* clone();
 
+	Name icon;
+	int price;
 private:
+	MapPath m_path;
+
 	virtual void onMove(float dt);
 	virtual void onBeAttack(int damage, EDamageType damageType);
 	virtual void onDead(); 

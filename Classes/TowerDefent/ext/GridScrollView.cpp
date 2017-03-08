@@ -75,12 +75,30 @@ void GridScrollView::addItem(GridItem* item)
 
 void  GridScrollView::insertItem(int index, GridItem* item)
 {
-	item->id = index;
-	m_Items.insert(index, item);
-	this->addChild(item);
+	if (index > m_Items.size())
+	{
+		index = m_Items.size();
+	}
 
-	//resetInnerSize();
-	setItemPosition(index, item);
+	if (index == m_Items.size())
+	{
+		this->addItem(item);
+	}
+	else
+	{
+		item->id = index;
+		m_Items.insert(index, item);
+		setItemPosition(index, item);
+
+
+		int s = m_Items.size();
+		for (int i = 0; i < s; i++)
+		{
+			GridItem* item = m_Items.at(i);
+			item->id = i;
+			setItemPosition(i, item);
+		}
+	}
 }
 
 GridItem*  GridScrollView::getItem(int index)
@@ -92,6 +110,28 @@ GridItem*  GridScrollView::getItem(int index)
 	}
 	return nullptr;
 }
+
+void GridScrollView::removeItem(int index)
+{
+	for (auto& item : m_Items)
+	{
+		if (item->id == index)
+		{
+			item->removeFromParent();
+			m_Items.eraseObject(item);
+			break;
+		}
+	}
+
+	//÷ÿ≈≈item
+	int s = m_Items.size();
+	for (int i = 0; i < s; i++)
+	{
+		GridItem* item = m_Items.at(i);
+		setItemPosition(i, item);
+	}
+}
+
 
 void GridScrollView::setItemSize(const Size& itemsize)
 {
@@ -227,7 +267,7 @@ bool GridScrollView::onTouchBegan(Touch* touch, Event* event)
 	Rect rect = RectApplyAffineTransform(
 		Rect(Point::ZERO, this->getContentSize()),
 		this->getNodeToWorldAffineTransform());
-	if (this->isVisible() && rect.containsPoint(pos))
+	if (this->isVisible() && rect.containsPoint(pos) && m_Items.size() > 0)
 	{
 
 		int s = m_numColumns*m_numRows;

@@ -18,7 +18,10 @@
 #include "SpellCardManager.h"
 #include "TowerCardManager.h"
 #include "TDUnitCreator.h"
+//#include "BulletFactory.h"
+#include "BulletManager.h"
 #include "Player.h"
+#include "MonsterManager.h"
 
 using namespace cocos2d;
 using namespace cocos2d::ui;
@@ -33,7 +36,8 @@ bool CardGridItem::init()
 	id = -1;
 	tcard = nullptr;
 	scard = nullptr;
-
+	this->setContentSize(Size(64, 64));
+	isChoose = false;
 	return true;
 }
 
@@ -42,9 +46,32 @@ void CardGridItem::onTouchEnded(Touch* touch, Event* event)
 	Message msg;
 	msg.keyword = "card_info";
 	ValueMap map;
-	map["id"] = id;
+	map["id"] = this->id;
+	map["isChoose"] = this->isChoose;
 	msg.valueMap = map;
 	msg.post(Message_PrepareScene);
+}
+
+void CardGridItem::setIcon(string iconname)
+{
+	this->iconName = iconname;
+
+	Sprite* s = Sprite::create();
+	s->setSpriteFrame(iconname);
+	s->setPosition(this->getContentSize() / 2);
+	this->addChild(s);
+}
+
+
+CardGridItem* CardGridItem::clone()
+{
+	CardGridItem* item = CardGridItem::create();
+	item->type = this->type;
+	item->tcard = this->tcard;
+	item->scard = this->scard;
+	item->isChoose = this->isChoose;
+	item->setIcon(this->iconName);
+	return item;
 }
 
 
@@ -116,7 +143,7 @@ void PrepareScene::initUI()
 
 	panel_map_right = static_cast<Layout*>(panel->getChildByName("panel_map_right"));
 	title4 = static_cast<Text*>(panel_map_right->getChildByName("title4"));
-	panel_gridview2 = static_cast<Layout*>(panel_map_right->getChildByName("panel_gridview2"));
+	panel_gridview2 = static_cast<Layout*>(panel_map_right->getChildByName("panel_gridview4"));
 
 	//载入gridview
 	gridview1 = GridPageView::create(Size(340,271), Size(64, 64), GridView::Direction::VERTICAL);
@@ -125,6 +152,10 @@ void PrepareScene::initUI()
 	//gridview1->setBackGroundColorType(Layout::BackGroundColorType::SOLID);
 	panel_card_left->addChild(gridview1);
 
+	gridview2 = GridPageView::create(Size(560,134), Size(64, 64), GridView::Direction::VERTICAL);
+	gridview2->setSpacing(5, 5);
+	gridview2->setPosition(Size(280, 67));
+	panel_selectionCard->addChild(gridview2);
 
 
 	//隐藏部分UI
@@ -162,11 +193,9 @@ void PrepareScene::initPlayerData()
 		item->type = CardGridItem::CardGridItemType::tower;
 		item->tcard = tcard;
 		item->setContentSize(Size(64, 64));
-		Sprite* s = Sprite::create();
-		s->setSpriteFrame(StringUtils::format("Tower_%03d.png", i));
-		s->setPosition(item->getContentSize() / 2);
-		item->addChild(s);
+		item->setIcon(StringUtils::format("Tower_%03d.png", i));
 
+		itemlist.pushBack(item);
 		gridview1->addItem(item);
 	}
 	for (int i = 0; i < 8; i++)
@@ -176,17 +205,9 @@ void PrepareScene::initPlayerData()
 		item->type = CardGridItem::CardGridItemType::spell;
 		item->scard = scard;
 		item->setContentSize(Size(64, 64));
+		item->setIcon(StringUtils::format("TowerSelect_SpellTower_%03d.png", i));
 
-		Sprite* s = Sprite::create();
-		s->setSpriteFrame(StringUtils::format("SpellTower_%03d.png", i));
-		s->setPosition(item->getContentSize() / 2);
-		item->addChild(s);
-
-		s = Sprite::create();
-		s->setSpriteFrame(StringUtils::format("TowerSelect_SpellTower_%03d.png", i));
-		s->setPosition(item->getContentSize() / 2);
-		item->addChild(s);
-
+		itemlist.pushBack(item);
 		gridview1->addItem(item);
 	}
 
@@ -231,6 +252,7 @@ void PrepareScene::initListener()
 	//设置事件
 	bt_go->addClickEventListener(CC_CALLBACK_0(PrepareScene::event_btGO_click, this));
 	bt_return->addClickEventListener(CC_CALLBACK_0(PrepareScene::event_btReturn_click, this));
+	bt_choose->addClickEventListener(CC_CALLBACK_0(PrepareScene::event_btChoose_click, this));
 
 	cb_tabbt_map->addClickEventListener([=](Ref* pSender){
 		panel_card_left->setVisible(false);
@@ -260,22 +282,30 @@ void PrepareScene::receive(const Message* message)
 	{
 		ValueMap map = message->valueMap;
 		int id = map["id"].asInt();
+		bool choose = map["isChoose"].asBool();
 
-		CardGridItem* item = (CardGridItem*)gridview1->getItem(id);
+		if (choose)
+		{
+			curItem = (CardGridItem*)gridview2->getItem(id);
+		}
+		else
+		{
+			curItem = (CardGridItem*)gridview1->getItem(id);
+		}
 
-		if (item->type == CardGridItem::CardGridItemType::tower)
+		if (curItem->type == CardGridItem::CardGridItemType::tower)
 		{
-			
-			image_card->loadTexture(StringUtils::format("Tower_%03d.png", item->tcard->Icon), Widget::TextureResType::PLIST);
+			image_card->loadTexture(StringUtils::format("Tower_%03d.png", curItem->tcard->Icon), Widget::TextureResType::PLIST);
 		}
-		else if(item->type == CardGridItem::CardGridItemType::spell)
+		else if (curItem->type == CardGridItem::CardGridItemType::spell)
 		{
-			image_card->loadTexture(StringUtils::format("SpellTower_%03d.png", item->scard->Icon), Widget::TextureResType::PLIST);
+			image_card->loadTexture(StringUtils::format("SpellTower_%03d.png", curItem->scard->Icon), Widget::TextureResType::PLIST);
 		}
+
+
+
 	}
 }
-
-
 
 void PrepareScene::event_btGO_click()
 {
@@ -387,16 +417,16 @@ void PrepareScene::event_btGO_click()
 	list.push([](){ log("load ActorManager");  ActorManager::getInstance()->LoadResource(); });
 	list.push([](){ log("load WeaponManager"); WeaponManager::getInstance()->LoadResource(); });
 	list.push([](){ log("load EffectManager"); EffectManager::getInstance()->LoadResource(); });
+	list.push([](){ log("load BulletManager"); BulletManager::getInstance()->LoadResource(); });
+	list.push([](){ log("load MonsterManager"); MonsterManager::getInstance()->LoadResource(); });
+
+	
 
 	loading->setLambdaLoadList(list);
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)loading));
 
 }
-
-
-
-
 
 void PrepareScene::event_btReturn_click()
 {
@@ -409,3 +439,18 @@ void PrepareScene::event_btReturn_click()
 	loading->replaceScene(loading);
 }
 
+void PrepareScene::event_btChoose_click()
+{
+	if (curItem->isChoose == false)
+	{
+		curItem->isChoose = true;
+		gridview1->removeItem(curItem->id);
+		gridview2->addItem(curItem);
+	}
+	else
+	{
+		curItem->isChoose = false;
+		gridview2->removeItem(curItem->id);
+		gridview1->addItem(curItem);
+	}
+}

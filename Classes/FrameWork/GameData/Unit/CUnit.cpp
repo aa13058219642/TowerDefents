@@ -16,7 +16,7 @@ using namespace cocosgalaxy;
 CUnit::CUnit()
 {
 	ID = -1;
-	m_name = "";
+	name = "";
 	m_type = EUnitType::Unit;
 	m_state = EUnitState::UnitState_Normal;
 	m_pos = Point(0, 0);
@@ -26,7 +26,6 @@ CUnit::CUnit()
 	Radius = 32;
 
 }
-
 
 CUnit::~CUnit()
 {
@@ -49,7 +48,6 @@ CUnit::~CUnit()
 	if (m_weapon != nullptr)delete m_weapon;
 
 }
-
 
 void CUnit::setPos(Point pos)
 {
@@ -99,7 +97,6 @@ void CUnit::setWeapon(const Name& weaponName)
 {
 	setWeapon(WeaponManager::getInstance()->getWeapon(weaponName));
 }
-
 
 CWeapon* CUnit::getWeapon()
 {
@@ -210,15 +207,11 @@ void CUnit::onDeaded()
 }
 
 
-
-
 void CUnit::addEffect(CEffect* effect)
 {
 	if (effect!=nullptr)
 		effects.push_back(effect);
 }
-
-
 
 void CUnit::addSkill(CSkill* skill)
 {
@@ -231,7 +224,6 @@ void CUnit::addSkill(const Name& skillName)
 	addSkill(SkillManager::getInstance()->createCSkill(skillName, this));
 }
 
-
 void CUnit::addBehavior(CBehavior* behavior)
 {
 	if (behavior != nullptr)
@@ -242,7 +234,6 @@ void CUnit::addBehavior(CBehavior* behavior)
 	}
 
 }
-
 
 void CUnit::addBehavior(const Name& behaviorName)
 {
@@ -284,7 +275,6 @@ void CUnit::removeBehavior(const Name& behaviorName)
 	}
 }
 
-
 void CUnit::updateModification()
 {
 	//m_modification.clear();
@@ -320,6 +310,35 @@ void CUnit::applyAEffect(Name effectName, float playtime)
 		m_actor->playEffect(effectName, playtime);
 }
 
+CUnit* CUnit::clone()
+{
+	CUnit* unit = new CUnit();
+	unit->HP = AbilityEx<float>(this->HP);
+	unit->MP = AbilityEx<float>(this->MP);
+	unit->AP = AbilityEx<float>(this->AP);
+	unit->HP_RegenRate = Ability<float>(this->HP_RegenRate);
+	unit->MP_RegenRate = Ability<float>(this->MP_RegenRate);
+	unit->AP_RegenRate = Ability<float>(this->AP_RegenRate);
+	unit->Speed = Ability<float>(this->Speed);
+	unit->Radius = this->Radius;
+	unit->KillEXP = Ability<float>(this->KillEXP);
+	unit->EXP = this->EXP;
+	for (int i = 0; i < DamageTypeCount; i++)
+	{
+		unit->DamageDefents[i] = Ability<float>(this->DamageDefents[i]);
+	}
+	unit->name = this->name;
+	unit->m_type = this->m_type;
+	unit->m_state = this->m_state;
+	unit->m_pos = this->m_pos;
+	unit->m_weapon = this->m_weapon->clone();
+	unit->m_targetPos = this->m_targetPos;
+	unit->m_targetID = this->m_targetID;
+	unit->m_actorName = this->m_actorName;
+	unit->m_actor = this->m_actor->clone();
+
+	return unit;
+}
 
 
 

@@ -18,12 +18,16 @@ public:
 
 	virtual bool init();
 	virtual void onTouchEnded(Touch* touch, Event* event);
+	CardGridItem* clone();
+	void setIcon(string iconname);
 
 	enum CardGridItemType{empty, tower,spell};
 
 	int type;
 	const TowerCard* tcard;
 	const SpellCard* scard;
+	string iconName;
+	bool isChoose;
 };
 
 
@@ -47,6 +51,11 @@ private:
 
 	void event_btGO_click();
 	void event_btReturn_click();
+	void event_btChoose_click();
+
+	CardGridItem* curItem;
+	Vector<CardGridItem*> itemlist;
+
 
 	cocos2d::Layer* m_layer;
 
@@ -79,5 +88,6 @@ private:
 	cocos2d::ui::Layout* panel_map_right;
 	cocos2d::ui::Text* title4;
 	cocos2d::ui::Layout* panel_gridview2;
+	cocos2d::ui::GridPageView* gridview2;
 
 };

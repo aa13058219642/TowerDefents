@@ -1,5 +1,6 @@
 #include "TDUnitCreator.h"
-#include "BulletFactory.h"
+//#include "BulletFactory.h"
+#include "BulletManager.h"
 using namespace cocosgalaxy;
 
 TDUnitCreator::TDUnitCreator()
@@ -35,7 +36,8 @@ CGameData* TDUnitCreator::Create(int classHash, string typeName)
 	{
 		if (classHash == typeid(Bullet).hash_code())
 		{
-			data = BulletFactory::getInstance()->CreateBullet(typeName);
+			//data = BulletFactory::getInstance()->CreateBullet(typeName);
+			data = BulletManager::getInstance()->CreateBullet(typeName);
 		}
 		else
 			data = nullptr;

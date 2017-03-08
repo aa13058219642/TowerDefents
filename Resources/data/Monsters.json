@@ -1,0 +1,18 @@
+{
+    "Monsters": [
+        {
+            "id": 1,
+            "name": "蜗牛",
+            "Icon": "icon_m001.png",
+            "ActorName": "m001",
+            "unitType": 5,
+            "HP": 100,
+            "MP": 0,
+            "AP": 0,
+            "Speed": 100,
+            "HP_RegenRate": 0,
+            "skillName": [],
+            "price": 200
+        }
+    ]
+}

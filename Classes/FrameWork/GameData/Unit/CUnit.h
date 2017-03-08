@@ -92,9 +92,9 @@ namespace cocosgalaxy
 		virtual void setTarget(int targetID);
 		virtual CUnit* getTarget();
 
+		virtual CUnit* clone();
 	protected:
 		/* ---- Ù–‘---- */
-		Name m_name;
 		UnitType m_type;
 		EUnitState m_state;
 		Point m_pos;

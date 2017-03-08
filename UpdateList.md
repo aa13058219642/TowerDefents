@@ -172,4 +172,8 @@
 - 4.增加WorldMapScene场景，并完成各场景切换联动
 - 5.使用LevelData.json保存关卡基本信息
 
-
+##v0.044
+- 1.BulletFactory改名BulletManeger
+- 2.Monster载入Json化
+- 3.修复Pageview中的部分bug
+- 4.完成prepareScene的选择卡片

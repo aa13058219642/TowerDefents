@@ -2,7 +2,7 @@
 #include "GameMap.h"
 #include "Monster.h"
 #include "UnitManager.h"
-
+#include "MonsterManager.h"
 
 
 
@@ -74,13 +74,14 @@ void WaveManager::update(float dt)
 				//log("Monster---%d", curMonster);
 
 				UnitManager* objMgr = UnitManager::getInstance();
-				Monster* monster = new Monster(
-					waveList[curWave].wavedata[curMonster].MonsterID, 
-					monsterPath[waveList[curWave].wavedata[curMonster].PathID]);
-
-				monster->setActorName("m001");
+				//Monster* monster = new Monster(
+				//	waveList[curWave].wavedata[curMonster].MonsterID, 
+				//	monsterPath[waveList[curWave].wavedata[curMonster].PathID]);
+				Monster* monster = MonsterManager::getInstance()->CreateMonster(waveList[curWave].wavedata[curMonster].MonsterID);
+				monster->setMapPath(monsterPath[waveList[curWave].wavedata[curMonster].PathID]);
+				monster->setPos(monsterPath[waveList[curWave].wavedata[curMonster].PathID].getCurPos());
+				//monster->setActorName("m001");
 				objMgr->addUnit(monster);
-
 
 				monsterTime += waveList[curWave].wavedata[curMonster].NextDalay;
 				curMonster++;

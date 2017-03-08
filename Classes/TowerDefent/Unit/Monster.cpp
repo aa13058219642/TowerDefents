@@ -5,11 +5,6 @@
 #include "TowerDefentShare.h"
 #include "Message\Message.h"
 
-//Monster::Monster()
-//{
-//
-//}
-
 
 Monster::~Monster()
 {
@@ -17,28 +12,66 @@ Monster::~Monster()
 }
 
 
-Monster::Monster(int MonsterID, MapPath path)
+//Monster::Monster(int MonsterID, MapPath path)
+Monster::Monster()
 {
-	bool flag = false;
+	//bool flag = false;
+	//do{
+	//	//MonsterID
+	//	setType(5);
+	//	//get m_alility from MonsterID
+	//	HP = 100;
+	//	HP.Max = 100;
+	//	Radius = 32;
+	//	Speed =100;
+	//	setPos(path.getCurPos());
+	//	setMapPath(path);
+	//	flag = true;
+	//} while (0);
+}
 
-	do{
+Monster* Monster::clone()
+{
+	Monster* unit = new Monster();
+	unit->HP = AbilityEx<float>(this->HP);
+	unit->MP = AbilityEx<float>(this->MP);
+	unit->AP = AbilityEx<float>(this->AP);
+	unit->HP_RegenRate = Ability<float>(this->HP_RegenRate);
+	unit->MP_RegenRate = Ability<float>(this->MP_RegenRate);
+	unit->AP_RegenRate = Ability<float>(this->AP_RegenRate);
+	unit->Speed = Ability<float>(this->Speed);
+	unit->Radius = this->Radius;
+	unit->KillEXP = Ability<float>(this->KillEXP);
+	unit->EXP = this->EXP;
+	for (int i = 0; i < DamageTypeCount; i++)
+	{
+		unit->DamageDefents[i] = Ability<float>(this->DamageDefents[i]);
+	}
+	unit->name = this->name;
+	unit->m_type = this->m_type;
+	unit->m_state = this->m_state;
+	unit->m_pos = this->m_pos;
+	unit->m_weapon = this->m_weapon->clone();
+	unit->m_targetPos = this->m_targetPos;
+	unit->m_targetID = this->m_targetID;
+	unit->m_actorName = this->m_actorName;
 
-		//MonsterID
-		setType(5);
-		//get m_alility from MonsterID
-		HP = 100;
-		HP.Max = 100;
-		Radius = 32;
-		Speed =100;
+	unit->icon = this->icon;
+	unit->price = this->price;
 
+	unit->setMapPath(this->m_path);
+	return unit;
+}
 
+void Monster::setMapPath(MapPath path)
+{
+	m_path = path;
+	
+}
 
-
-		setPos(path.getCurPos());
-		setMovePath(path);
-
-		flag = true;
-	} while (0);
+MapPath Monster::getMapPath()
+{
+	return m_path;
 }
 
 
@@ -117,13 +150,8 @@ void Monster::onDead()
 {
 	CUnit::onDead();
 
-	//NotificationMsg msg;
-	//msg["cmd"] = GameMap_addMoney;
-	//msg["addMoney"] = 100;
-	//NotificationCenter::getInstance()->postNotification(Message_GameMap, (Ref*)&msg);
-
 	Message msg;
 	msg.keyword = "Money";
-	msg.valueMap["value"] = 10;
+	msg.valueMap["value"] = price;
 	msg.post(Message_Player);
 }

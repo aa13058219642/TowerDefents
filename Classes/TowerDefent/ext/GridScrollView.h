@@ -26,6 +26,9 @@ namespace ui {
 		/*取item*/
 		virtual GridItem* getItem(int index);
 
+		/*删除item*/
+		virtual void removeItem(int index);
+
 		/*设置每个item的大小*/
 		virtual void setItemSize(const Size& itemsize);
 
