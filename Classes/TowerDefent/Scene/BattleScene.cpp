@@ -14,20 +14,10 @@ BattleScene::~BattleScene()
 
 }
 
-
-Scene* BattleScene::createScene(int level){
- 	auto scene = Scene::create();
-	Layer* layer;
-
-	layer = BattleScene::create(level);
-	scene->addChild(layer, 0);
-	return scene;
-}
-
-BattleScene* BattleScene::create(int level)
+BattleScene* BattleScene::create(int wrold, int level)
 {
 	BattleScene* battleScene = new BattleScene();
-	if (battleScene && battleScene->init(level))
+	if (battleScene && battleScene->init(wrold, level))
 	{
 		battleScene->autorelease();
 	}
@@ -38,9 +28,9 @@ BattleScene* BattleScene::create(int level)
 	return battleScene;
 }
 
-bool BattleScene::init(int level)
+bool BattleScene::init(int wrold, int level)
 {
-	if (!Layer::init())
+	if (!Scene::init())
 	{
 		return false;
 	}
@@ -58,7 +48,7 @@ bool BattleScene::init(int level)
 	ActorManager::getInstance()->init(unitLayer);
 
 	//init Map and Layer
-	GameMap::getInstance()->init(level);
+	GameMap::getInstance()->init(wrold, level);
 
 	towerSelectLayer = TowerSelectLayer::create();
 	this->addChild(towerSelectLayer, 2);
@@ -69,9 +59,11 @@ bool BattleScene::init(int level)
 	towerInfoLayer = TowerInfoLayer::create();
 	this->addChild(towerInfoLayer, 6000);
 
-	gameMapInfoLayer = GameMapInfoLayer::create();
-	this->addChild(gameMapInfoLayer, 5999);
+	//gameMapInfoLayer = GameMapInfoLayer::create();
+	//this->addChild(gameMapInfoLayer, 5999);
 
+	gameInfoLayer = GameInfoLayer::create();
+	this->addChild(gameInfoLayer, 5999);
 
 
 	if (DebugDraw::isDebug)

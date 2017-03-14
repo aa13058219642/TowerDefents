@@ -4,7 +4,7 @@
 //MessageCenter///////////////////////////////////////////////////////////////////////////
 #define Message_TowerSelectLayer "Message_TowerSelectLayer"
 #define Message_TowerInfoLayer "Message_TowerInfoLayer"
-#define Message_GameMapInfoLayer "Message_GameMapInfoLayer"
+#define Message_GameInfoLayer "Message_GameInfoLayer"
 #define Message_GameMap "Message_GameMap"
 #define Message_PrepareScene "Message_PrepareScene"
 

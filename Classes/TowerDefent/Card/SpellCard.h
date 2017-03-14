@@ -13,7 +13,7 @@ public:
 	int ID;			//所有卡片的ID
 	int gid;		//游戏进行时的ID（0-7）
 	Name name;
-	int Icon;
+	Name Icon;
 	Name behaviorName;
 	Name uiName;
 	Name uiDescription;

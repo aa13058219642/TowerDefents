@@ -32,10 +32,26 @@ Tower::Tower(GridPos* GridPos)
 			m_SpellTower[i] = nullptr;
 		}
 
-
+		m_spellactor = nullptr;
 	} while (0);
 }
 
+void Tower::setTarget(int targetID)
+{
+	this->m_targetID = targetID;
+
+	CUnit *target = UnitManager::getInstance()->getUnit(targetID);
+	this->m_targetPos = target->getPos();
+	//¸Ä±ä³¯Ïò
+	if (target->getPos().x <= m_pos.x)
+	{
+		m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
+	}
+	else
+	{
+		m_actor->changeFace(CActor::Face::FACE_TO_RIGHT);
+	}
+}
 
 Color3B Tower::getColor()
 {
@@ -104,13 +120,18 @@ void Tower::buildTower(const TowerCard towerCard)
 
 	this->setActorName(towerCard.ActorName);
 	this->bindActor();
-	this->m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
+	m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
+	m_actor->setLocalLevel(2);
+
+	m_spellactor = ActorManager::getInstance()->createActor(INT_MAX - ID, "blank");
+	m_spellactor->setLocalLevel(1);
+	m_spellactor->setPos(m_pos);
 }
 
 void Tower::buildSpellTowerPos(Direction direction)
 {
 	string name = StringUtils::format("spellPos%03d", (int)direction);
-	m_actor->playEffect(name, FLT_MAX, m_color, Point::ZERO, 0, direction);
+	m_spellactor->playEffect(name, FLT_MAX, m_color, Point::ZERO, 0, direction);
 
 	m_TowerCard.price.money += m_TowerCard.spellPosPrice[direction] + spellPosCount*SpellPosPriceAddition;
 	spellPosCount++;
@@ -121,8 +142,8 @@ void Tower::buildSpellTower(Direction direction, const SpellCard spellTower)
 	this->addBehavior(spellTower.behaviorName);
 
 	GridPos* GridPos = GameMap::getInstance()->getGridPos(m_gridPos->getAroundGridPosID(direction));
-	string name = StringUtils::format("SpellTower_%03d", spellTower.Icon);
-	m_actor->playEffect(name, FLT_MAX, m_color, Point(GridPos->getPos() - m_pos), 0, direction);
+	string name = StringUtils::format("SpellTower_%03d", spellTower.ID);
+	m_spellactor->playEffect(name, FLT_MAX, m_color, Point(GridPos->getPos() - m_pos), 0, direction);
 
 	m_SpellTower[direction] = new SpellCard(spellTower);
 }
@@ -143,13 +164,14 @@ void Tower::sellTower()
 	this->setActorName("blank");
 	this->bindActor();
 
+	ActorManager::getInstance()->removeActor(INT_MAX - ID);
 	this->onDead();
 }
 
 void Tower::sellSpellPos(Direction direction)
 {
 	string name = StringUtils::format("spellPos%03d", (int)direction);
-	m_actor->removeEffect(name, direction);
+	m_spellactor->removeEffect(name, direction);
 
 	spellPosCount--;
 	m_TowerCard.price.money -= m_TowerCard.spellPosPrice[direction] + spellPosCount*SpellPosPriceAddition;
@@ -157,10 +179,11 @@ void Tower::sellSpellPos(Direction direction)
 
 void Tower::sellSpellTower(Direction direction)
 {
-	string name = StringUtils::format("SpellTower_%03d", m_SpellTower[direction]->Icon);
-	m_actor->removeEffect(name, direction);
 	this->removeBehavior(m_SpellTower[direction]->behaviorName);
+	string name = StringUtils::format("SpellTower_%03d", m_SpellTower[direction]->ID);
+	m_spellactor->removeEffect(name, direction);
 
+	delete m_SpellTower[direction];
 	m_SpellTower[direction] = nullptr;
 }
 

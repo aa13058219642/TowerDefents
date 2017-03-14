@@ -193,5 +193,5 @@ void Bullet::onTargetDead()
 
 void Bullet::onBindSprite()
 {
-	m_actor->setLocalLevel(1);
+	m_actor->setLocalLevel(3);
 }

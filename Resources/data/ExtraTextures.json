@@ -1,0 +1,10 @@
+{
+    "ExtraTexture": [ 
+        "texture/Tower/Tower_000.plist",
+        "texture/Tower/Tower_001.plist",
+        "texture/Tower/Tower_002.plist",
+        "texture/Tower/Tower_003.plist",
+        "texture/Tower/Tower_006.plist",
+        "Monsters/Monster_001.plist"
+    ]
+}

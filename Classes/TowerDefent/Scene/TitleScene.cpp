@@ -1,6 +1,6 @@
 #include "TitleScene.h"
 #include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
+#include "UI/CocosGUI.h"
 #include "LoadingScene.h"
 #include "BattleScene.h"
 #include "WorldMapScene.h"
@@ -47,11 +47,11 @@ bool TitleScene::init()
 		return false;
 	}
 
-	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("ui/Title_Layer.ExportJson"));
+	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("UI/Title_Layer.ExportJson"));
 	this->addChild(ui);
 
 	//ÉèÖÃÀ­ÉìBG
-	Sprite* bg = Sprite::create("ui/title_bg.png");
+	Sprite* bg = Sprite::create("UI/title_bg.png");
 	bg->setAnchorPoint(Point(0, 0));
 	Size size = Director::getInstance()->getVisibleSize();
 
@@ -67,6 +67,8 @@ bool TitleScene::init()
 	auto label_version = static_cast<TextAtlas*>(ui->getChildByName("label_version"));
 
 	bt_startgame->addClickEventListener(CC_CALLBACK_0(TitleScene::click_startgame, this));
+	bt_option->addClickEventListener(CC_CALLBACK_0(TitleScene::click_option, this));
+	bt_exit->addClickEventListener(CC_CALLBACK_0(TitleScene::click_exit, this));
 
 
 	return true;
@@ -84,14 +86,25 @@ void TitleScene::click_startgame()
 		
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)WorldMapScene::createScene()));
 
-		WaveManager::getInstance()->init();
 	});
 
 	loading->replaceScene(loading);
 }
 
 
+void TitleScene::click_option()
+{
 
+}
+
+void TitleScene::click_exit()
+{
+	Director::getInstance()->end();
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+	exit(0);
+#endif
+}
 
 
 

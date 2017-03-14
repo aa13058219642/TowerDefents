@@ -104,8 +104,6 @@ bool TowerInfoLayer::init()
 
 
 	NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(TowerInfoLayer::receiveMsg), Message_TowerInfoLayer, NULL);
-
-
 	return true;
 }
 
@@ -127,7 +125,7 @@ void TowerInfoLayer::receiveMsg(Ref* pData)
 		m_card->removeFromParent();
 	}
 	//string str = StringUtils::format("card/card_%03d.png", (int)rand() % 8);
-	string str = StringUtils::format("card/card_%03d.png", m_parent->getTowerCard().Icon);
+	string str = StringUtils::format("card/card_%03d.png", m_parent->getTowerCard().ID);
 	//Sprite* m_card = Sprite::create(str);
 
 	Texture2D* texture = Director::getInstance()->getTextureCache()->addImage(str);

@@ -42,6 +42,9 @@ namespace ui {
 		/*行列之间的间距*/
 		virtual void setSpacing(float horizontalSpacing, float verticalSpacing);
 
+		/*获取item数量*/
+		virtual int getItemCounnt();
+
 	protected:
 		Vector<Layout*> m_pages;
 		Vector<GridItem*> m_Items;

@@ -21,6 +21,7 @@ public:
 
 	Name icon;
 	int price;
+	int life;
 private:
 	MapPath m_path;
 

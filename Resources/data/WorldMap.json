@@ -1,126 +1,236 @@
 {
-	"WroldMap": [
-		{
-			"ID": 1,
-			"name": "worldmap1",
-			"bg": "worldmap_bg_001.png",
-			"icon": "worldbutton_001.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 3, "next": [ 4 ], "x": 123, "y": 500, "name": "哈哈哈", "info": "88888" },
-				{ "id": 4, "next": [ 5 ], "x": 313, "y": 453, "name": "level4", "info": "77777" },
-				{ "id": 5, "next": [ 6, 9 ], "x": 500, "y": 460, "name": "level5", "info": "77777" },
-				{ "id": 6, "next": [ 7 ], "x": 600, "y": 356, "name": "level6", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":2,
-			"name": "是打算来看待",
-			"bg": "worldmap_bg_002.png",
-			"icon": "worldbutton_002.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":3,
-			"name": "worldmap3",
-			"bg": "worldmap_bg_003.png",
-			"icon": "worldbutton_003.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":4,
-			"name": "worldmap4",
-			"bg": "worldmap_bg_004.png",
-			"icon": "worldbutton_004.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":5,
-			"name": "worldmap5",
-			"bg": "worldmap_bg_005.png",
-			"icon": "worldbutton_005.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":6,
-			"name": "worldmap6",
-			"bg": "worldmap_bg_006.png",
-			"icon": "worldbutton_006.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":7,
-			"name": "worldmap7",
-			"bg": "worldmap_bg_007.png",
-			"icon": "worldbutton_007.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":8,
-			"name": "worldmap8",
-			"bg": "worldmap_bg_008.png",
-			"icon": "worldbutton_008.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		},{
-			"ID":9,
-			"name": "worldmap9",
-			"bg": "worldmap_bg_009.png",
-			"icon": "worldbutton_009.png",
-			"level": [
-				{ "id": 1, "next": [ 2 ], "x": 251, "y": 318, "name": "起航", "info": "6666666" },
-				{ "id": 2, "next": [ 3 ], "x": 48, "y": 344, "name": "gogogo", "info": "77777" },
-				{ "id": 7, "next": [ 8 ], "x": 500, "y": 230, "name": "level7", "info": "77777" },
-				{ "id": 8, "next": [ ], "x": 700, "y": 200, "name": "level8", "info": "77777" },
-				{ "id": 9, "next": [ 10 ], "x": 683, "y": 541, "name": "level9", "info": "77777" },
-				{ "id": 10, "next": [ ], "x": 741, "y": 651, "name": "level10", "info": "77777" }
-			]
-		}
-	]
+   "WroldMap" : [
+      {
+         "ID" : 1,
+         "name" : "彩虹岛",
+         "bg" : "worldmap_bg_001.png",
+         "icon" : "worldbutton_001.png",
+         "level" : [
+            {
+               "id" : 1,
+               "next" : [ 2 ],
+               "x" : 205,
+               "y" : 476,
+               "name" : "蘑菇村",
+               "info" : "6666666"
+            },
+            {
+               "id" : 2,
+               "next" : [ 3 ],
+               "x" : 236,
+               "y" : 396,
+               "name" : "小树林",
+               "info" : "77777"
+            },
+            {
+               "id" : 3,
+               "next" : [ 4 ],
+               "x" : 350,
+               "y" : 345,
+               "name" : "蜗牛打猎场",
+               "info" : "88888"
+            },
+            {
+               "id" : 4,
+               "next" : [ 5 ],
+               "x" : 455,
+               "y" : 310,
+               "name" : "岔道",
+               "info" : "77777"
+            },
+            {
+               "id" : 5,
+               "next" : [ 6 ],
+               "x" : 608,
+               "y" : 353,
+               "name" : "彩虹村",
+               "info" : "77777"
+            },
+            {
+               "id" : 6,
+               "next" : [ 7 ],
+               "x" : 677,
+               "y" : 289,
+               "name" : "冒险家修炼场",
+               "info" : "77777"
+            },
+            {
+               "id" : 7,
+               "next" : [ ],
+               "x" : 566,
+               "y" : 215,
+               "name" : "南港",
+               "info" : "77777"
+            }
+         ]
+      },
+      {
+         "ID" : 2,
+         "name" : "金银岛",
+         "bg" : "worldmap_bg_002.png",
+         "icon" : "worldbutton_002.png",
+         "level" : [
+            {
+               "id" : 1,
+               "next" : [ 2 ],
+               "x" : 251,
+               "y" : 318,
+               "name" : "璧疯埅",
+               "info" : "6666666"
+            },
+            {
+               "id" : 2,
+               "next" : [ 3 ],
+               "x" : 48,
+               "y" : 344,
+               "name" : "gogogo",
+               "info" : "77777"
+            },
+            {
+               "id" : 7,
+               "next" : [ 8 ],
+               "x" : 500,
+               "y" : 230,
+               "name" : "level7",
+               "info" : "77777"
+            },
+            {
+               "id" : 8,
+               "next" : [],
+               "x" : 700,
+               "y" : 200,
+               "name" : "level8",
+               "info" : "77777"
+            },
+            {
+               "id" : 9,
+               "next" : [ 10 ],
+               "x" : 683,
+               "y" : 541,
+               "name" : "level9",
+               "info" : "77777"
+            },
+            {
+               "id" : 10,
+               "next" : [],
+               "x" : 741,
+               "y" : 651,
+               "name" : "level10",
+               "info" : "77777"
+            }
+         ]
+      },
+      {
+         "ID" : 3,
+         "name" : "林中之城",
+         "bg" : "worldmap_bg_003.png",
+         "icon" : "worldbutton_003.png",
+         "level" : [
+            {
+               "id" : 1,
+               "next" : [ 2 ],
+               "x" : 251,
+               "y" : 318,
+               "name" : "璧疯埅",
+               "info" : "6666666"
+            },
+            {
+               "id" : 2,
+               "next" : [ 3 ],
+               "x" : 48,
+               "y" : 344,
+               "name" : "gogogo",
+               "info" : "77777"
+            },
+            {
+               "id" : 7,
+               "next" : [ 8 ],
+               "x" : 500,
+               "y" : 230,
+               "name" : "level7",
+               "info" : "77777"
+            },
+            {
+               "id" : 8,
+               "next" : [],
+               "x" : 700,
+               "y" : 200,
+               "name" : "level8",
+               "info" : "77777"
+            },
+            {
+               "id" : 9,
+               "next" : [ 10 ],
+               "x" : 683,
+               "y" : 541,
+               "name" : "level9",
+               "info" : "77777"
+            },
+            {
+               "id" : 10,
+               "next" : [],
+               "x" : 741,
+               "y" : 651,
+               "name" : "level10",
+               "info" : "77777"
+            }
+         ]
+      },
+      {
+         "ID" : 4,
+         "name" : "天空之城",
+         "bg" : "worldmap_bg_004.png",
+         "icon" : "worldbutton_004.png",
+         "level" : [
+            {
+               "id" : 1,
+               "next" : [ 2 ],
+               "x" : 251,
+               "y" : 318,
+               "name" : "璧疯埅",
+               "info" : "6666666"
+            },
+            {
+               "id" : 2,
+               "next" : [ 3 ],
+               "x" : 48,
+               "y" : 344,
+               "name" : "gogogo",
+               "info" : "77777"
+            },
+            {
+               "id" : 7,
+               "next" : [ 8 ],
+               "x" : 500,
+               "y" : 230,
+               "name" : "level7",
+               "info" : "77777"
+            },
+            {
+               "id" : 8,
+               "next" : [],
+               "x" : 700,
+               "y" : 200,
+               "name" : "level8",
+               "info" : "77777"
+            },
+            {
+               "id" : 9,
+               "next" : [ 10 ],
+               "x" : 683,
+               "y" : 541,
+               "name" : "level9",
+               "info" : "77777"
+            },
+            {
+               "id" : 10,
+               "next" : [],
+               "x" : 741,
+               "y" : 651,
+               "name" : "level10",
+               "info" : "77777"
+            }
+         ]
+      }
+   ]
 }

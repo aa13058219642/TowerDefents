@@ -17,6 +17,8 @@ public:
 	
 	virtual void update(float dt);
 	virtual void onClick();
+	virtual void setTarget(int targetID);
+
 
 	void buildTower(const TowerCard towerCard);
 	void buildSpellTowerPos(Direction direction);
@@ -36,8 +38,8 @@ public:
 	float getSellSpellPosPrice(Direction direction);
 private:
 	GridPos* m_gridPos;
+	CActor* m_spellactor;
 	Color3B m_color;
-	//vector<SpellTower*> m_SpellTower;
 	SpellCard* m_SpellTower[8];
 	TowerCard m_TowerCard;
 	int spellPosCount;

@@ -1,6 +1,6 @@
 #pragma once
 #include "cocostudio/CocoStudio.h"
-#include "ui/CocosGUI.h"
+#include "UI/CocosGUI.h"
 #include "cocos2d.h"
 #include "GridPageView.h"
 #include "Message\MessageListener.h"
@@ -41,23 +41,28 @@ public:
 	CREATE_FUNC(PrepareScene);
 
 	virtual void receive(const Message* message);
-	void initData(int wrold, int level);
+	bool initData(int wrold, int level);
 
 private:
 	void initUI();
 	void initListener();
 	void initPlayerData();
-	void initMapData(string levelname);
+	bool initMapData(int wrold, int level);
 
 	void event_btGO_click();
 	void event_btReturn_click();
 	void event_btChoose_click();
 
+	int m_level;
+	int m_wrold;
+	float BaseMoney;
+	float AddMoney;
+
 	CardGridItem* curItem;
 	Vector<CardGridItem*> itemlist;
 
 
-	cocos2d::Layer* m_layer;
+	cocos2d::Layer* actorLayer;
 
 	cocos2d::ui::CheckBox* cb_tabbt_card;
 	cocos2d::ui::CheckBox* cb_tabbt_map;

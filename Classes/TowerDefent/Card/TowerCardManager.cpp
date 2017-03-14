@@ -71,7 +71,7 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 			TowerCard* towercard = new TowerCard();
 
 			if (jNode.HasMember("ID"))				towercard->ID = jNode["ID"].GetInt();
-			if (jNode.HasMember("Icon"))			towercard->Icon = jNode["Icon"].GetInt();
+			if (jNode.HasMember("Icon"))			towercard->Icon = jNode["Icon"].GetString();
 			if (jNode.HasMember("uiName"))			towercard->uiName = jNode["uiName"].GetString();
 			if (jNode.HasMember("uiDescription"))	towercard->uiDescription = jNode["uiDescription"].GetString();
 			if (jNode.HasMember("ActorName"))		towercard->ActorName = jNode["ActorName"].GetString();
@@ -115,10 +115,17 @@ void TowerCardManager::LoadResource(const vector<Name>& resNameList)
 
 void TowerCardManager::FreeAllResource()
 {
-	
+	m_card.clear();
 }
 
 void TowerCardManager::FreeResource(const vector<Name>& resName)
 {
-
+	for (auto name : resName)
+	{
+		auto card = m_card.at(name);
+		if (card != nullptr)
+		{
+			m_card.erase(name);
+		}
+	}
 }

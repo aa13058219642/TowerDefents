@@ -16,7 +16,7 @@ SpellCard::SpellCard()
 	ID = -1;
 	gid = -1;
 	name = "";
-	Icon = -1;
+	Icon = "";
 	behaviorName = "";
 	uiName = "";
 	uiDescription = "";

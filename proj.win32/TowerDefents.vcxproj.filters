@@ -270,9 +270,6 @@
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp">
-      <Filter>src\TowerDefent\GameMap</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Card\SpellCard.cpp">
       <Filter>src\TowerDefent\Card\SpellCard</Filter>
     </ClCompile>
@@ -287,9 +284,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CPlayer\CPLayer.cpp">
       <Filter>src\FrameWork\GameData\CPlayer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.cpp">
-      <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Scene\PrepareScene.cpp">
       <Filter>src\TowerDefent\Scene\PrepareScene</Filter>
@@ -371,6 +365,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Unit\MonsterManager.cpp">
       <Filter>src\TowerDefent\Unit\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Layer\GameInfoLayer.cpp">
+      <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -491,9 +488,6 @@
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h">
-      <Filter>src\TowerDefent\GameMap</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Card\SpellCard.h">
       <Filter>src\TowerDefent\Card\SpellCard</Filter>
     </ClInclude>
@@ -508,9 +502,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CPlayer\CPLayer.h">
       <Filter>src\FrameWork\GameData\CPlayer</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.h">
-      <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Scene\PrepareScene.h">
       <Filter>src\TowerDefent\Scene\PrepareScene</Filter>
@@ -604,6 +595,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Unit\MonsterManager.h">
       <Filter>src\TowerDefent\Unit\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Layer\GameInfoLayer.h">
+      <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

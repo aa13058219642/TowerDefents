@@ -34,11 +34,11 @@ bool WorldMapScene::init()
 	}
 
 
-	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("ui/WorldMapLayer.ExportJson"));
+	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("UI/WorldMapLayer.ExportJson"));
 	this->addChild(ui);
 
 	//设置拉伸BG
-	Sprite* bg = Sprite::create("ui/ui_bg.png");
+	Sprite* bg = Sprite::create("UI/ui_bg.png");
 	bg->setColor(Color3B(0, 204, 255));
 	bg->setAnchorPoint(Point(0, 0));
 	Size size = Director::getInstance()->getVisibleSize();
@@ -61,7 +61,7 @@ bool WorldMapScene::init()
 	worldLayer->setPosition(Point(440,375));
 	panel_right->addChild(worldLayer, -1);
 
-	cocos2d::ui::Scale9Sprite* dialog = cocos2d::ui::Scale9Sprite::create("ui/dialog_b.png");
+	cocos2d::ui::Scale9Sprite* dialog = cocos2d::ui::Scale9Sprite::create("UI/dialog_b.png");
 	dialog->setContentSize(worldLayer->getContentSize());
 	worldLayer->addChild(dialog);
 
@@ -173,7 +173,7 @@ void WorldMapScene::initListView()
 
 	}
 
-	auto tex = Director::getInstance()->getTextureCache()->addImage("ui/worldbutton_select.png");
+	auto tex = Director::getInstance()->getTextureCache()->addImage("UI/worldbutton_select.png");
 	auto sf = SpriteFrame::createWithTexture(tex, Rect(Point::ZERO, tex->getContentSizeInPixels()));
 	SpriteFrameCache::getInstance()->addSpriteFrame(sf, "worldbutton_select.png");
 
@@ -189,16 +189,17 @@ void WorldMapScene::initListView()
 void WorldMapScene::showMap(int index)
 {
 	curIndex = index;
+	worldLayer->removeChildByTag(0);
 	Sprite* worldbg = Sprite::create("worldmap/" + worldData[index].bg);
 	//worldbg->setOpacity(150);
-	worldLayer->addChild(worldbg);
+	worldLayer->addChild(worldbg, 0, 0);
 	worldname->setString(worldData[index].name);
 
 	lp_layer->removeAllChildren();
 	int size = worldData[index].levelpoint.size();
 	for (int i = 0; i < size; i++)
 	{
-		Button* lp = Button::create("ui/star0.png");
+		Button* lp = Button::create("UI/star0.png");
 		lp->setPosition(Point(worldData[index].levelpoint[i].x, worldData[index].levelpoint[i].y));
 		lp->setTag(i);
 		lp->addClickEventListener(CC_CALLBACK_1(WorldMapScene::event_lp_click, this));
@@ -219,33 +220,27 @@ void WorldMapScene::event_lp_click(cocos2d::Ref* sender)
 
 	std::queue<LoadingScene::LoadingCallback> list;
 	list.push([](){
-		log("load TextureManager");
 		vector<string> textureList;
 		textureList.push_back("texture/scene_battle_000.plist");
 		textureList.push_back("texture/UI/TowerSelectLayer.plist");
 		textureList.push_back("texture/UI/TowerInfoLayer.plist");
 		textureList.push_back("texture/UI/GameMapInfoLayer.plist");
-		textureList.push_back("texture/effect/effect_000.plist");
-		textureList.push_back("texture/Tower/Tower_000.plist");
-		textureList.push_back("texture/Tower/Tower_001.plist");
-		textureList.push_back("texture/Tower/Tower_006.plist");
+		textureList.push_back("texture/icon/Icon_000.plist");
 		TextureManager::getInstance()->LoadResource(textureList);
 	});
-	list.push([](){
-		TowerCardManager::getInstance()->LoadResource();
-	});
-	list.push([](){
-		SpellCardManager::getInstance()->LoadResource();
-	});
-	loading->setLambdaLoadList(list);
+	list.push([](){ TowerCardManager::getInstance()->LoadResource();});
+	list.push([](){ SpellCardManager::getInstance()->LoadResource();});
+	loading->setLambdaLoadList(list);	
 
 
 
 	loading->bindFinishFunction([=](){
 		PrepareScene* scene = PrepareScene::create();
 		ValueMap map = loading->getData();
-		scene->initData(map["world"].asInt(), map["level"].asInt());
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)scene));
+		if (scene->initData(map["world"].asInt(), map["level"].asInt()))
+		{
+			Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)scene));
+		}
 	});
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)loading));

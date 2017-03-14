@@ -69,6 +69,10 @@ int Player::getLife()
 void Player::setLife(int life)
 {
 	this->life = life;
+
+	Message msg(Message_Global);
+	msg.keyword = "updateLife";
+	msg.post(Message_Global);
 }
 
 
@@ -76,7 +80,11 @@ void Player::receive(const Message* message)
 {
 	if (message->keyword == "Money")
 	{
-		this->setMoney(this->getMoney() + message->valueMap.at("value").asFloat());
+		this->setMoney(this->money + message->valueMap.at("value").asFloat());
+	}
+	else if (message->keyword == "Life")
+	{
+		this->setLife(this->life - message->valueMap.at("value").asInt());
 	}
 }
 
@@ -85,8 +93,10 @@ void Player::receive(const Message* message)
 void Player::setTowerCard(std::vector<TowerCard> towerCard)
 {
 	m_TowerCard.clear();
+	int gid = 0;
 	for (auto t : towerCard)
 	{
+		t.gid = gid++;
 		m_TowerCard.push_back(t);
 	}
 }
@@ -99,8 +109,10 @@ std::vector<TowerCard> Player::getTowerCard()
 void Player::setSpellCard(std::vector<SpellCard> spellCard)
 {
 	m_SpellCard.clear();
+	int gid = 0;
 	for (auto t : spellCard)
 	{
+		t.gid = gid++;
 		m_SpellCard.push_back(t);
 	}
 }

@@ -92,20 +92,17 @@ bool PrepareScene::init()
 
 	initUI();
 	initListener();
-	m_layer = Layer::create();
-	this->addChild(m_layer);
-
 	return true;
 }
 
 
 void PrepareScene::initUI()
 {
-	Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("ui/PrepareLayer.ExportJson");
+	Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("UI/PrepareLayer.ExportJson");
 	this->addChild(widget);
 
 	//设置拉伸BG
-	Sprite* bg = Sprite::create("ui/ui_bg.png");
+	Sprite* bg = Sprite::create("UI/ui_bg.png");
 	bg->setAnchorPoint(Point(0, 0));
 	bg->setColor(Color3B(0, 204, 255));
 	Size size = Director::getInstance()->getVisibleSize();
@@ -159,7 +156,7 @@ void PrepareScene::initUI()
 
 
 	//隐藏部分UI
-	image_dialogBG->loadTexture("ui/dialog_bg.png");
+	image_dialogBG->loadTexture("UI/dialog_bg.png");
 
 	panel_card_left->setVisible(false);
 	panel_card_right->setVisible(false);
@@ -168,14 +165,16 @@ void PrepareScene::initUI()
 	cb_tabbt_card->setSelected(false);
 	cb_tabbt_map->setSelected(true);
 
+	curItem = nullptr;
 
 }
 
-void PrepareScene::initData(int wrold, int level)
+bool PrepareScene::initData(int wrold, int level)
 {
-	string levelname = StringUtils::format("%d-%d", wrold, level);
-	this->initMapData(levelname);
+	m_wrold = wrold;
+	m_level = level;
 	this->initPlayerData();
+	return this->initMapData(wrold, level);
 }
 
 void PrepareScene::initPlayerData()
@@ -193,7 +192,7 @@ void PrepareScene::initPlayerData()
 		item->type = CardGridItem::CardGridItemType::tower;
 		item->tcard = tcard;
 		item->setContentSize(Size(64, 64));
-		item->setIcon(StringUtils::format("Tower_%03d.png", i));
+		item->setIcon(tcard->Icon);
 
 		itemlist.pushBack(item);
 		gridview1->addItem(item);
@@ -205,7 +204,7 @@ void PrepareScene::initPlayerData()
 		item->type = CardGridItem::CardGridItemType::spell;
 		item->scard = scard;
 		item->setContentSize(Size(64, 64));
-		item->setIcon(StringUtils::format("TowerSelect_SpellTower_%03d.png", i));
+		item->setIcon(scard->Icon);
 
 		itemlist.pushBack(item);
 		gridview1->addItem(item);
@@ -214,37 +213,60 @@ void PrepareScene::initPlayerData()
 
 }
 
-void PrepareScene::initMapData(string levelname)
+bool PrepareScene::initMapData(int wrold, int level)
 {
-	//1.打开文件
-	FileUtils* fin = FileUtils::getInstance();
-	Data data = fin->getDataFromFile("data/LevelData.json");
-	CCASSERT(!data.isNull(), "[LevelData.json] Lost!");
+	bool flag = true;
 
-	//2.载入json
-	string str = string((char*)data.getBytes(), data.getSize());
-	rapidjson::Document root;
-	root.Parse<0>(str.c_str());
-	CCASSERT(root.IsObject() && root.HasMember("leveldata") && root["leveldata"].IsObject(), "illegal [LevelData.json]");
+	do{
+		string levelname = StringUtils::format("%d-%d", wrold, level);
 
-	//3.读取json数据
-	if (root["leveldata"].HasMember(levelname.c_str()) && root["leveldata"][levelname.c_str()].IsObject())
-	{
-		JsonNode jNode = root["leveldata"][levelname.c_str()];
+		//1.打开文件
+		FileUtils* fin = FileUtils::getInstance();
+		Data data = fin->getDataFromFile("data/LevelData.json");
+		if (data.isNull())
+		{
+			CCASSERT(false, "[LevelData.json] Lost!");
+			flag = false;
+			break;
+		}
 
-		string t = jNode["title"].GetString();
-		string str1 = StringUtils::format("%s %s", levelname.c_str(), t.c_str());
-		log(str1.c_str());
-		title0->setString(str1);
+		//2.载入json
+		string str = string((char*)data.getBytes(), data.getSize());
+		rapidjson::Document root;
+		root.Parse<0>(str.c_str());
+		if(!(root.IsObject() && root.HasMember("leveldata") && root["leveldata"].IsObject()))
+		{
+			CCASSERT(false, "illegal [LevelData.json]");
+			flag = false;
+			break;
+		}
 
-		str1 = StringUtils::format("minimap/%s", string(jNode["minimap"].GetString()).c_str());
-		log(str1.c_str());
-		image_map->loadTexture(str1);
-	}
-	else
-	{
-		CCASSERT(false, StringUtils::format("ERROR %s NOT found", levelname).c_str());
-	}
+		//3.读取json数据
+		if (root["leveldata"].HasMember(levelname.c_str()) && root["leveldata"][levelname.c_str()].IsObject())
+		{
+			JsonNode jNode = root["leveldata"][levelname.c_str()];
+
+			string t = jNode["title"].GetString();
+			string str1 = StringUtils::format("%s %s", levelname.c_str(), t.c_str());
+			title0->setString(str1);
+
+			str1 = StringUtils::format("minimap/%s", string(jNode["minimap"].GetString()).c_str());
+			image_map->loadTexture(str1);
+
+			int money = jNode["money"].GetInt();
+			label_money->setString(StringUtils::format("%d", money));
+			BaseMoney = money;
+			AddMoney = 0;
+		}
+		else
+		{
+			CCASSERT(false, StringUtils::format("ERROR %s NOT found", levelname).c_str());
+			flag = false;
+			break;
+		}
+	} while (0);
+
+	return flag;
 }
 
 void PrepareScene::initListener()
@@ -295,137 +317,102 @@ void PrepareScene::receive(const Message* message)
 
 		if (curItem->type == CardGridItem::CardGridItemType::tower)
 		{
-			image_card->loadTexture(StringUtils::format("Tower_%03d.png", curItem->tcard->Icon), Widget::TextureResType::PLIST);
+			string str = StringUtils::format("card/card_%03d.png", curItem->tcard->ID);
+			image_card->loadTexture(str);
+			image_card->setScale(0.25f);
 		}
 		else if (curItem->type == CardGridItem::CardGridItemType::spell)
 		{
-			image_card->loadTexture(StringUtils::format("SpellTower_%03d.png", curItem->scard->Icon), Widget::TextureResType::PLIST);
+			//ActorManager::getInstance()->createActor(0, curItem->scard->);
+			image_card->loadTexture(curItem->scard->Icon, Widget::TextureResType::PLIST);
+			image_card->setScale(1);
 		}
-
-
-
+		else
+		{
+			CCASSERT(false, "error griditem type !");
+		}
 	}
 }
 
 void PrepareScene::event_btGO_click()
 {
+	int size = gridview2->getItemCounnt();
+	if (size <= 0)
+	{
+		return;
+	}
 
-	log("TitleScene::click_startgame()");
+	//init player
+	std::vector<TowerCard> m_TowerCard;
+	std::vector<SpellCard> m_SpellCard;
+	for (int i = 0; i < size; i++)
+	{
+		CardGridItem* item = static_cast<CardGridItem*>(gridview2->getItem(i));
+		if (item->type == CardGridItem::CardGridItemType::tower)
+		{
+			m_TowerCard.push_back(*item->tcard);
+		}
+		else if (item->type == CardGridItem::CardGridItemType::spell)
+		{
+			m_SpellCard.push_back(*item->scard);
+		}
+		else
+		{
+			CCASSERT(false, "error griditem type !");
+		}
+	}
+	Player::getInstance()->setTowerCard(m_TowerCard);
+	Player::getInstance()->setSpellCard(m_SpellCard);
+
+	Player* player = Player::getInstance();
+	player->reset();
+	player->setMoney(BaseMoney + AddMoney);
+	player->setLife(20);
+	//
 
 	LoadingScene* loading = LoadingScene::create();
 
 	ValueMap map;
-	map["level"] = 1;
-
+	map["wrold"] = m_wrold;
+	map["level"] = m_level;
 	loading->setData(map);
 
 	loading->bindFinishFunction([=](){
 		ValueMap map = loading->getData();
 
+		int wrold = map["wrold"].asInt();
 		int level = map["level"].asInt();
 
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)BattleScene::createScene(level)));
-
-		WaveManager::getInstance()->init();
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)BattleScene::create(wrold, level)));
 	});
 
 	std::queue<LoadingScene::LoadingCallback> list;
+	list.push([](){ UnitManager::getInstance()->init(new TDUnitCreator()); });	
+	list.push([](){ BehaviorManager::getInstance()->init(); });
+	list.push([](){ EffectManager::getInstance()->init(); });
 	list.push([](){
-		log("load TowerCardManager");
-
-		TowerCardManager::getInstance()->LoadResource();
-		std::vector<TowerCard> m_TowerCard;
-		auto towerMgr = TowerCardManager::getInstance();
-
-		vector<string> towercardList;
-		towercardList.push_back("card000");
-		towercardList.push_back("card001");
-		towercardList.push_back("card002");
-		towercardList.push_back("card003");
-		towercardList.push_back("card004");
-		towercardList.push_back("card005");
-		towercardList.push_back("card006");
-		towercardList.push_back("card007");
-
-		TowerCard tcard;
-		for (int i = 0; i < 8; i++)
-		{
-			tcard = *towerMgr->getTowerCard(towercardList[i]);
-			tcard.gid = i;
-			m_TowerCard.push_back(tcard);
-		}
-
-		Player::getInstance()->setTowerCard(m_TowerCard);
-	});
-	list.push([](){
-		log("load SpellCardManager");
-
-		SpellCardManager::getInstance()->LoadResource();
-
-		std::vector<SpellCard> m_SpellCard;
-		auto spellMgr = SpellCardManager::getInstance();
-
-		vector<string> spellcardList;
-		spellcardList.push_back("Damage_Add_I");
-		spellcardList.push_back("Range_Add_I");
-		spellcardList.push_back("ColdDown_Div_I");
-		spellcardList.push_back("TargetCount_Add_I");
-		spellcardList.push_back("CriticalChance_Add_I");
-		spellcardList.push_back("MaxDamage_Add_I");
-		spellcardList.push_back("CriticalMultiplier_Add_I");
-		spellcardList.push_back("BoomRange_Add_I");
-
-		SpellCard scard;
-		for (int i = 0; i < 8; i++)
-		{
-			scard = *spellMgr->getSpellCard(spellcardList[i]);
-			scard.gid = i;
-			m_SpellCard.push_back(scard);
-		}
-
-		Player::getInstance()->setSpellCard(m_SpellCard);
-
-	});
-	list.push([](){
-		log("load Player");
-
-		Player* player = Player::getInstance();
-		player->reset();
-		player->setMoney(2000);
-		player->setLife(20);
-
-	});
-	list.push([](){ log("load UnitManager");  UnitManager::getInstance()->init(new TDUnitCreator()); });
-	list.push([](){ log("load BehaviorManager");  BehaviorManager::getInstance()->init(); });
-	list.push([](){ log("load EffectManager");  	EffectManager::getInstance()->init(); });
-	list.push([](){
-		log("load TextureManager");
 		vector<string> textureList;
 		textureList.push_back("texture/scene_battle_000.plist");
 		textureList.push_back("texture/UI/TowerSelectLayer.plist");
 		textureList.push_back("texture/UI/TowerInfoLayer.plist");
 		textureList.push_back("texture/UI/GameMapInfoLayer.plist");
 		textureList.push_back("texture/effect/effect_000.plist");
-		textureList.push_back("texture/Tower/Tower_000.plist");
-		textureList.push_back("texture/Tower/Tower_001.plist");
-		textureList.push_back("texture/Tower/Tower_006.plist");
+		textureList.push_back("texture/icon/Icon_000.plist");
+		textureList.push_back("texture/Tower/SpellTower.plist");
 		TextureManager::getInstance()->LoadResource(textureList);
 	});
-	list.push([](){ log("load SkillManager");  SkillManager::getInstance()->LoadResource(); });
-	list.push([](){ log("load BehaviorManager");  BehaviorManager::getInstance()->LoadResource(); });
-	list.push([](){ log("load AnimateManager");  AnimateManager::getInstance()->LoadResource(); });
-	list.push([](){ log("load ActorManager");  ActorManager::getInstance()->LoadResource(); });
-	list.push([](){ log("load WeaponManager"); WeaponManager::getInstance()->LoadResource(); });
-	list.push([](){ log("load EffectManager"); EffectManager::getInstance()->LoadResource(); });
-	list.push([](){ log("load BulletManager"); BulletManager::getInstance()->LoadResource(); });
-	list.push([](){ log("load MonsterManager"); MonsterManager::getInstance()->LoadResource(); });
-
-	
+	list.push([](){ AnimateManager::getInstance()->LoadResource(); });
+	list.push([](){ ActorManager::getInstance()->LoadResource(); });
+	list.push([](){ SkillManager::getInstance()->LoadResource(); });
+	list.push([](){ BehaviorManager::getInstance()->LoadResource(); });
+	list.push([](){ WeaponManager::getInstance()->LoadResource(); });
+	list.push([](){ EffectManager::getInstance()->LoadResource(); });
+	list.push([](){ BulletManager::getInstance()->LoadResource(); });
+	list.push([](){ MonsterManager::getInstance()->LoadResource(); });
 
 	loading->setLambdaLoadList(list);
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)loading));
-
 }
 
 void PrepareScene::event_btReturn_click()
@@ -441,6 +428,11 @@ void PrepareScene::event_btReturn_click()
 
 void PrepareScene::event_btChoose_click()
 {
+	if (curItem == nullptr)
+	{
+		return;
+	}
+
 	if (curItem->isChoose == false)
 	{
 		curItem->isChoose = true;

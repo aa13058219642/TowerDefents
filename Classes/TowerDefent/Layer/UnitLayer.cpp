@@ -29,19 +29,6 @@ bool UnitLayer::init()
 	bool flag = false;
 	do{
 		this->setAnchorPoint(Point::ZERO);
-		//加载UI
-		//auto UI = GUIReader::getInstance()->widgetFromJsonFile("Editor/ui_Editor.ExportJson");
-		//this->addChild(UI);
-
-		//关闭UI监听
-		//UI->setTouchEnabled(false);
-
-		//获取UI中的控件
-		//auto bt_output = (Button*)GalaxyHelper::seekWidgetByName(UI, "btn_output");
-
-		//添加监听
-		//Button* bt_output = new Button();
-		//bt_output->addTouchEventListener(this, toucheventselector(UnitTouchLayer::bt_output_onClick));
 
 		//设置监听
 		auto listener = EventListenerTouchOneByOne::create();

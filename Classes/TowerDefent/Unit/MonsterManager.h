@@ -18,6 +18,8 @@ public:
 	Monster* CreateMonster(string monsterName);
 	Monster* CreateMonster(int monsterID);
 
+	const Monster* getMonster(int monsterID);
+
 private:
 	MonsterManager();
 	static MonsterManager* p_myinstance;

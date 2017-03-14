@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="26" tilewidth="32" tileheight="32" nextobjectid="160">
+ <properties>
+  <property name="WaveCount" type="int" value="4"/>
+ </properties>
+ <tileset firstgid="1" name="001-Grassland01" tilewidth="32" tileheight="32" tilecount="144" columns="8">
+  <image source="texture_001.png" trans="ffffff" width="256" height="576"/>
+ </tileset>
+ <layer name="块层 1" width="40" height="26">
+  <data encoding="base64" compression="zlib">
+   eJzt1MENACAIBEFog/4L9WMDgugZ97FPkklILswskvkse98dPnyKPhU3vrd93twvvt3/xYcP3znf6k6o7d8tHxFRpQFhaFnP
+  </data>
+ </layer>
+ <layer name="块层 2" width="40" height="26">
+  <data encoding="base64" compression="zlib">
+   eJzVlklLBDEQhYO2KKMwLgcVdVxGT3obb3rTi8sfcQVXcAVXcP3NvuAEMiFLdaXGxgcfTVd1JY8knUSpX22BbbADdgnvWlNgkllPaT9Xtj+tPbAPDsAhOALHQn1x5Po7AafgDJyDC3BZgS8j198VuAY34BbcgXtP3TiYc2g435j4MljxtNHP8PcAHsETeAYv4NXK1yL+tGatbxvteAusErxQ/L2Bd/ABPsEX+PbU2f586rM8roF1IX+puJHxR9EG2CxnK+mD4s8llMvZb7j+pLQEFiI0wXyJuM2igD89DiNgNMBYIB+K23mJ8bXnqTeRLwLxVLs5KtPPELOOqgFGO9z/o4rxk6jTcteROd+o40dZZ5LjZ863midH7WcQDHviek32ZPqLnW+6ndg+1lSd/0fBqEspdr7NqPAeZpgWrLNVbz8l79PdUM79pRty750595e/UGp+KfdoCRWBOGd+64n8hOo873L03+e3av0APDI0NA==
+  </data>
+ </layer>
+ <layer name="块层 3" width="40" height="26">
+  <data encoding="base64" compression="zlib">
+   eJztl8sKwkAMRfM72m7Ubqxuat34+P/v8XYRkDBOEqQZkRy4i5TmAclMmImILtAMXaFJsTU0f699g+7QA3oabA1vvG/zJcmadFDfuogKB2hoXUSFE3RuXUQF673birwHkyT5NzbQlvT9GrV/ZT07aE/6fo3av7KeIzTS7+xXWY/1XRPVX+3d84mo/nrfPTyvkVjP7ALPKzl8PPFrOS0943mVPpz/Hf5Wil/6X8spz2wpBs/rC3h5JrE=
+  </data>
+ </layer>
+ <objectgroup name="TowerPos" visible="0">
+  <properties>
+   <property name="TowerPosHeight" type="float" value="64"/>
+   <property name="TowerPosWidth" type="float" value="64"/>
+  </properties>
+  <object id="5" name="Pos" x="96" y="544" width="64" height="64"/>
+  <object id="6" name="Pos" x="288" y="608" width="64" height="64"/>
+  <object id="7" name="Pos" x="288" y="672" width="64" height="64"/>
+  <object id="8" name="Pos" x="480" y="608" width="64" height="64"/>
+  <object id="11" name="Pos" x="352" y="672" width="64" height="64"/>
+  <object id="12" name="Pos" x="352" y="608" width="64" height="64"/>
+  <object id="13" name="Pos" x="416" y="608" width="64" height="64"/>
+  <object id="14" name="Pos" x="736" y="480" width="64" height="64"/>
+  <object id="15" name="Pos" x="416" y="416" width="64" height="64"/>
+  <object id="19" name="Pos" x="736" y="416" width="64" height="64"/>
+  <object id="20" name="Pos" x="416" y="96" width="64" height="64"/>
+  <object id="21" name="Pos" x="800" y="416" width="64" height="64"/>
+  <object id="22" name="Pos" x="288" y="480" width="64" height="64"/>
+  <object id="23" name="Pos" x="96" y="672" width="64" height="64"/>
+  <object id="24" name="Pos" x="160" y="672" width="64" height="64"/>
+  <object id="25" name="Pos" x="96" y="480" width="64" height="64"/>
+  <object id="26" name="Pos" x="160" y="480" width="64" height="64"/>
+  <object id="27" name="Pos" x="96" y="288" width="64" height="64"/>
+  <object id="28" name="Pos" x="544" y="96" width="64" height="64"/>
+  <object id="29" name="Pos" x="544" y="672" width="64" height="64"/>
+  <object id="30" name="Pos" x="544" y="480" width="64" height="64"/>
+  <object id="31" name="Pos" x="480" y="672" width="64" height="64"/>
+  <object id="32" name="Pos" x="416" y="672" width="64" height="64"/>
+  <object id="33" name="Pos" x="96" y="96" width="64" height="64"/>
+  <object id="34" name="Pos" x="672" y="608" width="64" height="64"/>
+  <object id="35" name="Pos" x="1120" y="672" width="64" height="64"/>
+  <object id="36" name="Pos" x="1056" y="672" width="64" height="64"/>
+  <object id="37" name="Pos" x="736" y="608" width="64" height="64"/>
+  <object id="38" name="Pos" x="1056" y="480" width="64" height="64"/>
+  <object id="40" name="Pos" x="992" y="480" width="64" height="64"/>
+  <object id="42" name="Pos" x="864" y="416" width="64" height="64"/>
+  <object id="43" name="Pos" x="96" y="224" width="64" height="64"/>
+  <object id="44" name="Pos" x="608" y="544" width="64" height="64"/>
+  <object id="45" name="Pos" x="544" y="544" width="64" height="64"/>
+  <object id="46" name="Pos" x="96" y="608" width="64" height="64"/>
+  <object id="47" name="Pos" x="160" y="608" width="64" height="64"/>
+  <object id="48" name="Pos" x="992" y="288" width="64" height="64"/>
+  <object id="49" name="Pos" x="608" y="480" width="64" height="64"/>
+  <object id="50" name="Pos" x="800" y="96" width="64" height="64"/>
+  <object id="51" name="Pos" x="544" y="608" width="64" height="64"/>
+  <object id="54" name="Pos" x="160" y="416" width="64" height="64"/>
+  <object id="57" name="Pos" x="160" y="352" width="64" height="64"/>
+  <object id="58" name="Pos" x="160" y="544" width="64" height="64"/>
+  <object id="60" name="Pos" x="1120" y="544" width="64" height="64"/>
+  <object id="61" name="Pos" x="1120" y="288" width="64" height="64"/>
+  <object id="62" name="Pos" x="352" y="352" width="64" height="64"/>
+  <object id="63" name="Pos" x="608" y="224" width="64" height="64"/>
+  <object id="65" name="Pos" x="864" y="224" width="64" height="64"/>
+  <object id="66" name="Pos" x="608" y="672" width="64" height="64"/>
+  <object id="67" name="Pos" x="352" y="224" width="64" height="64"/>
+  <object id="68" name="Pos" x="800" y="224" width="64" height="64"/>
+  <object id="69" name="Pos" x="736" y="224" width="64" height="64"/>
+  <object id="70" name="Pos" x="288" y="352" width="64" height="64"/>
+  <object id="71" name="Pos" x="1120" y="480" width="64" height="64"/>
+  <object id="72" name="Pos" x="224" y="160" width="64" height="64"/>
+  <object id="73" name="Pos" x="544" y="224" width="64" height="64"/>
+  <object id="74" name="Pos" x="416" y="352" width="64" height="64"/>
+  <object id="75" name="Pos" x="608" y="416" width="64" height="64"/>
+  <object id="78" name="Pos" x="352" y="416" width="64" height="64"/>
+  <object id="80" name="Pos" x="352" y="480" width="64" height="64"/>
+  <object id="81" name="Pos" x="544" y="160" width="64" height="64"/>
+  <object id="82" name="Pos" x="96" y="416" width="64" height="64"/>
+  <object id="83" name="Pos" x="416" y="160" width="64" height="64"/>
+  <object id="84" name="Pos" x="800" y="160" width="64" height="64"/>
+  <object id="85" name="Pos" x="160" y="96" width="64" height="64"/>
+  <object id="86" name="Pos" x="416" y="480" width="64" height="64"/>
+  <object id="87" name="Pos" x="1120" y="416" width="64" height="64"/>
+  <object id="89" name="Pos" x="288" y="416" width="64" height="64"/>
+  <object id="94" name="Pos" x="224" y="672" width="64" height="64"/>
+  <object id="95" name="Pos" x="864" y="160" width="64" height="64"/>
+  <object id="96" name="Pos" x="288" y="96" width="64" height="64"/>
+  <object id="98" name="Pos" x="96" y="352" width="64" height="64"/>
+  <object id="99" name="Pos" x="544" y="416" width="64" height="64"/>
+  <object id="100" name="Pos" x="672" y="672" width="64" height="64"/>
+  <object id="102" name="Pos" x="160" y="288" width="64" height="64"/>
+  <object id="103" name="Pos" x="992" y="352" width="64" height="64"/>
+  <object id="105" name="Pos" x="224" y="608" width="64" height="64"/>
+  <object id="118" name="Pos" x="160" y="224" width="64" height="64"/>
+  <object id="120" name="Pos" x="288" y="160" width="64" height="64"/>
+  <object id="121" name="Pos" x="1120" y="608" width="64" height="64"/>
+  <object id="124" name="Pos" x="864" y="96" width="64" height="64"/>
+  <object id="126" name="Pos" x="224" y="96" width="64" height="64"/>
+  <object id="128" name="Pos" x="1120" y="352" width="64" height="64"/>
+  <object id="135" name="Pos" x="736" y="672" width="64" height="64"/>
+  <object id="137" name="Pos" x="160" y="160" width="64" height="64"/>
+  <object id="138" name="Pos" x="544" y="352" width="64" height="64"/>
+  <object id="139" name="Pos" x="96" y="160" width="64" height="64"/>
+  <object id="140" name="Pos" x="1056" y="288" width="64" height="64"/>
+  <object id="142" name="Pos" x="1056" y="416" width="64" height="64"/>
+  <object id="143" name="Pos" x="800" y="352" width="64" height="64"/>
+  <object id="144" name="Pos" x="864" y="352" width="64" height="64"/>
+  <object id="145" name="Pos" x="736" y="352" width="64" height="64"/>
+  <object id="146" name="Pos" x="608" y="352" width="64" height="64"/>
+  <object id="147" name="Pos" x="800" y="480" width="64" height="64"/>
+  <object id="148" name="Pos" x="864" y="480" width="64" height="64"/>
+  <object id="149" name="Pos" x="224" y="224" width="64" height="64"/>
+  <object id="150" name="Pos" x="352" y="160" width="64" height="64"/>
+  <object id="151" name="Pos" x="992" y="416" width="64" height="64"/>
+  <object id="152" name="Pos" x="352" y="96" width="64" height="64"/>
+  <object id="154" name="Pos" x="288" y="224" width="64" height="64"/>
+  <object id="155" name="Pos" x="416" y="224" width="64" height="64"/>
+  <object id="157" name="Pos" x="1056" y="352" width="64" height="64"/>
+  <object id="159" name="Pos" x="608" y="608" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup name="Path" visible="0">
+  <object id="110" name="Path_001" x="80" y="-16">
+   <properties>
+    <property name="LoopTo" type="int" value="-1"/>
+   </properties>
+   <polyline points="432,16 432,592 176,592 176,336 880,336 880,592 624,592 624,208"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="Wave001" visible="0">
+  <properties>
+   <property name="m001" value="1 0 1.0"/>
+   <property name="m002" value="1 0 1.0"/>
+   <property name="m003" value="1 0 1.0"/>
+   <property name="m004" value="1 0 1.0"/>
+   <property name="m005" value="1 0 1.0"/>
+   <property name="m006" value="1 0 1.0"/>
+   <property name="m007" value="1 0 1.0"/>
+   <property name="m008" value="1 0 1.0"/>
+   <property name="m009" value="1 0 1.0"/>
+   <property name="m010" value="1 0 1.0"/>
+   <property name="momsterCount" type="int" value="10"/>
+   <property name="waveTime" type="float" value="30"/>
+  </properties>
+ </objectgroup>
+ <objectgroup name="Wave002" visible="0">
+  <properties>
+   <property name="m001" value="1 0 1.0"/>
+   <property name="m002" value="1 0 1.0"/>
+   <property name="m003" value="1 0 1.0"/>
+   <property name="m004" value="1 0 1.0"/>
+   <property name="m005" value="1 0 1.0"/>
+   <property name="m006" value="1 0 1.0"/>
+   <property name="m007" value="1 0 1.0"/>
+   <property name="m008" value="1 0 1.0"/>
+   <property name="m009" value="1 0 1.0"/>
+   <property name="m010" value="1 0 1.0"/>
+   <property name="momsterCount" type="int" value="10"/>
+   <property name="waveTime" type="int" value="30"/>
+  </properties>
+ </objectgroup>
+ <objectgroup name="Wave003" visible="0">
+  <properties>
+   <property name="m001" value="1 0 0.75"/>
+   <property name="m002" value="1 0 0.75"/>
+   <property name="m003" value="1 0 0.75"/>
+   <property name="m004" value="1 0 0.75"/>
+   <property name="m005" value="1 0 0.75"/>
+   <property name="m006" value="1 0 0.75"/>
+   <property name="m007" value="1 0 0.75"/>
+   <property name="m008" value="1 0 0.75"/>
+   <property name="m009" value="1 0 0.75"/>
+   <property name="m010" value="1 0 0.75"/>
+   <property name="m011" value="1 0 0.75"/>
+   <property name="m012" value="1 0 0.75"/>
+   <property name="m013" value="1 0 0.75"/>
+   <property name="m014" value="1 0 0.75"/>
+   <property name="m015" value="1 0 0.75"/>
+   <property name="momsterCount" type="int" value="15"/>
+   <property name="waveTime" type="int" value="45"/>
+  </properties>
+ </objectgroup>
+ <objectgroup name="Wave004" visible="0">
+  <properties>
+   <property name="m001" value="1 0 0.75"/>
+   <property name="m002" value="1 0 0.75"/>
+   <property name="m003" value="1 0 0.75"/>
+   <property name="m004" value="1 0 0.75"/>
+   <property name="m005" value="1 0 0.75"/>
+   <property name="m006" value="1 0 0.75"/>
+   <property name="m007" value="1 0 0.75"/>
+   <property name="m008" value="1 0 0.75"/>
+   <property name="m009" value="1 0 0.75"/>
+   <property name="m010" value="1 0 0.75"/>
+   <property name="m011" value="1 0 0.75"/>
+   <property name="m012" value="1 0 0.75"/>
+   <property name="m013" value="1 0 0.75"/>
+   <property name="m014" value="1 0 0.75"/>
+   <property name="m015" value="1 0 0.75"/>
+   <property name="momsterCount" type="int" value="15"/>
+   <property name="waveTime" type="int" value="45"/>
+  </properties>
+ </objectgroup>
+</map>

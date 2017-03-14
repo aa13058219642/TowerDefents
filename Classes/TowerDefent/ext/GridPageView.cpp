@@ -167,6 +167,10 @@ void  GridPageView::setSpacing(float horizontalSpacing, float verticalSpacing)
 	this->verticalSpacing = verticalSpacing;
 }
 
+int GridPageView::getItemCounnt()
+{
+	return m_Items.size();
+}
 
 void GridPageView::doLayout()
 {
@@ -350,7 +354,7 @@ void GridPageView::onTouchEnded(Touch* touch, Event* event)
 	if (!isMoved)
 	{
 		Point pos = convertTouchToNodeSpace(touch);
-		log("pos(%d,%d)", (int)pos.x, (int)pos.y);
+		//log("pos(%d,%d)", (int)pos.x, (int)pos.y);
 
 		int s = m_numColumns*m_numRows;
 		for (int i = 0; i < s; i++)
@@ -362,7 +366,7 @@ void GridPageView::onTouchEnded(Touch* touch, Event* event)
 			auto item = m_Items.at(this->getCurPageIndex()*s + i);
 			if (item->getBoundingBox().containsPoint(pos))
 			{
-				log("index=%d", item->id);
+				//log("index=%d", item->id);
 				item->onTouchEnded(touch, event);
 			}
 		}
@@ -390,6 +394,7 @@ void GridPageView::onTouchCancelled(Touch* touch, Event* event)
 		}
 	}
 }
+
 
 
 

@@ -2,13 +2,13 @@
     "TowerCard": [
         {
             "ID": 0,
-            "Icon": 0,
+            "Icon": "Icon_tower_000.png",
             "name": "card000",
             "spellPosPrice": [ 0, 50, 0, 0, 50, 0, 0, 50 ],
             "weaponName": [ "wTower_000" ],
             "cost": 10,
             "price": 200,
-            "skillName": [ "Nuke" ],
+            "skillName": [ "attack" ],
             "uiName": "TowerCard_000_Name",
             "uiDescription": "TowerCard_000_Info",
             "ActorName": "Tower_000",
@@ -24,7 +24,7 @@
         },
         {
             "ID": 1,
-            "Icon": 1,
+            "Icon": "Icon_tower_001.png",
             "name": "card001",
             "spellPosPrice": [ 50, 0, 50, 0, 50, 0, 50, 0 ],
             "weaponName": [ "wTower_001" ],
@@ -46,7 +46,7 @@
         },
         {
             "ID": 2,
-            "Icon": 2,
+            "Icon": "Icon_tower_002.png",
             "name": "card002",
             "spellPosPrice": [ 50, 50, 50, 0, 50, 50, 50, 0 ],
             "weaponName": [ "wTower_002" ],
@@ -68,7 +68,7 @@
         },
         {
             "ID": 3,
-            "Icon": 3,
+            "Icon": "Icon_tower_003.png",
             "name": "card003",
             "spellPosPrice": [ 50, 50, 50, 50, 50, 50, 50, 0 ],
             "weaponName": [ "wTower_003" ],
@@ -90,7 +90,7 @@
         },
         {
             "ID": 4,
-            "Icon": 4,
+            "Icon": "Icon_tower_004.png",
             "name": "card004",
             "spellPosPrice": [ 50, 50, 50, 0, 0, 50, 50, 0 ],
             "weaponName": [ "wTower_004" ],
@@ -112,7 +112,7 @@
         },
         {
             "ID": 5,
-            "Icon": 5,
+            "Icon": "Icon_tower_005.png",
             "name": "card005",
             "spellPosPrice": [ 0, 50, 50, 50, 50, 50, 0, 50 ],
             "weaponName": [ "wTower_005" ],
@@ -134,7 +134,7 @@
         },
         {
             "ID": 6,
-            "Icon": 6,
+            "Icon": "Icon_tower_006.png",
             "name": "card006",
             "spellPosPrice": [ 50, 50, 0, 50, 0, 50, 50, 50 ],
             "weaponName": [ "wTower_006" ],
@@ -156,7 +156,7 @@
         },
         {
             "ID": 7,
-            "Icon": 7,
+            "Icon": "Icon_tower_007.png",
             "name": "card007",
             "spellPosPrice": [ 50, 0, 50, 50, 50, 50, 50, 0 ],
             "weaponName": [ "wTower_007" ],

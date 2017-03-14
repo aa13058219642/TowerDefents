@@ -15,6 +15,8 @@ namespace cocosgalaxy
 		virtual void FreeAllResource();
 		virtual void FreeResource(const vector<Name>& resName);
 
+		void LoadExtraTexture();
+
 	private:
 		TextureManager();
 		static TextureManager* p_myinstance;

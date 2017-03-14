@@ -64,6 +64,10 @@ void TowerSelectLayer::initSprite()
 {
 	SpriteFrameCache* frameCache = SpriteFrameCache::getInstance();
 
+	//¹¥»÷·¶Î§È¦
+	bg_weaponRange = Sprite::createWithSpriteFrameName("weaponRange.png");
+	selectLayer->addChild(bg_weaponRange);
+
 	//±³¾°È¦
 	bg_circle = Sprite::createWithSpriteFrameName("TowerSelect_BGCircle.png");
 	bg_circle->runAction(RepeatForever::create(RotateBy::create(60, 360)));
@@ -226,6 +230,7 @@ void TowerSelectLayer::hideAllButton()
 		a_bg[i]->setVisible(false);
 		a_number[i]->setVisible(false);
 	}
+	bg_weaponRange->setVisible(false);
 }
 
 void TowerSelectLayer::showFor_EmptyPos(const NotificationMsg& msg)
@@ -278,6 +283,10 @@ void TowerSelectLayer::showFor_TowerPos(const NotificationMsg& msg)
 		Color3B color = Color3B(msg.at("color_r").asInt(), msg.at("color_g").asInt(), msg.at("color_b").asInt());
 		bg_circle->setColor(color);
 		
+		//ÏÔÊ¾¹¥»÷·¶Î§
+		bg_weaponRange->setScale(m_gridPos->getTower()->getWeapon()->Range / 250.0f);
+		bg_weaponRange->setVisible(true);
+
 		this->show();
 	}
 }
@@ -315,9 +324,12 @@ void TowerSelectLayer::showFor_BuildTower()
 		m_state = ETowerSelectLayerState::ShowFor_BuildTower;
 
 		this->hideAllButton();
-		for (int i = 0; i < 8; i++)
+
+		auto towerVec = Player::getInstance()->getTowerCard();
+		for (int i = 0; i < (int)towerVec.size(); i++)
 		{
-			a_bt[i]->setSpriteFrame(StringUtils::format("Tower_%03d.png", i));
+			//a_bt[i]->setSpriteFrame(StringUtils::format("Tower_%03d.png", i));
+			a_bt[i]->setSpriteFrame(towerVec[i].Icon);
 			//a_bt[i]->setSpriteFrame("TowerSelect_BuildTower.png");
 			a_number[i]->setVisible(true);
 			a_bg[i]->setVisible(true);
@@ -380,7 +392,7 @@ void TowerSelectLayer::showFor_BuildSpellTower(const NotificationMsg& msg)
 		{
 			if (!spellcard[i].name.empty())
 			{
-				a_bt[i]->setSpriteFrame(StringUtils::format("TowerSelect_SpellTower_%03d.png", spellcard[i].Icon));
+				a_bt[i]->setSpriteFrame(spellcard[i].Icon);
 				a_number[i]->setVisible(true);
 				a_bg[i]->setVisible(true);
 				a_layer[i]->setVisible(true);
@@ -395,8 +407,6 @@ void TowerSelectLayer::showFor_BuildSpellTower(const NotificationMsg& msg)
 
 bool TowerSelectLayer::onClick(Point pos)
 {
-	
-
 	//¼ÆËã±»µã»÷µÄ°´Å¥( 0-7=a_bt, 8=a_bt[Direction::Center], -1=ÎÞ)
 	int index = -1;
 	do{
@@ -410,12 +420,10 @@ bool TowerSelectLayer::onClick(Point pos)
 				index = Direction::Center;
 				break;
 			}
-			//bt_buildTower->setSpriteFrame("bt_BuildTower_A.png");
 		}
 
 		for (int i = 0; i < 8; i++)
 		{
-			//bt_upgrade[i]->setSpriteFrame("bt_UpgradePos_A.png");
 			if (a_layer[i]->isVisible())
 			{
 				Rect rect = RectApplyAffineTransform(

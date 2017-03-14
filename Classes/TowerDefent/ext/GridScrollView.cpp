@@ -132,7 +132,6 @@ void GridScrollView::removeItem(int index)
 	}
 }
 
-
 void GridScrollView::setItemSize(const Size& itemsize)
 {
 	this->m_itemSize = itemsize;
@@ -167,6 +166,12 @@ void  GridScrollView::setSpacing(float horizontalSpacing, float verticalSpacing)
 	this->verticalSpacing = verticalSpacing;
 	//resetInnerSize();
 }
+
+int GridScrollView::getItemCounnt()
+{
+	return m_Items.size();
+}
+
 
 void GridScrollView::resetInnerSize()
 {

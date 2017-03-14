@@ -11,23 +11,9 @@ Monster::~Monster()
 
 }
 
-
-//Monster::Monster(int MonsterID, MapPath path)
 Monster::Monster()
 {
-	//bool flag = false;
-	//do{
-	//	//MonsterID
-	//	setType(5);
-	//	//get m_alility from MonsterID
-	//	HP = 100;
-	//	HP.Max = 100;
-	//	Radius = 32;
-	//	Speed =100;
-	//	setPos(path.getCurPos());
-	//	setMapPath(path);
-	//	flag = true;
-	//} while (0);
+
 }
 
 Monster* Monster::clone()
@@ -58,6 +44,7 @@ Monster* Monster::clone()
 
 	unit->icon = this->icon;
 	unit->price = this->price;
+	unit->life = this->life;
 
 	unit->setMapPath(this->m_path);
 	return unit;
@@ -107,7 +94,19 @@ void Monster::onMove(float dt)
 				return;
 			}
 			m_path.NextPos();
-			dis = m_pos.distance(m_path.getCurPos());
+
+			Point curpos = m_path.getCurPos();
+			dis = m_pos.distance(curpos);
+
+			if (curpos.x > m_pos.x)
+			{
+				m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
+			}
+			else if (curpos.x < m_pos.x)
+			{
+				m_actor->changeFace(CActor::Face::FACE_TO_RIGHT);
+			}
+
 		}
 
 		float move = Speed.getValue()*dt;
@@ -121,6 +120,12 @@ void Monster::onMove(float dt)
 
 void Monster::OnEndPoint(){
 	//log("Move To Endding");
+
+	Message msg;
+	msg.keyword = "Life";
+	msg.valueMap["value"] = this->life;
+	msg.post(Message_Player);
+
 	onDead();
 }
 
@@ -143,6 +148,7 @@ void Monster::onBeAttack(int damage, EDamageType damageType)
 void Monster::onBindSprite()
 {
 	m_actor->setShowHpBar(true, Point(-32, 100), Size(64, 6));
+	m_actor->setLocalLevel(2);
 }
 
 
@@ -152,6 +158,6 @@ void Monster::onDead()
 
 	Message msg;
 	msg.keyword = "Money";
-	msg.valueMap["value"] = price;
+	msg.valueMap["value"] = this->price;
 	msg.post(Message_Player);
 }

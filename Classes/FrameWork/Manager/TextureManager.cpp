@@ -31,8 +31,6 @@ void TextureManager::LoadResource(const vector<Name>& resNameList)
 	FileUtils* fileUtils = FileUtils::getInstance();
 	SpriteFrameCache* frameCache = SpriteFrameCache::getInstance();
 
-	
-
 	for (auto& var : resNameList)
 	{
 		//CCASSERT(!fileUtils->isFileExist(var.substr(var.find_last_of('/') + 1)), string("Texture [" + var + "] NOT found").c_str());
@@ -40,7 +38,7 @@ void TextureManager::LoadResource(const vector<Name>& resNameList)
 		frameCache->addSpriteFramesWithFile(var);
 	}
 
-
+	this->LoadExtraTexture();
 
 	//plist = StringUtils::format("texture/scene_battle_%03d.plist", 0);
 	//if (fileUtils->isFileExist(plist))
@@ -50,7 +48,46 @@ void TextureManager::LoadResource(const vector<Name>& resNameList)
 
 }
 
+void TextureManager::LoadExtraTexture()
+{
+	FileUtils* fileUtils = FileUtils::getInstance();
+	SpriteFrameCache* frameCache = SpriteFrameCache::getInstance();
+	bool flag = true;
 
+	do{
+		//1.打开文件
+		FileUtils* fin = FileUtils::getInstance();
+		Data data = fin->getDataFromFile("data/ExtraTextures.json");
+		if (data.isNull())
+		{
+			CCASSERT(false, "[ExtraTextures.json] Lost!");
+			flag = false;
+			break;
+		}
+
+		//2.载入json
+		string str = string((char*)data.getBytes(), data.getSize());
+		rapidjson::Document root;
+		root.Parse<0>(str.c_str());
+		if(!(root.IsObject() && root.HasMember("ExtraTexture") && root["ExtraTexture"].IsArray()))
+		{
+			CCASSERT(false, "illegal [ExtraTexture.json]");
+			flag = false;
+			break;
+		}
+
+		//3.读取json数据
+		int size = root["ExtraTexture"].Size();
+		for (int i = 0; i < size; i++)
+		{
+			string var = root["ExtraTexture"][i].GetString();
+
+			CCASSERT(fileUtils->isFileExist(var), string("Texture [" + var + "] NOT found").c_str());
+			frameCache->addSpriteFramesWithFile(var);
+		}
+
+	} while (0);
+}
 
 
 void TextureManager::FreeAllResource()

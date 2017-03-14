@@ -177,3 +177,44 @@
 - 2.Monster载入Json化
 - 3.修复Pageview中的部分bug
 - 4.完成prepareScene的选择卡片
+
+##v0.045
+- 1.TextureManager增加动态从json加载贴图功能
+- 2.完成波数控制相关功能，合并Wave相关类到GameMap中，删除WaveManager
+- 3.完成关卡信息提示，删除GameMapInfoLayer,添加GameInfoLayer
+- 4.基本完成prepareScene的功能
+- 5.完成Tower,Monster方向朝向功能
+- 6.修复AnimateManager中的贴图位置错误的bug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

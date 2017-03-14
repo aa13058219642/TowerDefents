@@ -1,6 +1,6 @@
 #pragma once
 #include "cocos2d.h"
-#include "ui/CocosGUI.h"
+#include "UI/CocosGUI.h"
 #include "cocostudio\CocoStudio.h"
 #include "GridItem.h"
 
@@ -57,6 +57,8 @@ namespace ui {
 		/*行列之间的间距*/
 		virtual void setSpacing(float horizontalSpacing, float verticalSpacing) = 0;
 
+		/*获取item数量*/
+		virtual int getItemCounnt() = 0;
 
 	protected:
 		virtual void onSizeChanged() = 0;

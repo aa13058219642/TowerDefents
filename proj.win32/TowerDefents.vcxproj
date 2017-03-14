@@ -203,8 +203,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TowerDefent\ext\GridView.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GameMap.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp" />
-    <ClCompile Include="..\Classes\TowerDefent\GameMap\WaveManager.cpp" />
-    <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Layer\GameInfoLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.cpp" />
@@ -281,8 +280,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\GameConfig.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h" />
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h" />
-    <ClInclude Include="..\Classes\TowerDefent\GameMap\WaveManager.h" />
-    <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapInfoLayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Layer\GameInfoLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\GameMapLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.h" />

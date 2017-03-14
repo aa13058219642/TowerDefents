@@ -72,7 +72,7 @@ void SpellCardManager::LoadResource(const vector<Name>& resNameList)
 
 			if (jNode.HasMember("ID"))				spellTower->ID = jNode["ID"].GetInt();
 			if (jNode.HasMember("name"))			spellTower->name = jNode["name"].GetString();
-			if (jNode.HasMember("Icon"))			spellTower->Icon = jNode["Icon"].GetInt();
+			if (jNode.HasMember("Icon"))			spellTower->Icon = jNode["Icon"].GetString();
 			if (jNode.HasMember("behaviorName"))	spellTower->behaviorName = jNode["behaviorName"].GetString();
 			if (jNode.HasMember("uiName"))			spellTower->uiName = jNode["uiName"].GetString();
 			if (jNode.HasMember("uiDescription"))	spellTower->uiDescription = jNode["uiDescription"].GetString();
@@ -86,10 +86,17 @@ void SpellCardManager::LoadResource(const vector<Name>& resNameList)
 
 void SpellCardManager::FreeAllResource()
 {
-
+	m_spellTower.clear();
 }
 
 void SpellCardManager::FreeResource(const vector<Name>& resName)
 {
-
+	for (auto name : resName)
+	{
+		auto card = m_spellTower.at(name);
+		if (card != nullptr)
+		{
+			m_spellTower.erase(name);
+		}
+	}
 }

@@ -1,18 +1,6 @@
 {
     "Weapon": [
         {
-            "name": "wTower001",
-            "ColdDown": 3,
-            "beforing_Animate": "attack_beforing",
-            "beforing_Delay": 0.7,
-            "MinDamage": 10,
-            "MaxDamage": 20,
-            "TargetCount": 1,
-            "Range": 300,
-            "BulletSpeed": 800,
-            "ActorName": "b001"
-        },
-        {
             "name": "wTower_000",
             "beforing_Animate": "attack_beforing",
             "beforing_Delay": 0.3,
@@ -31,8 +19,12 @@
         {
             "name": "wTower_001",
             "beforing_Animate": "attack_beforing",
-            "beforing_Delay": 0.4,
-            "ColdDown": 0.5,
+			"beforing_Delay": 0.15,
+            "using_Animate": "attack_using",
+			"using_Delay": 0.1,
+			"aftering_Animate": "attack_aftering",
+            "aftering_Delay": 0.15,
+            "ColdDown": 0.6,
             "MinDamage": 7,
             "MaxDamage": 15,
             "TargetCount": 1,
@@ -45,7 +37,9 @@
         },
         {
             "name": "wTower_002",
-            "ColdDown": 1.5,
+			"beforing_Animate": "attack_beforing",
+			"beforing_Delay": 0.4,
+			"ColdDown": 1.5,            
             "MinDamage": 5,
             "MaxDamage": 10,
             "TargetCount": 1,
@@ -55,6 +49,8 @@
         },
         {
             "name": "wTower_003",
+            "beforing_Animate": "attack_beforing",
+			"beforing_Delay": 0.4,
             "ColdDown": 2,
             "MinDamage": 5,
             "MaxDamage": 10,

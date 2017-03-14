@@ -98,7 +98,7 @@ CActor* ActorManager::createActor(int id, Name name)
 		m_actorlist[id] = actor;
 		return actor;
 	}
-	CCASSERT(false, "can NOT create actor");
+	CCASSERT(false, string("actor [" + name + "] NOT found").c_str());
 	return nullptr;
 }
 

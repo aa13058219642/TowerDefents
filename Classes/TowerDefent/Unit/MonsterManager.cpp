@@ -59,6 +59,7 @@ void MonsterManager::LoadResource(const vector<Name>& resNameList)
 		if (jnode.HasMember("AP"))				monster->AP = AbilityEx<float>(jnode["AP"].GetInt(), 0, jnode["AP"].GetInt());
 		if (jnode.HasMember("HP_RegenRate"))	monster->HP_RegenRate = jnode["HP_RegenRate"].GetInt();
 		if (jnode.HasMember("price"))			monster->price = jnode["price"].GetInt();
+		if (jnode.HasMember("life"))			monster->life = jnode["life"].GetInt();
 		if (jnode.HasMember("Speed"))			monster->Speed = jnode["Speed"].GetInt();
 		if (jnode.HasMember("unitType"))		monster->setType(jnode["unitType"].GetUint());
 
@@ -112,6 +113,18 @@ Monster* MonsterManager::CreateMonster(int monsterID)
 	return monster;
 }
 
+const Monster* MonsterManager::getMonster(int monsterID)
+{
+	const Monster* monster = nullptr;
+	for (auto& m : monsterslist)
+	{
+		if (m.second->ID == monsterID)
+		{
+			monster = m.second;
+		}
+	}
+	return monster;
+}
 
 
 

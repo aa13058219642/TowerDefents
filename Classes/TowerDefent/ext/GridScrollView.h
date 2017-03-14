@@ -43,6 +43,10 @@ namespace ui {
 
 		/*刷新gird位置*/
 		void resetInnerSize();
+
+		/*获取item数量*/
+		virtual int getItemCounnt();
+
 	protected:
 		Layout* m_page;
 		Vector<GridItem*> m_Items;

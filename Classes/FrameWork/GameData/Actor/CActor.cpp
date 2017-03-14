@@ -24,7 +24,7 @@ CActor::CActor(int id, ActorData data, Layer* parent)
 	ID = id;
 	m_pos = Point::ZERO;
 	m_face = FACE_TO_RIGHT;
-	LocalLevel = 0;
+	LocalLevel = 1;
 
 	m_parent = parent;
 	m_sprite = nullptr;
@@ -93,13 +93,22 @@ void CActor::setAnimateList(map<Name, Name> animateList)
 void CActor::setLocalLevel(int level)
 {
 	this->LocalLevel = level;
+	m_layer->setLocalZOrder(Director::getInstance()->getVisibleSize().height*(LocalLevel + 1) - m_pos.y);
 }
 
 
 void CActor::changeFace(Face face)
 {
 	m_face = face;
-	m_sprite->setFlippedX(m_face == FACE_TO_LEFT);
+	//m_sprite->setFlippedX(m_face == FACE_TO_LEFT);
+	if (m_face == FACE_TO_LEFT)
+	{
+		m_layer->setRotationSkewY(0);
+	}
+	else
+	{
+		m_layer->setRotationSkewY(180);
+	}
 }
 
 

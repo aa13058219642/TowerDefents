@@ -106,7 +106,18 @@ CWeapon* CUnit::getWeapon()
 void CUnit::setTarget(int targetID)
 {
 	this->m_targetID = targetID;
-	this->m_targetPos = UnitManager::getInstance()->getUnit(targetID)->getPos();
+
+	CUnit *target = UnitManager::getInstance()->getUnit(targetID);
+	this->m_targetPos = target->getPos();
+	//¸Ä±ä³¯Ïò
+	if (target->getPos().x <= m_pos.x)
+	{
+		m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
+	}
+	else
+	{
+		m_actor->changeFace(CActor::Face::FACE_TO_RIGHT);
+	}
 }
 
 CUnit* CUnit::getTarget()

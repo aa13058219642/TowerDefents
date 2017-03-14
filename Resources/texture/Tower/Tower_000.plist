@@ -7,93 +7,93 @@
             <key>Tower_000_attack_000.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{91,74},{99,74}}</string>
+                <string>{{137,82},{85,74}}</string>
                 <key>offset</key>
-                <string>{1,12}</string>
+                <string>{39,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{53,0},{99,74}}</string>
+                <string>{{78,13},{85,74}}</string>
                 <key>sourceSize</key>
-                <string>{203,98}</string>
+                <string>{163,108}</string>
             </dict>
             <key>Tower_000_attack_001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,74},{87,72}}</string>
+                <string>{{137,2},{85,78}}</string>
                 <key>offset</key>
-                <string>{-13,9}</string>
+                <string>{2,3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{45,4},{87,72}}</string>
+                <string>{{41,12},{85,78}}</string>
                 <key>sourceSize</key>
-                <string>{203,98}</string>
+                <string>{163,108}</string>
             </dict>
             <key>Tower_000_attack_002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,150},{203,98}}</string>
+                <string>{{2,2},{133,108}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-15,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{203,98}}</string>
+                <string>{{0,0},{133,108}}</string>
                 <key>sourceSize</key>
-                <string>{203,98}</string>
+                <string>{163,108}</string>
             </dict>
             <key>Tower_000_stand_000.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{168,2},{81,70}}</string>
+                <string>{{140,158},{67,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{81,70}}</string>
+                <string>{{0,0},{67,74}}</string>
                 <key>sourceSize</key>
-                <string>{81,70}</string>
+                <string>{67,74}</string>
             </dict>
             <key>Tower_000_stand_001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,2},{81,70}}</string>
+                <string>{{71,158},{67,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{81,70}}</string>
+                <string>{{0,0},{67,74}}</string>
                 <key>sourceSize</key>
-                <string>{81,70}</string>
+                <string>{67,74}</string>
             </dict>
             <key>Tower_000_stand_002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{81,70}}</string>
+                <string>{{2,158},{67,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{81,70}}</string>
+                <string>{{0,0},{67,74}}</string>
                 <key>sourceSize</key>
-                <string>{81,70}</string>
+                <string>{67,74}</string>
             </dict>
             <key>Tower_000_stand_003.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{85,2},{81,70}}</string>
+                <string>{{71,158},{67,74}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{81,70}}</string>
+                <string>{{0,0},{67,74}}</string>
                 <key>sourceSize</key>
-                <string>{81,70}</string>
+                <string>{67,74}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -105,7 +105,7 @@
             <key>size</key>
             <string>{256,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:bbeeef9c5a24d494cd2c11e5a6ae21ec$</string>
+            <string>$TexturePacker:SmartUpdate:186ad0768e0c1b5ef1f7415e2bcf4c43$</string>
             <key>textureFileName</key>
             <string>Tower_000.png</string>
         </dict>

@@ -72,12 +72,6 @@ int GridPos::getAroundGridPosID(Direction dir)
 	return m_around[dir];
 }
 
-//SpellCard GridPos::getSpellCard()
-//{
-//	CCASSERT(m_type == GridPosType_SpellTower, "this GridPos is NOT a SpellTower");
-//
-//	return getTower()->getSpellCard(m_dir);
-//}
 
 float GridPos::getSellPrice()
 {
@@ -153,6 +147,7 @@ void GridPos::bindActor()
 
 
 	m_actor = ActorManager::getInstance()->createActor(ID+100000, "blank");
+	m_actor->setLocalLevel(0);
 	m_actor->setPos(m_pos);
 	m_actor->setShowUnitPos(true);
 }

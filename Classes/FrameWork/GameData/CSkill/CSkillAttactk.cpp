@@ -124,6 +124,7 @@ bool CSkillAttactk::IsCanExecute()
 		{
 			m_targetID = target->ID;
 			m_targetPos = target->getPos();
+			m_parent->setTarget(m_targetID);
 			return true;
 		}
 

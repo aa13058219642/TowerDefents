@@ -9,6 +9,7 @@
             "HP": 100,
             "MP": 0,
             "AP": 0,
+            "life": 1,
             "Speed": 100,
             "HP_RegenRate": 0,
             "skillName": [],

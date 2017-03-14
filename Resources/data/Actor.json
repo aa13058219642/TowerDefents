@@ -51,20 +51,20 @@
         {
             "name": "Tower_001",
             "defaultanimate": "Tower_001_stand",
-            "actionName": [ "stand", "attack_beforing" ],
-            "animateName": [ "Tower_001_stand", "Tower_001_attack_beforing"]
+            "actionName": [ "stand", "attack_beforing","attack_using","attack_aftering" ],
+            "animateName": [ "Tower_001_stand", "Tower_001_attack_beforing","Tower_001_attack_using","Tower_001_attack_aftering"]
         },
         {
             "name": "Tower_002",
-            "defaultanimate": "Tower_002",
-            "actionName": [ "stand" ],
-            "animateName": [ "Tower_002" ]
+            "defaultanimate": "Tower_002_stand",
+            "actionName": [ "stand", "attack_beforing" ],
+            "animateName": ["Tower_002_stand", "Tower_002_attack_beforing" ]
         },
         {
             "name": "Tower_003",
-            "defaultanimate": "Tower_003",
-            "actionName": [ "stand" ],
-            "animateName": [ "Tower_003" ]
+            "defaultanimate": "Tower_003_stand",
+            "actionName": [ "stand", "attack_beforing" ],
+            "animateName": [ "Tower_003_stand", "Tower_003_attack_beforing" ]
         },
         {
             "name": "Tower_004",

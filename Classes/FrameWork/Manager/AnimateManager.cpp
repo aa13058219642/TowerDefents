@@ -117,7 +117,9 @@ void AnimateManager::LoadResource(const vector<Name>& resNameList)
 			string name = var.first;
 			this->animateData[name] = animatedata[name];
 			if (animatedata[name].delay > 0 && animatedata[name].framecount > 1)
+			{
 				animationCache->addAnimation(createAnimation(name), name);
+			}
 		}
 	}
 	else
@@ -126,7 +128,9 @@ void AnimateManager::LoadResource(const vector<Name>& resNameList)
 			CCASSERT(animatedata.find(name) != animatedata.end(), string(name + "animateData NOT exists").c_str());
 			this->animateData[name] = animatedata[name];
 			if (animatedata[name].delay > 0 && animatedata[name].framecount > 1)
+			{
 				animationCache->addAnimation(createAnimation(name), name);
+			}
 		}
 }
 
@@ -165,7 +169,9 @@ void AnimateManager::playAnimate(const Name& animateName, Sprite* sprite, float 
 				action = Spawn::createWithTwoActions(action, action2);
 			}
 			else
+			{
 				action = Sequence::create(action, DelayTime::create(.01f), callFunc, NULL);
+			}
 		}
 		sprite->runAction(action);
 	}
@@ -174,10 +180,16 @@ void AnimateManager::playAnimate(const Name& animateName, Sprite* sprite, float 
 		//单帧动画
 		auto& data = animateData[animateName];
 		SpriteFrame* s = SpriteFrameCache::getInstance()->getSpriteFrameByName(data.framedata[0].name)->clone();
-		s->setOffset(data.framedata[0].offset / Director::getInstance()->getContentScaleFactor());
+
+		//根据缩放比例调整偏移
+		float scale = Director::getInstance()->getContentScaleFactor();
+		Vec2 offset = (s->getOffsetInPixels() + data.framedata[0].offset) / scale;
+		s->setOffset(offset);
 		sprite->setSpriteFrame(s);
 		if (playtime > 0 && callFunc != nullptr)
+		{
 			sprite->runAction(Sequence::create(DelayTime::create(playtime), callFunc, NULL));
+		}
 	}
 }
 

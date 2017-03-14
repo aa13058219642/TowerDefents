@@ -20,7 +20,7 @@
             <key>TowerSelect_BuildTower.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{324,134},{64,64}}</string>
+                <string>{{200,390},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>TowerSelect_Sell.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{390,68},{64,64}}</string>
+                <string>{{200,324},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>TowerSelect_SpellPos.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{324,68},{64,64}}</string>
+                <string>{{200,258},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>TowerSelect_SpellPos_000.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{258,134},{64,64}}</string>
+                <string>{{134,390},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>TowerSelect_SpellPos_001.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{258,68},{64,64}}</string>
+                <string>{{134,324},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>TowerSelect_SpellPos_002.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{398,2},{64,64}}</string>
+                <string>{{134,258},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>TowerSelect_SpellPos_003.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{332,2},{64,64}}</string>
+                <string>{{68,390},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>TowerSelect_SpellPos_004.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{266,2},{64,64}}</string>
+                <string>{{68,324},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>TowerSelect_SpellPos_005.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,390},{64,64}}</string>
+                <string>{{68,258},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,110 +150,6 @@
             <key>TowerSelect_SpellPos_006.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{200,324},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellPos_007.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{200,258},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellTower_000.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{134,390},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellTower_001.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{134,324},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellTower_002.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{134,258},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellTower_003.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{68,390},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellTower_004.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{68,324},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellTower_005.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{68,258},{64,64}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
-                <key>sourceSize</key>
-                <string>{64,64}</string>
-            </dict>
-            <key>TowerSelect_SpellTower_006.png</key>
-            <dict>
-                <key>frame</key>
                 <string>{{2,390},{64,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -264,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{64,64}</string>
             </dict>
-            <key>TowerSelect_SpellTower_007.png</key>
+            <key>TowerSelect_SpellPos_007.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,324},{64,64}}</string>
@@ -300,7 +196,7 @@
             <key>size</key>
             <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f27772bf563928ad07dfda772983d78a$</string>
+            <string>$TexturePacker:SmartUpdate:704079335e4ec9554bde7d5de2d2e8f4$</string>
             <key>textureFileName</key>
             <string>TowerSelectLayer.png</string>
         </dict>

@@ -17,7 +17,6 @@ private:
 	bool onClick(Point pos);
 
 	void DebugDraw();
-	//void RunDelayAction(const std::function<void()>& func, float delayTime);
 };
 
 

@@ -12,5 +12,7 @@ public:
 	CREATE_FUNC(TitleScene);
 
 	void click_startgame();
+	void click_option();
+	void click_exit();
 
 };

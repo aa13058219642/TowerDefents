@@ -37,6 +37,8 @@ private:
 	Sprite* a_bg[9];		//周围按钮下方提示信息背景
 	Label* a_number[9];		//周围按钮下方提示信息数字
 	CCostPlayer price[8];	//价格
+	Sprite* bg_weaponRange;	//攻击范围圈
+
 
 	void initSprite();
 	void initListener();
