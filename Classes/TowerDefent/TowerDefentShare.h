@@ -5,6 +5,7 @@
 #define Message_TowerSelectLayer "Message_TowerSelectLayer"
 #define Message_TowerInfoLayer "Message_TowerInfoLayer"
 #define Message_GameInfoLayer "Message_GameInfoLayer"
+#define Message_WinLayer "Message_WinLayer"
 #define Message_GameMap "Message_GameMap"
 #define Message_PrepareScene "Message_PrepareScene"
 
@@ -29,7 +30,23 @@ enum MsgCMD : int{
 };
 
 
+namespace cocosgalaxy
+{
+	namespace EUnitType
+	{
+		const UnitType Tower = 1 << 4;
+		const UnitType Monster = 1 << 5;
+		const UnitType Bullet = 1 << 6;
+	}
 
+	typedef unsigned int BulletType;
+	namespace EBulletType
+	{
+		const BulletType Ball = 0;
+		const BulletType Missile = 1;
+	};
+
+};
 
 
 

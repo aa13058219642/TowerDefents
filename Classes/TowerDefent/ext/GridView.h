@@ -1,6 +1,6 @@
 #pragma once
 #include "cocos2d.h"
-#include "UI/CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "cocostudio\CocoStudio.h"
 #include "GridItem.h"
 

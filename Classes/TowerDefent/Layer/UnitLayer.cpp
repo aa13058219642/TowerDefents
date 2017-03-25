@@ -1,9 +1,19 @@
 #include "UnitLayer.h"
 #include "UnitManager.h"
+#include "ActorManager.h"
+
 
 UnitLayer::UnitLayer()
 {
 }
+
+UnitLayer::~UnitLayer()
+{
+
+
+
+}
+
 
 UnitLayer* UnitLayer::create()
 {
@@ -48,7 +58,7 @@ bool UnitLayer::init()
 		};
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-
+		ActorManager::getInstance()->init(this);
 
 		flag = true;
 	} while (0);
@@ -75,7 +85,6 @@ bool UnitLayer::onClick(Point pos)
 	}
 	return false;
 }
-
 
 
 

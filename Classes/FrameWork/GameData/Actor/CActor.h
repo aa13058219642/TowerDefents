@@ -30,7 +30,7 @@ namespace cocosgalaxy
 		void setLocalLevel(int level);
 
 		/*设置是否显示血条，默认不显示*/
-		void setShowHpBar(bool isShow, Point pos = Point::ZERO, Size size = Size::ZERO);
+		void setShowHpBar(bool isShow, Rect rect = Rect::ZERO);
 		/*设置血条百分比 [0,1]*/
 		void setHpBarProgress(float progress);
 		/*设置是否显示占位格子*/
@@ -48,9 +48,10 @@ namespace cocosgalaxy
 
 		bool IsExistAnimate(const Name& animateName);
 	private:
-		Layer* m_layer;
 		Point m_pos;
+		Layer* m_layer;
 		Layer* m_parent;
+		Layer* m_spriteLayer;
 		int LocalLevel;
 
 		Face m_face;
@@ -61,7 +62,6 @@ namespace cocosgalaxy
 		Name m_defaultAnimate;
 		std::map<Name, Name> m_animateList;
 		std::map<Name, Sprite*> m_effectList;
-
 
 	};
 

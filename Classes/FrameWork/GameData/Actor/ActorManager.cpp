@@ -68,9 +68,7 @@ void ActorManager::LoadResource(const vector<Name>& resNameList)
 
 void ActorManager::FreeAllResource()
 {
-	//for (auto var : m_actorlist)
-	//	delete var.second;
-	//m_actorlist.clear();
+	destoryAllActor();
 	m_actordata.clear();
 }
 
@@ -114,11 +112,33 @@ void ActorManager::removeActor(int id)
 
 void ActorManager::destoryActor(int id)
 {
-	delete m_actorlist[id];
-	m_actorlist.erase(id);
+	if (m_actorlist.find(id) != m_actorlist.end())
+	{
+		delete m_actorlist[id];
+		m_actorlist.erase(id);
+	}
 }
 
+void ActorManager::destoryAllActor()
+{
+	for (auto actor : m_actorlist)
+	{
+		delete actor.second;
+	}
+	m_actorlist.clear();
+}
 
+//int ActorManager::findActor(int id)
+//{
+//	for (auto actor : m_actorlist)
+//	{
+//		if (actor.second->ID == id)
+//		{
+//			return actor.first;
+//		}
+//	}
+//}
+//
 
 
 

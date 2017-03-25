@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "stdfax.h"
 #include "cocostudio/CocoStudio.h"
-#include "UI/CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "cocos2d.h"
 #include "Message\MessageListener.h"
 
@@ -37,5 +37,5 @@ private:
 	cocostudio::ActionObject* ui_action_out;
 
 	bool isshow;
-
+	bool isInUiAdmimate;
 };

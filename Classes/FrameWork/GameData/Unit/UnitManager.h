@@ -34,8 +34,14 @@ namespace cocosgalaxy
 		
 		/*移除并销毁Unit*/
 		void removeUnit(CUnit* child);
+		/*销毁所有unit*/
+		void removeAllUnit();
+
 		/*寻找一组特定类别的Unit*/
 		vector<CUnit*> findUnit(UnitType TypeFilter);
+
+		/*查询是否存在特定类型的unit*/
+		bool hasUnitType(UnitType TypeFilter);
 
 	private:
 		bool isInit;
@@ -46,6 +52,7 @@ namespace cocosgalaxy
 		UnitCreator* unitCreator;
 
 		UnitManager();
+		~UnitManager();
 		void debugDraw();
 	};
 }

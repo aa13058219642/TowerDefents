@@ -34,11 +34,11 @@ bool WorldMapScene::init()
 	}
 
 
-	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("UI/WorldMapLayer.ExportJson"));
+	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("WorldMapLayer.ExportJson"));
 	this->addChild(ui);
 
 	//设置拉伸BG
-	Sprite* bg = Sprite::create("UI/ui_bg.png");
+	Sprite* bg = Sprite::create("ui_bg.png");
 	bg->setColor(Color3B(0, 204, 255));
 	bg->setAnchorPoint(Point(0, 0));
 	Size size = Director::getInstance()->getVisibleSize();
@@ -61,7 +61,7 @@ bool WorldMapScene::init()
 	worldLayer->setPosition(Point(440,375));
 	panel_right->addChild(worldLayer, -1);
 
-	cocos2d::ui::Scale9Sprite* dialog = cocos2d::ui::Scale9Sprite::create("UI/dialog_b.png");
+	cocos2d::ui::Scale9Sprite* dialog = cocos2d::ui::Scale9Sprite::create("dialog_b.png");
 	dialog->setContentSize(worldLayer->getContentSize());
 	worldLayer->addChild(dialog);
 
@@ -173,7 +173,7 @@ void WorldMapScene::initListView()
 
 	}
 
-	auto tex = Director::getInstance()->getTextureCache()->addImage("UI/worldbutton_select.png");
+	auto tex = Director::getInstance()->getTextureCache()->addImage("worldbutton_select.png");
 	auto sf = SpriteFrame::createWithTexture(tex, Rect(Point::ZERO, tex->getContentSizeInPixels()));
 	SpriteFrameCache::getInstance()->addSpriteFrame(sf, "worldbutton_select.png");
 
@@ -199,7 +199,7 @@ void WorldMapScene::showMap(int index)
 	int size = worldData[index].levelpoint.size();
 	for (int i = 0; i < size; i++)
 	{
-		Button* lp = Button::create("UI/star0.png");
+		Button* lp = Button::create("star00.png","","",ui::Widget::TextureResType::PLIST);
 		lp->setPosition(Point(worldData[index].levelpoint[i].x, worldData[index].levelpoint[i].y));
 		lp->setTag(i);
 		lp->addClickEventListener(CC_CALLBACK_1(WorldMapScene::event_lp_click, this));

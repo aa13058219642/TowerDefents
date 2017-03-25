@@ -25,7 +25,7 @@ namespace cocosgalaxy
 		/*移除一个演员（立刻，无动画）*/
 		void destoryActor(int id);
 
-
+		void destoryAllActor();
 	private:
 		static ActorManager* p_myinstance;
 		Layer* m_layer;
@@ -34,6 +34,7 @@ namespace cocosgalaxy
 		map<Name, ActorData> m_actordata;
 
 		ActorManager();
+		//int findActor(int id);
 	};
 
 }

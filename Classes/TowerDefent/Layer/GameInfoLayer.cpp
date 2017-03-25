@@ -41,7 +41,7 @@ bool GameInfoLayer::init()
 
 void GameInfoLayer::initUI()
 {
-	Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("UI/GameInfo.ExportJson");
+	Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("GameInfo.ExportJson");
 	this->addChild(widget);
 
 	//载入控件 
@@ -63,6 +63,7 @@ void GameInfoLayer::initUI()
 
 	int money = (int)Player::getInstance()->getMoney();
 	lab_Money->setString(StringUtils::format("%d", money));
+	isInUiAdmimate = false;
 }
 
 void GameInfoLayer::initListener()
@@ -99,6 +100,10 @@ void GameInfoLayer::receive(const Message* message)
 		{
 			string info = message->valueMap.at("value").asString();
 			lab_nextWave->setString(info);
+
+			isInUiAdmimate = true;
+			ui_action_in->play(CallFunc::create([=](){isInUiAdmimate = false; ui_action_in->stop(); }));
+			isshow = true;
 		}
 	}
 }
@@ -115,19 +120,21 @@ void GameInfoLayer::event_btOption_click()
 
 void GameInfoLayer::event_btNextWave_click()
 {
+	if (isInUiAdmimate)return;
+
 	if (isshow)
 	{
-		ui_action_out->play();
+		isInUiAdmimate = true;
+		ui_action_out->play(CallFunc::create([=](){isInUiAdmimate = false; ui_action_out->stop(); }));
 		GameMap::getInstance()->SkipToNextWave();
 	}
 	else
 	{
-		ui_action_in->play();
+		isInUiAdmimate = true;
+		ui_action_in->play(CallFunc::create([=](){isInUiAdmimate = false; ui_action_in->stop(); }));
 	}
 	isshow = !isshow;
 }
-
-
 
 
 

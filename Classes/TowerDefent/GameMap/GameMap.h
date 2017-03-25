@@ -54,6 +54,9 @@ public:
 	void update(float dt);
 	~GameMap();
 
+	enum EGameState : int{ GS_Pause, GS_Ready, GS_NextWave, GS_CreatingMonster, GS_WaitToAllMonsterDie, GS_WaitToNextWave, GS_Win, GS_Fail, GS_WaitToEnd };
+	EGameState m_state;
+
 	/*if something be click will return ture*/
 	bool onClick(Point pos);
 
@@ -64,9 +67,13 @@ public:
 	void SkipToNextWave();
 	void UpdateNextWaveInfo();
 
+	void clear();
+
+
 private:
 	GameMap();
-	void clear();
+	bool loadMap(int wrold, int level);
+
 	static GameMap* p_myinstance;
 
 	int m_level;
@@ -78,14 +85,15 @@ private:
 
 	vector<MapPath> MonsterPath;
 	vector<Wave> WaveList;
-	float startDelay;
+	//float startDelay;
 	float waveTime;
 	float monsterTime;
 	int waveCount;
 	int curWave;
 	int curMonster;
 
-	bool loadMap(int wrold, int level);
+	//bool isWin;
+	//bool waveEnd;
 };
 
 

@@ -68,15 +68,15 @@
         },
         {
             "name": "Tower_004",
-            "defaultanimate": "Tower_004",
-            "actionName": [ "stand" ],
-            "animateName": [ "Tower_004" ]
+            "defaultanimate": "Tower_004_stand",
+            "actionName": ["stand", "attack_beforing"],
+            "animateName": ["Tower_004_stand", "Tower_004_attack_beforing"]
         },
         {
             "name": "Tower_005",
-            "defaultanimate": "Tower_005",
-            "actionName": [ "stand" ],
-            "animateName": [ "Tower_005" ]
+            "defaultanimate": "Tower_005_stand",
+            "actionName": ["stand", "attack_beforing"],
+            "animateName": ["Tower_005_stand", "Tower_005_attack_beforing"]
         },
         {
             "name": "Tower_006",
@@ -86,9 +86,9 @@
         },
         {
             "name": "Tower_007",
-            "defaultanimate": "Tower_007",
-            "actionName": [ "stand" ],
-            "animateName": [ "Tower_007" ]
+            "defaultanimate": "Tower_007_stand",
+            "actionName": ["stand", "attack_beforing"],
+            "animateName": ["Tower_007_stand", "Tower_007_attack_beforing"]
         }
     ]
 }

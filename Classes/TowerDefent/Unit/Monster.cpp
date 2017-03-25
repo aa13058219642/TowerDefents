@@ -31,7 +31,8 @@ Monster* Monster::clone()
 	unit->EXP = this->EXP;
 	for (int i = 0; i < DamageTypeCount; i++)
 	{
-		unit->DamageDefents[i] = Ability<float>(this->DamageDefents[i]);
+		unit->Armor[i] = Ability<float>(this->Armor[i]);
+		unit->Resistance[i] = Ability<float>(this->Resistance[i]);
 	}
 	unit->name = this->name;
 	unit->m_type = this->m_type;
@@ -45,6 +46,7 @@ Monster* Monster::clone()
 	unit->icon = this->icon;
 	unit->price = this->price;
 	unit->life = this->life;
+	unit->hpbar = this->hpbar;
 
 	unit->setMapPath(this->m_path);
 	return unit;
@@ -82,6 +84,10 @@ void Monster::drawMyOutLine(DrawNode* drawNode){
 
 void Monster::onMove(float dt)
 {
+	if (m_state == EUnitState::UnitState_Death)
+	{
+		return;
+	}
 	if (m_path.getPosCount() > 0)
 	{
 		float dis = m_pos.distance(m_path.getCurPos());
@@ -98,11 +104,11 @@ void Monster::onMove(float dt)
 			Point curpos = m_path.getCurPos();
 			dis = m_pos.distance(curpos);
 
-			if (curpos.x > m_pos.x)
+			if (curpos.x < m_pos.x)
 			{
 				m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
 			}
-			else if (curpos.x < m_pos.x)
+			else if (curpos.x > m_pos.x)
 			{
 				m_actor->changeFace(CActor::Face::FACE_TO_RIGHT);
 			}
@@ -133,10 +139,12 @@ void Monster::onBeAttack(int damage, EDamageType damageType)
 {
 	if (!(m_type & EUnitType::Death))
 	{
-		HP.add(-damage);
+		//¼ÆËã·ÀÓùºÍ¿¹ÐÔ
+		double val = damage*Resistance[damageType] - Armor[damageType];
+
+		HP.add(-val);
 		float per = clampf(HP / (float)HP.Max, 0, 1);
 		
-		//m_hpBar->setContentSize(Size(64*per, 6));
 		m_actor->setHpBarProgress(per);
 
 		if (HP <= 0){
@@ -147,7 +155,7 @@ void Monster::onBeAttack(int damage, EDamageType damageType)
 
 void Monster::onBindSprite()
 {
-	m_actor->setShowHpBar(true, Point(-32, 100), Size(64, 6));
+	m_actor->setShowHpBar(true, hpbar);
 	m_actor->setLocalLevel(2);
 }
 

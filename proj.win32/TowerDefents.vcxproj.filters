@@ -369,6 +369,9 @@
     <ClCompile Include="..\Classes\TowerDefent\Layer\GameInfoLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TowerDefent\Layer\WinLayer.cpp">
+      <Filter>src\TowerDefent\Layer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -599,15 +602,13 @@
     <ClInclude Include="..\Classes\TowerDefent\Layer\GameInfoLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\TowerDefent\Layer\WinLayer.h">
+      <Filter>src\TowerDefent\Layer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
 </Project>

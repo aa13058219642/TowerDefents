@@ -78,6 +78,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(float(1.0 / 60));
 	FileUtils::getInstance()->addSearchPath("texture");
+	FileUtils::getInstance()->addSearchPath("texture/UI");
 	FileUtils::getInstance()->addSearchPath("fonts");
     // create a scene. it's an autorelease object
 	//director->setContentScaleFactor(1);

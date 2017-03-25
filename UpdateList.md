@@ -186,7 +186,9 @@
 - 5.完成Tower,Monster方向朝向功能
 - 6.修复AnimateManager中的贴图位置错误的bug
 
-
+##v0.046
+- 1.新增WinLayer
+- 2.完成Battle场景相关的衔接
 
 
 

@@ -2,7 +2,7 @@
 #include "DebugDraw.h"
 #include "MonsterManager.h"
 #include "TowerDefentShare.h"
-
+#include "GalaxyBase.h"
 GameMap* GameMap::p_myinstance = nullptr;
 GameMap* GameMap::getInstance()
 {
@@ -18,13 +18,14 @@ GameMap::GameMap()
 	m_level = -1;
 	m_mapSize = Size::ZERO;
 	m_map = nullptr;
-
-	startDelay = 99999.0f;
+	//isWin = false;
+	//waveEnd = false;
+	//startDelay = 99999.0f;
 	curWave = -1;
 	curMonster = 0;
 
-	waveTime = startDelay;
-	monsterTime = startDelay;
+	waveTime = 0;
+	monsterTime = 0;
 }
 
 GameMap::~GameMap()
@@ -40,7 +41,17 @@ void GameMap::clear()
 			delete var;
 		m_gridPos.clear();
 	}
+	m_map = nullptr;
+	//isWin = false;
+	//waveEnd = false;
+	curWave = -1;
+	curMonster = 0;
 
+	//startDelay = 99999.0f;
+	waveTime = 0;
+	monsterTime = 0;
+	MonsterPath.clear();
+	WaveList.clear();
 }
 
 
@@ -172,6 +183,7 @@ bool GameMap::loadMap(int wrold, int level)
 		WaveList.push_back(wave);
 	}
 
+	m_state = GS_Ready;
 	return true;
 }
 
@@ -200,12 +212,11 @@ GridPos* GameMap::getGridPos(Point pos)
 void GameMap::SkipToNextWave()
 {
 	if (curWave == -1 ||
-		(curWave < waveCount && curMonster >= (int)WaveList[curWave].wavedata.size() && monsterTime > 3.0f))
+		(curWave < waveCount-1 && curMonster >= (int)WaveList[curWave].wavedata.size() && monsterTime > 3.0f))
 	{
-		startDelay = 0;
 
-		waveTime = startDelay;
-		monsterTime = startDelay;
+		waveTime = 0;
+		m_state = GS_NextWave;
 	}
 }
 
@@ -240,34 +251,42 @@ void GameMap::UpdateNextWaveInfo()
 
 void GameMap::update(float dt)
 {
-	UnitManager::getInstance()->update(dt);
-
-	if (curWave < waveCount)
+	if (m_state == GS_Pause)
 	{
-		//Wave
-		if (waveTime <= dt)
+		return;
+	}
+
+	waveTime -= dt;
+	monsterTime -= dt;
+
+	if (m_state == GS_Ready)
+	{
+
+	}
+	else if (m_state == GS_NextWave)
+	{
+		curWave++;
+		if (curWave < waveCount)
 		{
-			curWave++;
-			if (curWave < waveCount)
-			{
-				//log("Wave---%d", curWave);
-				monsterTime = 0;
-				curMonster = 0;
-				waveTime += WaveList[curWave].WaveTime;
+			//log("Wave---%d", curWave);
+			monsterTime = 0;
+			curMonster = 0;
+			waveTime += WaveList[curWave].WaveTime;
+			m_state = GS_CreatingMonster;
 
-				Message msg(Message_Global);
-				msg.keyword = "updateWave";
-				msg.valueMap["wave"] = curWave + 1;
-				msg.valueMap["waveCount"] = waveCount;
-				msg.post(Message_Global);
-			}
-			else{
-				log("Wave End");
-			}
+
+			Message msg("updateWave");
+			msg.valueMap["wave"] = curWave + 1;
+			msg.valueMap["waveCount"] = waveCount;
+			msg.post(Message_Global);
 		}
-		waveTime -= dt;
-
-		//Monster
+		else{
+			log("Wave End");
+			m_state = GS_WaitToAllMonsterDie;
+		}
+	}
+	else if (m_state == GS_CreatingMonster)
+	{
 		if (monsterTime <= dt)
 		{
 			if (curMonster < (int)WaveList[curWave].wavedata.size()){
@@ -286,11 +305,75 @@ void GameMap::update(float dt)
 			else{
 				//log("Monster End");
 				monsterTime += 999999;
+				m_state = GS_WaitToAllMonsterDie;
 
-				UpdateNextWaveInfo();
+				if (curWave != -1)
+				{
+					UpdateNextWaveInfo();
+				}
 			}
 		}
-		monsterTime -= dt;
+	}
+	else if (m_state == GS_WaitToAllMonsterDie)
+	{
+		if (waveTime <= dt 
+			|| false == UnitManager::getInstance()->hasUnitType(cocosgalaxy::EUnitType::Monster))
+		{
+			if (curWave < waveCount)
+			{
+				m_state = GS_WaitToNextWave;
+			}
+			else
+			{
+				m_state = GS_Win;
+			}
+		}
+	}
+	else if (m_state == GS_WaitToNextWave)
+	{
+		if (waveTime <= dt)
+		{
+			curWave++;
+			if (curWave < waveCount)
+			{
+				//log("Wave---%d", curWave);
+				monsterTime = 0;
+				curMonster = 0;
+				waveTime += WaveList[curWave].WaveTime;
+				m_state = GS_CreatingMonster;
+
+
+				Message msg("updateWave");
+				msg.valueMap["wave"] = curWave + 1;
+				msg.valueMap["waveCount"] = waveCount;
+				msg.post(Message_Global);
+			}
+			else{
+				log("Wave End");
+				waveTime += 999999;
+				m_state = GS_WaitToAllMonsterDie;
+			}
+		}
+	}
+	else if (m_state == GS_Win)
+	{
+		log("Win!");
+
+		Message msg("show");
+		msg.valueMap["wave"] = curWave + 1;
+		msg.valueMap["waveCount"] = waveCount;
+		msg.post(Message_WinLayer);
+
+		m_state = GS_WaitToEnd;
+	}
+	else if (m_state == GS_Fail)
+	{
+		log("Fail!");
+
+	}
+	else if (m_state == GS_WaitToEnd)
+	{
+
 	}
 }
 
@@ -308,5 +391,4 @@ bool GameMap::onClick(Point pos)
 	}
 	return false;
 }
-
 

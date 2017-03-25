@@ -100,7 +100,7 @@ void TowerSelectLayer::initSprite()
 
 
 		a_bt[i] = Sprite::create();
-		a_bt[i]->setGlobalZOrder(5000);
+		a_bt[i]->setGlobalZOrder(1);
 		a_layer[i]->addChild(a_bt[i]);
 
 		a_bg[i] = Sprite::createWithSpriteFrameName("TowerSelect_CostBox.png");
@@ -112,8 +112,8 @@ void TowerSelectLayer::initSprite()
 		a_number[i]->setPosition(Point(0, -39));
 		a_number[i]->setHorizontalAlignment(TextHAlignment::CENTER);
 		a_number[i]->setVisible(false);
-		a_number[i]->setGlobalZOrder(5001);
-		a_layer[i]->addChild(a_number[i],5001);
+		a_number[i]->setGlobalZOrder(2);
+		a_layer[i]->addChild(a_number[i],2);
 
 		selectLayer->addChild(a_layer[i]);
 	}

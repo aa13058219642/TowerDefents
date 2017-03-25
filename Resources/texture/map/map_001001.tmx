@@ -220,7 +220,7 @@
    <property name="m014" value="1 0 0.75"/>
    <property name="m015" value="1 0 0.75"/>
    <property name="momsterCount" type="int" value="15"/>
-   <property name="waveTime" type="int" value="45"/>
+   <property name="waveTime" type="int" value="16"/>
   </properties>
  </objectgroup>
 </map>

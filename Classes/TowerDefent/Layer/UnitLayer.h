@@ -13,6 +13,7 @@ public:
 
 private:
 	UnitLayer();
+	~UnitLayer();
 
 	bool onClick(Point pos);
 

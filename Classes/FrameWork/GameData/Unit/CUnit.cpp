@@ -45,6 +45,15 @@ CUnit::~CUnit()
 	}
 	skills.clear();
 
+	if (!m_behaviors.empty())
+	{
+		for (auto var : m_behaviors){
+			delete var;
+		}
+	}
+	m_behaviors.clear();
+
+
 	if (m_weapon != nullptr)delete m_weapon;
 
 }
@@ -336,7 +345,8 @@ CUnit* CUnit::clone()
 	unit->EXP = this->EXP;
 	for (int i = 0; i < DamageTypeCount; i++)
 	{
-		unit->DamageDefents[i] = Ability<float>(this->DamageDefents[i]);
+		unit->Armor[i] = Ability<float>(this->Armor[i]);
+		unit->Resistance[i] = Ability<float>(this->Resistance[i]);
 	}
 	unit->name = this->name;
 	unit->m_type = this->m_type;

@@ -120,7 +120,7 @@ void Tower::buildTower(const TowerCard towerCard)
 
 	this->setActorName(towerCard.ActorName);
 	this->bindActor();
-	m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
+	//m_actor->setShowHpBar(true, Point(-32, 32), Size(64, 3));
 	m_actor->setLocalLevel(2);
 
 	m_spellactor = ActorManager::getInstance()->createActor(INT_MAX - ID, "blank");
@@ -197,7 +197,7 @@ void Tower::update(float dt)
 		HP += HP_RegenRate.getValue()*dt;
 		MP += MP_RegenRate.getValue()*dt;
 		AP += AP_RegenRate.getValue()*dt;
-		this->m_actor->setHpBarProgress((float)AP / AP.Max);
+		//this->m_actor->setHpBarProgress((float)AP / AP.Max);
 	}
 }
 

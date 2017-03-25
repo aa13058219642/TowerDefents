@@ -11,6 +11,16 @@ UnitManager::UnitManager()
 	isInit = false;
 }
 
+UnitManager::~UnitManager()
+{
+	removeAllUnit();
+	if (unitCreator != nullptr)
+	{
+		this->unitCreator = unitCreator;
+	}
+}
+
+
 UnitManager* UnitManager::getInstance()
 {
 	if (p_myinstance == nullptr)
@@ -105,11 +115,31 @@ vector<CUnit*> UnitManager::findUnit(UnitType TypeFilter)
 		//若A U B = A 则B含于A
 		UnitType t = obj->getType();
 		int x = t & TypeFilter;
-		if ((obj->getType() & TypeFilter) == TypeFilter){
+		if ((obj->getType() & TypeFilter) == TypeFilter)
+		{
 			vec.push_back(obj);
 		}
 	}
 	return vec;
+}
+
+bool UnitManager::hasUnitType(UnitType TypeFilter)
+{
+	bool flag = false;
+
+	for (auto obj : m_UnitList)
+	{
+		//若A U B = A 则B含于A
+		UnitType t = obj->getType();
+		int x = t & TypeFilter;
+		if ((obj->getType() & TypeFilter) == TypeFilter)
+		{
+			flag = true;
+			break;
+		}
+	}
+
+	return flag;
 }
 
 void UnitManager::addUnit(CUnit* child)
@@ -129,6 +159,18 @@ void UnitManager::removeUnit(CUnit* child)
 	}
 }
 
+void UnitManager::removeAllUnit()
+{
+	if (!m_UnitList.empty())
+	{
+		for (auto var : m_UnitList)
+		{
+			delete var;
+		}
+		m_UnitList.clear();
+	}
+}
+
 
 void UnitManager::debugDraw()
 {
@@ -136,24 +178,19 @@ void UnitManager::debugDraw()
 	//	//string str = StringUtils::format("DebugData:\ntower count:%d\nmonster count:%d\nbullet count:%d\nchild count:%d\n\n", 
 	//	//towerList.size(), monsterList.size(), bulletList.size(), this->getChildrenCount());
 	//	DebugDraw* debugdraw = DebugDraw::getInstance();
-
 	//	string str = StringUtils::format("gameObj count = %d", m_UnitList.size());
 	//	debugdraw->getLabel()->setString(str);
-
 	//	DrawNode* debugDrawNode = debugdraw->getDrawNode();
-
 	//	debugDrawNode->clear();
 	//	for (auto var : m_UnitList){
 	//		var->drawMyOutLine(debugDrawNode);
 	//	}
-
 	//	auto MonsterPath = GameMap::getInstance()->MonsterPath;
 	//	int size = MonsterPath.size();
 	//	for (int i = 0; i < size; i++)
 	//	{
 	//		MapPath path = MonsterPath[i];
 	//		Vec2 last = path.getCurPos();
-
 	//		for (int j = 1; j < path.getPosCount(); j++){
 	//			path.NextPos();
 	//			debugDrawNode->drawLine(last, path.getCurPos(), Color4F(1, 1, 1, 1));
@@ -163,7 +200,6 @@ void UnitManager::debugDraw()
 	//		if (MonsterPath[i].IsLoop())
 	//			debugDrawNode->drawLine(last, path.getPos(path.getLoopTo()), Color4F(1, 1, 1, 1));
 	//	}
-
 	//}
 }
 

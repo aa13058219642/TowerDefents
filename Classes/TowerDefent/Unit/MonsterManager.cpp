@@ -58,10 +58,36 @@ void MonsterManager::LoadResource(const vector<Name>& resNameList)
 		if (jnode.HasMember("MP"))				monster->MP = AbilityEx<float>(jnode["MP"].GetInt(), 0, jnode["MP"].GetInt());
 		if (jnode.HasMember("AP"))				monster->AP = AbilityEx<float>(jnode["AP"].GetInt(), 0, jnode["AP"].GetInt());
 		if (jnode.HasMember("HP_RegenRate"))	monster->HP_RegenRate = jnode["HP_RegenRate"].GetInt();
+		if (jnode.HasMember("MP_RegenRate"))	monster->MP_RegenRate = jnode["MP_RegenRate"].GetInt();
+		if (jnode.HasMember("AP_RegenRate"))	monster->AP_RegenRate = jnode["AP_RegenRate"].GetInt();
 		if (jnode.HasMember("price"))			monster->price = jnode["price"].GetInt();
 		if (jnode.HasMember("life"))			monster->life = jnode["life"].GetInt();
 		if (jnode.HasMember("Speed"))			monster->Speed = jnode["Speed"].GetInt();
 		if (jnode.HasMember("unitType"))		monster->setType(jnode["unitType"].GetUint());
+		
+		if (jnode.HasMember("Armor") && jnode["Armor"].IsArray())
+		{
+			for (int i = 0; i < DamageTypeCount; i++)
+			{
+				monster->Armor[i] = jnode["Armor"][i].GetDouble();
+			}
+		}
+
+		if (jnode.HasMember("Resistance") && jnode["Resistance"].IsArray())
+		{
+			for (int i = 0; i < DamageTypeCount; i++)
+			{
+				monster->Resistance[i] = jnode["Resistance"][i].GetDouble();
+			}
+		}
+
+		if (jnode.HasMember("hpbar") && jnode["hpbar"].IsArray())
+		{
+			monster->hpbar.origin.x = jnode["hpbar"][0].GetDouble();
+			monster->hpbar.origin.y = jnode["hpbar"][1].GetDouble();
+			monster->hpbar.size.width = jnode["hpbar"][2].GetDouble();
+			monster->hpbar.size.height = jnode["hpbar"][3].GetDouble();
+		}
 
 		//if (jnode.HasMember("skillName") && jnode["skillName"].IsArray())
 		//{

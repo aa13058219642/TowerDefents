@@ -98,11 +98,11 @@ bool PrepareScene::init()
 
 void PrepareScene::initUI()
 {
-	Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("UI/PrepareLayer.ExportJson");
+	Widget* widget = cocostudio::GUIReader::getInstance()->widgetFromJsonFile("PrepareLayer.ExportJson");
 	this->addChild(widget);
 
 	//设置拉伸BG
-	Sprite* bg = Sprite::create("UI/ui_bg.png");
+	Sprite* bg = Sprite::create("ui_bg.png");
 	bg->setAnchorPoint(Point(0, 0));
 	bg->setColor(Color3B(0, 204, 255));
 	Size size = Director::getInstance()->getVisibleSize();
@@ -156,7 +156,7 @@ void PrepareScene::initUI()
 
 
 	//隐藏部分UI
-	image_dialogBG->loadTexture("UI/dialog_bg.png");
+	image_dialogBG->loadTexture("dialog_bg.png");
 
 	panel_card_left->setVisible(false);
 	panel_card_right->setVisible(false);

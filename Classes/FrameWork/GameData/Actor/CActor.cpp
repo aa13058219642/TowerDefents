@@ -17,6 +17,7 @@ CActor::CActor()
 	m_hpBar = nullptr;
 	m_unitPos = nullptr;
 	m_layer = nullptr;
+	m_spriteLayer = nullptr;
 }
 
 CActor::CActor(int id, ActorData data, Layer* parent)
@@ -34,13 +35,15 @@ CActor::CActor(int id, ActorData data, Layer* parent)
 	m_defaultAnimate = data.defaultanimate;
 	m_animateList = data.maps;
 
+
 	this->bindSprite(m_parent);
 }
 
 
 CActor::~CActor()
 {
-	m_parent->removeChild(m_layer, true);
+	//m_parent->removeChild(m_layer, true);
+	m_layer->removeFromParent();
 }
 
 CActor* CActor::clone()
@@ -60,9 +63,13 @@ void CActor::bindSprite(Layer* parent)
 	m_layer->setAnchorPoint(Point::ZERO);
 	m_parent->addChild(m_layer,0);
 
+	m_spriteLayer = Layer::create();
+	m_spriteLayer->setAnchorPoint(Point::ZERO);
+	m_layer->addChild(m_spriteLayer);
+
 	m_sprite = Sprite::create();
 	m_sprite->setAnchorPoint(Vec2(0, 1));
-	m_layer->addChild(m_sprite,1);
+	m_spriteLayer->addChild(m_sprite, 1);
 	this->playDefaultAnimate();
 }
 
@@ -76,7 +83,7 @@ void CActor::setPos(Point pos)
 
 void CActor::setRotation(float rotation)
 {
-	m_sprite->setRotation(rotation);
+	m_spriteLayer->setRotation(rotation);
 }
 
 
@@ -103,11 +110,11 @@ void CActor::changeFace(Face face)
 	//m_sprite->setFlippedX(m_face == FACE_TO_LEFT);
 	if (m_face == FACE_TO_LEFT)
 	{
-		m_layer->setRotationSkewY(0);
+		m_spriteLayer->setRotationSkewY(0);
 	}
 	else
 	{
-		m_layer->setRotationSkewY(180);
+		m_spriteLayer->setRotationSkewY(180);
 	}
 }
 
@@ -151,7 +158,7 @@ void CActor::playEffect(const Name& animateName, float playtime, Color3B color, 
 	sprite->setAnchorPoint(Vec2(0, 1));
 	sprite->setPosition(offset );
 	sprite->setColor(color);
-	m_layer->addChild(sprite);
+	m_spriteLayer->addChild(sprite);
 	CallFunc* func = CallFunc::create(CC_CALLBACK_0(Node::removeFromParent, sprite));
 	AnimateManager::getInstance()->playAnimate(animateName, sprite, playtime, func);
 }
@@ -199,8 +206,7 @@ bool CActor::IsExistAnimate(const Name& animateName)
 	return m_animateList.find(animateName) != m_animateList.end();
 }
 
-
-void CActor::setShowHpBar(bool isShow, Point pos, Size size)
+void CActor::setShowHpBar(bool isShow, Rect rect)
 {
 	if (m_hpBar == nullptr)
 	{
@@ -209,29 +215,33 @@ void CActor::setShowHpBar(bool isShow, Point pos, Size size)
 
 		//Size size = m_sprite->getSpriteFrame()->getOriginalSize();
 		//m_hpBar->setPosition(size.width / 2, size.height);
-		m_hpBar->setPosition(pos);
-		m_hpBar->setContentSize(size);
+		m_hpBar->setPosition(rect.origin);
+		m_hpBar->setContentSize(rect.size);
 		m_hpBar->setAnchorPoint(Point(0, 0.5));
-		m_layer->addChild(m_hpBar,2);
+		m_layer->addChild(m_hpBar, 9999);
 	}
 	m_hpBar->setVisible(isShow);
 }
 
+
+
 void CActor::setHpBarProgress(float progress)
 {
-
-	clampf(progress, 0, 100);
-	if (progress > 0)
+	if (m_hpBar != nullptr)
 	{
-		m_hpBar->setVisible(true);
-		m_hpBar->setContentSize(Size(64 * progress, 6));
+		clampf(progress, 0, 100);
+		if (progress > 0)
+		{
+			m_hpBar->setVisible(true);
+			m_hpBar->setContentSize(Size(64 * progress, 6));
+		}
+		else
+		{
+			m_hpBar->setVisible(false);
+		}
+		//Size size = m_sprite->getSpriteFrame()->getOriginalSize();
+		//m_hpBar->setPosition(-32, size.height);
 	}
-	else
-	{
-		m_hpBar->setVisible(false);
-	}
-	//Size size = m_sprite->getSpriteFrame()->getOriginalSize();
-	//m_hpBar->setPosition(-32, size.height);
 }
 
 void CActor::setShowUnitPos(bool isShow)

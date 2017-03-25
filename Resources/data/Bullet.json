@@ -3,8 +3,6 @@
         {
             "name": "Bullet001",
             "type": 64,
-            "IsTrackTarget": false,
-            "IsFaceToTargetPos": false,
             "Radius": 8,
             "Speed": 800,
             "HitEffect": "missileDamage",
@@ -13,8 +11,6 @@
         {
             "name": "Bullet002",
             "type": 64,
-            "IsTrackTarget": true,
-            "IsFaceToTargetPos": true,
             "Radius": 8,
             "Speed": 500,
             "HitEffect": "missileDamage",

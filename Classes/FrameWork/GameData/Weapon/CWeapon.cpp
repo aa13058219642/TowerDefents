@@ -25,7 +25,7 @@ CWeapon::CWeapon()
 	ColdDown.Max.ValueMin = 0.1f;
 	TargetCount = 1;
 
-	Filter = 5;
+	Filter = cocosgalaxy::EUnitType::Unit;
 	DamageType = EDamageType::EDamageType_Weapon;
 
 	Damage.Min = 1;

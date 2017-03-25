@@ -36,12 +36,12 @@ bool LoadingScene::init()
 	Size size = Director::getInstance()->getVisibleSize();
 	layer->setPosition(Point(size.width / 2, size.height / 2));
 
-	Sprite* sprite = Sprite::create("UI/loading.png");
+	Sprite* sprite = Sprite::create("loading.png");
 	sprite->runAction(RepeatForever::create(EaseBackOut::create(RotateBy::create(1.0f, 60))));
 	sprite->setColor(Color3B(102, 204, 255));
 	layer->addChild(sprite);
 
-	Sprite* sprite2 = Sprite::create("UI/loading2.png");
+	Sprite* sprite2 = Sprite::create("loading2.png");
 	layer->addChild(sprite2);
 
 	this->addChild(layer);

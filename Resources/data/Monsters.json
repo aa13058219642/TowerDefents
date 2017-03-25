@@ -5,14 +5,17 @@
             "name": "蜗牛",
             "Icon": "icon_m001.png",
             "ActorName": "m001",
-            "unitType": 5,
-            "HP": 100,
+            "unitType": 32,
+            "hpbar": [ -22, 39, 44, 6 ],
+            "HP": 20,
             "MP": 0,
             "AP": 0,
             "life": 1,
-            "Speed": 100,
+            "Speed": 30,
             "HP_RegenRate": 0,
-            "skillName": [],
+            "skillName": [ ],
+            "Armor": [ 0, 0, 0 ],
+            "Resistance": [ 1, 1, 1 ],
             "price": 200
         }
     ]

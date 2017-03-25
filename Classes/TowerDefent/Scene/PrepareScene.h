@@ -1,6 +1,6 @@
 #pragma once
 #include "cocostudio/CocoStudio.h"
-#include "UI/CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "cocos2d.h"
 #include "GridPageView.h"
 #include "Message\MessageListener.h"

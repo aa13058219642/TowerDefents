@@ -5,8 +5,8 @@
 #include "TowerSelectLayer.h"
 #include "GameMapLayer.h"
 #include "TowerInfoLayer.h"
-#include "GameMapInfoLayer.h"
 #include "GameInfoLayer.h"
+#include "WinLayer.h"
 
 class BattleScene : public cocos2d::Scene
 {
@@ -19,6 +19,7 @@ public:
 	static BattleScene* create(int wrold, int level);
 	virtual bool init(int wrold, int level);
 	virtual void update(float dt);
+	virtual void onExit();
 
 
 	DrawNode* drawNode;
@@ -29,6 +30,6 @@ private:
 	TowerSelectLayer* towerSelectLayer;
 	GameMapLayer* gameMapLayer;
 	TowerInfoLayer* towerInfoLayer;
-	GameMapInfoLayer* gameMapInfoLayer;
 	GameInfoLayer* gameInfoLayer;
+	WinLayer* winLayer;
 };

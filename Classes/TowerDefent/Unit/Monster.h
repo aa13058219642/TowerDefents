@@ -22,6 +22,8 @@ public:
 	Name icon;
 	int price;
 	int life;
+	Rect hpbar;
+	
 private:
 	MapPath m_path;
 

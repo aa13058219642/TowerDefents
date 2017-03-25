@@ -1,6 +1,6 @@
 #include "TitleScene.h"
 #include "cocostudio/CocoStudio.h"
-#include "UI/CocosGUI.h"
+#include "ui/CocosGUI.h"
 #include "LoadingScene.h"
 #include "BattleScene.h"
 #include "WorldMapScene.h"
@@ -47,11 +47,11 @@ bool TitleScene::init()
 		return false;
 	}
 
-	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("UI/Title_Layer.ExportJson"));
+	auto ui = dynamic_cast<Layout *>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("Title_Layer.ExportJson"));
 	this->addChild(ui);
 
 	//ÉèÖÃÀ­ÉìBG
-	Sprite* bg = Sprite::create("UI/title_bg.png");
+	Sprite* bg = Sprite::create("title_bg.png");
 	bg->setAnchorPoint(Point(0, 0));
 	Size size = Director::getInstance()->getVisibleSize();
 
@@ -77,13 +77,15 @@ bool TitleScene::init()
 
 void TitleScene::click_startgame()
 {
-	log("TitleScene::click_startgame()");
+	//log("TitleScene::click_startgame()");
 
 	LoadingScene* loading = LoadingScene::create();
 
 
 	loading->bindFinishFunction([=](){
-		
+		vector<string> textureList;
+		textureList.push_back("texture/scene_battle_000.plist");
+		TextureManager::getInstance()->LoadResource(textureList);
 		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)WorldMapScene::createScene()));
 
 	});

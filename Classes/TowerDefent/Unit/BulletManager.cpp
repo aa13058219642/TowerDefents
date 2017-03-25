@@ -52,8 +52,6 @@ void BulletManager::LoadResource(const vector<Name>& resNameList)
 		Bullet* bullet = new Bullet();
 		if (jnode.HasMember("name"))				bullet->name = jnode["name"].GetString();
 		if (jnode.HasMember("type"))				bullet->setType((UnitType)jnode["type"].GetUint());
-		if (jnode.HasMember("IsTrackTarget"))		bullet->setIsTrackTarget(jnode["IsTrackTarget"].GetBool());
-		if (jnode.HasMember("IsFaceToTargetPos"))	bullet->setIsTrackTarget(jnode["IsFaceToTargetPos"].GetBool());
 		if (jnode.HasMember("Radius"))				bullet->Radius = jnode["Radius"].GetInt();
 		if (jnode.HasMember("Speed"))				bullet->Speed = jnode["Speed"].GetInt();
 		if (jnode.HasMember("HitEffect"))			bullet->setOnHitEffect(EffectManager::getInstance()->createCEffect(string(jnode["HitEffect"].GetString())));

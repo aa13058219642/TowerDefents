@@ -29,7 +29,8 @@ namespace cocosgalaxy
 		//Ability<Cost> CreateCost;
 		Ability<float> KillEXP;
 		float EXP;
-		Ability<float> DamageDefents[DamageTypeCount];
+		Ability<float> Armor[DamageTypeCount];
+		Ability<float> Resistance[DamageTypeCount];
 
 		/* ----·½·¨---- */
 
