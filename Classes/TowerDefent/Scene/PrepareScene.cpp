@@ -18,7 +18,6 @@
 #include "SpellCardManager.h"
 #include "TowerCardManager.h"
 #include "TDUnitCreator.h"
-//#include "BulletFactory.h"
 #include "BulletManager.h"
 #include "Player.h"
 #include "MonsterManager.h"
@@ -94,7 +93,6 @@ bool PrepareScene::init()
 	initListener();
 	return true;
 }
-
 
 void PrepareScene::initUI()
 {
@@ -184,7 +182,6 @@ void PrepareScene::initPlayerData()
 	TowerCardManager* tmgr = TowerCardManager::getInstance();
 	SpellCardManager* smgr = SpellCardManager::getInstance();
 
-	//tmgr->
 	for (int i = 0; i < 8; i++)
 	{
 		const TowerCard* tcard = tmgr->getTowerCard(i);
@@ -297,7 +294,6 @@ void PrepareScene::initListener()
 	msgSubscribe(Message_PrepareScene);
 }
 
-
 void PrepareScene::receive(const Message* message)
 {
 	if (message->keyword == "card_info")
@@ -377,17 +373,14 @@ void PrepareScene::event_btGO_click()
 	map["level"] = m_level;
 	loading->setData(map);
 
-	loading->bindFinishFunction([=](){
+	std::queue<LoadingScene::LoadingCallback> list;
+	list.push([=](){ 		
 		ValueMap map = loading->getData();
-
 		int wrold = map["wrold"].asInt();
 		int level = map["level"].asInt();
-
-		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)BattleScene::create(wrold, level)));
+		GameMap::getInstance()->init(wrold, level);
 	});
-
-	std::queue<LoadingScene::LoadingCallback> list;
-	list.push([](){ UnitManager::getInstance()->init(new TDUnitCreator()); });	
+	list.push([](){ UnitManager::getInstance()->init(new TDUnitCreator()); });
 	list.push([](){ BehaviorManager::getInstance()->init(); });
 	list.push([](){ EffectManager::getInstance()->init(); });
 	list.push([](){
@@ -411,6 +404,10 @@ void PrepareScene::event_btGO_click()
 	list.push([](){ MonsterManager::getInstance()->LoadResource(); });
 
 	loading->setLambdaLoadList(list);
+
+	loading->bindFinishFunction([=](){
+		Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)BattleScene::create()));
+	});
 
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)loading));
 }

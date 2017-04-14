@@ -85,6 +85,12 @@ void Player::receive(const Message* message)
 	else if (message->keyword == "Life")
 	{
 		this->setLife(this->life - message->valueMap.at("value").asInt());
+		if (this->life <= 0)
+		{
+			Message msg(Message_Global);
+			msg.keyword = "GameOver";
+			msg.post(Message_Global);
+		}
 	}
 }
 

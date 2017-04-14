@@ -105,6 +105,21 @@ CUnit* UnitManager::getUnit(int id)
 	return nullptr;
 }
 
+vector<CUnit*> UnitManager::getUnit(vector<int> ids)
+{
+	vector<CUnit*> units;
+	for (auto id : ids)
+	{
+		CUnit* unit = getUnit(id);
+		if (unit != nullptr)
+		{
+			units.push_back(unit);
+		}
+
+	}
+	return units;
+}
+
 
 vector<CUnit*> UnitManager::findUnit(UnitType TypeFilter)
 {

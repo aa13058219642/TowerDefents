@@ -1,4 +1,4 @@
-﻿#include "WinLayer.h"
+﻿#include "LevelFinishLayer.h"
 #include "TowerDefentShare.h"
 #include "LoadingScene.h"
 #include "PrepareScene.h"
@@ -11,13 +11,13 @@ using namespace std;
 using namespace cocostudio;
 using namespace cocos2d::ui;
 
-WinLayer::WinLayer(){}
+LevelFinishLayer::LevelFinishLayer(){}
 
-WinLayer::~WinLayer(){}
+LevelFinishLayer::~LevelFinishLayer(){}
 
-WinLayer* WinLayer::create()
+LevelFinishLayer* LevelFinishLayer::create()
 {
-	WinLayer* layer = new WinLayer();
+	LevelFinishLayer* layer = new LevelFinishLayer();
 	if (layer && layer->init())
 	{
 		layer->autorelease();
@@ -29,7 +29,7 @@ WinLayer* WinLayer::create()
 	return layer;
 }
 
-bool WinLayer::init()
+bool LevelFinishLayer::init()
 {
 	if (!Layer::init())
 	{
@@ -37,23 +37,24 @@ bool WinLayer::init()
 	}
 	m_state = S_Hide;
 
-
-	auto ui = dynamic_cast<Layout*>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("Layer_Win.ExportJson"));
+	auto ui = dynamic_cast<Layout*>(cocostudio::GUIReader::getInstance()->widgetFromJsonFile("Layer_LevelFinish.ExportJson"));
 	this->addChild(ui);
 
 	//获取控件
 	lab_title = static_cast<Text*>(ui->getChildByName("lab_title"));
 	bt_red = static_cast<Button*>(ui->getChildByName("bt_red"));
 	bt_green = static_cast<Button*>(ui->getChildByName("bt_green"));
+	img_win = static_cast<ImageView*>(ui->getChildByName("img_win"));
+	img_defeat = static_cast<ImageView*>(ui->getChildByName("img_defeat"));
 	img_rank = static_cast<ImageView*>(ui->getChildByName("img_rank"));
 	img_rank2 = static_cast<ImageView*>(img_rank->clone());
 	img_rank2->setPosition(img_rank->getPosition());
 	ui->addChild(img_rank2);
 
-	bt_red->addClickEventListener(CC_CALLBACK_0(WinLayer::event_btRed_click, this));
-	bt_green->addClickEventListener(CC_CALLBACK_0(WinLayer::event_btGreen_click, this));
+	bt_red->addClickEventListener(CC_CALLBACK_0(LevelFinishLayer::event_btRed_click, this));
+	bt_green->addClickEventListener(CC_CALLBACK_0(LevelFinishLayer::event_btGreen_click, this));
 
-	MessageListener::msgSubscribe(Message_WinLayer);
+	MessageListener::msgSubscribe(Message_LevelFinishLayer);
 
 	//atlasLabel->
 	scoreLabel = Label::createWithCharMap("fonts/TowerInfo_Number.png", 24, 42, ' ');
@@ -66,7 +67,7 @@ bool WinLayer::init()
 	return true;
 }
 
-void WinLayer::update(float dt){
+void LevelFinishLayer::update(float dt){
 
 	if (m_state == S_Hide || m_state == S_Normal)
 	{
@@ -152,51 +153,67 @@ void WinLayer::update(float dt){
 		}
 		string str = StringUtils::format("+%d\n+%d\n+%d\n+%d\n----------\n%d", (int)tmoney[0], (int)tmoney[1], (int)tmoney[2], (int)tmoney[3], (int)tmoney[4]);
 		scoreLabel->setString(str);
-		//if (   tmoney[4] == money[4]
-		//	&& tmoney[3] == money[3]
-		//	&& tmoney[2] == money[2]
-		//	&& tmoney[1] == money[1]
-		//	&& tmoney[0] == money[0])
-		//{
-		//	m_state = S_Normal;
-		//}
-
-
-
-
 	}
 
 }
 
-void WinLayer::receive(const Message* message)
+void LevelFinishLayer::receive(const Message* message)
 {
 	if (message->keyword == "show")
 	{
-		setData("1-1 666666", 5, 500, 2000, 3000, 4444);
-		this->scheduleOnce(schedule_selector(WinLayer::show), 3.0f);
+		auto map = message->valueMap;
+		bool iswin = map.at("iswin").asBool();
+		if (iswin)
+		{
+			setData("1-1 666666", 5, 500, 2000, 3000, 4444);
+			this->scheduleOnce(schedule_selector(LevelFinishLayer::showForWin), 3.0f);
+		}
+		else
+		{
+			this->scheduleOnce(schedule_selector(LevelFinishLayer::showForDefeat), 0.1f);
+		}
 	}
 }
 
 
-void WinLayer::show(float dt)
+void LevelFinishLayer::showForWin(float dt)
 {
 	Size visiblesize = Director::getInstance()->getVisibleSize();
 	this->setPosition(Point(0, -1000));
 
 	CallFunc* callfunc = CallFunc::create([&](){
 		m_state = S_ShowRank;
-
 	});
 
 	this->runAction(Sequence::create(MoveTo::create(0.2f, Point(0, 0)), callfunc, NULL));
 	img_rank->setVisible(false);
 	img_rank2->setVisible(false);
+	img_win->setVisible(true);
+	img_defeat->setVisible(false);
 	this->setVisible(true);
 	m_state = S_ShowLayer;
 }
 
+void LevelFinishLayer::showForDefeat(float dt)
+{
+	Size visiblesize = Director::getInstance()->getVisibleSize();
+	this->setPosition(Point(0, -1000));
 
-void WinLayer::setData(string title, int rank, float money1, float money2, float money3, float money4)
+	CallFunc* callfunc = CallFunc::create([&](){
+		m_state = S_Normal;
+	});
+
+	this->runAction(Sequence::create(MoveTo::create(0.2f, Point(0, 0)), callfunc, NULL));
+	img_rank->setVisible(false);
+	img_rank2->setVisible(false);
+	img_win->setVisible(false);
+	img_defeat->setVisible(true);
+	this->setVisible(true);	
+	m_state = S_ShowLayer;
+}
+
+
+void LevelFinishLayer::setData(string title, int rank, float money1, float money2, float money3, float money4)
 {
 	this->rank = rank;
 	money[0] = money1;
@@ -215,7 +232,7 @@ void WinLayer::setData(string title, int rank, float money1, float money2, float
 }
 
 
-void WinLayer::event_btRed_click()
+void LevelFinishLayer::event_btRed_click()
 {
 	LoadingScene* loading = LoadingScene::create();
 
@@ -250,7 +267,7 @@ void WinLayer::event_btRed_click()
 	Director::getInstance()->replaceScene(TransitionFade::create(1.0f, (Scene*)loading));
 }
 
-void WinLayer::event_btGreen_click()
+void LevelFinishLayer::event_btGreen_click()
 {
 	LoadingScene* loading = LoadingScene::create();
 	loading->bindFinishFunction([=](){

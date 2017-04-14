@@ -18,9 +18,6 @@ GameMap::GameMap()
 	m_level = -1;
 	m_mapSize = Size::ZERO;
 	m_map = nullptr;
-	//isWin = false;
-	//waveEnd = false;
-	//startDelay = 99999.0f;
 	curWave = -1;
 	curMonster = 0;
 
@@ -41,13 +38,14 @@ void GameMap::clear()
 			delete var;
 		m_gridPos.clear();
 	}
-	m_map = nullptr;
-	//isWin = false;
-	//waveEnd = false;
+	if (m_map != nullptr)
+	{
+		m_map->release();
+		m_map = nullptr;
+	}
 	curWave = -1;
 	curMonster = 0;
 
-	//startDelay = 99999.0f;
 	waveTime = 0;
 	monsterTime = 0;
 	MonsterPath.clear();
@@ -58,22 +56,28 @@ void GameMap::clear()
 bool GameMap::init(int wrold, int level)
 {
 	CCASSERT(level != -1, "illgle level !");
+	//Director::getInstance()->getScheduler()->setTimeScale(2.0f);
 	m_wrold = wrold;
 	m_level = level;
 	this->clear();
 	loadMap(wrold, level);
+
+	this->msgSubscribe(Message_Global);
+	//this->msgSubscribe(Message_GameMap);
+
 	return true;
 }
 
 bool GameMap::loadMap(int wrold, int level)
 {
 	string fileName = StringUtils::format("map/map_%03d%03d.tmx", wrold, level);
-	TMXTiledMap* map = TMXTiledMap::create(fileName);
-	m_map = map;
+	m_map = TMXTiledMap::create(fileName);
+	m_map->retain();
+
 	float scale = 1 / Director::getInstance()->getContentScaleFactor();
 
 	//GridPos
-	TMXObjectGroup* group = map->getObjectGroup("TowerPos");
+	TMXObjectGroup* group = m_map->getObjectGroup("TowerPos");
 	ValueVector vec = group->getObjects();
 	m_gridPos.clear();
 	m_gridPos.resize(vec.size());
@@ -90,7 +94,6 @@ bool GameMap::loadMap(int wrold, int level)
 				dict.at("y").asFloat(),
 				dict.at("width").asFloat(),
 				dict.at("height").asFloat()));
-			m_gridPos[i]->bindActor();
 			i++;
 		}
 	}
@@ -129,7 +132,7 @@ bool GameMap::loadMap(int wrold, int level)
 
 
 	//MonsterPath
-	group = map->getObjectGroup("Path");
+	group = m_map->getObjectGroup("Path");
 	vec = group->getObjects();
 	MonsterPath.clear();
 	if (!vec.empty())
@@ -153,14 +156,14 @@ bool GameMap::loadMap(int wrold, int level)
 	}
 
 	//WaveData
-	waveCount = map->getProperty("WaveCount").asInt();
+	waveCount = m_map->getProperty("WaveCount").asInt();
 	std::stringstream ss;
 	string propertyName;
 	WaveList.clear();
 	for (int i = 1; i <= waveCount; i++)
 	{
 		propertyName = StringUtils::format("Wave%03d", i);
-		group = map->getObjectGroup(propertyName);
+		group = m_map->getObjectGroup(propertyName);
 		CCASSERT(group != nullptr, string("propertyName :" + propertyName + " NOT found").c_str());
 
 		Wave wave;
@@ -187,6 +190,19 @@ bool GameMap::loadMap(int wrold, int level)
 	return true;
 }
 
+void GameMap::receive(const Message* message)
+{
+	if (message->keyword == "GameOver")
+	{
+		m_state = GS_Fail;
+		Message msg("show");
+		msg.valueMap["iswin"] = false;
+		msg.post(Message_LevelFinishLayer);
+	}
+}
+
+
+
 TMXTiledMap*  GameMap::getMapLayer()
 {
 	return m_map;
@@ -206,6 +222,20 @@ GridPos* GameMap::getGridPos(Point pos)
 			return var;
 	}
 	return nullptr;
+}
+
+GameMap::EGameState GameMap::getState()
+{
+	return m_state;
+}
+
+
+void GameMap::bindActor()
+{
+	for (auto gird : m_gridPos)
+	{
+		gird->bindActor();
+	}
 }
 
 
@@ -238,7 +268,7 @@ void GameMap::UpdateNextWaveInfo()
 		string info = "";
 		for (auto n : map)
 		{
-			info += n.second + "/n";
+			info += n.second + "\n";
 		}
 
 		Message msg(Message_GameInfoLayer);
@@ -251,13 +281,15 @@ void GameMap::UpdateNextWaveInfo()
 
 void GameMap::update(float dt)
 {
-	if (m_state == GS_Pause)
+	if (m_state == GS_Pause || m_state == GS_Fail)
 	{
 		return;
 	}
 
 	waveTime -= dt;
 	monsterTime -= dt;
+	UnitManager::getInstance()->update(dt);
+
 
 	if (m_state == GS_Ready)
 	{
@@ -273,12 +305,6 @@ void GameMap::update(float dt)
 			curMonster = 0;
 			waveTime += WaveList[curWave].WaveTime;
 			m_state = GS_CreatingMonster;
-
-
-			Message msg("updateWave");
-			msg.valueMap["wave"] = curWave + 1;
-			msg.valueMap["waveCount"] = waveCount;
-			msg.post(Message_Global);
 		}
 		else{
 			log("Wave End");
@@ -322,6 +348,10 @@ void GameMap::update(float dt)
 			if (curWave < waveCount)
 			{
 				m_state = GS_WaitToNextWave;
+				Message msg("updateWave");
+				msg.valueMap["wave"] = curWave + 1;
+				msg.valueMap["waveCount"] = waveCount;
+				msg.post(Message_Global);
 			}
 			else
 			{
@@ -358,18 +388,15 @@ void GameMap::update(float dt)
 	else if (m_state == GS_Win)
 	{
 		log("Win!");
+		Director::getInstance()->getScheduler()->setTimeScale(1.0f);
 
 		Message msg("show");
 		msg.valueMap["wave"] = curWave + 1;
 		msg.valueMap["waveCount"] = waveCount;
-		msg.post(Message_WinLayer);
+		msg.valueMap["iswin"] = true;
+		msg.post(Message_LevelFinishLayer);
 
 		m_state = GS_WaitToEnd;
-	}
-	else if (m_state == GS_Fail)
-	{
-		log("Fail!");
-
 	}
 	else if (m_state == GS_WaitToEnd)
 	{

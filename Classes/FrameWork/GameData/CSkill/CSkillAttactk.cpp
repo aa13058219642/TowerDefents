@@ -6,8 +6,6 @@ using namespace cocosgalaxy;
 CSkillAttactk::CSkillAttactk()
 {
 	m_weapon = nullptr;
-	m_targetID = -1;
-	m_targetPos = Point::ZERO;
 }
 
 
@@ -98,8 +96,8 @@ void CSkillAttactk::update(float dt)
 			ColdDowning = m_weapon->ColdDown.Max;
 			m_parent->setState(EUnitState::UnitState_Normal);
 			m_state = SkillEffectState_ColdDowning;
-			m_targetID = -1;
-			m_targetPos = Point::ZERO;
+			m_targetID.clear();
+			m_targetPos.clear();
 			if (ColdDowning != 0)break;
 		default:
 			break;
@@ -117,27 +115,27 @@ bool CSkillAttactk::IsCanExecute()
 	if (targetCount <= 0)return false;
 
 	//至少有一个敌人在攻击范围内时，发动技能，并锁定目标
+	bool canExecute = false;
 	CUnit* m_parent = getParent();
 	auto vec = UnitManager::getInstance()->findUnit(m_weapon->Filter);
-	for (auto target : vec){
-		if ((target->getPos() - m_parent->getPos()).lengthSquared() < m_weapon->Range*m_weapon->Range)
+	for (auto t : vec){
+		if ((t->getPos() - m_parent->getPos()).lengthSquared() < m_weapon->Range*m_weapon->Range)
 		{
-			m_targetID = target->ID;
-			m_targetPos = target->getPos();
+			m_targetID.push_back(t->ID);
+			m_targetPos.push_back(t->getPos());
 			m_parent->setTarget(m_targetID);
-			return true;
+			canExecute = true;
 		}
 
 	}
 
-	return false;
+	return canExecute;
 }
 
 
 void CSkillAttactk::onAttack(CUnit* parent)
 {
 	CUnit* m_parent = getParent();
-	int targetCount = m_weapon->TargetCount;
 	auto vec = UnitManager::getInstance()->findUnit(m_weapon->Filter);
 
 	CCostUnit costPerAtk;
@@ -148,29 +146,29 @@ void CSkillAttactk::onAttack(CUnit* parent)
 	costPerAtk.Speed = m_weapon->CostBase.Speed + costPer * m_weapon->CostDamageRate.Speed.getValue();
 
 	bool missTaget = true;
+	vector<CUnit*> targets;
 	for (auto target : vec){
-		if (targetCount <= 0)break;
 		if (!costPerAtk.isCanPay(parent))break;
-
 		if ((target->getPos() - parent->getPos()).lengthSquared() < m_weapon->Range*m_weapon->Range)
 		{
-			costPerAtk.payCost(parent);
-			missTaget = false;
-			m_parent->onAttack(target);
-			targetCount--;
+			targets.push_back(target);
 		}
+	}
+	if (targets.size() > 0)
+	{
+		costPerAtk.payCost(parent);
+		missTaget = false;
+		m_parent->onAttack(targets);
 	}
 
 	//如果失去目标，原来锁定的目标在前摇时跑出了攻击范围，则强制攻击一开始锁定的目标
 	if (missTaget && m_weapon->TargetCount > 0)
 	{
-		auto target = UnitManager::getInstance()->getUnit(m_targetID);
-		if (costPerAtk.isCanPay(parent) && target != nullptr)
+		targets = UnitManager::getInstance()->getUnit(m_targetID);
+		if (costPerAtk.isCanPay(parent) && targets.size() > 0)
 		{
 			costPerAtk.payCost(parent);
-			m_parent->onAttack(target);
-			//Bullet* bullet = new Bullet(m_weapon, m_parent->ID, target->ID, parent->getPos());
-			//UnitManager::getInstance()->addUnit(bullet);
+			m_parent->onAttack(targets);
 			missTaget = false;
 		}
 	}

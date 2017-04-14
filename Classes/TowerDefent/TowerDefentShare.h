@@ -5,7 +5,7 @@
 #define Message_TowerSelectLayer "Message_TowerSelectLayer"
 #define Message_TowerInfoLayer "Message_TowerInfoLayer"
 #define Message_GameInfoLayer "Message_GameInfoLayer"
-#define Message_WinLayer "Message_WinLayer"
+#define Message_LevelFinishLayer "Message_LevelFinishLayer"
 #define Message_GameMap "Message_GameMap"
 #define Message_PrepareScene "Message_PrepareScene"
 

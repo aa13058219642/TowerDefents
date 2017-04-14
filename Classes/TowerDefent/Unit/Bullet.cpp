@@ -7,9 +7,7 @@
 #include "TDUnitCreator.h"
 Bullet::Bullet()
 {
-	m_targetID = -1;
 	m_type = EUnitType::Bullet;
-	m_targetPos = Point::ZERO;
 	m_hitEffect = nullptr;
 	isTrackTarget = true;
 	isFaceToTargetPos = false;
@@ -25,9 +23,10 @@ Bullet::Bullet(CWeapon* weapon, int parentID, int targetID, Point pos)
 	Speed = weapon->BulletSpeed;
 	m_actorName = weapon->ActorName;
 	m_parentID = parentID;
-	m_targetID = targetID;
+	m_targetID.push_back(targetID);
+	m_targetPos.push_back(UnitManager::getInstance()->getUnit(targetID)->getPos());
 	m_pos = pos;
-	m_hitEffect = EffectManager::getInstance()->createHitEffect(weapon, m_parentID, m_targetID);
+	m_hitEffect = EffectManager::getInstance()->createHitEffect(weapon, parentID, targetID);
 	m_weapon = nullptr;
 }
 
@@ -73,26 +72,18 @@ void Bullet::drawMyOutLine(DrawNode* drawNode)
 }
 
 
-void Bullet::setTarget(int targetID)
+void Bullet::setTarget(vector<int> targetID)
 {
-	if (isTrackTarget)
+	CUnit::setTarget(targetID);
+	if (!isTrackTarget)
 	{
-		this->m_targetID = targetID;
+		this->m_targetID.clear();
 	}
-	else
-	{
-		this->m_targetID = -1;
-	}
-	m_hitEffect->setTarget(targetID);
+	m_hitEffect->setTarget(targetID[0]);
 	m_hitEffect->setParent(ID);
-	this->m_targetPos = UnitManager::getInstance()->getUnit(targetID)->getPos();
-
 }
 
-CUnit* Bullet::getTarget()
-{
-	return UnitManager::getInstance()->getUnit(m_targetID);
-}
+
 
 void Bullet::setParent(int patentID)
 {
@@ -124,41 +115,49 @@ void Bullet::setOnHitEffect(CEffect* effect)
 
 void Bullet::onMove(float dt)
 {
-	CUnit* target = getTarget();
-
-	if (isTrackTarget == true && target != nullptr)//追踪目标
-		m_targetPos = target->getPos();
-
-	float dis, move, a;
-	dis = m_pos.distance(m_targetPos);
-	move = Speed.getValue() *dt;
-	a = clampf(move / dis, 0, 1);
-
-	m_pos = a*(m_targetPos - m_pos) + m_pos;
-	m_actor->setPos(Point(m_pos.x,m_pos.y-1));
-
-	if (isFaceToTargetPos)
+	vector<CUnit*> targets = getTarget();
+	if (targets.size() > 0)
 	{
-		//方向朝向目标
-		float angel = -(m_targetPos - m_pos).getAngle();
-		m_actor->setRotation(CC_RADIANS_TO_DEGREES(angel));
+		CUnit* target = targets[0];
+
+		if (isTrackTarget == true && target != nullptr)//追踪目标
+			m_targetPos[0] = target->getPos();
+
+		Point tpos = m_targetPos[0];
+		float dis, move, a;
+		dis = m_pos.distance(tpos);
+		move = Speed.getValue() *dt;
+		a = clampf(move / dis, 0, 1);
+
+		m_pos = a*(tpos - m_pos) + m_pos;
+		m_actor->setPos(Point(m_pos.x,m_pos.y-1));
+
+		if (isFaceToTargetPos)
+		{
+			//方向朝向目标
+			float angel = -(tpos - m_pos).getAngle();
+			m_actor->setRotation(CC_RADIANS_TO_DEGREES(angel));
+		}
+
+		//命中目标
+		if (a == 1)
+		{
+			onHitTarget();
+		}
 	}
 
-	//命中目标
-	if (a == 1)
-		onHitTarget();
 }
 
 void Bullet::onHitTarget()
 {
-	CUnit* target = getTarget();
+	vector<CUnit*> target = getTarget();
 
-	if (target != nullptr)
+	if (target.size()>0)
 	{
 		CEffect* effect = m_hitEffect->clone();
 		effect->setParent(ID);
-		effect->setTarget(target->ID);
-		target->addEffect(effect);
+		effect->setTarget(target[0]->ID);
+		target[0]->addEffect(effect);
 	}
 	else
 	{

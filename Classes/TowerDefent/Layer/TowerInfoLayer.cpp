@@ -74,9 +74,6 @@ bool TowerInfoLayer::init()
 	}
 
 
-
-
-
 	//ÉèÖÃLayer¼àÌý
 	auto listener = EventListenerTouchOneByOne::create();
 
@@ -102,6 +99,7 @@ bool TowerInfoLayer::init()
 	//listener->setSwallowTouches(true);//½Ø¶Ï´¥ÃþÊÂ¼þ
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
+	this->scheduleUpdate();
 
 	NotificationCenter::getInstance()->addObserver(this, callfuncO_selector(TowerInfoLayer::receiveMsg), Message_TowerInfoLayer, NULL);
 	return true;

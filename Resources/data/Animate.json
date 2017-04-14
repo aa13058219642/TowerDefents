@@ -56,20 +56,172 @@
                 { "name": "m001_move_008.png", "x": -18, "y": -26 }
             ]
         },
+		{
+			"name": "m001_death",
+			"delay": 0.12,
+			"repeat": 1,
+			"framedata": [
+				{ "name": "m001_death_000.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_001.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_002.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_003.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_004.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_005.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_006.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_007.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_008.png", "x": -22, "y": -33 }
+			]
+		},
         {
-            "name": "m001_death",
-            "delay": 0.12,
+            "name": "m001_move",
+            "delay": 0.25,
+            "repeat": -1,
+            "framedata": [
+                { "name": "m001_move_000.png", "x": -18, "y": -26 },
+                { "name": "m001_move_001.png", "x": -18, "y": -26 },
+                { "name": "m001_move_002.png", "x": -18, "y": -26 },
+                { "name": "m001_move_003.png", "x": -18, "y": -26 },
+                { "name": "m001_move_004.png", "x": -18, "y": -26 },
+                { "name": "m001_move_005.png", "x": -18, "y": -26 },
+                { "name": "m001_move_006.png", "x": -18, "y": -26 },
+                { "name": "m001_move_007.png", "x": -18, "y": -26 },
+                { "name": "m001_move_008.png", "x": -18, "y": -26 }
+            ]
+        },
+		{
+			"name": "m001_death",
+			"delay": 0.12,
+			"repeat": 1,
+			"framedata": [
+				{ "name": "m001_death_000.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_001.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_002.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_003.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_004.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_005.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_006.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_007.png", "x": -22, "y": -33 },
+				{ "name": "m001_death_008.png", "x": -22, "y": -33 }
+			]
+		},
+		{
+            "name": "m002_move",
+            "delay": 0.25,
+            "repeat": -1,
+            "framedata": [
+                { "name": "m002_move_000.png", "x": -16, "y": -34 },
+                { "name": "m002_move_001.png", "x": -16, "y": -34 },
+                { "name": "m002_move_002.png", "x": -16, "y": -34 },
+                { "name": "m002_move_003.png", "x": -16, "y": -34 },
+                { "name": "m002_move_004.png", "x": -16, "y": -34 },
+                { "name": "m002_move_005.png", "x": -16, "y": -34 },
+                { "name": "m002_move_006.png", "x": -16, "y": -34 }
+            ]
+        },
+		{
+			"name": "m002_death",
+			"delay": 0.10,
+			"repeat": 1,
+			"framedata": [
+				{ "name": "m002_death_000.png", "x": -16, "y": -39 },
+				{ "name": "m002_death_001.png", "x": -30, "y": -32 },
+				{ "name": "m002_death_002.png", "x": -30, "y": -32 },
+				{ "name": "m002_death_003.png", "x": -30, "y": -32 }
+			]
+		},
+		{
+            "name": "m003_move",
+            "delay": 0.25,
+            "repeat": -1,
+            "framedata": [
+                { "name": "m003_move_000.png", "x": -16, "y": -34 },
+                { "name": "m003_move_001.png", "x": -16, "y": -34 },
+                { "name": "m003_move_002.png", "x": -16, "y": -34 },
+                { "name": "m003_move_003.png", "x": -16, "y": -34 },
+                { "name": "m003_move_004.png", "x": -16, "y": -34 },
+                { "name": "m003_move_005.png", "x": -16, "y": -34 },
+                { "name": "m003_move_006.png", "x": -16, "y": -34 }
+            ]
+        },
+		{
+			"name": "m003_death",
+			"delay": 0.10,
+			"repeat": 1,
+			"framedata": [
+				{ "name": "m003_death_000.png", "x": -16, "y": -39 },
+				{ "name": "m003_death_001.png", "x": -30, "y": -32 },
+				{ "name": "m003_death_002.png", "x": -30, "y": -32 },
+				{ "name": "m003_death_003.png", "x": -30, "y": -32 }
+			]
+		},
+		{
+            "name": "m004_move",
+            "delay": 0.25,
+            "repeat": -1,
+            "framedata": [
+                { "name": "m004_move_000.png", "x": -23, "y": -37 },
+                { "name": "m004_move_001.png", "x": -23, "y": -37 },
+                { "name": "m004_move_002.png", "x": -23, "y": -37 },
+                { "name": "m004_move_003.png", "x": -23, "y": -37 }
+            ]
+        },
+		{
+			"name": "m004_death",
+			"delay": 0.10,
+			"repeat": 1,
+			"framedata": [
+				{ "name": "m004_death_001.png", "x": -18, "y": -36 },
+				{ "name": "m004_death_000.png", "x": -20, "y": -37 },
+				{ "name": "m004_death_002.png", "x": -20, "y": -37 },
+				{ "name": "m004_death_003.png", "x": -20, "y": -37 },
+				{ "name": "m004_death_004.png", "x": -20, "y": -37 }
+			]
+		},
+		{
+            "name": "m005_move",
+            "delay": 0.15,
+            "repeat": -1,
+            "framedata": [
+                { "name": "m005_move_000.png", "x": -32, "y": -67 },
+                { "name": "m005_move_001.png", "x": -32, "y": -67 },
+                { "name": "m005_move_002.png", "x": -32, "y": -67 }
+            ]
+        },
+		{
+			"name": "m005_death",
+			"delay": 0.10,
+			"repeat": 1,
+			"framedata": [
+				{ "name": "m005_death_001.png", "x": -28, "y": -65 },
+				{ "name": "m005_death_000.png", "x": -34, "y": -59 },
+				{ "name": "m005_death_002.png", "x": -34, "y": -59 },
+				{ "name": "m005_death_003.png", "x": -34, "y": -59 }
+			]
+		},
+		{
+            "name": "m006_move",
+            "delay": 0.18,
+            "repeat": -1,
+            "framedata": [
+                { "name": "m006_move_000.png", "x": -31, "y": -94 },
+                { "name": "m006_move_001.png", "x": -31, "y": -94 },
+                { "name": "m006_move_002.png", "x": -31, "y": -94 },
+                { "name": "m006_move_003.png", "x": -31, "y": -94 },
+                { "name": "m006_move_004.png", "x": -31, "y": -94 },
+                { "name": "m006_move_005.png", "x": -31, "y": -94 },
+                { "name": "m006_move_006.png", "x": -31, "y": -94 }
+            ]
+        },
+        {
+            "name": "m006_death",
+            "delay": 0.10,
             "repeat": 1,
             "framedata": [
-                { "name": "m001_death_000.png", "x": -22, "y": -33 },
-                { "name": "m001_death_001.png", "x": -22, "y": -33 },
-                { "name": "m001_death_002.png", "x": -22, "y": -33 },
-                { "name": "m001_death_003.png", "x": -22, "y": -33 },
-                { "name": "m001_death_004.png", "x": -22, "y": -33 },
-                { "name": "m001_death_005.png", "x": -22, "y": -33 },
-                { "name": "m001_death_006.png", "x": -22, "y": -33 },
-                { "name": "m001_death_007.png", "x": -22, "y": -33 },
-                { "name": "m001_death_008.png", "x": -22, "y": -33 }
+                { "name": "m006_death_001.png", "x": -23, "y": -66 },
+                { "name": "m006_death_000.png", "x": -30, "y": -60 },
+                { "name": "m006_death_002.png", "x": -30, "y": -60 },
+                { "name": "m006_death_002.png", "x": -30, "y": -60 },
+                { "name": "m006_death_003.png", "x": -30, "y": -60 }
             ]
         },
         {

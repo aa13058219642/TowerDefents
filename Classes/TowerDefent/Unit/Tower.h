@@ -17,7 +17,7 @@ public:
 	
 	virtual void update(float dt);
 	virtual void onClick();
-	virtual void setTarget(int targetID);
+	virtual void setTarget(vector<int> targetID);
 
 
 	void buildTower(const TowerCard towerCard);
@@ -45,7 +45,7 @@ private:
 	int spellPosCount;
 
 
-	virtual void onAttack(CUnit* target);
+	virtual void onAttack(vector<CUnit*> targets);
 	virtual void onBindSprite();
 
 };

@@ -30,7 +30,7 @@ namespace cocosgalaxy
 		string groupID;
 		ESkillType m_type;
 		int m_parentID;
-		int m_targetID;
-		Point m_targetPos;
+		vector<int> m_targetID;
+		vector<Point> m_targetPos;
 	};
 }

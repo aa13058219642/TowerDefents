@@ -48,7 +48,6 @@ Monster* Monster::clone()
 	unit->life = this->life;
 	unit->hpbar = this->hpbar;
 
-	unit->setMapPath(this->m_path);
 	return unit;
 }
 
@@ -56,6 +55,16 @@ void Monster::setMapPath(MapPath path)
 {
 	m_path = path;
 	
+	distantToEnd = 0;
+	int c = m_path.getPosCount();
+	Point p1 = m_path.getPos(0);
+	Point p2;
+	for (int i = 1; i < c; i++)
+	{
+		p2 = m_path.getPos(i);
+		distantToEnd += p1.distance(p2);
+		p1 = p2;
+	}
 }
 
 MapPath Monster::getMapPath()
@@ -63,12 +72,30 @@ MapPath Monster::getMapPath()
 	return m_path;
 }
 
-
-void Monster::update(float dt){
-	CUnit::update(dt);
-
-	onMove(dt);
+int Monster::getDistantToEnd()
+{ 
+	if (m_path.IsLoop())
+	{
+		return 99999999;
+	}
+	else
+	{
+		return distantToEnd;
+	}
 }
+
+
+void Monster::update(float dt)
+{
+	if (GameMap::getInstance()->getState() != GameMap::EGameState::GS_Fail)
+	{
+		CUnit::update(dt);
+
+		onMove(dt);
+	}
+}
+
+
 
 
 void Monster::drawMyOutLine(DrawNode* drawNode){
@@ -121,6 +148,7 @@ void Monster::onMove(float dt)
 		if (a > 1)a = 1;
 		m_pos = a*(m_path.getCurPos() - m_pos) + m_pos;
 		m_actor->setPos(m_pos);
+		distantToEnd -= move;
 	}
 }
 

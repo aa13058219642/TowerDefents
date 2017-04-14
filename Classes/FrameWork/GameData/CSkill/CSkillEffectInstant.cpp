@@ -101,18 +101,18 @@ void CSkillEffectInstant::update(float dt)
 
 void CSkillEffectInstant::applyEffect(string effectName)
 {
-	CUnit* target = UnitManager::getInstance()->getUnit(m_targetID);
+	CUnit* target = UnitManager::getInstance()->getUnit(m_targetID[0]);
 	//如果失去目标，原来锁定的目标在前摇时跑出了攻击范围，则强制攻击一开始锁定的目标
 	if (target == nullptr)
 	{
 		if (IsCanExecute())
 		{
-			EffectManager::getInstance()->createCEffect(aftering_Effect, m_parentID, m_targetID)->execute();
+			EffectManager::getInstance()->createCEffect(aftering_Effect, m_parentID, target->ID)->execute();
 		}
 	}
 	else
 	{
-		EffectManager::getInstance()->createCEffect(aftering_Effect, m_parentID, m_targetID)->execute();
+		EffectManager::getInstance()->createCEffect(aftering_Effect, m_parentID, target->ID)->execute();
 	}
 }
 

@@ -14,10 +14,10 @@ BattleScene::~BattleScene()
 
 }
 
-BattleScene* BattleScene::create(int wrold, int level)
+BattleScene* BattleScene::create()
 {
 	BattleScene* battleScene = new BattleScene();
-	if (battleScene && battleScene->init(wrold, level))
+	if (battleScene && battleScene->init())
 	{
 		battleScene->autorelease();
 	}
@@ -28,7 +28,7 @@ BattleScene* BattleScene::create(int wrold, int level)
 	return battleScene;
 }
 
-bool BattleScene::init(int wrold, int level)
+bool BattleScene::init()
 {
 	if (!Scene::init())
 	{
@@ -41,14 +41,8 @@ bool BattleScene::init(int wrold, int level)
 	this->setScale(Director::getInstance()->getContentScaleFactor());
 	this->setAnchorPoint(Point::ZERO);
 
-
-
 	unitLayer = UnitLayer::create();
 	this->addChild(unitLayer, 1);
-
-
-	//init Map and Layer
-	GameMap::getInstance()->init(wrold, level);
 
 	towerSelectLayer = TowerSelectLayer::create();
 	this->addChild(towerSelectLayer, 2);
@@ -59,15 +53,12 @@ bool BattleScene::init(int wrold, int level)
 	towerInfoLayer = TowerInfoLayer::create();
 	this->addChild(towerInfoLayer, 6000);
 
-	//gameMapInfoLayer = GameMapInfoLayer::create();
-	//this->addChild(gameMapInfoLayer, 5999);
-
 	gameInfoLayer = GameInfoLayer::create();
 	this->addChild(gameInfoLayer, 5999);
 
-	winLayer = WinLayer::create();
-	winLayer->setVisible(false);
-	this->addChild(winLayer, 6000);
+	LevelFinishLayer = LevelFinishLayer::create();
+	LevelFinishLayer->setVisible(false);
+	this->addChild(LevelFinishLayer, 6000);
 
 
 	if (DebugDraw::isDebug)
@@ -83,10 +74,7 @@ bool BattleScene::init(int wrold, int level)
 
 void BattleScene::update(float dt)
 {
-	UnitManager::getInstance()->update(dt);
 	GameMap::getInstance()->update(dt);
-
-	towerInfoLayer->update(dt);
 }
 
 void BattleScene::onExit()

@@ -6,7 +6,7 @@
 #include "GameMapLayer.h"
 #include "TowerInfoLayer.h"
 #include "GameInfoLayer.h"
-#include "WinLayer.h"
+#include "LevelFinishLayer.h"
 
 class BattleScene : public cocos2d::Scene
 {
@@ -16,8 +16,8 @@ public:
 	~BattleScene();
 
 	//CREATE_FUNC(BattleScene);
-	static BattleScene* create(int wrold, int level);
-	virtual bool init(int wrold, int level);
+	static BattleScene* create();
+	virtual bool init();
 	virtual void update(float dt);
 	virtual void onExit();
 
@@ -31,5 +31,5 @@ private:
 	GameMapLayer* gameMapLayer;
 	TowerInfoLayer* towerInfoLayer;
 	GameInfoLayer* gameInfoLayer;
-	WinLayer* winLayer;
+	LevelFinishLayer* LevelFinishLayer;
 };

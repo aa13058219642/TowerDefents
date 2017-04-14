@@ -215,8 +215,12 @@ void CActor::setShowHpBar(bool isShow, Rect rect)
 
 		//Size size = m_sprite->getSpriteFrame()->getOriginalSize();
 		//m_hpBar->setPosition(size.width / 2, size.height);
-		m_hpBar->setPosition(rect.origin);
-		m_hpBar->setContentSize(rect.size);
+
+		float f = Director::getInstance()->getContentScaleFactor();
+		rect.size = rect.size*f;
+		hpbarRect = rect;
+		m_hpBar->setPosition(hpbarRect.origin);
+		m_hpBar->setContentSize(hpbarRect.size);
 		m_hpBar->setAnchorPoint(Point(0, 0.5));
 		m_layer->addChild(m_hpBar, 9999);
 	}
@@ -233,7 +237,7 @@ void CActor::setHpBarProgress(float progress)
 		if (progress > 0)
 		{
 			m_hpBar->setVisible(true);
-			m_hpBar->setContentSize(Size(64 * progress, 6));
+			m_hpBar->setContentSize(Size(hpbarRect.size.width * progress, hpbarRect.size.height));
 		}
 		else
 		{

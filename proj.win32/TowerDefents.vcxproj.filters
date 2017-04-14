@@ -61,9 +61,6 @@
     <Filter Include="src\TowerDefent\Unit\Tower">
       <UniqueIdentifier>{aaa5754b-eeef-4956-9086-82e49fc6ecad}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\TowerDefent\GameMap">
-      <UniqueIdentifier>{db9f3be0-dbe1-437d-9c78-ee9e32e3fe36}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\TowerDefent\Scene">
       <UniqueIdentifier>{ef81c13d-80e0-473b-918d-09fcd102d185}</UniqueIdentifier>
     </Filter>
@@ -151,6 +148,9 @@
     <Filter Include="src\TowerDefent\ext">
       <UniqueIdentifier>{fccb1501-0759-423e-bc54-3e181b4ecadc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\TowerDefent\GameCommand">
+      <UniqueIdentifier>{db9f3be0-dbe1-437d-9c78-ee9e32e3fe36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -190,7 +190,7 @@
       <Filter>src\TowerDefent\Scene</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GameMap.cpp">
-      <Filter>src\TowerDefent\GameMap</Filter>
+      <Filter>src\TowerDefent\GameCommand</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Scene\BattleScene.cpp">
       <Filter>src\TowerDefent\Scene\BattelScene</Filter>
@@ -247,7 +247,7 @@
       <Filter>src\FrameWork\GameData\CWeapon</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp">
-      <Filter>src\TowerDefent\GameMap</Filter>
+      <Filter>src\TowerDefent\GameCommand</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.cpp">
       <Filter>src\FrameWork\GameData\CBehavior</Filter>
@@ -369,7 +369,7 @@
     <ClCompile Include="..\Classes\TowerDefent\Layer\GameInfoLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TowerDefent\Layer\WinLayer.cpp">
+    <ClCompile Include="..\Classes\TowerDefent\Layer\LevelFinishLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
   </ItemGroup>
@@ -411,7 +411,7 @@
       <Filter>src\TowerDefent\Scene</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GameMap.h">
-      <Filter>src\TowerDefent\GameMap</Filter>
+      <Filter>src\TowerDefent\GameCommand</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Scene\BattleScene.h">
       <Filter>src\TowerDefent\Scene\BattelScene</Filter>
@@ -471,7 +471,7 @@
       <Filter>src\FrameWork\GameData\CWeapon</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h">
-      <Filter>src\TowerDefent\GameMap</Filter>
+      <Filter>src\TowerDefent\GameCommand</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CBehavior\CBehavior.h">
       <Filter>src\FrameWork\GameData\CBehavior</Filter>
@@ -602,7 +602,7 @@
     <ClInclude Include="..\Classes\TowerDefent\Layer\GameInfoLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\TowerDefent\Layer\WinLayer.h">
+    <ClInclude Include="..\Classes\TowerDefent\Layer\LevelFinishLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
   </ItemGroup>

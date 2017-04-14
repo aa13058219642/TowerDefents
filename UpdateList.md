@@ -190,8 +190,10 @@
 - 1.新增WinLayer
 - 2.完成Battle场景相关的衔接
 
-
-
+##v0.047
+- 1.修正了hpBar的bug
+- 2.完善GameInfoLayer, 增加加速和暂停功能
+- 3.完善了CUnit的关于target的方法
 
 
 

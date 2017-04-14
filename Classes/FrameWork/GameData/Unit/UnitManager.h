@@ -29,6 +29,8 @@ namespace cocosgalaxy
 
 		/*根据ID获取Unit对象*/
 		CUnit* getUnit(int id);
+		vector<CUnit*> getUnit(vector<int> ids);
+
 		/*添加Unit到Manager队列*/
 		void addUnit(CUnit* child);
 		

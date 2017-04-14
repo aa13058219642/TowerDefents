@@ -208,7 +208,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Layer\UnitLayer.cpp" />
-    <ClCompile Include="..\Classes\TowerDefent\Layer\WinLayer.cpp" />
+    <ClCompile Include="..\Classes\TowerDefent\Layer\LevelFinishLayer.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Message\Message.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Message\MessageListener.cpp" />
     <ClCompile Include="..\Classes\TowerDefent\Player\CCostPlayer.cpp" />
@@ -286,7 +286,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerInfoLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Layer\UnitLayer.h" />
-    <ClInclude Include="..\Classes\TowerDefent\Layer\WinLayer.h" />
+    <ClInclude Include="..\Classes\TowerDefent\Layer\LevelFinishLayer.h" />
     <ClInclude Include="..\Classes\TowerDefent\Message\Message.h" />
     <ClInclude Include="..\Classes\TowerDefent\Message\MessageListener.h" />
     <ClInclude Include="..\Classes\TowerDefent\Player\CCostPlayer.h" />

@@ -21,7 +21,7 @@
    eJztl8EOwiAMhvs6011ULk4vc150e//n8edAIE0QNpK1xn7JdyApo7T0sJGIHnCCTzjuvM4R4l7wDWe4CKxzhDjDMIx/5QCPsJdOJMMZXqCTTiSD1a+NAd7gXTqRH0Xz2/Nofnsem982tM+v5t56NPa2ozgXNb1N49fWesveE8W5qPlmGs9rXTqf763J90pxLkr5OxbPa106n+/9dtdA+g//AYViJaQ=
   </data>
  </layer>
- <objectgroup name="TowerPos">
+ <objectgroup name="TowerPos" visible="0">
   <properties>
    <property name="TowerPosHeight" type="float" value="64"/>
    <property name="TowerPosWidth" type="float" value="64"/>

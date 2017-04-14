@@ -3,22 +3,22 @@
  <properties>
   <property name="WaveCount" type="int" value="4"/>
  </properties>
- <tileset firstgid="1" name="001-Grassland01" tilewidth="32" tileheight="32" tilecount="144" columns="8">
-  <image source="texture_001.png" trans="ffffff" width="256" height="576"/>
+ <tileset firstgid="1" name="tiled_001" tilewidth="32" tileheight="32" tilecount="1024" columns="32">
+  <image source="tiled_001.png" width="1024" height="1024"/>
  </tileset>
  <layer name="块层 1" width="40" height="26">
   <data encoding="base64" compression="zlib">
-   eJzt1aENADAIRUG6BvsPWllZB7Q5cZa85AsyIhKgwBrm1b7uHW/7dnfo0zfxvj59E/qq/9YvfcCxATawWpc=
+   eJztlUEKACAIBPUv/v+NnSSJOnRo22KFoS7GYAuGmYUQQgBwMl71u/2P1ccI/bycWUx+s7yx+iHnt/s+On/yO+/nw53Nr5LF6rfqR++tX/yEEJ0Gjox5vQ==
   </data>
  </layer>
  <layer name="块层 2" width="40" height="26">
   <data encoding="base64" compression="zlib">
-   eJztl11LwzAUhsMUJips80pRL1R2td1td+5Ob9z8I36CcxtsU8GpAz9/s0/YCiO0TZOaNsJeeCht6OnpOWneVIiZzqANHTj34Hyp/FXM4Bk1qGf07PWI6ysx9zSg6SCXv9IxtPJOIkYncLpwXoVDj1DXm12owJYnqJL57YRWOp0u4BKu4Bpu4NYijqv87qAL99CDPgws4kTlF7cGSK1qxocwgjE8wCM8GWdnX79NzfgzTOAFXuENpgbx1+ZHV/19hw/4hC/4hh+LOK7ySxpfnUeBvyWtn26e6WT6/oG/Bd5oU78NKIdcl3OykDI/1d/SfB9JamsaX/W3rOef7FtY7UvzY5i/HQh3fnok0vV3X7j31L2YfNR9p9pf36T7X8piDy8V9W3Z7E9LmvFtofe7pPrv/c1bv1hGMW4=
+   eJzN10dOw0AUgOEJ3tM2iBLgBpQNJRUBW9qG3ou4Ap0jAJeg3oC6BMQF6FyDzm8lFqNh7HEcEnjSJ2w8M+9l8LND2BKiGjWoxXWBEDe4xR3u8YBHPOEZL3jFG97xgU8I5stRznkFKlGFsJLLT8QYF0cCScucX87ZhGaPnC2ctyKCqPUzl58YZdwYxjFhmT+znLMfAx45BzkfwjBGrJ+5goTpM+ciZybx1/nV2JaOL6TjXcO8A49rOz5z7/kcl+1av5nHLZz9aEP7P6LGDDox/U8Uokipr8N9mwPHIY5wjBOc4sxlbDFKUJo+r/uF+nQ9IffeLe5wjwc84sllrfr0z0aRurfLxPc+6uqTe9mrb73iFW94xwc+7V+GUte2lbE96EUfLtM57TF1mvouRGbhVn8ltVQhjGrUoDakH7uBTWxhH03oQremPq/I5LkSoZYoYogjgWS6Pufvo+6jHecitW9Ovbr6dPOCRpD7260/cvHcNdWn9m6DMPev3Ju6vfR6F6r3o7q+et3u3flQqnedyOT5ErR//a4v964dTl/4nZ9tmNaXe1cox878WZG79+mcoT5TTIrcv1OnlJzZ3jOmuAowx+93RDny8T0un9HC/3StiCCKGOJIIFnw93kGuTaEYYxgFGMYx4RmXr7yOLHAtUUsYRkrWMUa1jXzguT5AvODpUw=
   </data>
  </layer>
  <layer name="块层 3" width="40" height="26">
   <data encoding="base64" compression="zlib">
-   eJxzZGBgcAJiZyB2AWLHQcb3BGIvIPYGYp9ByB8Fo2AggTYQ6wy0I/AAYyA2GWhH4AHWQGwz0I7AA2Dl4GAFo+XgKBgFo2CkgtH6d3iD0fglD2gCsdYA2UlMnBkCsRGUTaweUszHZycxcWYJxFZY9MDsRwYwMWzmY1NPyE70NjE2M2D9dAAz0yH1
+   eJzt10kSwVAQxvFUnMLsGiKGa5Ag1zC7htm1zK5h9rewovJeirDpr+q3ed1d3dtnGN/JwjSMJVZYY4Mtdtibr/0H3o444YwLrrg9eiNfOuqDfVHeYogjgSRSSCMTwn1B92V5s5CDjTwKKKIUwn1B95V5q8CBiypqqMML4b5f75NIJBKJRCKRSP6RAv+XIkpv/ljPZKlZyMFG3lTP6c6o+mqow/O5r0ytAgcuqhpzujOqvi566Pvc16DWRAttdDTmdGdUfVPMMPe5b0BtiBHGmGjM6c6o+u5zok+D
   </data>
  </layer>
  <objectgroup name="TowerPos" visible="0">
@@ -46,7 +46,6 @@
   <object id="24" name="Pos" x="256" y="672" width="64" height="64"/>
   <object id="25" name="Pos" x="192" y="544" width="64" height="64"/>
   <object id="26" name="Pos" x="256" y="544" width="64" height="64"/>
-  <object id="27" name="Pos" x="320" y="672" width="64" height="64"/>
   <object id="28" name="Pos" x="576" y="672" width="64" height="64"/>
   <object id="29" name="Pos" x="512" y="672" width="64" height="64"/>
   <object id="30" name="Pos" x="512" y="544" width="64" height="64"/>
@@ -63,13 +62,10 @@
   <object id="41" name="Pos" x="704" y="288" width="64" height="64"/>
   <object id="42" name="Pos" x="640" y="288" width="64" height="64"/>
   <object id="43" name="Pos" x="448" y="544" width="64" height="64"/>
-  <object id="44" name="Pos" x="448" y="672" width="64" height="64"/>
-  <object id="45" name="Pos" x="384" y="672" width="64" height="64"/>
   <object id="46" name="Pos" x="320" y="544" width="64" height="64"/>
   <object id="47" name="Pos" x="384" y="544" width="64" height="64"/>
   <object id="48" name="Pos" x="640" y="672" width="64" height="64"/>
   <object id="49" name="Pos" x="576" y="544" width="64" height="64"/>
-  <object id="50" name="Pos" x="704" y="672" width="64" height="64"/>
   <object id="51" name="Pos" x="640" y="544" width="64" height="64"/>
   <object id="52" name="Pos" x="576" y="480" width="64" height="64"/>
   <object id="54" name="Pos" x="192" y="352" width="64" height="64"/>
@@ -84,7 +80,6 @@
   <object id="63" name="Pos" x="512" y="160" width="64" height="64"/>
   <object id="64" name="Pos" x="256" y="160" width="64" height="64"/>
   <object id="65" name="Pos" x="704" y="160" width="64" height="64"/>
-  <object id="66" name="Pos" x="64" y="416" width="64" height="64"/>
   <object id="67" name="Pos" x="192" y="160" width="64" height="64"/>
   <object id="68" name="Pos" x="640" y="160" width="64" height="64"/>
   <object id="69" name="Pos" x="576" y="160" width="64" height="64"/>
@@ -96,19 +91,13 @@
   <object id="75" name="Pos" x="448" y="288" width="64" height="64"/>
   <object id="78" name="Pos" x="384" y="96" width="64" height="64"/>
   <object id="79" name="Pos" x="512" y="96" width="64" height="64"/>
-  <object id="80" name="Pos" x="256" y="96" width="64" height="64"/>
   <object id="81" name="Pos" x="1024" y="160" width="64" height="64"/>
-  <object id="82" name="Pos" x="64" y="352" width="64" height="64"/>
   <object id="83" name="Pos" x="320" y="288" width="64" height="64"/>
-  <object id="84" name="Pos" x="640" y="96" width="64" height="64"/>
-  <object id="85" name="Pos" x="576" y="96" width="64" height="64"/>
-  <object id="86" name="Pos" x="320" y="96" width="64" height="64"/>
   <object id="87" name="Pos" x="1088" y="416" width="64" height="64"/>
   <object id="89" name="Pos" x="448" y="96" width="64" height="64"/>
   <object id="90" name="Pos" x="960" y="160" width="64" height="64"/>
   <object id="91" name="Pos" x="896" y="160" width="64" height="64"/>
   <object id="94" name="Pos" x="192" y="480" width="64" height="64"/>
-  <object id="95" name="Pos" x="704" y="96" width="64" height="64"/>
   <object id="96" name="Pos" x="64" y="224" width="64" height="64"/>
   <object id="97" name="Pos" x="832" y="160" width="64" height="64"/>
   <object id="98" name="Pos" x="64" y="288" width="64" height="64"/>
@@ -116,21 +105,14 @@
   <object id="100" name="Pos" x="64" y="480" width="64" height="64"/>
   <object id="101" name="Pos" x="768" y="160" width="64" height="64"/>
   <object id="102" name="Pos" x="128" y="160" width="64" height="64"/>
-  <object id="103" name="Pos" x="1024" y="672" width="64" height="64"/>
   <object id="105" name="Pos" x="192" y="416" width="64" height="64"/>
-  <object id="118" name="Pos" x="128" y="96" width="64" height="64"/>
   <object id="119" name="Pos" x="832" y="96" width="64" height="64"/>
-  <object id="120" name="Pos" x="192" y="96" width="64" height="64"/>
   <object id="121" name="Pos" x="1088" y="608" width="64" height="64"/>
-  <object id="123" name="Pos" x="768" y="96" width="64" height="64"/>
-  <object id="124" name="Pos" x="768" y="672" width="64" height="64"/>
   <object id="125" name="Pos" x="960" y="608" width="64" height="64"/>
   <object id="126" name="Pos" x="1024" y="96" width="64" height="64"/>
   <object id="128" name="Pos" x="1024" y="608" width="64" height="64"/>
-  <object id="129" name="Pos" x="832" y="672" width="64" height="64"/>
   <object id="130" name="Pos" x="960" y="672" width="64" height="64"/>
   <object id="131" name="Pos" x="896" y="96" width="64" height="64"/>
-  <object id="132" name="Pos" x="896" y="672" width="64" height="64"/>
   <object id="133" name="Pos" x="960" y="96" width="64" height="64"/>
   <object id="135" name="Pos" x="64" y="96" width="64" height="64"/>
   <object id="136" name="Pos" x="64" y="608" width="64" height="64"/>
@@ -154,9 +136,6 @@
   <object id="154" name="Pos" x="1216" y="96" width="64" height="64"/>
   <object id="155" name="Pos" x="1088" y="352" width="64" height="64"/>
   <object id="156" name="Pos" x="1088" y="288" width="64" height="64"/>
-  <object id="157" name="Pos" x="1088" y="672" width="64" height="64"/>
-  <object id="158" name="Pos" x="0" y="352" width="64" height="64"/>
-  <object id="159" name="Pos" x="0" y="416" width="64" height="64"/>
  </objectgroup>
  <objectgroup name="Path">
   <object id="110" name="Path_001" x="80" y="-16">

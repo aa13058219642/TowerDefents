@@ -23,7 +23,9 @@ CEffectLaunchMissile::~CEffectLaunchMissile()
 void CEffectLaunchMissile::execute()
 {
 	CUnit* unit = UnitManager::getInstance()->CreateUnit(className, typeName);
-	unit->setTarget(m_targetID);
+	vector<int> targets;
+	targets.push_back(m_targetID);
+	unit->setTarget(targets);
 	unit->setPos(getParent()->getPos());
 	UnitManager::getInstance()->addUnit(unit);
 

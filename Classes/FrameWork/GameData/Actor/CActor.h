@@ -56,8 +56,9 @@ namespace cocosgalaxy
 
 		Face m_face;
 		Sprite* m_sprite;
-		cocos2d::ui::Scale9Sprite* m_hpBar;
 		Sprite* m_unitPos;
+		cocos2d::ui::Scale9Sprite* m_hpBar;
+		Rect hpbarRect;
 
 		Name m_defaultAnimate;
 		std::map<Name, Name> m_animateList;

@@ -18,8 +18,7 @@ public:
 	void setParent(int patentID);
 	CUnit* getParent();
 
-	virtual void setTarget(int targetID);
-	virtual CUnit* getTarget();
+	virtual void setTarget(vector<int> targetID);
 
 
 

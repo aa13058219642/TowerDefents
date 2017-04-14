@@ -7,6 +7,7 @@
 
 #include "GameMap.h"
 #include "Bullet.h"
+#include "Monster.h"
 #include "GameConfig.h"
 
 Tower::~Tower()
@@ -36,20 +37,37 @@ Tower::Tower(GridPos* GridPos)
 	} while (0);
 }
 
-void Tower::setTarget(int targetID)
+void Tower::setTarget(vector<int> targetID)
 {
 	this->m_targetID = targetID;
 
-	CUnit *target = UnitManager::getInstance()->getUnit(targetID);
-	this->m_targetPos = target->getPos();
-	//改变朝向
-	if (target->getPos().x <= m_pos.x)
+	vector<CUnit*> targets = getTarget();
+	auto umgr = UnitManager::getInstance();
+	int dis = 999999999;
+	int faceToID = -1;
+	for (auto t : targets)
 	{
-		m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
+		m_targetPos.push_back(t->getPos());
+		Monster *m = static_cast<Monster*>(t);
+		if (dis > m->getDistantToEnd())
+		{
+			faceToID = t->ID;
+			dis = m->getDistantToEnd();
+		}
 	}
-	else
+
+	if (m_targetPos.size() > 0)
 	{
-		m_actor->changeFace(CActor::Face::FACE_TO_RIGHT);
+		//改变朝向,面向离终点最近的敌人
+		Point p = UnitManager::getInstance()->getUnit(faceToID)->getPos();
+		if (p.x <= m_pos.x)
+		{
+			m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
+		}
+		else
+		{
+			m_actor->changeFace(CActor::Face::FACE_TO_RIGHT);
+		}
 	}
 }
 
@@ -189,15 +207,18 @@ void Tower::sellSpellTower(Direction direction)
 
 void Tower::update(float dt)
 {
-	CUnit::update(dt);
-
-	//update Ability
-	if (m_actorName != "blank")
+	if (GameMap::getInstance()->getState() != GameMap::EGameState::GS_Fail)
 	{
-		HP += HP_RegenRate.getValue()*dt;
-		MP += MP_RegenRate.getValue()*dt;
-		AP += AP_RegenRate.getValue()*dt;
-		//this->m_actor->setHpBarProgress((float)AP / AP.Max);
+		CUnit::update(dt);
+
+		//update Ability
+		if (m_actorName != "blank")
+		{
+			HP += HP_RegenRate.getValue()*dt;
+			MP += MP_RegenRate.getValue()*dt;
+			AP += AP_RegenRate.getValue()*dt;
+			//this->m_actor->setHpBarProgress((float)AP / AP.Max);
+		}
 	}
 }
 
@@ -208,10 +229,40 @@ void Tower::onClick()
 
 }
 
-void Tower::onAttack(CUnit* target)
+void Tower::onAttack(vector<CUnit*> targets)
 {
-	Bullet* bullet = new Bullet(m_weapon, this->ID, target->ID, this->getPos());
-	UnitManager::getInstance()->addUnit(bullet);
+	if (targets.size() == 0)return;
+
+	int tcount = m_weapon->TargetCount;
+	while (tcount>0)
+	{
+		int dis = 999999999;
+		Monster*  targetMonster = nullptr;
+		vector<CUnit*>::iterator t;
+		for (vector<CUnit*>::iterator i = targets.begin(); i != targets.end(); i++)
+		{
+			Monster*  m = static_cast<Monster*>(*i);
+			if (dis > m->getDistantToEnd())
+			{
+				targetMonster = m;
+				dis = m->getDistantToEnd();
+				t = i;
+			}
+		}
+
+		if (targetMonster != nullptr)
+		{
+			Bullet* bullet = new Bullet(m_weapon, this->ID, targetMonster->ID, this->getPos());
+			UnitManager::getInstance()->addUnit(bullet);
+			targets.erase(t);
+		}
+
+
+		tcount--;
+	}
+
+
+
 }
 
 void Tower::onBindSprite()

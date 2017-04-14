@@ -2,6 +2,7 @@
 #include "stdfax.h"
 #include "GridPos.h"
 #include "Player.h"
+#include "Message\MessageListener.h"
 
 class WaveData
 {
@@ -35,6 +36,7 @@ public:
 		if (curPos >= (int)pos.size())
 			curPos = loopTo;
 	}
+
 	Point getCurPos(){ return pos[curPos]; }
 	int getPosCount(){ return (int)pos.size(); }
 	Point getPos(int index){ return pos[index]; }
@@ -46,7 +48,7 @@ private:
 };
 
 
-class GameMap 
+class GameMap :public MessageListener
 {
 public:
 	static GameMap* getInstance();
@@ -55,10 +57,12 @@ public:
 	~GameMap();
 
 	enum EGameState : int{ GS_Pause, GS_Ready, GS_NextWave, GS_CreatingMonster, GS_WaitToAllMonsterDie, GS_WaitToNextWave, GS_Win, GS_Fail, GS_WaitToEnd };
-	EGameState m_state;
+	EGameState getState();
 
 	/*if something be click will return ture*/
 	bool onClick(Point pos);
+
+	void receive(const Message* message);
 
 	TMXTiledMap* getMapLayer();
 	GridPos* getGridPos(int id);
@@ -69,7 +73,7 @@ public:
 
 	void clear();
 
-
+	void bindActor();
 private:
 	GameMap();
 	bool loadMap(int wrold, int level);
@@ -80,6 +84,7 @@ private:
 	int m_wrold;
 	Size m_mapSize;
 	TMXTiledMap* m_map;
+	EGameState m_state;
 
 	vector<GridPos*> m_gridPos;
 

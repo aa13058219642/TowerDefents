@@ -112,14 +112,43 @@ CWeapon* CUnit::getWeapon()
 	return m_weapon;
 }
 
-void CUnit::setTarget(int targetID)
+void CUnit::setTarget(vector<int> targetID)
 {
 	this->m_targetID = targetID;
 
-	CUnit *target = UnitManager::getInstance()->getUnit(targetID);
-	this->m_targetPos = target->getPos();
-	//改变朝向
-	if (target->getPos().x <= m_pos.x)
+	vector<CUnit*> targets = getTarget();
+	auto umgr = UnitManager::getInstance();
+	for (auto t : targets)
+	{
+		m_targetPos.push_back(t->getPos());
+	}
+
+	if (m_targetPos.size() > 0)
+	{
+		//改变朝向
+		if (m_targetPos[0].x <= m_pos.x)
+		{
+			m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
+		}
+		else
+		{
+			m_actor->changeFace(CActor::Face::FACE_TO_RIGHT);
+		}
+	}
+}
+
+void CUnit::setTarget(int targetID)
+{
+	m_targetID.clear();
+	m_targetID.push_back(targetID);
+
+
+	Point tpos = UnitManager::getInstance()->getUnit(targetID)->getPos();
+	m_targetPos.clear();
+	m_targetPos.push_back(tpos);
+
+		//改变朝向
+	if (tpos.x <= m_pos.x)
 	{
 		m_actor->changeFace(CActor::Face::FACE_TO_LEFT);
 	}
@@ -129,9 +158,17 @@ void CUnit::setTarget(int targetID)
 	}
 }
 
-CUnit* CUnit::getTarget()
+
+
+vector<CUnit*> CUnit::getTarget()
 {
-	return UnitManager::getInstance()->getUnit(m_targetID);
+	vector<CUnit*> targets;
+	auto umgr = UnitManager::getInstance();
+	for (auto id : m_targetID)
+	{
+		targets.push_back(umgr->getUnit(id));
+	}
+	return targets;
 }
 
 void CUnit::bindActor()
@@ -209,7 +246,7 @@ void CUnit::update(float dt)
 
 void CUnit::onClick(){};
 void CUnit::onBindSprite(){}
-void CUnit::onAttack(CUnit* target){}
+void CUnit::onAttack(vector<CUnit*> targets){}
 void CUnit::onBeAttack(int damage, EDamageType damageType){}
 void CUnit::onMove(){}
 void CUnit::onHitTarget(){}

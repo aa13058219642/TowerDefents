@@ -5,7 +5,7 @@ using namespace cocosgalaxy;
 CEffect::CEffect()
 {
 	lifetime = 0;
-	m_parentID = m_targetID = -1;
+	m_parentID = -1;
 	m_state = ECEffectState::ECEffectState_Unused;
 }
 

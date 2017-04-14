@@ -54,7 +54,7 @@ namespace cocosgalaxy
 
 
 		virtual void onClick();
-		virtual void onAttack(CUnit* target);
+		virtual void onAttack(vector<CUnit*> targets);
 		virtual void onBeAttack(int damage, EDamageType damageType);
 		virtual void onMissTarget(CUnit* target);
 
@@ -90,8 +90,9 @@ namespace cocosgalaxy
 		virtual void setWeapon(const Name& weapon);
 		virtual CWeapon* getWeapon();
 
+		virtual void setTarget(vector<int> targetID);
 		virtual void setTarget(int targetID);
-		virtual CUnit* getTarget();
+		virtual vector<CUnit*> getTarget();
 
 		virtual CUnit* clone();
 	protected:
@@ -100,8 +101,8 @@ namespace cocosgalaxy
 		EUnitState m_state;
 		Point m_pos;
 		CWeapon* m_weapon;
-		Point m_targetPos;
-		int m_targetID;
+		vector<Point> m_targetPos;
+		vector<int> m_targetID;
 
 		std::list<CEffect*> effects;
 		std::list<CSkill*> skills;

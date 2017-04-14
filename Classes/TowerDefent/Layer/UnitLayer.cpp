@@ -1,7 +1,7 @@
 #include "UnitLayer.h"
 #include "UnitManager.h"
 #include "ActorManager.h"
-
+#include "GameMap.h"
 
 UnitLayer::UnitLayer()
 {
@@ -59,6 +59,8 @@ bool UnitLayer::init()
 		_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 		ActorManager::getInstance()->init(this);
+		GameMap::getInstance()->bindActor();
+
 
 		flag = true;
 	} while (0);

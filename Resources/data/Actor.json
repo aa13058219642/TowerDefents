@@ -12,11 +12,41 @@
             "actionName": [ "stand", "attack_beforing", "skill_preparing", "skill_beforing", "skill_using", "skill_aftering" ],
             "animateName": [ "t001_stand", "t001_attack_beforing", "t001_skill_preparing", "t001_skill_beforing", "t001_skill_using", "t001_skill_aftering" ]
         },
+		{
+			"name": "m001",
+			"defaultanimate": "m001_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m001_move", "m001_death" ]
+		},
+		{
+			"name": "m002",
+			"defaultanimate": "m002_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m002_move", "m002_death" ]
+		},
+		{
+			"name": "m003",
+			"defaultanimate": "m003_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m003_move", "m003_death" ]
+		},
+		{
+			"name": "m004",
+			"defaultanimate": "m004_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m004_move", "m004_death" ]
+		},
+		{
+			"name": "m005",
+			"defaultanimate": "m005_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m005_move", "m005_death" ]
+		},
         {
-            "name": "m001",
-            "defaultanimate": "m001_move",
+            "name": "m006",
+            "defaultanimate": "m006_move",
             "actionName": [ "move", "death" ],
-            "animateName": [ "m001_move", "m001_death" ]
+            "animateName": [ "m006_move", "m006_death" ]
         },
         {
             "name": "b001",
