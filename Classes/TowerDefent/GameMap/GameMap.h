@@ -47,12 +47,23 @@ private:
 	std::vector<Point> pos;
 };
 
+class LevelData
+{
+public:
+	int world;
+	int level;
+	string title;
+	std::vector<int> emenys;
+	float beginMoney;
+	float awardMoney;
+};
+
 
 class GameMap :public MessageListener
 {
 public:
 	static GameMap* getInstance();
-	bool init(int wrold, int level);
+	bool init(LevelData leveldata);
 	void update(float dt);
 	~GameMap();
 
@@ -80,8 +91,7 @@ private:
 
 	static GameMap* p_myinstance;
 
-	int m_level;
-	int m_wrold;
+	LevelData m_leveldata;
 	Size m_mapSize;
 	TMXTiledMap* m_map;
 	EGameState m_state;

@@ -43,7 +43,7 @@ void Tower::setTarget(vector<int> targetID)
 
 	vector<CUnit*> targets = getTarget();
 	auto umgr = UnitManager::getInstance();
-	int dis = 999999999;
+	int dis = INT_MAX;
 	int faceToID = -1;
 	for (auto t : targets)
 	{

@@ -294,6 +294,7 @@ bool GridPageView::onTouchBegan(Touch* touch, Event* event)
 	PageView::onTouchBegan(touch, event);
 
 	Point pos = Director::getInstance()->convertToGL(touch->getLocationInView());
+	clickpos = pos;
 	Rect rect = RectApplyAffineTransform(
 		Rect(Point::ZERO, this->getContentSize()),
 		this->getNodeToWorldAffineTransform());
@@ -325,26 +326,26 @@ bool GridPageView::onTouchBegan(Touch* touch, Event* event)
 
 void GridPageView::onTouchMoved(Touch* touch, Event* event)
 {
-	isMoved = true;
 	PageView::onTouchMoved(touch, event);
+	Point pos = Director::getInstance()->convertToGL(touch->getLocationInView());
 
-	Point pos = convertTouchToNodeSpace(touch);
-	int s = m_numColumns*m_numRows;
-	for (int i = 0; i < s; i++)
+	if (clickpos.distanceSquared(pos) > 100)
 	{
-		int click_index = this->getCurPageIndex()*s + i;
-		if (click_index >= m_Items.size())
-			break;
-
-		auto item = m_Items.at(this->getCurPageIndex()*s + i);
-		if (item->getBoundingBox().containsPoint(pos))
+		isMoved = true;
+		int s = m_numColumns*m_numRows;
+		for (int i = 0; i < s; i++)
 		{
-			item->onTouchMoved(touch, event);
+			int click_index = this->getCurPageIndex()*s + i;
+			if (click_index >= m_Items.size())
+				break;
+
+			auto item = m_Items.at(this->getCurPageIndex()*s + i);
+			if (item->getBoundingBox().containsPoint(pos))
+			{
+				item->onTouchMoved(touch, event);
+			}
 		}
 	}
-
-
-
 }
 
 void GridPageView::onTouchEnded(Touch* touch, Event* event)
@@ -372,7 +373,7 @@ void GridPageView::onTouchEnded(Touch* touch, Event* event)
 		}
 	}
 	isMoved = false;
-
+	clickpos = Point::ZERO;
 }
 
 void GridPageView::onTouchCancelled(Touch* touch, Event* event)

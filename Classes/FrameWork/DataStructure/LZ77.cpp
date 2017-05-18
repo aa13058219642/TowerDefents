@@ -1,7 +1,7 @@
 #include "LZ77.h"
 #include <assert.h>
 #include <functional>
-
+#include <math.h>
 
 #define OFFSET_CODING_LENGTH    (10)
 #define MAX_WND_SIZE            1024

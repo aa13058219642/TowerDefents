@@ -73,10 +73,6 @@ bool WorldMapScene::init()
 
 	//listview
 
-	//bt_startgame->addClickEventListener(CC_CALLBACK_0(TitleScene::click_startgame, this));
-
-
-
 	LoadResource();
 	initListView();
 	return true;
@@ -229,7 +225,8 @@ void WorldMapScene::event_lp_click(cocos2d::Ref* sender)
 		TextureManager::getInstance()->LoadResource(textureList);
 	});
 	list.push([](){ TowerCardManager::getInstance()->LoadResource();});
-	list.push([](){ SpellCardManager::getInstance()->LoadResource();});
+	list.push([](){ SpellCardManager::getInstance()->LoadResource(); });
+	list.push([](){ WeaponManager::getInstance()->LoadResource(); });
 	loading->setLambdaLoadList(list);	
 
 

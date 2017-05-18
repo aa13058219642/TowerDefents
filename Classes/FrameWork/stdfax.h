@@ -2,7 +2,7 @@
 
 //
 #include "Ability.h"
-#include "CModification.h"
+#include "FrameWork/GameData/CModification/CModification.h"
 #include "GalaxyBase.h"
 #include "ResourceLoader.h"
 #include "DebugDraw.h"

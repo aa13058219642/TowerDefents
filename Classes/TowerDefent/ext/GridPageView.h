@@ -49,6 +49,7 @@ namespace ui {
 		Vector<Layout*> m_pages;
 		Vector<GridItem*> m_Items;
 
+		Point clickpos;
 		bool isMoved;
 		Size m_itemSize;
 		int m_numColumns, m_numRows;

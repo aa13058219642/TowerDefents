@@ -8,7 +8,6 @@
 #include "TextureManager.h"
 #include "AnimateManager.h"
 #include "UnitManager.h"
-#include "WaveManager.h"
 #include "ActorManager.h"
 #include "WeaponManager.h"
 #include "EffectManager.h"

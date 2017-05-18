@@ -159,9 +159,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\ActorManager.cpp">
-      <Filter>src\FrameWork\GameData\CActor</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CEffect\CEffect.cpp">
       <Filter>src\FrameWork\GameData\CEffect</Filter>
     </ClCompile>
@@ -173,9 +170,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CSkill\CSkill.cpp">
       <Filter>src\FrameWork\GameData\CSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitManager.cpp">
-      <Filter>src\FrameWork\GameData\CUnit</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\Manager\AnimateManager.cpp">
       <Filter>src\FrameWork\Manager\AnimateManager</Filter>
@@ -234,17 +228,11 @@
     <ClCompile Include="..\Classes\TowerDefent\Unit\Tower.cpp">
       <Filter>src\TowerDefent\Unit\Tower</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.cpp">
-      <Filter>src\FrameWork\GameData\CWeapon</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Layer\GameMapLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.cpp">
-      <Filter>src\FrameWork\GameData\CWeapon</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\GameMap\GridPos.cpp">
       <Filter>src\TowerDefent\GameCommand</Filter>
@@ -291,20 +279,11 @@
     <ClCompile Include="..\Classes\FrameWork\GameData\CGameData.cpp">
       <Filter>src\FrameWork\GameData</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\CUnit.cpp">
-      <Filter>src\FrameWork\GameData\CUnit</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Actor\CActor.cpp">
-      <Filter>src\FrameWork\GameData\CActor</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\GameData\CModification\CModification.cpp">
       <Filter>src\FrameWork\GameData\CModification</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\FrameWork\Helper\GalaxyHelper.cpp">
       <Filter>src\FrameWork\Helper</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\FrameWork\GameData\Unit\UnitCreator.cpp">
-      <Filter>src\FrameWork\GameData\CUnit</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TowerDefent\Unit\TDUnitCreator.cpp">
       <Filter>src\TowerDefent\Unit</Filter>
@@ -372,6 +351,27 @@
     <ClCompile Include="..\Classes\TowerDefent\Layer\LevelFinishLayer.cpp">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CActor\ActorManager.cpp">
+      <Filter>src\FrameWork\GameData\CActor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CActor\CActor.cpp">
+      <Filter>src\FrameWork\GameData\CActor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CUnit\CUnit.cpp">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CUnit\UnitCreator.cpp">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CUnit\UnitManager.cpp">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CWeapon\CWeapon.cpp">
+      <Filter>src\FrameWork\GameData\CWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FrameWork\GameData\CWeapon\WeaponManager.cpp">
+      <Filter>src\FrameWork\GameData\CWeapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -379,9 +379,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\ActorManager.h">
-      <Filter>src\FrameWork\GameData\CActor</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CEffect\CEffect.h">
       <Filter>src\FrameWork\GameData\CEffect</Filter>
@@ -391,9 +388,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CSkill\CSkill.h">
       <Filter>src\FrameWork\GameData\CSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitManager.h">
-      <Filter>src\FrameWork\GameData\CUnit</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\Manager\AnimateManager.h">
       <Filter>src\FrameWork\Manager\AnimateManager</Filter>
@@ -455,9 +449,6 @@
     <ClInclude Include="..\Classes\TowerDefent\Unit\Tower.h">
       <Filter>src\TowerDefent\Unit\Tower</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\CWeapon.h">
-      <Filter>src\FrameWork\GameData\CWeapon</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Layer\TowerSelectLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
@@ -466,9 +457,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\TowerDefentShare.h">
       <Filter>src\TowerDefent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Weapon\WeaponManager.h">
-      <Filter>src\FrameWork\GameData\CWeapon</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\GameMap\GridPos.h">
       <Filter>src\TowerDefent\GameCommand</Filter>
@@ -512,12 +500,6 @@
     <ClInclude Include="..\Classes\FrameWork\GameData\CGameData.h">
       <Filter>src\FrameWork\GameData</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\CUnit.h">
-      <Filter>src\FrameWork\GameData\CUnit</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Actor\CActor.h">
-      <Filter>src\FrameWork\GameData\CActor</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\GameData\CCost\CCost.h">
       <Filter>src\FrameWork\GameData\CCost</Filter>
     </ClInclude>
@@ -532,9 +514,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\FrameWork\Helper\GalaxyHelper.h">
       <Filter>src\FrameWork\Helper</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\FrameWork\GameData\Unit\UnitCreator.h">
-      <Filter>src\FrameWork\GameData\CUnit</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TowerDefent\Unit\TDUnitCreator.h">
       <Filter>src\TowerDefent\Unit</Filter>
@@ -605,10 +584,34 @@
     <ClInclude Include="..\Classes\TowerDefent\Layer\LevelFinishLayer.h">
       <Filter>src\TowerDefent\Layer</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CActor\CActor.h">
+      <Filter>src\FrameWork\GameData\CActor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CActor\ActorManager.h">
+      <Filter>src\FrameWork\GameData\CActor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CUnit\CUnit.h">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CUnit\UnitCreator.h">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CUnit\UnitManager.h">
+      <Filter>src\FrameWork\GameData\CUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CWeapon\WeaponManager.h">
+      <Filter>src\FrameWork\GameData\CWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FrameWork\GameData\CWeapon\CWeapon.h">
+      <Filter>src\FrameWork\GameData\CWeapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

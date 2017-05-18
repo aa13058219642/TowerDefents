@@ -1,65 +1,124 @@
 {
-	"actordata":[
+    "actordata": [
+        {
+            "name": "blank",
+            "defaultanimate": "blank",
+            "actionName": [ "stand" ],
+            "animateName": [ "blank" ]
+        },
+        {
+            "name": "t001",
+            "defaultanimate": "t001_stand",
+            "actionName": [ "stand", "attack_beforing", "skill_preparing", "skill_beforing", "skill_using", "skill_aftering" ],
+            "animateName": [ "t001_stand", "t001_attack_beforing", "t001_skill_preparing", "t001_skill_beforing", "t001_skill_using", "t001_skill_aftering" ]
+        },
 		{
-			"name":"blank",
-			"defaultanimate":"blank",
-			"actioncount":1,
-			"actionName":["stand"],
-			"animateName":["blank"]
-		},{
-			"name":"t001",
-			"defaultanimate":"t001_stand",
-			"actioncount":6,
-			"actionName":["stand","attack_beforing","skill_preparing","skill_beforing","skill_using","skill_aftering"],
-			"animateName":["t001_stand","t001_attack_beforing","t001_skill_preparing","t001_skill_beforing","t001_skill_using","t001_skill_aftering"]
-		},{
-			"name":"m001",
-			"defaultanimate":"m001_move",
-			"actioncount":2,
-			"actionName":["move","death"],
-			"animateName":["m001_move","m001_death"]
-		},{
-			"name":"b001",
-			"defaultanimate":"b001_move",
-			"actioncount":1,
-			"actionName":["move"],
-			"animateName":["b001_move"]
-		},{
-			"name":"b002",
-			"defaultanimate":"b002_move",
-			"actioncount":1,
-			"actionName":["move"],
-			"animateName":["b002_move"]
-		},{
-			"name":"b003",
-			"defaultanimate":"b003_move",
-			"actioncount":2,
-			"actionName":["move","death"],
-			"animateName":["b003_move","e001"]
-		},{
-			"name":"Tower_000","defaultanimate":"Tower_000","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_000"]
-		},{
-			"name":"Tower_001","defaultanimate":"Tower_001","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_001"]
-		},{
-			"name":"Tower_002","defaultanimate":"Tower_002","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_002"]
-		},{
-			"name":"Tower_003","defaultanimate":"Tower_003","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_003"]
-		},{
-			"name":"Tower_004","defaultanimate":"Tower_004","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_004"]
-		},{
-			"name":"Tower_005","defaultanimate":"Tower_005","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_005"]
-		},{
-			"name":"Tower_006","defaultanimate":"Tower_006","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_006"]
-		},{
-			"name":"Tower_007","defaultanimate":"Tower_007","actioncount":1,
-			"actionName":["stand"],"animateName":["Tower_007"]
-		}
-	]
+			"name": "m001",
+			"defaultanimate": "m001_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m001_move", "m001_death" ]
+		},
+		{
+			"name": "m002",
+			"defaultanimate": "m002_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m002_move", "m002_death" ]
+		},
+		{
+			"name": "m003",
+			"defaultanimate": "m003_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m003_move", "m003_death" ]
+		},
+		{
+			"name": "m004",
+			"defaultanimate": "m004_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m004_move", "m004_death" ]
+		},
+		{
+			"name": "m005",
+			"defaultanimate": "m005_move",
+			"actionName": [ "move", "death" ],
+			"animateName": [ "m005_move", "m005_death" ]
+		},
+        {
+            "name": "m006",
+            "defaultanimate": "m006_move",
+            "actionName": [ "move", "death" ],
+            "animateName": [ "m006_move", "m006_death" ]
+        },
+        {
+            "name": "b001",
+            "defaultanimate": "b001_move",
+            "actionName": [ "move" ,"death"],
+            "animateName": [ "b001_move", "e004" ]
+        },
+        {
+            "name": "b002",
+            "defaultanimate": "b002_move",
+            "actionName": [ "move" ],
+            "animateName": [ "b002_move" ]
+        },
+        {
+            "name": "b003",
+            "defaultanimate": "b003_move",
+            "actionName": [ "move", "death" ],
+            "animateName": [ "b003_move", "e001" ]
+        },
+        {
+            "name": "b004",
+            "defaultanimate": "b004_move",
+            "actionName": [ "move", "death" ],
+            "animateName": [ "b004_move", "e003" ]
+        },
+        {
+            "name": "Tower_000",
+            "defaultanimate": "Tower_000_stand",
+            "actionName": [ "stand", "attack_beforing","attack_aftering" ],
+            "animateName": [ "Tower_000_stand", "Tower_000_attack_beforing","Tower_000_attack_aftering"]
+        },
+        {
+            "name": "Tower_001",
+            "defaultanimate": "Tower_001_stand",
+            "actionName": [ "stand", "attack_beforing","attack_using","attack_aftering" ],
+            "animateName": [ "Tower_001_stand", "Tower_001_attack_beforing","Tower_001_attack_using","Tower_001_attack_aftering"]
+        },
+        {
+            "name": "Tower_002",
+            "defaultanimate": "Tower_002_stand",
+            "actionName": [ "stand", "attack_beforing" ],
+            "animateName": ["Tower_002_stand", "Tower_002_attack_beforing" ]
+        },
+        {
+            "name": "Tower_003",
+            "defaultanimate": "Tower_003_stand",
+            "actionName": [ "stand", "attack_beforing" ],
+            "animateName": [ "Tower_003_stand", "Tower_003_attack_beforing" ]
+        },
+        {
+            "name": "Tower_004",
+            "defaultanimate": "Tower_004_stand",
+            "actionName": ["stand", "attack_beforing"],
+            "animateName": ["Tower_004_stand", "Tower_004_attack_beforing"]
+        },
+        {
+            "name": "Tower_005",
+            "defaultanimate": "Tower_005_stand",
+            "actionName": ["stand", "attack_beforing"],
+            "animateName": ["Tower_005_stand", "Tower_005_attack_beforing"]
+        },
+        {
+            "name": "Tower_006",
+            "defaultanimate": "Tower_006_stand",
+            "actionName": [ "stand", "attack_beforing","attack_aftering" ],
+            "animateName": [ "Tower_006_stand", "Tower_006_attack_beforing","Tower_006_attack_aftering"]
+        },
+        {
+            "name": "Tower_007",
+            "defaultanimate": "Tower_007_stand",
+            "actionName": ["stand", "attack_beforing"],
+            "animateName": ["Tower_007_stand", "Tower_007_attack_beforing"]
+        }
+    ]
 }

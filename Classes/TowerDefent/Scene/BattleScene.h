@@ -31,5 +31,5 @@ private:
 	GameMapLayer* gameMapLayer;
 	TowerInfoLayer* towerInfoLayer;
 	GameInfoLayer* gameInfoLayer;
-	LevelFinishLayer* LevelFinishLayer;
+	LevelFinishLayer* levelFinishLayer;
 };

@@ -94,7 +94,11 @@ void UserData::setValue(std::string keyname, int value)
 	}
 	else
 	{
-		doc.AddMember(rapidjson::Value(keyname.c_str(), allocator), value, allocator);
+		//doc.AddMember(rapidjson::Value(keyname.c_str(), allocator), value, allocator);
+		//doc.AddMember(rapidjson::GenericValue<rapidjson::UTF8<>>(keyname.c_str(), allocator), value, allocator);
+	
+		rapidjson::Value name = rapidjson::Value(keyname.c_str(), allocator);
+		doc.AddMember(name, value, allocator);
 	}
 }
 
@@ -107,8 +111,8 @@ void UserData::setValue(std::string keyname, double value)
 	}
 	else
 	{
-
-		doc.AddMember(rapidjson::Value(keyname.c_str(), allocator), value, allocator);
+		rapidjson::Value name = rapidjson::Value(keyname.c_str(), allocator);
+		doc.AddMember(name, value, allocator);
 	}
 }
 
@@ -121,7 +125,8 @@ void UserData::setValue(std::string keyname, std::string value)
 	}
 	else
 	{
-		doc.AddMember(rapidjson::Value(keyname.c_str(), allocator), rapidjson::Value(value.c_str(), allocator), allocator);
+		rapidjson::Value name = rapidjson::Value(keyname.c_str(), allocator);
+		doc.AddMember(name, rapidjson::Value(value.c_str(), allocator), allocator);
 	}
 }
 

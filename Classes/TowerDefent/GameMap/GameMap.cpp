@@ -15,7 +15,6 @@ GameMap* GameMap::getInstance()
 
 GameMap::GameMap()
 {
-	m_level = -1;
 	m_mapSize = Size::ZERO;
 	m_map = nullptr;
 	curWave = -1;
@@ -53,14 +52,11 @@ void GameMap::clear()
 }
 
 
-bool GameMap::init(int wrold, int level)
+bool GameMap::init(LevelData leveldata)
 {
-	CCASSERT(level != -1, "illgle level !");
-	//Director::getInstance()->getScheduler()->setTimeScale(2.0f);
-	m_wrold = wrold;
-	m_level = level;
+	m_leveldata = leveldata;
 	this->clear();
-	loadMap(wrold, level);
+	loadMap(leveldata.world, leveldata.level);
 
 	this->msgSubscribe(Message_Global);
 	//this->msgSubscribe(Message_GameMap);
@@ -390,10 +386,30 @@ void GameMap::update(float dt)
 		log("Win!");
 		Director::getInstance()->getScheduler()->setTimeScale(1.0f);
 
+		Player* player = Player::getInstance();
+
+		float money2 = 0;
+		for (auto grid : m_gridPos)
+		{
+			if (grid->getType() == EGridPosType::GridPosType_Tower)
+			{
+				money2 +=grid->getSellPrice();
+			}
+		}
+		money2 += player->getMoney();
+
+
 		Message msg("show");
-		msg.valueMap["wave"] = curWave + 1;
-		msg.valueMap["waveCount"] = waveCount;
 		msg.valueMap["iswin"] = true;
+		msg.valueMap["world"] = m_leveldata.world;
+		msg.valueMap["level"] = m_leveldata.level;
+		msg.valueMap["title"] = StringUtils::format("%d-%d %s", m_leveldata.world, m_leveldata.level, m_leveldata.title.c_str());
+		msg.valueMap["money1"] = player->getLife() * 50.0f;
+		msg.valueMap["money2"] = money2;
+		msg.valueMap["money3"] = m_leveldata.awardMoney;
+		msg.valueMap["money4"] = 0.0f;
+		msg.valueMap["rank"] = player->getLife()/4;
+
 		msg.post(Message_LevelFinishLayer);
 
 		m_state = GS_WaitToEnd;

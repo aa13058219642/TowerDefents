@@ -21,6 +21,8 @@ public:
 
 private:
 	int m_state;
+	int m_world;
+	int m_level;
 	float money[5];
 	float tmoney[5];
 	int rank;
@@ -35,7 +37,7 @@ private:
 	cocos2d::Label* scoreLabel;
 
 
-	void setData(string title, int rank, float money1, float money2, float money3, float money4);
+	void setData(int world, int level, string title, int rank, float money1, float money2, float money3, float money4);
 	void showForWin(float dt);
 	void showForDefeat(float dt);
 	void event_btRed_click();

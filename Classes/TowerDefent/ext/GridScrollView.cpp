@@ -41,7 +41,7 @@ bool GridScrollView::init(const cocos2d::Size& viewsize, const Size& itemsize, G
 	isMoved = false;
 	horizontalSpacing = verticalSpacing = 0;
 	m_padding = Padding::ZERO;
-
+	clickpos = Point::ZERO;
 
 	this->setDirection(direction);
 	this->setContentSize(viewsize);
@@ -292,6 +292,7 @@ bool GridScrollView::onTouchBegan(Touch* touch, Event* event)
 
 		isMoved = false;
 		return true;
+		clickpos = pos;
 	}
 	else
 	{
@@ -301,21 +302,24 @@ bool GridScrollView::onTouchBegan(Touch* touch, Event* event)
 
 void GridScrollView::onTouchMoved(Touch* touch, Event* event)
 {
-	isMoved = true;
 	ScrollView::onTouchMoved(touch, event);
 
 	Point pos = convertTouchToNodeSpace(touch);
-	int s = m_numColumns*m_numRows;
-	for (int i = 0; i < s; i++)
+	if (clickpos.distanceSquared(pos) > 100)
 	{
-		if (i >= m_Items.size())
-			break;
-
-		auto item = m_Items.at(i);
-		if (item->getBoundingBox().containsPoint(pos))
+		isMoved = true;
+		int s = m_numColumns*m_numRows;
+		for (int i = 0; i < s; i++)
 		{
-			//log("onTouchBegan::tag=%d", item->getTag());
-			item->onTouchMoved(touch, event);
+			if (i >= m_Items.size())
+				break;
+
+			auto item = m_Items.at(i);
+			if (item->getBoundingBox().containsPoint(pos))
+			{
+				//log("onTouchBegan::tag=%d", item->getTag());
+				item->onTouchMoved(touch, event);
+			}
 		}
 	}
 }
@@ -344,6 +348,7 @@ void GridScrollView::onTouchEnded(Touch* touch, Event* event)
 		}
 	}
 	isMoved = false;
+	clickpos = Point::ZERO;
 
 }
 

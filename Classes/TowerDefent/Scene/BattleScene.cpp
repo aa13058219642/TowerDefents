@@ -56,9 +56,9 @@ bool BattleScene::init()
 	gameInfoLayer = GameInfoLayer::create();
 	this->addChild(gameInfoLayer, 5999);
 
-	LevelFinishLayer = LevelFinishLayer::create();
-	LevelFinishLayer->setVisible(false);
-	this->addChild(LevelFinishLayer, 6000);
+	levelFinishLayer = LevelFinishLayer::create();
+	levelFinishLayer->setVisible(false);
+	this->addChild(levelFinishLayer, 6000);
 
 
 	if (DebugDraw::isDebug)

@@ -165,7 +165,14 @@ void LevelFinishLayer::receive(const Message* message)
 		bool iswin = map.at("iswin").asBool();
 		if (iswin)
 		{
-			setData("1-1 666666", 5, 500, 2000, 3000, 4444);
+			setData(map.at("world").asInt(),
+				map.at("level").asInt(),
+				map.at("title").asString(),
+				map.at("rank").asInt(),
+				map.at("money1").asFloat(),
+				map.at("money2").asFloat(),
+				map.at("money3").asFloat(),
+				map.at("money4").asFloat());
 			this->scheduleOnce(schedule_selector(LevelFinishLayer::showForWin), 3.0f);
 		}
 		else
@@ -213,8 +220,10 @@ void LevelFinishLayer::showForDefeat(float dt)
 }
 
 
-void LevelFinishLayer::setData(string title, int rank, float money1, float money2, float money3, float money4)
+void LevelFinishLayer::setData(int world, int level, string title, int rank, float money1, float money2, float money3, float money4)
 {
+	m_world = world;
+	m_level = level;
 	this->rank = rank;
 	money[0] = money1;
 	money[1] = money2;
@@ -237,8 +246,8 @@ void LevelFinishLayer::event_btRed_click()
 	LoadingScene* loading = LoadingScene::create();
 
 	ValueMap map;
-	map["world"] = 1;
-	map["level"] = 1;
+	map["world"] = m_world;
+	map["level"] = m_level;
 	loading->setData(map);
 
 	std::queue<LoadingScene::LoadingCallback> list;
@@ -253,6 +262,7 @@ void LevelFinishLayer::event_btRed_click()
 	});
 	list.push([](){ TowerCardManager::getInstance()->LoadResource(); });
 	list.push([](){ SpellCardManager::getInstance()->LoadResource(); });
+	list.push([](){ WeaponManager::getInstance()->LoadResource(); });
 	loading->setLambdaLoadList(list);
 
 	loading->bindFinishFunction([=](){

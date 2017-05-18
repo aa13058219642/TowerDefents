@@ -53,16 +53,20 @@ private:
 	void event_btReturn_click();
 	void event_btChoose_click();
 
+	string m_title;
 	int m_level;
 	int m_wrold;
 	float BaseMoney;
 	float AddMoney;
+	float AwardMoney;
 
 	CardGridItem* curItem;
 	Vector<CardGridItem*> itemlist;
 
 
 	cocos2d::Layer* actorLayer;
+	cocos2d::Sprite* gridItem_selected1;
+	cocos2d::Sprite* gridItem_selected2;
 
 	cocos2d::ui::CheckBox* cb_tabbt_card;
 	cocos2d::ui::CheckBox* cb_tabbt_map;

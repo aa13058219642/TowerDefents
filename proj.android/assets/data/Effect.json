@@ -1,0 +1,55 @@
+{
+    "Effects": [
+        {
+            "name": "LaunchBall",
+            "class": "CEffectLaunchMissile",
+            "param": {
+                "className": "Bullet",
+                "typeName": "Bullet001"
+            }
+        },
+        {
+            "name": "LaunchMissile",
+            "class": "CEffectLaunchMissile",
+            "param": {
+                "className": "Bullet",
+                "typeName": "Bullet002"
+            }
+        },
+        {
+            "name": "LaunchBoom",
+            "class": "CEffectLaunchMissile",
+            "param": {
+                "className": "Bullet",
+                "typeName": "Bullet003"
+            }
+        },
+        {
+            "name": "missileDamage",
+            "class": "CEffectDamage",
+            "param": {
+                "minDamage": 200,
+                "maxDamage": 400
+            }
+        },
+        {
+            "name": "missileDamageBoom",
+            "class": "CEffectDamage",
+            "param": {
+                "minDamage": 100,
+                "maxDamage": 200,
+                "damageType": 2,
+                "effectAnimate": "b003"
+            }
+        },
+        {
+            "name": "MissileBoom",
+            "class": "CEffectEnumArea",
+            "param": {
+                "filter": 5,
+                "areaRadius": 300,
+                "applyEffect": "missileDamageBoom"
+            }
+        }
+    ]
+}
